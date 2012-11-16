@@ -1,0 +1,30 @@
+﻿<GenericTransportAgent xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <DeliveryAgent>
+    <OnCloseConnection xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnDeliverMailItem xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnOpenConnection xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  </DeliveryAgent>
+  <RoutingAgent>
+    <OnCategorizedMessage xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnResolvedMessage xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnRoutedMessage xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnSubmittedMessage xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  </RoutingAgent>
+  <SmtpReceiveAgent>
+    <OnAuthCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnConnect xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnDataCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnDisconnect xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnEhloCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnEndOfAuthentication xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnEndOfData xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnEndOfHeaders xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnHeloCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnHelpCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnMailCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnNoopCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnRcptCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnReject xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    <OnRsetCommand xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  </SmtpReceiveAgent>
+</GenericTransportAgent>

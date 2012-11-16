@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Tests</RootNamespace>
+    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Common">
+      <HintPath>..\Dependencies\Libs\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Logging.Log4Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Agents\GenericDeliveryAgentTests.cs" />
+    <Compile Include="Base\Agents\GenericRoutingAgentTests.cs" />
+    <Compile Include="Base\Agents\GenericSmtpReceiveAgentTests.cs" />
+    <Compile Include="Helpers\AgentTestBase.cs" />
+    <Compile Include="Base\Factories\GenericDeliveryAgentFactoryTests.cs" />
+    <Compile Include="Base\Factories\GenericRoutingAgentFactoryTests.cs" />
+    <Compile Include="Base\Factories\GenericSmtpReceiveAgentFactoryTests.cs" />
+    <Compile Include="Helpers\FactoryTestBase.cs" />
+    <Compile Include="Common\NInjectHelperTests.cs" />
+    <Compile Include="Helpers\FilterableHandler.cs" />
+    <Compile Include="Helpers\FilterTestBase.cs" />
+    <Compile Include="Helpers\TestDeliveryAgentManager.cs" />
+    <Compile Include="Plugins\Common\Config\TransportAgentConfigTests.cs" />
+    <Compile Include="Plugins\Common\EmailItemTests.cs" />
+    <Compile Include="Plugins\Common\Extensions\StringExtensionsTest.cs" />
+    <Compile Include="Plugins\Common\FilterableHandlerTests.cs" />
+    <Compile Include="Plugins\Common\FilterTests.cs" />
+    <Compile Include="Plugins\DisclaimerHandlerTests.cs" />
+    <Compile Include="Plugins\DkimSigningHandlerTests.cs" />
+    <Compile Include="Plugins\ExecutableHandlerTests.cs" />
+    <Compile Include="Plugins\ExtractAttachmentHandlerTests.cs" />
+    <Compile Include="Plugins\NoopHandlerTests.cs" />
+    <Compile Include="Helpers\HandlerTestBase.cs" />
+    <Compile Include="Plugins\TwitterNotificationHandlerTests.cs" />
+    <Compile Include="Helpers\EmailMessageHelper.cs" />
+    <Compile Include="Plugins\Common\PluginHostTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj">
+      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
+      <Project>{bbea07c8-5924-4a67-8a03-9e6459a66e68}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj">
+      <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.csproj">
+      <Project>{3efcf61f-a6bb-4eb3-b73b-a72b0cf044f2}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj">
+      <Project>{3395cd93-59e3-453a-8806-49f4def9e3b8}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
+      <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
+      <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj">
+      <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
+      <Project>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

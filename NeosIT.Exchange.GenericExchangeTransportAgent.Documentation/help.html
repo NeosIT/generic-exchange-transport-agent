@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GenericExchangeTransportAgent - Onlinehilfe</title>
+		<link href="./css/help.css" rel="stylesheet" type="text/css" />
+		<link href="css/shCore.css" rel="stylesheet" type="text/css" />
+		<link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h1>
+			Willkommen bei der GenericExchangeTransportAgent Onlinehilfe.
+		</h1>
+		<ol>
+			<li><a href="#intro">Einleitung</a></li>
+			<li>
+				<a href="#install">Installation</a>
+				<ol>
+					<li><a href="#install-auto">Automatische Installation</a></li>
+					<li><a href="#install-manual">Manuelle Installation</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#config">Konfiguration</a>	
+				<ol>
+					<li><a href="#config-intro">Einleitung</a></li>
+					<li><a href="#config-agents_events">Agents und Events</a></li>
+					<li><a href="#config-first_example">Erstes Beispiel</a></li>
+					<li><a href="#config-handler">Handler</a></li>
+					<li><a href="#config-filter">Filter</a></li>
+					<li><a href="#config-subhandler">SubHandler</a></li>
+					<li><a href="#config-subfilter">SubFilter</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#uninstall">Deinstallation</a>
+				<ol>
+					<li><a href="#uninstall-auto">Automatische Deinstallation</a></li>
+					<li><a href="#uninstall-manual">Manuelle Deinstallation</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#troubleshoot">Fehlerbehebung</a>
+				<ol>
+					<li><a href="#troubleshoot-unauthorized_access_exception">EdgeTransport.exe meldet &quot;System.UnauthorizedAccessException&quot;</a>
+					<li><a href="#troubleshoot-logging_not_working">Das Logging funktioniert nicht</a></li>
+					<li><a href="#troubleshoot-eml_export_not_working">Der EML-Export funktioniert nicht</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#includedhandlers">Mitgelieferte Handler</a>
+				<ol>
+					<li><a href="#includedhandlers-disclaimerhandler">DisclaimerHandler</a></li>
+					<li><a href="#includedhandlers-executablehandler">ExecutableHandler</a></li>
+					<li><a href="#includedhandlers-extractattachmenthandler">ExtractAttachmentHandler</a></li>
+					<li><a href="#includedhandlers-noophandler">NoopHandler</a></li>
+					<li><a href="#includedhandlers-dkimsigninghandler">DkimSigningHandler</a></li>
+					<li><a href="#includedhandlers-twitternotificationhandler">TwitterNotificationHandler</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#ownhandlers">Eigene Handler erstellen</a>
+				<ol>
+					<li><a href="#ownhandlers-general">Generelle Informationen</a></li>
+					<li>
+						<a href="#ownhandlers-classes_and_interfaces">Klassen und Schnittstellen</a>
+						<ol>
+							<li><a href="#ownhandlers-classes_and_interfaces-ihandler">Das Interface &quot;IHandler&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-ifilterable">Das Interface &quot;IFilterable&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-ioptions">Das Interface &quot;IOptions&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-iviewoptions">Das Interface &quot;IViewOptions&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-loggingbase">Die Basisklasse &quot;LoggingBase&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-handlerbase">Die Basisklasse &quot;HandlerBase&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-filter">Die Basisklasse &quot;Filter&quot;</a></li>
+							<li><a href="#ownhandlers-classes_and_interfaces-filterablehandlerbase">Die Basisklasse &quot;FilterableHandlerBase&quot;</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#ownhandlers-example">Beispiel &quot;ExtactAttachmentHandler&quot;</a>
+						<ol>
+							<li><a href="#ownhandlers-example-iextractattachmenthandler">IExtractAttachmentHandler</a></li>
+							<li><a href="#ownhandlers-example-extractattachmenthandler">ExtractAttachmentHandler</a></li>
+							<li><a href="#ownhandlers-example-configform">ConfigForm</a></li>
+							<li><a href="#ownhandlers-example-setting">Setting</a></li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+			<li><a href="#glossar">Glossar</a></li>
+			<li><a href="#contact">Kontakt</a></li>
+		</ol>
+		
+		<div id="intro">
+			<h3>1. Einleitung</h3>
+			<hr />
+			<p>
+				Der GenericExchangeTransportAgent bietet die M&ouml;glichkeit, auf Ereignisse des Exchange Servers zu reagieren und nach selbst definierten Filterregeln
+				bestimmte Aktionen auszuf&uuml;hren. 
+			</p>
+			<p>
+				Beim Lesen der Dokumentation werden Ihnen vier Begriffe immer wieder begegnen: "Agent", "Event", "Handler" und "Filter". Diese werden neben anderen
+				Begriffen im <a href="#glossar">Glossar</a> erl&auml;utert.
+			</p>
+			<p>
+				Standardm&auml;&szlig;ig wird der GenericExchangeTransportAgent mit sechs Handlern ausgeliefert. Es steht Ihnen frei, weitere Handler zu entwickeln.
+				Um das Einbinden von neuen Handlern zu erleichtern, setzt der GenericExchangeTransportAgent auf eine Art "Plugin-Mechanismus" auf Basis des sogenannten
+				<a href="http://mef.codeplex.com/" target="_blank">MEF (Managed Extensibility Framework)</a>. 
+			</p>
+			<p>
+				Am einfachsten l&auml;sst sich die Funktionsweise an einem Beispiel zeigen. Nehmen wir an, Sie m&ouml;chten, dass Mails von einem bestimmten Absender in ein
+				von Ihnen definiertes Verzeichnis auf dem Server gespeichert werden. Hierzu w&uuml;rde es im einfachsten Fall reichen, einen Filter mit der Bedingung 
+				"FROM &lt;absender@mail.com&gt;" für den ExecutableHandler anzulegen sowie Export der Mail als EML zu aktivieren und das Ausgabeverzeichnis zu definieren. 
+				Dieser Handler wird dem "GenericSmtpReceiveAgent" dem Event "OnEndOfData" zugewiesen.
+			</p>
+			<p>
+				Dieses Beispiel werden Sie (neben weiteren, komplexeren Beispielen) im Abschnitt <a href="#config">Konfiguration</a> wiederfinden.
+			</p>
+		</div>
+		
+		<div id="install">
+			<h3>2. Installation</h3>
+			<hr />
+			<div id="install-auto">
+				<h4>2.1 Automatische Installation</h4>
+				<p>
+					Die Installation erfolgt mittels eines einfachen PowerShell-Scripts. Hierzu &ouml;ffnen Sie auf dem Server, auf dem der Exchange Server 2010 installiert
+					ist, eine &quot;Microsoft Exchange Management Shell&quot;, und navigieren mittels &quot;cd &lt;Zielverzeichnis&gt;&quot in das Verzeichnis des GenericExchangeTransportAgents. 
+					Anschließend rufen Sie das Installationsscipt mittels &quot;.\install.ps1&quot; auf.
+				</p>
+			</div>
+			
+			<div id="install-manual">
+				<h4>2.2 Manuelle Installation</h4>
+				<p>
+					Sie k&ouml;nnen die Installation auch manuell durchf&uuml;hren. Hierzu &ouml;ffnen Sie eine &quot;Micrsosoft Exchange Management Shell&quot;, und navigieren mittels "cd &lt;Zielverzeichnis&gt;" in das Verzeichnis des GenericExchangeTransportAgents.
+					F&uuml;hren Sie nun folgende Befehle aus:
+				</p>
+				<ol>
+					<li>
+						<dl>
+							<dt>$EXDIR=&quot;C:\Program Files\Microsoft\Exchange Server&quot;</dt>
+							<dt>$INSTDIR=&quot;$EXDIR\TransportRoles\Agents\Generic\GenericExchangeTransportAgent&quot;</dt>
+							<dd>Hiermit werden das Installationsverzeichnis des Exchange Servers ($EXDIR) und des GenericExchangeTransportAgents ($INSTDIR) definiert.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Net Stop MSExchangeTransport</dt>
+							<dd>Hiermit wird der "Microsoft Exchange-Transport"-Dienst beendet.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>New-Item -Type Directory -path $INSTDIR -ErrorAction SilentlyContinue</dt>
+							<dt>New-Item -Type Directory -path $INSTDIR\Logs -ErrorAction SilentlyContinue</dt>
+							<dd>Hiermit wird das Zielverzeichnis, in das der GenericExchangeTransportAgent installiert wird, sowie dessen Logverzeichnis erstellt.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<!--<dt>Copy-Item uninstall.ps1 $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\config.xml $INSTDIR -force</dt>-->
+							<dt>Copy-Item bin\debug\HtmlAgilityPack.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\log4net.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\MSDN.HtmlEditorControl.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Common.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\Ninject.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\Ninject.Extensions.Logging.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\Ninject.Extensions.Logging.Log4Net.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\RicherTextBox.dll $INSTDIR -force</dt>
+							<dt>Copy-Item bin\debug\System.ComponentModel.Composition.dll $INSTDIR -force</dt>
+							<dd>Hiermit werden die vom GenericExchangeTransportAgent ben&ouml;tigten Dateien in das Zielverzeichnis kopiert.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Install-TransportAgent -Name &quot;GenericRoutingAgent&quot; -AssemblyPath $INSTDIR\NeosIT.Exchange.GenericExchangeTransportAgent.dll -TransportAgentFactory NeosIT.Exchange.GenericExchangeTransportAgent.Factories.Agents.GenericRoutingAgentFactory</dt>
+							<dt>Install-TransportAgent -Name &quot;GenericSmtpReceiveAgent&quot; -AssemblyPath $INSTDIR\NeosIT.Exchange.GenericExchangeTransportAgent.dll -TransportAgentFactory NeosIT.Exchange.GenericExchangeTransportAgent.Factories.Agents.GenericSmtpReceiveAgentFactory</dt>
+							<dd>Hiermit wird der GenericExchangeTransportAgent im Exchange Server installiert.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Enable-Transportagent -Identity &quot;GenericRoutingAgent&quot;</dt>
+							<dt>Enable-Transportagent -Identity &quot;GenericSmtpReceiveAgent&quot;</dt>
+							<dt>Get-TransportAgent -Identity &quot;GenericRoutingAgent&quot;</dt>
+							<dt>Get-TransportAgent -Identity &quot;GenericSmtpReceiveAgent&quot;</dt>
+							<dd>Hiermit wird der GenericExchangeTransportAgent auf Ihrem Exchange Server aktiviert.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Net Start MSExchangeTransport</dt>
+							<dd>Hiermit wird der "Microsoft Exchange-Transport"-Dienst wieder gestartet.</dd>
+						</dl>
+					</li>
+				</ol>
+			</div>
+		</div>
+		
+		<div id="config">
+			<h3>3. Konfiguration</h3>
+			<hr />
+			<div id="config-intro">
+				<h4>3.1 Einleitung</h4>
+				<p>
+					Die Konfiguration f&uuml;r den GenericExchangeTransportAgent wird in der Datei &quot;config.xml&quot; hinterlegt. Hierbei handelt es sich um ein XML-konformes
+					Dokument. M&ouml;chten Sie eine eigene Konfiguration erstellen, k&ouml;nnen Sie dies selbsverst&auml;ndlich direkt in der XML-Datei machen. Einfacher
+					und bequemer geht dies aber &uuml;ber das Konfigurationsprogramm vom GenericExchangeTransportAgent.
+				</p>
+				<p>
+					Starten Sie hierzu das Programm &quot;GenericExchangeTransportAgent-Config.exe&quot;. 
+				</p>
+				
+				<img src="./img/main1.jpg" alt="main-screen" />
+				<p class="italic">
+					Abbildung 1: Hauptbildschirm
+				</p>
+				
+				<p>
+					Dies ist der Hauptbildschirm des Konfigurationsprogramms. In der linken Baumansicht finden Sie unterhalb von &quot;Config&quot; die im Exchange Server 
+					registrierten Agents, darunter entsprechend Events, die diesem Agent zugeordnet sind.
+				</p>
+				
+				<p>
+					In der rechten Baumansicht finden Sie die Handler, die Ihnen zur Verf&uuml;gung stehen.
+				</p>
+			</div>
+			
+			
+			<div id="config-agents_events">
+				<h4>3.2 Agents und Events</h4>
+				<p>
+					F&uuml:r den GenericExchangeTransportAgent wurden im Exchange Server zwei Agents installiert. Diese will kurz mit ihren Events kurz beschreiben:
+				</p>
+				<ul>
+					<li>
+						<p>
+							RoutingAgent: Er ist f&uuml;r die Erweiterung der Hub Transport Serverrolle zust&auml;ndig. 
+						</p>
+						<p>
+							Es stehen folgende Events zur Verf&uuml;gung:
+						</p>
+						<ul>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.routing.routingagent.oncategorizedmessage(EXCHG.140).aspx">OnCategorizedMessage</a>: 
+									Dieses Event tritt auf, nachdem der Server, sofern ben&ouml;tigt, die Inhaltskonvertierung vorgenommen hat. Es ist das letzte auftretende Event, bevor der Exchange Server die Mail in die Zustellwarteschlange &uuml;bergibt.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.routing.routingagent.onresolvedmessage(EXCHG.140).aspx">OnResolvedMessage</a>: 
+									Dieses Event tritt auf, nachdem alle Empf&auml;ger der Mail aufgel&ouml;st wurden und bevor das weitere &quot;Routing&quot; bestimmt wird. Es kann z.B. benutzt werden, um pro Emf&auml;nger ein eigenes &quot;Routing&quot; vorzunehmen.
+									(Siehe hierzu <a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.enveloperecipient.routingoverride(EXCHG.140).aspx">RoutingOverride</a> und <a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.enveloperecipient.setroutingoverride(EXCHG.140).aspx">SetRoutingOverride</a>)
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.routing.routingagent.onroutedmessage(EXCHG.140).aspx">OnRoutedMessage</a>: 
+									Dieses Event tritt auf, nachdem der Server die Mail zum n&auml;chsten &quot;Hop&quot; weitergeleitet hat und bevor, falls ben&ouml;tigt, eine Inhaltskonvertierung durchgef&uuml;hrt wird.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.routing.routingagent.onsubmittedmessage(EXCHG.140).aspx">OnSubmittedMessage</a>: 
+									Dieses Event tritt auf, nachdem der Server die Mail aus der &Uuml;bertragungswarteschlange genommen hat.
+								</p>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<p>
+							SmtpReceiveAgent: Er ist f&uuml;r die Erweiterung der Edge Transport Serverrolle zust&auml;ndig.
+						</p>
+						<p>
+							Es stehen folgende Events zur Verf&uuml;gung:
+						</p>
+						<ul>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onauthcommand(EXCHG.140).aspx">OnAuthCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP AUTH Kommando emf&auml;ngt und bevor der Exchange Server darauf antwortet.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onconnect(EXCHG.140).aspx">OnConnect</a>: 
+									Dieses Event tritt auf, wenn eine SMTP-Verbindung aufgebaut wird.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.ondatacommand(EXCHG.140).aspx">OnDataCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP DATA Kommando empf&auml;ngt.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.ondisconnect(EXCHG.140).aspx">OnDisconnect</a>: 
+									Dieses Event tritt auf, wenn eine bestehende SMTP-Verbindung zum Exchange Server geschlossen wird.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onehlocommand(EXCHG.140).aspx">OnEhloCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP EHLO Kommando empf&auml;ngt.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onendofauthentication(EXCHG.140).aspx">OnEndOfAuthentication</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server auf ein SMTP AUTH Kommando antwortet.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onendofdata(EXCHG.140).aspx">OnEndOfData</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server die Daten einer SMTP-Nachricht komlett empfangen hat.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onendofheaders(EXCHG.140).aspx">OnEndOfHeaders</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server die Headers einer SMTP-Nachricht komplett empfangen hat.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onhelocommand(EXCHG.140).aspx">OnHeloCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP HELO Kommando empf&auml;ngt.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onhelpcommand(EXCHG.140).aspx">OnHelpCommand</a>:
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP HELP Kommando empf&auml;ngt.								
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onmailcommand(EXCHG.140).aspx">OnMailCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP MAIL Kommando empf&auml;ngt.	
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onnoopcommand(EXCHG.140).aspx">OnNoopCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP NOOP Kommando empf&auml;ngt.	
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onrcptcommand(EXCHG.140).aspx">OnRcptCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP RCPT Kommando empf&auml;ngt.	
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onreject(EXCHG.140).aspx">OnReject</a>:
+									Dieses Event tritt auf, wenn ein anderes Event ein Kommando oder eine Nachricht ablehnt.
+								</p>
+							</li>
+							<li>
+								<p>
+									<a target="_blank" href="http://msdn.microsoft.com/en-us/library/microsoft.exchange.data.transport.smtp.smtpreceiveagent.onrsetcommand(EXCHG.140).aspx">OnRsetCommand</a>: 
+									Dieses Event tritt auf, wenn der Exchange Server ein SMTP RSET Kommando empf&auml;ngt.	
+								</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				
+				<p>
+					Eine weiterf&uuml;hrende Hilfe zu SMTP Kommandos finden Sie z.B. <a target="_blank" href="http://technet.microsoft.com/en-us/library/aa996114(EXCHG.65).aspx">hier</a>.
+				</p>
+			</div>
+			
+			<br />
+			
+			<div id="config-first_example">
+				<h4>3.3 Erstes Beispiel</h4>
+				<p>
+					Nehmen wir das Beispiel aus der Einleitung: Mails von einem bestimmten Absender in ein von Ihnen definiertes Verzeichnis auf dem Server speichern. 
+				</p>
+			</div>
+			
+			<div id="config-handler">
+				<h4>3.4 Handler</h4>
+				<p>
+					Wir erweitern in der linken Baumansicht den &quot;SmtpReceiveAgent&quot;, und w&auml;hlen das &quot;OnEndOfData&quot;-Event aus.
+					Danach w&auml;hlen wir in der rechten Baumansicht den ExecutableHandler aus, und klicken auf &quot;Add handler&quot;.
+					Wir erweitern unsere linke Baumansicht bis zum neu hinzugef&uuml;gten ExecutableHandler, und klicken auf &quot;Config handler...&quot;.
+				</p>
+				
+				<p>
+					Aktivieren Sie in dem sich &ouml;ffnenden Dialog die CheckBox &quot;Export to EML file&quot;, wenn die Mail in eine EML-Datei exportiert werden soll. 
+					Zus&auml;tzlich k&ouml;nnen Sie einen Pfad und Dateinamen f&uuml;r die EML-Datei angeben. Wird kein Dateiname angegeben, wird ein tempor&auml;rer Dateiname verwendet. 
+					Dieser kann in den Argumenten des Befehls mittels &quot;&#36;emlfile&#36;&quot; &uuml;bergeben werden.
+				</p>
+				
+				<p>
+					Klicken Sie abschlie&szlig;end auf &quot;Add&quot;. Der Handler wird nun dem zuvor gew&auml;hlten Event bzw. Handler zugeordnet. 
+				</p>
+			</div>
+								
+			<div id="config-filter">
+				<h4>3.5 Filter</h4>
+				<p>
+					Nun k&ouml;nnen wir dem Handler Filter zuordnen. Klicken Sie hierzu auf &quot;Config filters&quot;.
+				</p>
+				
+				<img src="./img/filter1.jpg" alt="filter-screen" />
+				
+				<p class="italic">
+					Abbildung 2: Filterfenster
+				</p>
+				
+				<p>
+					Ein neues Fenster &ouml;ffnet sich, in dem Sie ihre Filter definieren k&ouml;nnen. Filter gliedern sich in folgende Teilbereiche:
+				</p>
+				
+				<dl>
+					<dt>On</dt>
+					<dd>
+						Gibt an, auf welches Element der Mail der Filter reagieren soll. Zur Verf&uuml;gung stehen:
+						<dl>
+							<dt>From</dt>
+							<dd>Reagiert auf die Von-Adresse der Mail</dd>
+							<dt>To</dt>
+							<dd>Reagiert auf die An-Adresse(n) der Mail</dd>
+							<dt>Subject</dt>
+							<dd>Reagiert auf den Betreff der Mail</dd>
+						</dl>
+					</dd>
+					<dt>Operator</dt>
+					<dd>
+						Gibt den Operator des Filters an. Zur Verf&uuml;gung stehen:
+						<dl>
+							<dt>Equals</dt>
+							<dd>Gibt an, dass der On-Wert der Mail gleich dem Value sein muss</dd>
+							<dt>NotEquals</dt>
+							<dd>Gibt an, dass der On-Wert der Mail nicht gleich dem Value sein darf</dd>
+							<dt>StartsWith</dt>
+							<dd>Gibt an, dass der On-Wert der Mail mit dem Value anfangen muss</dd>
+							<dt>EndsWith</dt>
+							<dd>Gibt an, dass der On-Wert der Mail mit dem Value enden muss</dd>
+							<dt>Contains</dt>
+							<dd>Gibt an, dass der On-Wert der Mail das Value enthalten muss</dd>
+							<dt>Regex</dt>
+							<dd>Gibt an, dass der On-Wert der Mail dem regul&auml;ren Ausdruck im Value entsprechen muss</dd>
+						</dl>
+					</dd>
+					<dt>Value</dt>
+					<dd>Gibt den Wert an, der vom Operator erf&uuml;llt werden muss</dd>
+				</dl>
+				
+				<p>
+					Klicken Sie hier entweder auf &quot;And&quot; oder &quot;Or&quot; (f&uuml;r den ersten anzulegenden Filter ist dies
+					egal, dies wird erst bei zus&auml;tzlichen Filterkriterien wichtig). W&auml;hlen Sie nun den neu hinzugef&uuml;gten Filter aus.
+				</p>
+				
+				<p>
+					Wir w&auml;hlen aus der On-Auswahlliste &quot;From&quot; und aus der Operator-Auswahlliste &quot;Equals&quot; aus. Danach geben wir unter Value
+					&quot;absender@mail.com&quot; ein. Klicken Sie abschlie&szlig;end auf &quot;Apply&quot;.
+				</p>
+				
+				<p>
+					Der ge&auml;nderte Filter sollte nun in der Baumansicht im oberen Bereich des Fensters angezeigt werden. Schlie&szlig;en Sie das Filterfenster mittels 
+					&quot;Save&quot;.
+				</p>
+			</div>
+			
+			<p>
+				Klicken Sie im Hauptbildschirm auf &quot;Save&quot; oder &quot;Save as...&quot;. Geben Sie abschlie&szlig;end den Pfad ein, unter dem Sie die neue 
+				Konfiguration speichern wollen, und klicken auf Speichern.
+			</p>
+			
+			<p>
+				Voilà. Sie haben soeben erfolgreich Ihre erste Konfiguration f&uuml;r den GenericExchangeTransportAgent erstellt ;)
+			</p>
+			
+			<div id="config-subhandler">
+				<h4>3.6 SubHandler</h4>
+				<p>
+					Wie bereits erw&auml;hnt, k&ouml;nnen mehrere Handler nacheinander ausgef&uuml;hrt werden. Um einen SubHandler hinzuzuf&uuml;gen, w&auml;hlen Sie
+					den Handler, dem der SubHandler hinzugef&uuml;gt werden soll, in der linken Baumansicht aus. Anschlie&szlig;end w&auml;hlen Sie den SubHandler, der
+					hinzugef&uuml;gt werden soll, aus der rechten Baumansicht aus, und klicken auf &quot;Add handler&quot;.
+				</p>
+			</div>
+			
+			<div id="config-subfilter">
+				<h4>3.7 SubFilter</h4>
+				
+				<p>
+					Ausgehend vom Beispiel 1 wollen wir unseren Filter erweitern, so dass nur Mails vom Handler erfasst werden, deren
+				</p>
+				
+				<ol>
+					<li>Absender &quot;absender@mail.com&quot; <strong>und</strong> Betreff &quot;Testnachricht1&quot; <strong>oder</strong></li>
+					<li>Absender &quot;absender2@woanders.de&quot;</li>
+				</ol>
+				
+				<p>
+					ist.
+				</p>
+				
+				<p>
+					Laden Sie hierzu im Hauptbildschirm Ihre gespeicherte Konfiguration und w&auml;hlen den im Beispiel 1 angelegten ExecutableHandler aus. 
+					Klicken Sie nun auf &quot;Config Filters&quot;.
+				</p>
+				
+				<p>
+					W&auml;hlen Sie in der Baumansicht den Filter &quot;From Equals absender@mail.com&quot;, und klicken Sie auf &quot;And&quot;. Hiermit wird
+					ein neuer Filter unterhalb des vorherigen angelegt. Erweitern Sie den &quot;From Equals absender@mail.com&quot;-Filter, und w&auml;hlen 
+					den neu erstellten Filter aus.
+				</p>
+				
+				<p>
+					Aus der On-Auswahlliste w&auml;hlen Sie nun &quot;Subject&quot;, als Operator &quot;Equals&quot; und als Value &quot;Testnachricht&quot;. 
+					Klicken Sie abschlie&szlig;end auf &quot;Apply&quot;.
+				</p>
+								
+				<p>
+					W&auml;hlen Sie in der Baumansicht wiederum den Filter &quot;From Equals absender@mail.com&quot;. Klicken Sie diesmal allerdings 
+					auf &quot;Or&quot;
+				</p>
+				
+				<p>
+					Diesmal wird der neue Filter nicht dem &quot;From Equals absender@mail.com&quot;-Filters untergeordnet, sondern auf gleicher Ebene dargestellt.
+					W&auml;hlen Sie den neu erstellten Filter aus.
+				</p>
+				
+				<p>
+					Aus der On-Auswahlliste w&auml;hlen Sie &quot;From&quot;, als Operator &quot;Equals&quot; und als Value &quot;absender2@woanders.de&quot;.
+					Klicken Sie abschlie&szlig;end auf &quot;Apply&quot; und &quot;Save&quot;.
+				</p>
+				
+				<p>
+					Filter auf vertikaler Ebene werden logisch immer mit einem &quot;Or&quot; verkn&uuml;pft, Filter in diagonaler Ebene dagegen mit einem
+					&quot;And&quot;. Ein kleines Schaubild soll die richtige Interpretations des Filterbaums verdeutlichen:
+				</p>
+				
+				<pre>
+      
+    ........... From Equals absender@mail.com
+      .       .
+      .     (AND)... Subject Equals Testnachricht
+      .
+    (OR)....... From Equals absender2@woanders.de
+				</pre>
+			</div>
+		</div>
+		
+		<div id="uninstall">
+			<h3>4. Deinstallation</h3>
+			<hr />
+			<div id="uninstall-auto">
+				<h4>4.1 Automatische Deinstallation</h4>
+				<p>
+					Die Deinstallation erfolgt (wie auch die Installation) mittels eines einfachen PowerShell-Scripts. Hierzu &ouml;ffnen Sie auf dem Server, auf dem der Exchange Server 2010
+					installiert ist, eine &quot;Microsoft Exchange Management Shell&quot;, und navigieren mittels &quot;cd &lt;Zielverzeichnis&gt;&quot in das Verzeichnis des
+					GenericExchangeTransportAgents. Anschließend rufen Sie das Deinstallationsscipt mittels &quot;.\uninstall.ps1&quot; auf.
+				</p>
+			</div>
+			<div id="uninstall-manual">
+				<h4>4.2 Manuelle Deinstallation</h4>
+				<p>
+					Sie k&ouml;nnen die Deinstallation auch manuell durchf&uuml;hren. Hierzu &ouml;ffnen Sie eine &quot;Micrsosoft Exchange Management Shell&quot;, und navigieren mittels 
+					"cd &lt;Installationsverzeichnis&gt;" in das Installationsverzeichnis des GenericExchangeTransportAgents. F&uuml;hren Sie nun folgende Befehle aus:
+				</p>
+				<ol>
+					<li>
+						<dl>
+							<dt>$EXDIR=&quot;C:\Program Files\Microsoft\Exchange Server&quot;</dt>
+							<dt>$INSTDIR=&quot;$EXDIR\TransportRoles\Agents\Generic\GenericExchangeTransportAgent&quot;</dt>
+							<dd>Hiermit werden das Installationsverzeichnis des Exchange Servers ($EXDIR) und des GenericExchangeTransportAgents ($INSTDIR) definiert.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Net Stop MSExchangeTransport</dt>
+							<dd>Hiermit wird der "Microsoft Exchange-Transport"-Dienst beendet.</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Disable-TransportAgent -Identity "GenericRoutingAgent" -Confirm:$false</dt>
+							<dt>Disable-TransportAgent -Identity "GenericSmtpReceiveAgent" -Confirm:$false</dt>
+							<dd>Hiermit wird der GenericExchangeTransportAgent im Exchange Server deaktiviert</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Uninstall-TransportAgent -Identity "GenericRoutingAgent" -Confirm:$false</dt>
+							<dt>Uninstall-TransportAgent -Identity "GenericSmtpReceiveAgent" -Confirm:$false</dt>
+							<dd>Hiermit wird der GenericExchangeTransportAgent im Exchange Server deinstalliert</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Remove-Item $INSTDIR\* -Recurse -ErrorAction SilentlyContinue</dt>
+							<dt>Remove-Item $INSTDIR -Recurse -ErrorAction SilentlyContinue</dt>
+							<dd>Hiermit wird das Installationsverzeichnis des GenericExchangeTransportAgents gel&ouml;scht</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Net Start MSExchangeTransport</dt>
+							<dd>Hiermit wird der "Microsoft Exchange-Transport"-Dienst wieder gestartet.</dd>
+						</dl>
+					</li>
+				</ol>
+				
+				<p>
+					Es kann vorkommen, dass das Verzeichnis nicht komplett entfernt werden kann, da noch auf Dateien zugegriffen wird.
+					Starten Sie in diesem Fall den Server neu, und versuchen Sie es erneut. Alternativ k&ouml;nnen Sie auch mittels eines
+					&quot;File Unlockers&quot; versuchen, den entsprechenden Prozess, der noch auf die Dateien zugreift, zu beenden oder 
+					das offene &quot;File Handle&quot; freizugeben. Danach sollte sich das Verzeichnis l&ouml;schen lassen.
+				</p>
+			</div>
+		</div>
+		
+		<div id="troubleshoot">
+			<h3>5. Fehlerbehandlung</h3>
+			<hr />
+			
+			<p>
+				Ich hoffe nat&uuml;rlich, dass Sie diesen Abschnitt niemals lesen m&uuml;ssen, jedoch ist keine Software vollkommen fehlerfrei.
+			</p>
+			
+			<div id="troubleshoot-unauthorized_access_exception">
+				<h4>5.1 EdgeTransport.exe meldet &quot;System.UnauthorizedAccessException&quot;</h4>
+				<p>
+					Dieser Fehler tritt h&auml;ufig dann auf, wenn der GenericExchangeTransportAgent seine Konfiguration nicht laden kann. Da die Dienste des 
+					Exchange Servers unter dem &quot;Netzwerkdienst&quot; laufen, muss dieser entsprechend berechtigt werden. Dies geschieht &uuml;ber
+					die Sicherheitseinstellungen des Installationsverzeichnisses des GenericExchangeTransportAgents.
+				</p>
+			</div>
+			
+			<div id="troubleshoot-logging_not_working">
+				<h4>5.2 Das Logging funktioniert nicht</h4>
+				<p>
+					Dieser Fehler tritt auf, wenn a) in der NeosIT.Exhange.GenericExchangeTransportAgent.dll.config im Bereich des FileAppenders ein relativer
+					Pfad angegeben wurde, auf den der Netzwerkdienst keine Schreibrechte hat. Wird hier ein relativer Pfad angegeben, bezieht er sich 
+					<strong>nicht</strong> auf den Pfad zur .dll, sondern zur EdgeTransport.exe. Hier sollte der Netzwerkdienst <strong>niemals</strong>
+					Schreibrechte haben. 
+				</p>
+				<p>
+					Die Probleml&ouml;sung ist denkbar einfach: Geben Sie in der NeosIT.Exhange.GenericExchangeTransportAgent.dll.config im Bereich des 
+					FileAppenders einen absoluten Pfad an, auf den der Netzwerkdienst schreibend berechtigt ist. Danach sollte das Logging funktionieren.
+				</p>
+			</div>
+			
+			<div id="troubleshoot-eml_export_not_working">
+				<h4>5.3 Der EML-Export funktioniert nicht</h4>
+				<p>
+					Dies ist ein bekanntes Problem, an dem bereits gearbeitet wird. Die Vermutung liegt nahe, dass es sich dabei um ein Rechteproblem
+					handelt. Dies muss im Testlab analysiert werden.
+				</p>
+			</div>
+		</div>
+		
+		<div id="includedhandlers">
+			<h3>6. Mitgelieferte Handler</h3>
+			<hr />
+			
+			<div id="includedhandlers-disclaimerhandler">
+				<h4>6.1 DisclaimerHandler</h4>
+				<p>
+					Der DisclaimerHandler f&uuml;gt den Nachrichten am Ende einen Hinweistext hinzu. Dieser kann in normaler Textform, im
+					RTF- oder HTML-Format angegeben werden.
+				</p>
+			</div>
+			
+			<div id="includedhandlers-executablehandler">
+				<h4>6.2 ExecutableHandler</h4>
+				<p>
+					Der ExecutableHandler kann von Ihnen gewünschte Programme ausf&uuml;hren lassen. Zus&auml;tzlich bietet er die M&ouml;glichkeit,
+					die Mail nach EML zu exportieren. Die Optionen sind:
+				</p>
+				
+				<ul>
+					<li>
+						<dl>
+							<dt>Command</dt>
+							<dd>Hiermit definieren Sie, welches Programm ausgef&uuml;hrt werden soll.</dd>
+						</dl>
+					</li>
+					
+					<li>
+						<dl>
+							<dt>Arguments</dt>
+							<dd>
+								Hiermit k&ouml;nnen Sie dem Programm Argumente / Parameter f&uuml;r &uuml;bergeben. Wenn Sie die Mail als EML exportieren lassen 
+								und keinen Dateinamen f&uuml;r den Export angeben, wird ein zuf&auml;lliger Dateiname erzeugt, den Sie in den Argumenten mit 
+								&quot;$emlfile$&quot; verwenden k&ouml;nnen.
+							</dd>
+						</dl>
+					</li>
+					
+					<li>
+						<dl>
+							<dt>Timeout</dt>
+							<dd>
+								Hiermit definieren Sie, wie lange die Laufzeit des Programms maximal sein darf. Ist das Programm nach dieser Laufzeit nicht fertig,
+								wird der Prozess zwangsbeendet und ein ExitCode ungleich 0 zur&uuml;ckgeliefert, der mit dem Filterattribut &quot;LastStatusCode&quot; 
+								weiterbehandelt werden kann.
+							</dd>
+						</dl>
+					</li>
+					
+					<li>
+						<dl>
+							<dt>Export EML file</dt>
+							<dd>Hiermit wird angegeben, ob und in welches Verzeichnis eine Mail als EML exportiert werden soll.</dd>
+						</dl>
+					</li>
+					
+					<li>
+						<dl>
+							<dt>Filename</dt>
+							<dd>
+								Hiermit k&ouml;nnen Sie definieren, dass die zu exportierende EML-Datei einen festen Namen haben soll.
+								Wird diese Option nicht angegeben, wird ein zuf&auml;lliger Dateiname erzeugt, den Sie in den Argumenten mit 
+								&quot;$emlfile$&quot; verwenden k&ouml;nnen.
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			
+			<div id="includedhandlers-extractattachmenthandler">
+				<h4>6.3 ExtractAttachmentHandler</h4>
+				<p>
+					Der ExtractAttachmentHandler extrahiert die in einer Mail enthaltenen Anh&auml;nge in ein von Ihnen definiertes Verzeichnis.
+				</p>
+			</div>
+			
+			<div id="includedhandlers-noophandler">
+				<h4>6.4 NoopHandler</h4>
+				<p>
+					Der NoopHandler ist ein Platzhalter und bietet keine Funktionalit&auml;t. Seine Quelldateien k&ouml;nnen als Basis f&uuml;r eigene
+					Handler benutzt werden.
+				</p>
+			</div>
+			
+			<div id="includedhandlers-dkimsigninghandler">
+				<h4>6.5 DkimSigningHandler</h4>
+				<p>
+					Der DkimSigningHandler f&uuml;gt der E-Mail eine &quot;<a href="http://de.wikipedia.org/wiki/DomainKeys" target="_blank">DomainKeys</a> Identified
+					Mail (DKIM) Signature&quot; hinzu, die sicherstellen soll, dass die E-Mail auch wirklich von dem Absender stammt, von dem sie geschickt wurde.
+					Dieser Handler befindet sich derzeit im Teststadium, von einem produktiven Einsatz ist noch abzuraten und geschieht auf eigene Gefahr! 
+					(<a href="http://nicholas.piasecki.name/blog/2010/12/dkim-signing-outbound-messages-in-exchange-server-2007/" target="_blank">Urspr&uuml;ngliche Idee von Nicholas Piasecki</a>)
+				</p>
+			</div>
+			
+			<div id="includedhandlers-twitternotificationhandler">
+				<h4>6.6 TwittterNotificationHandler</h4>
+				<p>
+					Der TwitterNotificationHandler war mein erster eigenst&auml;ndiger Agent f&uuml;r den Exchange und wurde f&uuml;r den GenericExchangeTransportAgent
+					portiert. &Uuml;ber ihn k&ouml;nnen Sie sich benachrichtigen lassen, wenn Sie eine neue E-Mail im Posteingang haben.
+				</p>
+			</div>
+		</div>
+		
+		<div id="ownhandlers">
+			<h3>7. Eigene Handler erstellen</h3>
+			<hr />
+			<p>
+				F&uuml;r den Fall der F&auml;lle, dass die mitgelieferten Handler nicht die Funktionalit&auml;t bieten, die Sie w&uuml;nschen, k&ouml;nnen
+				Sie den GenericExchangeTransportAgent um weitere Handler erweitern. Was es hierbei einzuhalten und zu beachten gibt, m&ouml;chte ich in diesem
+				Abschnitt kurz beschreiben.
+			</p>
+			
+			<div id="ownhandlers-general">
+				<h4>7.1 Generelle Informationen</h4>
+				<p>
+					
+				</p>
+			</div>
+			
+			<div id="ownhandlers-classes_and_interfaces">
+				<h4>7.2 Klassen und Schnittstellen</h4>
+				<p>
+					<div id="ownhandlers-classes_and_interfaces-ihandler">
+						<h5>7.2.1 Das Interface &quot;IHandler&quot;</h5>
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
+								{
+									using System.Collections.Generic;
+
+									public interface IHandler
+									{
+										string Name { get; }
+										IList&lt;IHandler&gt; Handlers { get; set; }
+										void Execute(IEmailItem emailItem = null, int? lastExitCode = null);
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Dieses Interface gibt die Methode &quot;Execute&quot; vor. Diese Methode wird vom Exchange Server ausgef&uuml;hrt, wenn die eingestellten Filter
+							(sofern vorhanden) auf eine Mail zutreffen. Alle Handler m&uuml;ssen dieses Interface implementieren.
+						</p>
+						
+						<p>
+							Zus&auml;tzlich definiert dieses Interface einen einfachen String f&uuml;r den Namen des Handlers und eine Liste von zu verschachtelnden Handlern.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-ifilterable">
+						<h5>7.2.2 Das Interface &quot;IFilterable&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
+								{
+									using System.Collections.Generic;
+
+									public interface IFilterable
+									{
+										IList&lt;IFilterable&gt; Filters { get; set; }
+										bool AppliesTo(IEmailItem emailItem, int? lastExitCode = null);
+									}
+								}
+
+							</pre>
+						</p>
+						
+						<p>
+							Dieses Interface definiert eine Liste von Filterobjekten und die Methode &quot;AppliesTo&quot; &Uuml;ber dieses Interface wird angegeben, ob der 
+							Handler auf eigene Filter reagieren soll und wenn ja, wie diese ausgewertet werden sollen.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-ioptions">
+						<h5>7.2.3 Das Interface &quot;IOptions&quot;</h5>
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
+								{
+									public interface IOptions
+									{
+										void Load();
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Dieses Interface ist zum Laden der Konfiguration des Handlers zust&auml;ndig.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-iviewoptions">
+						<h5>7.2.4 Das Interface &quot;IViewOptions&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
+								{
+									public interface IViewOptions : IOptions
+									{
+										void Save();
+										void ShowConfigDialog();
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Dieses Interface ist f&uuml;r die Konfiguration eines Handlers zust&auml;ndig. Es definiert die Methode &quot;ShowConfigDialg&quot;, die einfach
+							einen Konfigurationsdialog f&uuml;r den Handler aufruft, und die Methode &quot;Save&quot; zum Speichern der Konfiguration.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-loggingbase">
+						<h5>7.2.5 Die Basisklasse &quot;LoggingBase&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+								{
+									using System.Runtime.Serialization;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
+									using Ninject;
+									using Ninject.Extensions.Logging;
+									
+									[DataContract(Namespace = &quot;&quot;)]
+									public abstract class LoggingBase
+									{
+										public IKernel Kernel { get; internal set; }
+										public ILogger Logger { get; internal set; }
+
+										[OnDeserialized]
+										private void OnDeserialized(StreamingContext c)
+										{
+											Kernel = NInjectHelper.GetKernel();
+											Logger = Kernel.Get&lt;ILoggerFactory&gt;().GetCurrentClassLogger();
+										}
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Diese Klasse stellt das Grundger&uuml;st f&uuml;r das Logging von Handlern dar.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-handlerbase">
+						<h5>7.2.6 Die Basisklasse &quot;HandlerBase&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+								{
+									using System.Collections.Generic;
+									using System.Runtime.Serialization;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
+									using Ninject;
+									using Ninject.Extensions.Logging;
+
+									[DataContract(Namespace = &quot;&quot;)]
+									public abstract class HandlerBase : LoggingBase, IHandler
+									{
+										private IList&lt;IHandler&gt; _handlers = new List&lt;IHandler&gt;();
+
+										[DataMember]
+										public IList&lt;IHandler&gt; Handlers
+										{
+											get { return _handlers; }
+											set { _handlers = value; }
+										}
+
+										public abstract string Name { get; }
+										public abstract void Execute(IEmailItem emailItem = null, int? lastExitCode = null);
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Diese Klasse kann als Basisklasse f&uuml;r weitere Handler dienen, die keine Filteroperationen ben&ouml;tigen. Sie implementiert das &quot;IHandler&quot;-
+							Interface und stellt &uuml;ber LoggingBase einen ClassLogger bereit. Alle mitgelieferten Handler erben (&uuml;ber die im n&auml;chsten Punkt beschriebene Klasse
+							&quot;FilterableHandlerBase&quot;) von &quot;HandlerBase&quot;.
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-filter">
+						<h5>7.2.7 Die Basisklasse &quot;Filter&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+								{
+									using System;
+									using System.Collections.Generic;
+									using System.ComponentModel.Composition;
+									using System.Globalization;
+									using System.Linq;
+									using System.Runtime.Serialization;
+									using System.Text.RegularExpressions;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+									using Ninject;
+									using Ninject.Extensions.Logging;
+
+									[Export(typeof(IFilterable))]
+									[DataContract(Name = &quot;Filter&quot;, Namespace = &quot;&quot;)]
+									public class Filter : IFilterable
+									{
+										private IList&lt;IFilterable&gt; _filters = new List&lt;IFilterable&gt;();
+
+										[DataMember]
+										public virtual IList&lt;IFilterable&gt; Filters
+										{
+											get { return _filters; }
+											set { _filters = value; }
+										}
+
+										[DataMember]
+										public virtual FilterKey On { get; internal set; }
+
+										[DataMember]
+										public virtual FilterOperator Operator { get; internal set; }
+
+										[DataMember]
+										public virtual string Value { get; internal set; }
+
+										#region IFilterable Members
+
+										public virtual bool AppliesTo(IEmailItem emailItem = null, int? lastExitCode = null)
+										{
+											if (null == emailItem)
+											{
+												Logger.Debug(&quot;[GenericTransportAgent] Filter - No MailItem available...&quot;);
+												return false;
+											}
+
+											Logger.Debug(@&quot;[GenericTransportAgent] Filter - MailItem Subject: &quot;&quot;{0}&quot;&quot;; From: &quot;&quot;{1}&quot;&quot;...&quot;, emailItem.Message.Subject, emailItem.FromAddress.ToString());
+											Logger.Debug(&quot;[GenericTransportAgent] Filter - Applying filter {0} {1} {2}...&quot;, On, Operator, Value);
+
+											bool appliesTo = false;
+
+											switch (On)
+											{
+												case FilterKey.From:
+													appliesTo = CheckForValue(emailItem.FromAddress.ToString(), Operator, Value);
+													break;
+												case FilterKey.To:
+													appliesTo = (null != emailItem.Message.To && 0 != emailItem.Message.To.Count &&
+																 emailItem.Message.To.Any(rcpt =&gt; CheckForValue(rcpt.SmtpAddress, Operator, Value)));
+													break;
+												case FilterKey.Subject:
+													appliesTo = CheckForValue(emailItem.Message.Subject, Operator, Value);
+													break;
+												case FilterKey.LastStatusCode:
+													appliesTo = !lastExitCode.HasValue ||
+																(CheckForValue(lastExitCode.Value.ToString(CultureInfo.InvariantCulture), Operator,
+																			   Value) ||
+																 CheckForValue((-1).ToString(CultureInfo.InvariantCulture), Operator, Value));
+													break;
+											}
+
+											bool subFilterApplyTo = true;
+
+											if (appliesTo && null != Filters && 0 != Filters.Count)
+											{
+												Logger.Debug(&quot;[GenericTransportAgent] Filter - Applying subfilters...&quot;);
+												subFilterApplyTo = Filters.Aggregate(false,
+																					 (current, subFilter) =&gt; current || subFilter.AppliesTo(emailItem));
+											}
+
+											return appliesTo && subFilterApplyTo;
+										}
+
+										public void Dispose()
+										{
+										}
+
+										#endregion
+
+										protected virtual bool CheckForValue(string src, FilterOperator @operator, string value)
+										{
+											switch (@operator)
+											{
+												case FilterOperator.StartsWith:
+													return src.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+												case FilterOperator.Equals:
+													return src.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+												case FilterOperator.NotEquals:
+													return !src.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+												case FilterOperator.EndsWith:
+													return src.EndsWith(value, StringComparison.InvariantCultureIgnoreCase);
+												case FilterOperator.Regex:
+													return Regex.IsMatch(src, value, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+												case FilterOperator.Contains:
+													return src.Contains(value, StringComparison.InvariantCultureIgnoreCase);
+											}
+
+											return false;
+										}
+									}
+								}
+							</pre>
+						</p>
+					</div>
+					
+					<div id="ownhandlers-classes_and_interfaces-filterablehandlerbase">
+						<h5>7.2.8 Die Basisklasse &quot;FilterableHandlerBase&quot;</h5>
+						
+						<p>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+								{
+									using System.Collections.Generic;
+									using System.Linq;
+									using System.Runtime.Serialization;
+
+									[DataContract(Namespace = &quot;&quot;)]
+									public abstract class FilterableHandlerBase : HandlerBase, IFilterable
+									{
+										private IList&lt;IFilterable&gt; _filters = new List&lt;IFilterable&gt;();
+
+										[DataMember]
+										public virtual IList&lt;IFilterable&gt; Filters
+										{
+											get { return _filters; }
+											set { _filters = value; }
+										}
+
+										public virtual bool AppliesTo(IEmailItem emailItem, int? lastExitCode = null)
+										{
+											if (null == emailItem)
+											{
+												Logger.Debug(&quot;[GenericTransportAgent] FilterableHandlerBase - No MailItem available...&quot;);
+												return false;
+											}
+
+											if (null == Filters || 0 == Filters.Count)
+											{
+												Logger.Debug(&quot;[GenericTransportAgent] FilterableHandlerBase - No filters defined, applying...&quot;);
+												return true;
+											}
+
+											Logger.Debug(&quot;[GenericTransportAgent] FilterableHandlerBase - Applying filters...&quot;);
+											return Filters.Aggregate(false, (current, filter) => current || filter.AppliesTo(emailItem, lastExitCode));
+										}
+									}
+								}
+							</pre>
+						</p>
+						
+						<p>
+							Diese Klasse kann als Basisklasse f&uuml;r weitere Handler dienen, die Filteroptionen ben&ouml;tigen. Sie erbt von &quot;HandlerBase&quot; (und implementiert
+							somit auch das Interface &quot;IHandler&quot;), und implementiert zus&auml;tzlich das Interface &quot;IFilterable&quot;. Es ist eine standardm&auml;&szlig;ige
+							Auswertung des Filters implementiert, die Sie ggf. &uuml;berschreiben k&ouml;nnen. Alle mitgelieferten Handler erben direkt von &quot;FilterableHandlerBase&quot;.
+						</p>
+					</div>
+				</p>
+			</div>
+			
+			<div id="ownhandlers-example">
+				<h4>7.3 Beispiel &quot;ExtactAttachmentHandler&quot;</h4>
+				<p>
+					Als Einstieg in die Programmierung eines Handlers w&auml;hlen wir den ExtractAttachmentHandler. Dieser besteht aus folgenden vier Elementen:
+					
+					<ol>
+						<li>- dem Interface &quot;IExtractAttachmentHandler&quot;</li>
+						<li>- der Klasse &quot;ExtractAttachmentHandler&quot;</li>
+						<li>- der WinForm &quot;ConfigForm&quot;</li>
+						<li>- der Klasse &quot;Setting&quot;</li>
+					</ol>
+					
+					<div id="ownhandlers-example-iextractattachmenthandler">
+						<h5>IExtractAttachmentHandler</h5>
+						<p>
+							<i>IExtractAttachmentHandler.cs</i>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler
+								{
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+									
+									// &Uuml;ber dieses Interface werden die f&uuml;r den Handler ben&ouml;tigten Eigenschaften und Methoden definiert.
+									public interface IExtractAttachmentHandler : IHandler, IViewOptions, IFilterable
+									{
+									}
+								}
+							</pre>
+						</p>
+					</div>
+					
+					<div id="ownhandlers-example-extractattachmenthandler">
+						<h5>ExtractAttachmentHandler</h5>
+						<p>
+							<i>ExtractAttachmentHandler.cs</i>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl
+								{
+									using System;
+									using System.Collections.Generic;
+									using System.ComponentModel.Composition;
+									using System.IO;
+									using System.Runtime.Serialization;
+									using Microsoft.Exchange.Data.Transport.Email;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+									using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms;
+								
+									// Diese Klasse enth&auml;lt die Logik des Handlers. 
+									// Sie erbt von FilterableHandlerBase und implementiert das Interface IExtractAttachmentHandler.
+									
+									// Wichtig f&uuml;r neue Handler ist, dass das ExportAttribute wie folgt angegeben wird. 
+									// Hierdurch wird sichergestellt, dass das Managed Extensibility Framework den Handler als Plugin laden kann.
+									[Export(typeof(IHandler))]
+									
+									// &Uuml;ber das DataContractAttribute kann der Handler mit seiner Konfiguration &uuml;ber den 
+									// DataContractSerializer nach XML serialisiert werden. Hierbei werden nur Eigenschaften angezogen,
+									// die mit dem DataMemberAttribute annotiert sind.
+									[DataContract(Name = &quot;ExtractAttachmentHandler&quot;, Namespace = &quot;&quot;)]
+									public class ExtractAttachmentHandler : FilterableHandlerBase, IExtractAttachmentHandler
+									{
+										// Konstante f&uuml;r den Ausgabepfad der Anh&auml;nge im Settings-Dictionary
+										public const string OutputPathKey = &quot;OutputPath&quot;;
+										
+										// Backing-Field f&uuml;r &quot;Settings&quot;. Bietet den Vorteil, dass das Dictionary niemals null ist.
+										// Standardm&auml;&szlig;ig wird ein leerer Ausgabepfad initalisiert.
+										private IDictionary&lt;string, string&gt; _settings = new Dictionary&lt;string, string&gt; { { OutputPathKey, &quot;&quot; }, };
+										
+										// Dictionary mit den Einstellungen des ExtractAttachmentHandlers. Derzeit enth&auml;lt es nur den Ausgabepfad,
+										// kann aber zu einem sp&auml;teren Zeitpunkt erweitert werden.
+										[DataMember]
+										public IDictionary&lt;string, string&gt; Settings
+										{
+											get { return _settings; }
+											internal set { _settings = value; }
+										}
+										
+										// War daf&uuml;r vorgesehen, die Konfiguration des Handlers zu laden. Da dies mittlerweile &uuml;ber den DataContractSerializer
+										// geschieht, ist diese Methode an sich &uuml;berfl&uuml;&szlig;ig / veraltet.
+										public void Load()
+										{
+											throw new NotImplementedException();
+										}
+										
+										// War daf&uuml;r vorgesehen, die Konfiguration des Handlers zu speichern. 
+										// Wie &quot;Load()&quot; ist diese Methode an sich &uuml;berfl&uuml;&szlig;ig / veraltet.
+										public void Save()
+										{
+											throw new NotImplementedException();
+										}
+										
+										// Zeigt den Konfigurationsdialog des Handlers an.
+										// Die Handlerinstanz wird im Constructor &uuml;bergeben.
+										public void ShowConfigDialog()
+										{
+											var configForm = new ConfigForm(this);
+											configForm.ShowDialog();
+										}
+										
+										// In dieser Methode steckt die Logik, die ausgef&uuml;hrt wird, wenn das in der Konfiguration angegebene
+										// Event ausgel&ouml;st wird. 
+										public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
+										{
+											// Zuerst wird &uuml;berpr&uuml;ft, ob die Filter auf die E-Mail zutreffen.
+											//
+											// &quot;AppliesTo(IEmailItem emailItem = null, int? lastExitCode = null)&quot; ist in der 
+											// &quot;FilterableHandlerBase&quot; implementiert und kann im Handler selbst auch &uuml;berschrieben werden.
+											if (AppliesTo(emailItem, lastExitCode))
+											{
+												// Ist kein Filter gesetzt, oder trifft der gesetzte Filter zu, wird gepr&uuml;ft, ob die E-Mail &uuml;berhaupt Anh&auml;nge enth&auml;lt.
+												if (null != emailItem &&
+												null != emailItem.Message &&
+												null != emailItem.Message.Attachments &&
+												0 != emailItem.Message.Attachments.Count
+												)
+												{
+													// Enth&auml;lt die E-Mail einen oder mehrere Anh&auml;nge, so wird aus den Settings der Ausgabepfad ausgelesen.
+													string outputPath = GetSetting(OutputPathKey);
+													
+													// Durch die Anh&auml;nge der E-Mail iterieren...
+													foreach (Attachment attachment in emailItem.Message.Attachments)
+													{
+														// Versuche, auf den ContentStream des Anhangs zuzugreifen...
+														Stream contentStream;
+														if (attachment.TryGetContentReadStream(out contentStream))
+														{
+															// Logging...
+															Logger.Debug(&quot;[GenericTransportAgent] Extracting {1} to {2}...&quot;, attachment.FileName, outputPath);
+															
+															// Ein neuer FileStream mit dem Ausgabepfad und den Dateinamen des Anhangs wird ge&ouml;ffnet...
+															using (
+																var fs = new FileStream(Path.Combine(outputPath, attachment.FileName), FileMode.CreateNew,
+																						FileAccess.ReadWrite))
+															{
+																// Der Inhalt des Streams des Anhangs wird in den neuen FileStream kopiert.
+																contentStream.CopyTo(fs);
+															}
+														}
+													}
+												}
+												
+												// Sind nachfolgende Handler definiert?
+												if (null != Handlers && Handlers.Count > 0)
+												{
+													// Wenn ja...
+													foreach (IHandler handler in Handlers)
+													{
+														// ... werden diese ausgef&uuml;hrt.
+														handler.Execute(emailItem, lastExitCode);
+													}
+												}
+											}
+										}
+										
+										// Diese Eigenschaft gibt den Namen des Handlers zur&uuml;ck (praktisch z.B. f&uuml;r Logging, sowie f&uuml;r die Anzeige
+										// in der Baumansicht des Konfigurationsprogramms).
+										public override string Name
+										{
+											get { return &quot;ExtractAttachmentHandler&quot;; }
+										}
+										
+										// Liest die Einstellung mit dem &uuml;bergebenen Key aus dem Settings-Dictionary aus, ansonsten einen leeren String.
+										private string GetSetting(string key)
+										{
+											return _settings.ContainsKey(key) ? _settings[key] : string.Empty;
+										}
+										
+										// Wird haupts&auml;chlich f&uuml;r das TreeViewItem im Konfigurationsprogramm ben&ouml;tigt.
+										public override string ToString()
+										{
+											return Name;
+										}
+									}
+								}
+							</pre>
+						</p>
+					</div>
+					
+					<div id="ownhandlers-example-configform">
+						<h5>ConfigForm</h5>
+						<p>
+							<i>ConfigForm.designer.cs</i>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
+								{
+									// Konfigurationsoberfl&auml;che inkl. der Elemente...
+									partial class ConfigForm
+									{
+										/// &lt;summary&gt;
+										/// Required designer variable.
+										/// &lt;/summary&gt;
+										private System.ComponentModel.IContainer components = null;
+
+										/// &lt;summary&gt;
+										/// Clean up any resources being used.
+										/// &lt;/summary&gt;
+										/// &lt;param name=&quot;disposing&quot;>true if managed resources should be disposed; otherwise, false.&lt;/param&gt;
+										protected override void Dispose(bool disposing)
+										{
+											if (disposing && (components != null))
+											{
+												components.Dispose();
+											}
+											base.Dispose(disposing);
+										}
+
+										#region Windows Form Designer generated code
+
+										/// &lt;summary&gt;
+										/// Required method for Designer support - do not modify
+										/// the contents of this method with the code editor.
+										/// &lt;/summary&gt;
+										private void InitializeComponent()
+										{
+											this.SettingsDataGridView = new System.Windows.Forms.DataGridView();
+											this.ApplyDialogButton = new System.Windows.Forms.Button();
+											this.CancelDialogButton = new System.Windows.Forms.Button();
+											this.SettingsLabel = new System.Windows.Forms.Label();
+											((System.ComponentModel.ISupportInitialize)(this.SettingsDataGridView)).BeginInit();
+											this.SuspendLayout();
+											// 
+											// SettingsDataGridView
+											// 
+											this.SettingsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+											this.SettingsDataGridView.Location = new System.Drawing.Point(13, 29);
+											this.SettingsDataGridView.Name = &quot;SettingsDataGridView&quot;;
+											this.SettingsDataGridView.Size = new System.Drawing.Size(360, 154);
+											this.SettingsDataGridView.TabIndex = 0;
+											// 
+											// ApplyDialogButton
+											// 
+											this.ApplyDialogButton.Location = new System.Drawing.Point(216, 227);
+											this.ApplyDialogButton.Name = &quot;ApplyDialogButton&quot;;
+											this.ApplyDialogButton.Size = new System.Drawing.Size(75, 23);
+											this.ApplyDialogButton.TabIndex = 1;
+											this.ApplyDialogButton.Text = &quot;Apply&quot;;
+											this.ApplyDialogButton.UseVisualStyleBackColor = true;
+											this.ApplyDialogButton.Click += new System.EventHandler(this.ApplyButtonClick);
+											// 
+											// CancelDialogButton
+											// 
+											this.CancelDialogButton.Location = new System.Drawing.Point(297, 227);
+											this.CancelDialogButton.Name = &quot;CancelDialogButton&quot;;
+											this.CancelDialogButton.Size = new System.Drawing.Size(75, 23);
+											this.CancelDialogButton.TabIndex = 2;
+											this.CancelDialogButton.Text = &quot;Cancel&quot;;
+											this.CancelDialogButton.UseVisualStyleBackColor = true;
+											this.CancelDialogButton.Click += new System.EventHandler(this.CancelDialogButtonClick);
+											// 
+											// SettingsLabel
+											// 
+											this.SettingsLabel.AutoSize = true;
+											this.SettingsLabel.Location = new System.Drawing.Point(13, 13);
+											this.SettingsLabel.Name = &quot;SettingsLabel&quot;;
+											this.SettingsLabel.Size = new System.Drawing.Size(48, 13);
+											this.SettingsLabel.TabIndex = 3;
+											this.SettingsLabel.Text = &quot;Settings:&quot;;
+											// 
+											// ConfigForm
+											// 
+											this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+											this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+											this.ClientSize = new System.Drawing.Size(384, 262);
+											this.Controls.Add(this.SettingsLabel);
+											this.Controls.Add(this.CancelDialogButton);
+											this.Controls.Add(this.ApplyDialogButton);
+											this.Controls.Add(this.SettingsDataGridView);
+											this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+											this.MaximumSize = new System.Drawing.Size(400, 300);
+											this.MinimumSize = new System.Drawing.Size(400, 300);
+											this.Name = &quot;ConfigForm&quot;;
+											this.Text = &quot;ExtractAttachmentHandler configuration&quot;;
+											this.Load += new System.EventHandler(this.ConfigFormLoad);
+											((System.ComponentModel.ISupportInitialize)(this.SettingsDataGridView)).EndInit();
+											this.ResumeLayout(false);
+											this.PerformLayout();
+
+										}
+
+										#endregion
+
+										private System.Windows.Forms.DataGridView SettingsDataGridView;
+										private System.Windows.Forms.Button ApplyDialogButton;
+										private System.Windows.Forms.Button CancelDialogButton;
+										private System.Windows.Forms.Label SettingsLabel;
+									}
+								}
+							</pre>
+							
+							<i>ConfigForm.cs</i>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
+								{
+									using System;
+									using System.ComponentModel;
+									using System.Linq;
+									using System.Windows.Forms;
+									
+									// Diese Klasse enth&auml;t die Konfigurationslogik des Handlers.
+									public partial class ConfigForm : Form
+									{
+										// Instanz des Handlers vorhalten...
+										private readonly ExtractAttachmentHandler _handler;
+										
+										// Constructor
+										public ConfigForm(ExtractAttachmentHandler handler)
+										{
+											// Der &uuml;bergebene Handler wird in &quot;_handler&quot; vorgehalten.
+											_handler = handler;
+											
+											// Initialisieren der Oberfl&auml;che.
+											InitializeComponent();
+										}
+										
+										// Konfiguration soll &uuml;bernommen werden.
+										private void ApplyButtonClick(object sender, EventArgs e)
+										{
+											// Die Eintr&auml;ge der GridDataSource wird eingeholt.
+											var list = (BindingList&lt;Setting&gt;) SettingsDataGridView.DataSource;
+											
+											// Die BindingList&lt;Setting&gt; wird zu einem Dictionary&lt;string, string&gt; konvertiert und dem Handler &uuml;bergeben.
+											_handler.Settings = list.ToDictionary(x =&gt; x.Key, x =&gt; x.Value);
+											
+											// Konfigurationsoberfl&auml;che schlie&szlig;en;
+											Close();
+										}
+										
+										// Konfiguration soll abgebrochen werden.
+										private void CancelDialogButtonClick(object sender, EventArgs e)
+										{
+											// Konfigurationsoberfl&auml;che schlie&szlig;en;
+											Close();
+										}
+										
+										// OnLoad-Event der Konfigurationoberfl&auml;che.
+										private void ConfigFormLoad(object sender, EventArgs e)
+										{
+											// Eine neue BindingList&lt;Setting&gt; erzeugen.
+											var list = new BindingList&lt;Setting&gt; { AllowEdit = true, AllowNew = true, AllowRemove = true, RaiseListChangedEvents = true, };
+											
+											// Iteriere durch die KeyValuePairs im Dictionary&lt;string, string&gt; Settings.
+											foreach (var kvp in _handler.Settings)
+											{
+												// Der BindingList&lt;Setting&gt; das KeyValue&lt;string, string&gt; als neues Setting &uuml;bergeben.
+												list.Add(new Setting { Key = kvp.Key, Value = kvp.Value, });
+											}
+											
+											// Die BindingList&lt;Setting&gt; wird dem GridView als DataSource &uuml;bergeben.
+											SettingsDataGridView.DataSource = list;
+										}
+										
+										// Event, um auf Eingaben in der Konfigurationsoberfl&auml;che zu reagieren.
+										protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+										{
+											// Hat der Benutzer die Escape-Taste gedr&uuml;ckt?
+											if (Keys.Escape == keyData)
+											{
+												// Wenn ja, Konfigurationsoberfl&auml;che schlie&szlig;en;
+												Close();
+											}
+											
+											// Ansonsten die Eingabe weiterreichen...
+											return base.ProcessCmdKey(ref msg, keyData);
+										}
+									}
+								}
+							</pre>
+						</p>
+					</div>
+					
+					<div id="ownhandlers-example-setting">
+						<h5>Setting</h5>
+						<p>
+							<i>Setting.cs</i>
+							<pre class="brush: csharp">
+								namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
+								{
+									// Eine kleine Helper-Klasse, da das DataGridView im Konfigurationsdialog leider keine Dictionaries unterst&uuml;tzt.
+									public class Setting
+									{
+										public string Key { get; set; }
+										public string Value { get; set; }
+									}
+								}
+
+							</pre>
+						</p>
+					</div>
+				</p>
+			</div>
+		</div>
+		
+		<div id="glossar">
+			<h3>8. Glossar</h3>
+			<hr />
+			<ul>
+				<li>Agent: Ein auf eine bestimmte Serverrolle des Exchange Servers registrierte Programmdatei, die auf Events der registrierten 
+				Serverrolle reagiert. Der RoutingAgent wird z.B. f&uuml;r die Exchange Hub Transport Serverrolle registriert, der SmtpReceiveAgent
+				f&uuml;r die Exchange Edge Transport Serverrolle.</li>
+				<li>Event: Ein Ereigniss, das ausgel&ouml;st wird. Events begegnen Sie im t&auml;glichen Computerleben, ohne es evtl. zu bemerken. Allein der 
+				Klick auf einen Link l&ouml;st z.B. das Event "onclick" aus. Beim Exchange Server werden z.B. Events beim Einkommen und Absenden einer Mail
+				ausgel&ouml;st. Es gibt viele weitere Events im Exchange Server, die in der <a href="#config-agents_events">Konfiguration</a> behandelt werden.</li>
+				<li>Handler: Dies stellt eine einzelne Aktion dar, der ausgef&uuml;hrt werden soll. &Uuml;ber Filter kann geregelt werden, auf welche
+				Mails reagiert und das Handler ausgef&uuml;hrt werden soll. Besitzt ein Handler keine Filter, wird es f&uuml;r jede Mail ausgef&uuml;hrt.
+				Ein Handler kann SubHandler haben, die danach ausgef&uuml;hrt werden. Auch SubHandler k&ouml;nnen Filter beinhalten.</li>
+				<li>Filter: &Uuml;ber die Filter l&auml;sst sich spezifizieren, ob der Handler ausgef&uuml;hrt werden soll oder nicht. Filter k&ouml;nnen
+				geschachtelt werden, so dass eine feine Granulierung m&ouml;glich ist.</li>
+			</ul>
+		</div>
+		
+		<div id="contact">
+			<h3>9. Kontakt</h3>
+			<hr />
+			<p>
+				Bei Fragen, Kritik, Verbesserungsvorschl&auml;gen, Problemen etc. k&ouml;nnen Sie mich gerne unter florian(dot)weinert(at)neos-it(dot)de kontaktieren.
+			</p>
+			
+			<p>
+				Weitere n&uuml;tzliche Handler (oder Ideen f&uuml;r solche) werden ebenfalls gerne und dankend entegegengenommen.
+			</p>
+		</div>
+		
+		<script type="text/javascript" src="js/shCore.js"></script>
+		<script type="text/javascript" src="js/shBrushCSharp.js"></script>
+		<script type="text/javascript" src="js/shBrushXml.js"></script>
+		<script type="text/javascript">
+			 SyntaxHighlighter.all()
+		</script>
+	</body>
+</html>

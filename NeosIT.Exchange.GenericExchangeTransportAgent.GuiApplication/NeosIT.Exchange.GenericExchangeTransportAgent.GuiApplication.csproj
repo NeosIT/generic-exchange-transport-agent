@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5A17E259-3DB1-4176-B15F-69E4B77E90D7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</RootNamespace>
+    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterForm.designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Impl\TreeNodeMapper.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
+      <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj">
+      <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.csproj">
+      <Project>{3efcf61f-a6bb-4eb3-b73b-a72b0cf044f2}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj">
+      <Project>{3395cd93-59e3-453a-8806-49f4def9e3b8}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
+      <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
+      <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj">
+      <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

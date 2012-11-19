@@ -1,8 +1,8 @@
 NeosIT Generic Exchange Transport Agent
 =============================================
-In Exchange Server 2007/2010, it is possible to extend its default behavior on occuring events by writing so-called "Transport Agents", e.g. extract all attachments of an incoming E-Mail sent by a specified address (let's say "alice@example.com") or with a specified subject (just a very basic example).
+It is possible to extend the default behavior of Microsoft Exchange Server 2007/2010 on occuring events by writing so-called "Transport Agents", e.g. extract all attachments of an incoming E-Mail sent by a specified address (let's say "alice@example.com") or with a specified subject (just a very basic example).
 
-In order to do so, you need to write your own Transport Agent (derived from either DeliveryAgent, RoutingAgent or SmtpReceiveAgent), implement your desired logic as an event handler, and write a AgentFactory (derived from either DeliveryAgentFactory<Manager>, RoutingAgentFactory or SmtpReceiveAgentFactory) returning your new Transport Agent. Finally you need to register and enable this Transport Agent (or better: its Factory) in your Exchange Server.
+In order to do so, you need to write your own Transport Agent (derived from either DeliveryAgent, RoutingAgent or SmtpReceiveAgent), implement your desired logic as an event handler and write an AgentFactory (derived from either DeliveryAgentFactory<Manager>, RoutingAgentFactory or SmtpReceiveAgentFactory) returning your new Transport Agent. Finally you need to register and enable this Transport Agent (or better: its Factory) in your Exchange Server.
 
 Sounds pretty easy and common, so why this project? Because most of the time, you will find yourself writing the same code over and over again, with just a few changes. For example, if you additionally need to extract the attachments of incoming E-Mails by "bob@example.com", you could either do one of the following:
 
@@ -10,7 +10,7 @@ Sounds pretty easy and common, so why this project? Because most of the time, yo
 - Better than the first one, you could try to export your filter value to some external config file, e.g. app.config or something else. You still need to register and enable the (almost) same Transport Agent.
 - Make your existing Transport Agent handle both situations by enhancing your filter logic to handle both E-Mail addresses.
 
-These are just a few examples that came to my mind right now, there are definitely more...
+These are just a few examples off the top of my head, but there are definitely more...
 
 What this project offers is some base to develop, use, and configure your Transport Agents in an easy way by splitting up basic parts into handlers and filters.
 
@@ -24,27 +24,27 @@ Filters: The easy way to make decisions
 ---------------------------------------
 Filters are used when you want some action to be performed on some conditions. In the example above, catching up all E-Mails sent by "alice@example.com" will result in a filter like "FROM equals alice@example.com".
 
-We have some predefined filter attributes and operators to make things simple. Feel free to implement your own ones.
+We have some predefined filter attributes and operators to make things simple. Feel free to implement your own.
 
 Predefined filter attributes are: From, To, Subject and LastExitCode.
 
 Predefined filter operators are: Equals, NotEquals, StartsWith, EndsWith, Contains and Regex.
 
-Plugins: Easy mechanism to deploy new handlers
+Plugins: An easy mechanism to deploy new handlers
 ----------------------------------------------
-By using the Managed Extensibility Framework (MEF, http://mef.codeplex.com/) you do not need to worry about how to make the GenericExchangeTransportAgent recognize your new handler. If you follow the guideline in the documentation, you only need to copy your new handler to the directory where the other binaries reside. The GenericExchangeTransportAgent will automatically fetch up the new Transport Agent and use it when appropriate.
+By using the Managed Extensibility Framework (MEF, http://mef.codeplex.com/) you do not need to worry about how to make the GenericExchangeTransportAgent recognize your new handler. If you follow the guidelines in the documentation, you only need to copy your new handler to the directory where the other binaries reside. The GenericExchangeTransportAgent will automatically fetch up the new Transport Agent and use it when appropriate.
 
 All (y)our base are belong to us(e)
 -----------------------------------
 Didn't find a good headline for this topic ;) 
 
-In order to keep development simple, we wrote some base classes you can derive from. 
+In order to keep development simple, we wrote some base classes from which you can derive. 
 
 - LoggingBase: Abstract base class for using a logger in handlers and filters.
 - HandlerBase: Abstract base class for new handlers. Derived from LoggingBase. Defines the handler name, a list of subhandlers and the "Execute" method (can be used for handlers that should be run on every E-Mail).
 - FilterableHandlerBase: Abstract base class for new handlers that need to be filterable (see example above). Derived from HandlerBase. Defines a list of filters and the "AppliesTo" method.
 
-Hope these base classes will get you started when developing your own handlers... (Maybe your handlers will get into the next release of the GenericExchangeTransportAgent?)
+I hope these base classes will get you started when developing your own handlers... (Maybe your handlers will get into the next release of the GenericExchangeTransportAgent?)
 
 What do we have already?
 ------------------------
@@ -57,7 +57,7 @@ So, what did we already implement in GenericExchangeTransportAgent?
 - NoopHandler: No operations, just executes its subhandlers. Can be used as a template for new handlers. [State: Stable]
 - TwitterNotificationHandler: Just a gimmick ;) Twitters a message when you got a new E-Mail in your Inbox. Format of the message is "[{DATETIME}] New mail from {FROM}". [Status: Stable]
 
-Feel free to write and contribute your own handlers. We would appreciate it ;)
+Feel free to write and contribute your own handlers. We would appreciate it. ;)
 
 Contact
 -------

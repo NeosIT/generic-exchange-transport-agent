@@ -20,17 +20,17 @@
         {
             if (null == emailItem)
             {
-                Logger.Debug("[GenericTransportAgent] FilterableHandlerBase - No MailItem available...");
+                Logger.Fatal("[GenericTransportAgent] FilterableHandlerBase - No MailItem available...");
                 return false;
             }
 
             if (null == Filters || 0 == Filters.Count)
             {
-                Logger.Debug("[GenericTransportAgent] FilterableHandlerBase - No filters defined, applying...");
+                Logger.Warn("[GenericTransportAgent] [MessageID {0}] FilterableHandlerBase - No filters defined, applying...", emailItem.Message.MessageId);
                 return true;
             }
 
-            Logger.Debug("[GenericTransportAgent] FilterableHandlerBase - Applying filters...");
+            Logger.Info("[GenericTransportAgent] [MessageID {0}] FilterableHandlerBase - Applying filters...", emailItem.Message.MessageId);
             return Filters.Aggregate(false, (current, filter) => current || filter.AppliesTo(emailItem, lastExitCode));
         }
     }

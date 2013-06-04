@@ -32,10 +32,10 @@
 
         public void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            Logger.Debug("[GenericTransportAgent] AgentEventHandler - Execute called...");
+            Logger.Info("[GenericTransportAgent] AgentEventHandler - Execute called...");
             if (AppliesTo(emailItem))
             {
-                Logger.Debug("[GenericTransportAgent] AgentEventHandler - Calling execute on handlers...");
+                Logger.Info("[GenericTransportAgent] AgentEventHandler - Calling execute on handlers...");
                 Handlers.ToList().ForEach(x => x.Execute(emailItem));
             }
         }
@@ -44,17 +44,17 @@
         {
             if (null == emailItem)
             {
-                Logger.Debug("[GenericTransportAgent] AgentEventHandler - No MailItem available...");
+                Logger.Fatal("[GenericTransportAgent] AgentEventHandler - No MailItem available...");
                 return false;
             }
 
             if (null == Filters || 0 == Filters.Count)
             {
-                Logger.Debug("[GenericTransportAgent] AgentEventHandler - No filters defined, applying...");
+                Logger.Warn("[GenericTransportAgent] [MessageID {0}] AgentEventHandler - No filters defined, applying...", emailItem.Message.MessageId);
                 return true;
             }
 
-            Logger.Debug("[GenericTransportAgent] AgentEventHandler - Applying filters...");
+            Logger.Info("[GenericTransportAgent] [MessageID {0}] AgentEventHandler - Applying filters...", emailItem.Message.MessageId);
             return Filters.Aggregate(false, (current, filter) => current || filter.AppliesTo(emailItem, lastExitCode));
         }
 

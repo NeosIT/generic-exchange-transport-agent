@@ -40,6 +40,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
         public Stream MimeReadStream { get; internal set; }
         public Boolean IsExported { get; internal set; }
         public Boolean IsImported { get; internal set; }
+        public Boolean ShouldBeDeletedFromQueue { get; set; }
 
         public Stream GetMimeWriteStream()
         {

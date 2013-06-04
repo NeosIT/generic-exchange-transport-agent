@@ -69,6 +69,7 @@
     <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />
     <Compile Include="Impl\Extensions\StreamExtensions.cs" />
     <Compile Include="Impl\Extensions\StringExtensions.cs" />
+    <Compile Include="Impl\Extensions\WebRequestExtensions.cs" />
     <Compile Include="Impl\Filter.cs" />
     <Compile Include="Impl\FilterableHandlerBase.cs" />
     <Compile Include="Impl\HandlerBase.cs" />

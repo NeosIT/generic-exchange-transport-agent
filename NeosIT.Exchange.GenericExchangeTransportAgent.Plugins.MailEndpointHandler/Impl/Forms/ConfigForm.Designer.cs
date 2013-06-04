@@ -43,6 +43,8 @@
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.ButtonApply = new System.Windows.Forms.Button();
             this.CheckBoxDropMailAfterProcessing = new System.Windows.Forms.CheckBox();
+            this.LabelUploadFieldName = new System.Windows.Forms.Label();
+            this.TextBoxUploadFieldName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LabelEndpointAddress
@@ -58,7 +60,7 @@
             // 
             this.TextBoxEndpointAddress.Location = new System.Drawing.Point(15, 26);
             this.TextBoxEndpointAddress.Name = "TextBoxEndpointAddress";
-            this.TextBoxEndpointAddress.Size = new System.Drawing.Size(413, 20);
+            this.TextBoxEndpointAddress.Size = new System.Drawing.Size(193, 20);
             this.TextBoxEndpointAddress.TabIndex = 1;
             // 
             // LabelServiceMail
@@ -74,7 +76,7 @@
             // 
             this.TextBoxServiceMail.Location = new System.Drawing.Point(13, 70);
             this.TextBoxServiceMail.Name = "TextBoxServiceMail";
-            this.TextBoxServiceMail.Size = new System.Drawing.Size(415, 20);
+            this.TextBoxServiceMail.Size = new System.Drawing.Size(195, 20);
             this.TextBoxServiceMail.TabIndex = 3;
             // 
             // LabelHttpMethod
@@ -168,18 +170,36 @@
             // CheckBoxDropMailAfterProcessing
             // 
             this.CheckBoxDropMailAfterProcessing.AutoSize = true;
-            this.CheckBoxDropMailAfterProcessing.Location = new System.Drawing.Point(15, 183);
+            this.CheckBoxDropMailAfterProcessing.Location = new System.Drawing.Point(236, 70);
             this.CheckBoxDropMailAfterProcessing.Name = "CheckBoxDropMailAfterProcessing";
             this.CheckBoxDropMailAfterProcessing.Size = new System.Drawing.Size(148, 17);
             this.CheckBoxDropMailAfterProcessing.TabIndex = 16;
             this.CheckBoxDropMailAfterProcessing.Text = "Drop mail after processing";
             this.CheckBoxDropMailAfterProcessing.UseVisualStyleBackColor = true;
             // 
+            // LabelUploadFieldName
+            // 
+            this.LabelUploadFieldName.AutoSize = true;
+            this.LabelUploadFieldName.Location = new System.Drawing.Point(233, 9);
+            this.LabelUploadFieldName.Name = "LabelUploadFieldName";
+            this.LabelUploadFieldName.Size = new System.Drawing.Size(95, 13);
+            this.LabelUploadFieldName.TabIndex = 17;
+            this.LabelUploadFieldName.Text = "Upload field name:";
+            // 
+            // TextBoxUploadFieldName
+            // 
+            this.TextBoxUploadFieldName.Location = new System.Drawing.Point(236, 26);
+            this.TextBoxUploadFieldName.Name = "TextBoxUploadFieldName";
+            this.TextBoxUploadFieldName.Size = new System.Drawing.Size(192, 20);
+            this.TextBoxUploadFieldName.TabIndex = 18;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 262);
+            this.Controls.Add(this.TextBoxUploadFieldName);
+            this.Controls.Add(this.LabelUploadFieldName);
             this.Controls.Add(this.CheckBoxDropMailAfterProcessing);
             this.Controls.Add(this.ButtonApply);
             this.Controls.Add(this.ButtonCancel);
@@ -221,5 +241,7 @@
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Button ButtonApply;
         private System.Windows.Forms.CheckBox CheckBoxDropMailAfterProcessing;
+        private System.Windows.Forms.Label LabelUploadFieldName;
+        private System.Windows.Forms.TextBox TextBoxUploadFieldName;
     }
 }

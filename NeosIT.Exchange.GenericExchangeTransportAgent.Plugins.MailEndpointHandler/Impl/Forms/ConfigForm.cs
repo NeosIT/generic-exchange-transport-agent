@@ -30,6 +30,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
             TextBoxAttachmentFileExtensions.Text = _handler.AttachmentFileExtensions;
             TextBoxRecipientsHeader.Text = _handler.RecipientsHeader;
             CheckBoxDropMailAfterProcessing.Checked = _handler.DropMailAfterProcessing;
+            TextBoxUploadFieldName.Text = _handler.UploadFieldName;
         }
 
         private void ButtonCancelClick(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
             _handler.HttpMethod = (HttpMethod) ComboBoxHttpMethod.SelectedItem;
             _handler.MailContent = (MailContent) ComboBoxDataContent.SelectedItem;
             _handler.DropMailAfterProcessing = CheckBoxDropMailAfterProcessing.Checked;
+            _handler.UploadFieldName = TextBoxUploadFieldName.Text;
             Close();
         }
     }

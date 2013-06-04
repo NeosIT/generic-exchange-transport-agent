@@ -38,6 +38,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
 
         [DataMember(Name = "DropMailAfterProcessing")]
         public bool DropMailAfterProcessing { get; set; }
+
+        [DataMember(Name = "UploadFieldName")]
+        public string UploadFieldName { get; set; }
         
         public override string Name
         {
@@ -90,8 +93,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                         }*/
 
                         var recipients = emailItem.Message.To.ToList();
-                        rcpts.AddRange(emailItem.Message.Cc);
-                        rcpts.AddRange(emailItem.Message.Bcc);
+                        recipients.AddRange(emailItem.Message.Cc.ToList());
+                        recipients.AddRange(emailItem.Message.Bcc.ToList());
 
                         if (!string.IsNullOrEmpty(ServiceMail))
                         {
@@ -112,7 +115,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                         Stream stream;
                         if (attachment.TryGetContentReadStream(out stream))
                         {
-                            webRequest.UploadFile(stream, httpMethod, fileName, attachment.ContentType, "file");
+                            webRequest.UploadFile(stream, httpMethod, fileName, attachment.ContentType, UploadFieldName);
 
                             var response = webRequest.GetResponse();
                             var responseStream = response.GetResponseStream();

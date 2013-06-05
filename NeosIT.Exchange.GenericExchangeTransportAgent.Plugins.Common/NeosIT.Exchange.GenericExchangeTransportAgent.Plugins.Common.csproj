@@ -75,6 +75,7 @@
     <Compile Include="Impl\HandlerBase.cs" />
     <Compile Include="Impl\LoggingBase.cs" />
     <Compile Include="Impl\PluginHost.cs" />
+    <Compile Include="Impl\Utils\Win32.cs" />
     <Compile Include="IOptions.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IViewOptions.cs" />

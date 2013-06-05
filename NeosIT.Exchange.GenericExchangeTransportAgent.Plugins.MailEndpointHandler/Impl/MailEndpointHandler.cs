@@ -72,25 +72,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                         attachments = attachments.Where(c => includedFileExts.Any(i => c.FileName.EndsWith(i))).ToList();
                     }
 
-
-
-                    foreach (var attachment in attachments)
+                    if (attachments.Any())
                     {
-                        var fileName = Path.GetFileName(attachment.FileName);
-                        var webRequest = WebRequest.Create(Endpoint);
-
                         var sb = new StringBuilder();
-                        /*var mailItem = emailItem.GetUnderlyingObject() as MailItem;
-
-                        if (null != mailItem)
-                        {
-                            var recipients = mailItem.Recipients.Where(x => !ServiceMail.Equals(x.Address.ToString(), StringComparison.InvariantCultureIgnoreCase));
-
-                            foreach (var rcpt in recipients)
-                            {
-                                sb.Append(rcpt.Address.ToString() + ";");
-                            }
-                        }*/
 
                         var recipients = emailItem.Message.To.ToList();
                         recipients.AddRange(emailItem.Message.Cc.ToList());
@@ -104,24 +88,31 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                                       .Distinct()
                                       .ToList();
                         }
-                        
+
                         foreach (var rcpt in recipients)
                         {
                             sb.Append(rcpt.SmtpAddress + ";");
                         }
 
-
-                        webRequest.Headers.Add(RecipientsHeader, sb.ToString());
-                        Stream stream;
-                        if (attachment.TryGetContentReadStream(out stream))
+                        foreach (var attachment in attachments)
                         {
-                            webRequest.UploadFile(stream, httpMethod, fileName, attachment.ContentType, UploadFieldName);
+                            var fileName = Path.GetFileName(attachment.FileName);
+                            var webRequest = (HttpWebRequest)WebRequest.Create(Endpoint);
 
-                            var response = webRequest.GetResponse();
-                            var responseStream = response.GetResponseStream();
-                            Logger.Info("[GenericTransportAgent] [MessageID {0}] Response from server: {1}...", emailItem.Message.MessageId, Encoding.Default.GetString(responseStream.ReadToEnd()));
+                            webRequest.Headers.Add(RecipientsHeader, sb.ToString());
+                            Stream stream;
+                            if (attachment.TryGetContentReadStream(out stream))
+                            {
+                                webRequest.UploadFile(stream, httpMethod, fileName, UploadFieldName);
+
+                                var response = webRequest.GetResponse();
+                                var responseStream = response.GetResponseStream();
+                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Server response:", emailItem.Message.MessageId);
+                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Headers:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, response.Headers);
+                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Body:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, Encoding.Default.GetString(responseStream.ReadToEnd()));
+                            }
+
                         }
-                        
                     }
                 }
                 

@@ -58,7 +58,7 @@
                         Stream contentStream;
                         if (attachment.TryGetContentReadStream(out contentStream))
                         {
-                            Logger.Debug("[GenericTransportAgent] Extracting {1} to {2}...", attachment.FileName, outputPath);
+                            this.Debug("[MessageId {0}] Extracting {1} to {2}...", emailItem.Message.MessageId, attachment.FileName, outputPath);
                             using (
                                 var fs = new FileStream(Path.Combine(outputPath, attachment.FileName), FileMode.Create,
                                                         FileAccess.ReadWrite))

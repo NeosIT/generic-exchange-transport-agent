@@ -20,7 +20,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Factories
 
         public override SmtpReceiveAgent CreateAgent(SmtpServer server)
         {
-            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgentFactory - Creating new SmtpReceiveAgent...");
+            Logger.Debug("[GenericTransportAgent] [SmtpReceiveAgentFactory] Creating new SmtpReceiveAgent...");
             return new GenericSmtpReceiveAgent();
         }
     }

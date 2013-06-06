@@ -20,7 +20,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Factories
 
         public override DeliveryAgent CreateAgent(SmtpServer server)
         {
-            Logger.Debug("[GenericTransportAgent] DeliveryAgentFactory - Creating new DeliveryAgent...");
+            Logger.Debug("[GenericExchangeTransportAgent] [DeliveryAgentFactory] Creating new DeliveryAgent...");
             return new GenericDeliveryAgent();
         }
     }

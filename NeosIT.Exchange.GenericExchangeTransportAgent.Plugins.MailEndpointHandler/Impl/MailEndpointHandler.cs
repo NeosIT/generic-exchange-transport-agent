@@ -99,17 +99,20 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                             var fileName = Path.GetFileName(attachment.FileName);
                             var webRequest = (HttpWebRequest)WebRequest.Create(Endpoint);
 
+
+                            this.Debug(@"[MessageID {0}] Added header ""{1}"" with ""{2}""", emailItem.Message.MessageId, RecipientsHeader, sb.ToString());
                             webRequest.Headers.Add(RecipientsHeader, sb.ToString());
                             Stream stream;
                             if (attachment.TryGetContentReadStream(out stream))
                             {
+                                this.Debug(@"[MessageID {0}] Uploading file ""{1}""", emailItem.Message.MessageId, fileName);
                                 webRequest.UploadFile(stream, httpMethod, fileName, UploadFieldName);
 
                                 var response = webRequest.GetResponse();
                                 var responseStream = response.GetResponseStream();
-                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Server response:", emailItem.Message.MessageId);
-                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Headers:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, response.Headers);
-                                Logger.Info("[GenericTransportAgent] [MessageID {0}] Body:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, Encoding.Default.GetString(responseStream.ReadToEnd()));
+                                this.Info("[MessageID {0}] Server response:", emailItem.Message.MessageId);
+                                this.Info("[MessageID {0}] Headers:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, response.Headers);
+                                this.Info("[MessageID {0}] Body:{1}{2}", emailItem.Message.MessageId, Environment.NewLine, Encoding.Default.GetString(responseStream.ReadToEnd()));
                             }
 
                         }
@@ -128,7 +131,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
         {
             if (null == emailItem)
             {
-                Logger.Fatal("[GenericTransportAgent] MailEndpointHandler - No MailItem available...");
+                this.Fatal("No MailItem available...");
                 return false;
             }
 
@@ -136,14 +139,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                 !emailItem.Message.To.Any(
                     x => x.SmtpAddress.Equals(ServiceMail, StringComparison.InvariantCultureIgnoreCase)))
             {
-                Logger.Info("[GenericTransportAgent] MailEndpointHandler - ServiceMail not found in recipients...");
+                this.Info("[MessageId {0}] ServiceMail not found in recipients...", emailItem.Message.MessageId);
                 return false;
             }
 
-            if (
-                !emailItem.Message.To.Any(
-                    x => x.SmtpAddress.Equals(ServiceMail, StringComparison.InvariantCultureIgnoreCase)))
+            if (emailItem.Message.To.All(x => x.SmtpAddress.Equals(ServiceMail, StringComparison.InvariantCultureIgnoreCase)) &&
+                emailItem.Message.Cc.All(x => x.SmtpAddress.Equals(ServiceMail, StringComparison.InvariantCultureIgnoreCase)) &&
+                emailItem.Message.Bcc.All(x => x.SmtpAddress.Equals(ServiceMail, StringComparison.InvariantCultureIgnoreCase)))
             {
+                this.Info("[MessageId {0}] No other recipients found...", emailItem.Message.MessageId);
                 emailItem.ShouldBeDeletedFromQueue = true;
                 return false;
             }

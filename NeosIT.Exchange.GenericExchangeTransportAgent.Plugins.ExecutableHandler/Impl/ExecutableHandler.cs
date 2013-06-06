@@ -1,4 +1,5 @@
-﻿
+﻿using System.Linq;
+
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl
 {
     using System;
@@ -22,6 +23,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
 
         [DataMember]
         public bool Export { get; internal set; }
+
+        [DataMember]
+        public string ExportPath { get; set; }
 
         [DataMember]
         public string EmlFileName { get; internal set; }
@@ -61,18 +65,32 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
 
             if (AppliesTo(emailItem, lastExitCode))
             {
+                string exportFileName = string.Empty;
+
                 if (Export)
                 {
+                    if (string.IsNullOrEmpty(ExportPath))
+                    {
+                        ExportPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    }
+					
+					var invalidPathChars = Path.GetInvalidPathChars();
+                    ExportPath = new string(ExportPath.Where(x => !invalidPathChars.Contains(x)).ToArray());
+
                     if (string.IsNullOrEmpty(EmlFileName))
                     {
-                        EmlFileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                                                   string.Format("{0}.eml", Guid.NewGuid()));
+                        var messageId = emailItem.Message.MessageId;
+                        EmlFileName = !string.IsNullOrEmpty(messageId) ? string.Format("{0}.eml", messageId) : string.Format("{0}.eml", Guid.NewGuid());
                     }
+					
+					EmlFileName = new string(EmlFileName.Where(x => !invalidPathChars.Contains(x)).ToArray());
+
+                    exportFileName = Path.Combine(ExportPath, EmlFileName);
 
                     if (null != emailItem && !emailItem.IsExported)
                     {
-                        Logger.Debug(@"[GenericTransportAgent] Exporting EML file to ""{1}""...", EmlFileName);
-                        emailItem.Save(EmlFileName);
+                        this.Debug(@"[MessageId {0}] Exporting EML file to ""{1}""...", emailItem.Message.MessageId, exportFileName);
+                        emailItem.Save(exportFileName);
                     }
                 }
 
@@ -84,26 +102,26 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
                     {
                         if (Args.Contains("$emlfile$", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            Args = Args.Replace("$emlfile$", EmlFileName);
+                            Args = Args.Replace("$emlfile$", exportFileName);
                         }
 
                         process.StartInfo.Arguments = Args;
                     }
 
-                    Logger.Debug(@"[GenericTransportAgent] Running command ""{1}"" (args: ""{2}"")...", Cmd, Args);
+                    this.Debug(@"[MessageId {0}] Running command ""{1}"" (args: ""{2}"")...", emailItem.Message.MessageId, Cmd, Args);
                     process.Start();
                     process.WaitForExit(Timeout);
 
                     if (!process.HasExited)
                     {
-                        Logger.Debug(@"[GenericTransportAgent] - Command did not exit successfully...");
+                        this.Debug(@"[MessageId {0}] Command did not exit successfully...", emailItem.Message.MessageId);
                         process.Kill();
                         ExitCode = (int) ExitCodeEnum.CommandTimedOut;
                     }
                     else
                     {
                         ExitCode = process.ExitCode;
-                        Logger.Debug(@"[GenericTransportAgent] - Command did exit successfully, exit code {1}...", ExitCode);
+                        this.Debug(@"[MessageId {0}] Command did exit successfully, exit code {1}...", emailItem.Message.MessageId, ExitCode);
                     }
                 }
 

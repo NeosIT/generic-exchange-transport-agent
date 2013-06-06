@@ -39,13 +39,13 @@
 
                     foreach (var rcpt in rcptsToRemove)
                     {
-                        Logger.Info("[GenericTransportAgent] [MessageID {0}] Removing {1} from CC...", emailItem.Message.MessageId, rcpt.Address.ToString());
+                        this.Info("[MessageID {0}] Removing {1} from CC...", emailItem.Message.MessageId, rcpt.Address.ToString());
                         sb.Append(rcpt.Address.ToString() + ";");
                         mailItem.Recipients.Remove(rcpt);
                     }
                 }
 
-                Logger.Info("[GenericTransportAgent] [MessageID {0}] Share-With: {1}...", emailItem.Message.MessageId, sb.ToString());
+                this.Info("[MessageID {0}] Share-With: {1}...", emailItem.Message.MessageId, sb.ToString());
 
                 var header = new TextHeader(HeaderKey, sb.ToString());
                 emailItem.Message.RootPart.Headers.AppendChild(header);
@@ -56,13 +56,13 @@
         {
             if (null == emailItem)
             {
-                Logger.Fatal("[GenericTransportAgent] {0} - No MailItem available...", Name);
+                this.Fatal("No MailItem available...", Name);
                 return false;
             }
 
             if (string.IsNullOrEmpty(ToSmtpAddress) || string.IsNullOrEmpty(HeaderKey))
             {
-                Logger.Info(@"[GenericTransportAgent] {0} - ToSmtpAddress ""{1}"" or HeaderKey ""{2}"" ...", Name, ToSmtpAddress, HeaderKey);
+                this.Info(@"[MessageId {0}] Missing ToSmtpAddress ""{1}"" or HeaderKey ""{2}"" ...", emailItem.Message.MessageId, ToSmtpAddress, HeaderKey);
                 return false;
             }
 
@@ -70,7 +70,7 @@
                 !emailItem.Message.To.Any(
                     x => x.SmtpAddress.Equals(ToSmtpAddress, StringComparison.InvariantCultureIgnoreCase)))
             {
-                Logger.Info("[GenericTransportAgent] {0} - ToSmtpAddress not found in recipients...", Name);
+                this.Info("[MessageId {0}] - ToSmtpAddress not found in recipients...", emailItem.Message.MessageId);
                 return false;
             }
             

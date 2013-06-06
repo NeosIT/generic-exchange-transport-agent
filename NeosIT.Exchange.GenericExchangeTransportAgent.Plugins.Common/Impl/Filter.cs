@@ -38,12 +38,12 @@
         {
             if (null == emailItem)
             {
-                Logger.Fatal("[GenericTransportAgent] Filter - No MailItem available...");
+                Logger.Fatal("[GenericExchangeTransportAgent] [Filter] No MailItem available...");
                 return false;
             }
 
-            Logger.Debug(@"[GenericTransportAgent] [MessageID {0}] Filter - MailItem Subject: ""{1}""; From: ""{2}""...", emailItem.Message.MessageId, emailItem.Message.Subject, emailItem.FromAddress.ToString());
-            Logger.Info("[GenericTransportAgent] [MessageID {0}] Filter - Applying filter {1} {2} {3}...", emailItem.Message.MessageId, On, Operator, Value);
+            Logger.Debug(@"[GenericExchangeTransportAgent] [Filter] [MessageID {0}] MailItem Subject: ""{1}""; From: ""{2}""...", emailItem.Message.MessageId, emailItem.Message.Subject, emailItem.FromAddress.ToString());
+            Logger.Info("[GenericExchangeTransportAgent] [Filter] [MessageID {0}] Applying filter {1} {2} {3}...", emailItem.Message.MessageId, On, Operator, Value);
 
             bool appliesTo = false;
 
@@ -71,7 +71,7 @@
 
             if (appliesTo && null != Filters && 0 != Filters.Count)
             {
-                Logger.Info("[GenericTransportAgent] [MessageID {0}] Filter - Applying subfilters...", emailItem.Message.MessageId);
+                Logger.Info("[GenericExchangeTransportAgent] [Filter] [MessageID {0}] Applying subfilters...", emailItem.Message.MessageId);
                 subFilterApplyTo = Filters.Aggregate(false,
                                                      (current, subFilter) => current || subFilter.AppliesTo(emailItem));
             }

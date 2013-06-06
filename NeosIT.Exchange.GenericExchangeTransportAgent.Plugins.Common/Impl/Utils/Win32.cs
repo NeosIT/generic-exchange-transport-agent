@@ -10,7 +10,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Util
         private static extern UInt32 FindMimeFromData(UInt32 pBC, [MarshalAs(UnmanagedType.LPStr)] String pwzUrl,
                                                       [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer, UInt32 cbSize,
                                                       [MarshalAs(UnmanagedType.LPStr)] String pwzMimeProposed,
-                                                      UInt32 dwMimeFlags, out UInt32 ppwzMimeOut, UInt32 dwReserverd);
+                                                      UInt32 dwMimeFlags, out UInt32 ppwzMimeOut, UInt32 dwReserved);
 
         public static string GetMimeFromStream(Stream stream)
         {

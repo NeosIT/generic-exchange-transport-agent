@@ -17,8 +17,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
             Assert.NotNull(pluginHost.Handlers);
             Assert.NotNull(pluginHost.Filters);
             
-            Assert.AreEqual(8, pluginHost.KnownTypes.Count());
-            Assert.AreEqual(6, pluginHost.Handlers.Count());
+            Assert.AreEqual(10, pluginHost.KnownTypes.Count());
+            Assert.AreEqual(8, pluginHost.Handlers.Count());
             Assert.AreEqual(2, pluginHost.Filters.Count());
         }
     }

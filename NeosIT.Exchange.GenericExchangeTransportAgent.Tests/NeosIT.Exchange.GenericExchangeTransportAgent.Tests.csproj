@@ -103,6 +103,14 @@
       <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication.csproj">
+      <Project>{06ea279a-ff8f-47de-a57d-cf49b1b14261}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication\NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.csproj">
+      <Project>{5a17e259-3db1-4176-b15f-69e4b77e90d7}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
       <Project>{bbea07c8-5924-4a67-8a03-9e6459a66e68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
@@ -122,6 +130,14 @@
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
       <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.csproj">
+      <Project>{3ec2fc1a-d509-41d8-9949-b7f511c4e46c}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.csproj">
+      <Project>{3985924b-6c1d-4c9e-99fe-3835f53ca6e7}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
       <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>

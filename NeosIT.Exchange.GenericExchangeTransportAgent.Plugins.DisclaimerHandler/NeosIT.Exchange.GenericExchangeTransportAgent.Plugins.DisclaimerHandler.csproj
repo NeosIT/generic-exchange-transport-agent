@@ -59,12 +59,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Sytel.Common.WinForms">
-      <HintPath>..\..\Users\fwe.NEOS-IT\Desktop\Sytel.Common.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Wangdera.Controls">
-      <HintPath>..\..\Users\fwe.NEOS-IT\Desktop\Wangdera.Controls.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDisclaimerHandler.cs" />

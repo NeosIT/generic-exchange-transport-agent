@@ -42,12 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\Microsoft.Exchange.Data.Common.dll" />
-    <Content Include="Libs\Microsoft.Exchange.Data.Common.xml" />
     <Content Include="Libs\Microsoft.Exchange.Data.Transport.dll" />
-    <Content Include="Libs\Microsoft.Exchange.Data.Transport.xml" />
     <Content Include="Libs\MSDN.HtmlEditorControl.dll" />
-    <Content Include="Libs\Newtonsoft.Json.dll" />
-    <Content Include="Libs\RicherTextBox.dll" />
     <Content Include="Libs\System.ComponentModel.Composition.dll" />
     <Content Include="Libs\Twitterizer2.dll" />
   </ItemGroup>

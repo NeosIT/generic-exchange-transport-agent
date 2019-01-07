@@ -15,20 +15,20 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         public FilterForm(IFilterable filterable, IEnumerable<Type> knownTypes)
         {
             Filterable = filterable;
-            
+
             using (var ms = new MemoryStream())
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(IFilterable), knownTypes);
+                var serializer = new DataContractSerializer(typeof(IFilterable), knownTypes);
                 serializer.WriteObject(ms, Filterable);
                 ms.Position = 0;
                 _filters = ((IFilterable)serializer.ReadObject(ms)).Filters;
             }
-            
+
             InitializeComponent();
         }
 
         public IFilterable Filterable { get; private set; }
-        private IList<IFilterable> _filters; 
+        private IList<IFilterable> _filters;
 
         private void FilterFormLoad(object sender, EventArgs e)
         {
@@ -56,102 +56,48 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void FiltersTreeViewAfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (null != FiltersTreeView.SelectedNode)
-            {
-                if (null != FiltersTreeView.SelectedNode.Tag)
-                {
-                    OnDropDownList.Enabled = true;
-                    OperatorDropDownList.Enabled = true;
-                    ValueTextBox.Enabled = true;
-                    RemoveButton.Enabled = true;
-                    ApplyButton.Enabled = true;
+            if (FiltersTreeView.SelectedNode?.Tag == null) return;
 
-                    Filter filter = (Filter) FiltersTreeView.SelectedNode.Tag;
-                    OnDropDownList.SelectedItem = filter.On;
-                    OperatorDropDownList.SelectedItem = filter.Operator;
-                    ValueTextBox.Text = filter.Value;
-                }
-            }
+            OnDropDownList.Enabled = true;
+            OperatorDropDownList.Enabled = true;
+            ValueTextBox.Enabled = true;
+            RemoveButton.Enabled = true;
+            ApplyButton.Enabled = true;
+
+            var filter = (Filter) FiltersTreeView.SelectedNode.Tag;
+            OnDropDownList.SelectedItem = filter.On;
+            OperatorDropDownList.SelectedItem = filter.Operator;
+            ValueTextBox.Text = filter.Value;
         }
 
         private void ApplyButtonClick(object sender, EventArgs e)
         {
-            if (null != FiltersTreeView.SelectedNode)
-            {
-                if (null != FiltersTreeView.SelectedNode.Tag)
-                {
-                    TreeNode node = FiltersTreeView.SelectedNode;
+            if (FiltersTreeView.SelectedNode?.Tag == null) return;
 
-                    Filter filter = (Filter) node.Tag;
-                    filter.On = (FilterKeyEnum) OnDropDownList.SelectedItem;
-                    filter.Operator = (FilterOperatorEnum) OperatorDropDownList.SelectedItem;
-                    filter.Value = ValueTextBox.Text;
+            var node = FiltersTreeView.SelectedNode;
 
-                    string filterText = string.Format("{0} {1} {2}", filter.On, filter.Operator, filter.Value);
-                    node.Name = filterText;
-                    node.Text = filterText;
-                }
-            }
+            var filter = (Filter) node.Tag;
+            filter.On = (FilterKeyEnum) OnDropDownList.SelectedItem;
+            filter.Operator = (FilterOperatorEnum) OperatorDropDownList.SelectedItem;
+            filter.Value = ValueTextBox.Text;
+
+            string filterText = $"{filter.On} {filter.Operator} {filter.Value}";
+            node.Name = filterText;
+            node.Text = filterText;
         }
 
         private void RemoveButtonClick(object sender, EventArgs e)
         {
-            if (null != FiltersTreeView.SelectedNode)
+            if (FiltersTreeView.SelectedNode?.Tag == null) return;
+
+            var filter = (IFilterable)FiltersTreeView.SelectedNode.Tag;
+
+            if (null != FiltersTreeView.SelectedNode.Parent)
             {
-                if (null != FiltersTreeView.SelectedNode.Tag)
+                if (null != FiltersTreeView.SelectedNode.Parent.Tag)
                 {
-                    IFilterable filter = (IFilterable)FiltersTreeView.SelectedNode.Tag;
-
-                    if (null != FiltersTreeView.SelectedNode.Parent)
-                    {
-                        if (null != FiltersTreeView.SelectedNode.Parent.Tag)
-                        {
-                            IFilterable parent = (IFilterable) FiltersTreeView.SelectedNode.Parent.Tag;
-                            parent.Filters.Remove(filter);
-                        }
-                    }
-                    else
-                    {
-                        if (_filters.IsReadOnly)
-                        {
-                            _filters = new List<IFilterable>(_filters);
-                        }
-
-                        _filters.Remove(filter);
-                    }
-
-                    FiltersTreeView.SelectedNode.Remove();
-
-                    if (null == FiltersTreeView.SelectedNode)
-                    {
-                        OnDropDownList.Enabled = false;
-                        OperatorDropDownList.Enabled = false;
-                        ValueTextBox.Enabled = false;
-                        RemoveButton.Enabled = false;
-                        ApplyButton.Enabled = false;
-                    }
-                }
-            }
-        }
-
-        private void AndButtonClick(object sender, EventArgs e)
-        {
-            if (null != FiltersTreeView.SelectedNode)
-            {
-                if (null != FiltersTreeView.SelectedNode.Tag)
-                {
-                    TreeNode node = FiltersTreeView.SelectedNode;
-                    IFilterable parent = (IFilterable) node.Tag;
-                    Filter filter = new Filter();
-
-                    if (parent.Filters.IsReadOnly)
-                    {
-                        parent.Filters = new List<IFilterable>(parent.Filters);
-                    }
-
-                    parent.Filters.Add(filter);
-                    
-                    node.Nodes.Add(TreeNodeMapper.MapFilter(filter));
+                    var parent = (IFilterable) FiltersTreeView.SelectedNode.Parent.Tag;
+                    parent.Filters.Remove(filter);
                 }
             }
             else
@@ -161,7 +107,47 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                     _filters = new List<IFilterable>(_filters);
                 }
 
-                Filter filter = new Filter();
+                _filters.Remove(filter);
+            }
+
+            FiltersTreeView.SelectedNode.Remove();
+
+            if (null != FiltersTreeView.SelectedNode) return;
+
+            OnDropDownList.Enabled = false;
+            OperatorDropDownList.Enabled = false;
+            ValueTextBox.Enabled = false;
+            RemoveButton.Enabled = false;
+            ApplyButton.Enabled = false;
+        }
+
+        private void AndButtonClick(object sender, EventArgs e)
+        {
+            if (null != FiltersTreeView.SelectedNode)
+            {
+                if (null == FiltersTreeView.SelectedNode.Tag) return;
+
+                var node = FiltersTreeView.SelectedNode;
+                var parent = (IFilterable) node.Tag;
+                var filter = new Filter();
+
+                if (parent.Filters.IsReadOnly)
+                {
+                    parent.Filters = new List<IFilterable>(parent.Filters);
+                }
+
+                parent.Filters.Add(filter);
+
+                node.Nodes.Add(TreeNodeMapper.MapFilter(filter));
+            }
+            else
+            {
+                if (_filters.IsReadOnly)
+                {
+                    _filters = new List<IFilterable>(_filters);
+                }
+
+                var filter = new Filter();
                 _filters.Add(filter);
                 FiltersTreeView.Nodes.Add(TreeNodeMapper.MapFilter(filter));
             }
@@ -171,41 +157,39 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             if (null != FiltersTreeView.SelectedNode)
             {
-                if (null != FiltersTreeView.SelectedNode.Tag)
+                if (null == FiltersTreeView.SelectedNode.Tag) return;
+
+                var filter = new Filter();
+
+                if (null != FiltersTreeView.SelectedNode.Parent)
                 {
-                    Filter filter = new Filter();
+                    if (null == FiltersTreeView.SelectedNode.Parent.Tag) return;
 
-                    if (null != FiltersTreeView.SelectedNode.Parent)
+                    var node = FiltersTreeView.SelectedNode.Parent;
+                    var parent = (IFilterable) node.Tag;
+
+                    if (parent.Filters.IsReadOnly)
                     {
-                        if (null != FiltersTreeView.SelectedNode.Parent.Tag)
-                        {
-                            TreeNode node = FiltersTreeView.SelectedNode.Parent;
-                            IFilterable parent = (IFilterable) node.Tag;
-
-                            if (parent.Filters.IsReadOnly)
-                            {
-                                parent.Filters = new List<IFilterable>(parent.Filters);
-                            }
-
-                            parent.Filters.Add(filter);
-                            node.Nodes.Add(TreeNodeMapper.MapFilter(filter));
-                        }
+                        parent.Filters = new List<IFilterable>(parent.Filters);
                     }
-                    else
+
+                    parent.Filters.Add(filter);
+                    node.Nodes.Add(TreeNodeMapper.MapFilter(filter));
+                }
+                else
+                {
+                    if (_filters.IsReadOnly)
                     {
-                        if (_filters.IsReadOnly)
-                        {
-                            _filters = new List<IFilterable>(_filters);
-                        }
-
-                        _filters.Add(filter);
-                        FiltersTreeView.Nodes.Add(TreeNodeMapper.MapFilter(filter));
+                        _filters = new List<IFilterable>(_filters);
                     }
+
+                    _filters.Add(filter);
+                    FiltersTreeView.Nodes.Add(TreeNodeMapper.MapFilter(filter));
                 }
             }
             else
             {
-                Filter filter = new Filter();
+                var filter = new Filter();
                 _filters.Add(filter);
                 FiltersTreeView.Nodes.Add(TreeNodeMapper.MapFilter(filter));
             }

@@ -7,11 +7,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
     using System.IO;
     using System.Reflection;
     using System.Runtime.Serialization;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+    using Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms;
+    using Forms;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "ExecutableHandler", Namespace = "")]
@@ -54,73 +54,68 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
             var configForm = new ConfigForm(this);
             configForm.ShowDialog();
         }
-        
+
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
             ExitCode = (int) ExitCodeEnum.CommandNotRun;
 
-            if (AppliesTo(emailItem, lastExitCode))
+            if (!AppliesTo(emailItem, lastExitCode)) return;
+
+            if (Export)
             {
-                if (Export)
+                if (string.IsNullOrEmpty(EmlFileName))
                 {
-                    if (string.IsNullOrEmpty(EmlFileName))
-                    {
-                        EmlFileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                                                   string.Format("{0}.eml", Guid.NewGuid()));
-                    }
-
-                    if (null != emailItem && !emailItem.IsExported)
-                    {
-                        Logger.Debug(@"[GenericTransportAgent] Exporting EML file to ""{1}""...", EmlFileName);
-                        emailItem.Save(EmlFileName);
-                    }
+                    EmlFileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                        $"{Guid.NewGuid()}.eml");
                 }
 
-                if (!string.IsNullOrEmpty(Cmd))
+                if (null != emailItem && !emailItem.IsExported)
                 {
-                    var process = new Process { StartInfo = { FileName = Cmd, }, };
+                    Logger.Debug(@"[GenericTransportAgent] Exporting EML file to ""{1}""...", EmlFileName);
+                    emailItem.Save(EmlFileName);
+                }
+            }
 
-                    if (!String.IsNullOrEmpty(Args))
+            if (!string.IsNullOrEmpty(Cmd))
+            {
+                var process = new Process { StartInfo = { FileName = Cmd, }, };
+
+                if (!string.IsNullOrEmpty(Args))
+                {
+                    if (Args.Contains("$emlfile$", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        if (Args.Contains("$emlfile$", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            Args = Args.Replace("$emlfile$", EmlFileName);
-                        }
-
-                        process.StartInfo.Arguments = Args;
+                        Args = Args.Replace("$emlfile$", EmlFileName);
                     }
 
-                    Logger.Debug(@"[GenericTransportAgent] Running command ""{1}"" (args: ""{2}"")...", Cmd, Args);
-                    process.Start();
-                    process.WaitForExit(Timeout);
-
-                    if (!process.HasExited)
-                    {
-                        Logger.Debug(@"[GenericTransportAgent] - Command did not exit successfully...");
-                        process.Kill();
-                        ExitCode = (int) ExitCodeEnum.CommandTimedOut;
-                    }
-                    else
-                    {
-                        ExitCode = process.ExitCode;
-                        Logger.Debug(@"[GenericTransportAgent] - Command did exit successfully, exit code {1}...", ExitCode);
-                    }
+                    process.StartInfo.Arguments = Args;
                 }
 
-                if (null != Handlers && Handlers.Count > 0)
+                Logger.Debug(@"[GenericTransportAgent] Running command ""{1}"" (args: ""{2}"")...", Cmd, Args);
+                process.Start();
+                process.WaitForExit(Timeout);
+
+                if (!process.HasExited)
                 {
-                    foreach (IHandler handler in Handlers)
-                    {
-                        handler.Execute(emailItem, ExitCode);
-                    }
+                    Logger.Debug(@"[GenericTransportAgent] - Command did not exit successfully...");
+                    process.Kill();
+                    ExitCode = (int) ExitCodeEnum.CommandTimedOut;
                 }
+                else
+                {
+                    ExitCode = process.ExitCode;
+                    Logger.Debug(@"[GenericTransportAgent] - Command did exit successfully, exit code {1}...", ExitCode);
+                }
+            }
+
+            if (null == Handlers || Handlers.Count <= 0) return;
+
+            foreach (var handler in Handlers)
+            {
+                handler.Execute(emailItem, ExitCode);
             }
         }
 
-        public override string Name
-        {
-            get { return "ExecutableHandler"; }
-        }
+        public override string Name => "ExecutableHandler";
 
         public override string ToString()
         {

@@ -7,14 +7,8 @@
     [DataContract(Namespace = "")]
     public abstract class FilterableHandlerBase : HandlerBase, IFilterable
     {
-        private IList<IFilterable> _filters = new List<IFilterable>();
-
         [DataMember]
-        public virtual IList<IFilterable> Filters
-        {
-            get { return _filters; }
-            set { _filters = value; }
-        }
+        public virtual IList<IFilterable> Filters { get; set; } = new List<IFilterable>();
 
         public virtual bool AppliesTo(IEmailItem emailItem, int? lastExitCode = null)
         {

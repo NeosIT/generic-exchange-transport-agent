@@ -6,29 +6,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
     [DataContract(Name = "DeliveryAgent", Namespace = "")]
     public class DeliveryAgentConfig : IAgentConfig
     {
-        private IList<IAgentEventHandler> _onCloseConnection = new List<IAgentEventHandler>();
-        private IList<IAgentEventHandler> _onDeliverMailItem = new List<IAgentEventHandler>();
-        private IList<IAgentEventHandler> _onOpenConnection = new List<IAgentEventHandler>();
-
         [DataMember(Name = "OnCloseConnection")]
-        public IList<IAgentEventHandler> OnCloseConnection
-        {
-            get { return _onCloseConnection; }
-            set { _onCloseConnection = value; }
-        }
+        public IList<IAgentEventHandler> OnCloseConnection { get; set; } = new List<IAgentEventHandler>();
 
         [DataMember(Name = "OnDeliverMailItem")]
-        public IList<IAgentEventHandler> OnDeliverMailItem
-        {
-            get { return _onDeliverMailItem; }
-            set { _onDeliverMailItem = value; }
-        }
+        public IList<IAgentEventHandler> OnDeliverMailItem { get; set; } = new List<IAgentEventHandler>();
 
         [DataMember(Name = "OnOpenConnection")]
-        public IList<IAgentEventHandler> OnOpenConnection
-        {
-            get { return _onOpenConnection; }
-            set { _onOpenConnection = value; }
-        }
+        public IList<IAgentEventHandler> OnOpenConnection { get; set; } = new List<IAgentEventHandler>();
     }
 }

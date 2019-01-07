@@ -43,7 +43,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 
             TestObject.Execute(new EmailItem(emailMessage));
 
-            FileInfo testFileInfo = new FileInfo(testFilePath);
+            var testFileInfo = new FileInfo(testFilePath);
             Assert.IsTrue(testFileInfo.Exists);
             Assert.IsTrue(testFileInfo.Length > 0);
         }

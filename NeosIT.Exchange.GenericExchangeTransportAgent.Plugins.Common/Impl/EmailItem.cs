@@ -8,9 +8,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
 {
     public sealed class EmailItem : IEmailItem
     {
-        private readonly Object _underlyingObject;
+        private readonly object _underlyingObject;
 
-        private EmailItem(Object underlyingObject, EmailMessage message, RoutingAddress fromAddress,
+        private EmailItem(object underlyingObject, EmailMessage message, RoutingAddress fromAddress,
                           Stream mimeReadStream)
         {
             _underlyingObject = underlyingObject;
@@ -38,8 +38,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
         public EmailMessage Message { get; internal set; }
         public RoutingAddress FromAddress { get; internal set; }
         public Stream MimeReadStream { get; internal set; }
-        public Boolean IsExported { get; internal set; }
-        public Boolean IsImported { get; internal set; }
+        public bool IsExported { get; internal set; }
+        public bool IsImported { get; internal set; }
 
         public Stream GetMimeWriteStream()
         {
@@ -68,7 +68,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
         {
             if (File.Exists(filename))
             {
-                Stream writeStream = GetMimeWriteStream();
+                var writeStream = GetMimeWriteStream();
 
                 if (null != writeStream)
                 {

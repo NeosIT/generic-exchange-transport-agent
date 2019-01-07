@@ -6,37 +6,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
     [DataContract(Name = "RoutingAgent", Namespace = "")]
     public class RoutingAgentConfig : IAgentConfig
     {
-        private IList<IAgentEventHandler> _onCategorizedMessage = new List<IAgentEventHandler>();
-        private IList<IAgentEventHandler> _onResolvedMessage = new List<IAgentEventHandler>();
-        private IList<IAgentEventHandler> _onRoutedMessage = new List<IAgentEventHandler>();
-        private IList<IAgentEventHandler> _onSubmittedMessage = new List<IAgentEventHandler>();
-
         [DataMember(Name = "OnCategorizedMessage")]
-        public IList<IAgentEventHandler> OnCategorizedMessage
-        {
-            get { return _onCategorizedMessage; }
-            set { _onCategorizedMessage = value; }
-        }
+        public IList<IAgentEventHandler> OnCategorizedMessage { get; set; } = new List<IAgentEventHandler>();
 
         [DataMember(Name = "OnResolvedMessage")]
-        public IList<IAgentEventHandler> OnResolvedMessage
-        {
-            get { return _onResolvedMessage; }
-            set { _onResolvedMessage = value; }
-        }
+        public IList<IAgentEventHandler> OnResolvedMessage { get; set; } = new List<IAgentEventHandler>();
 
         [DataMember(Name = "OnRoutedMessage")]
-        public IList<IAgentEventHandler> OnRoutedMessage
-        {
-            get { return _onRoutedMessage; }
-            set { _onRoutedMessage = value; }
-        }
+        public IList<IAgentEventHandler> OnRoutedMessage { get; set; } = new List<IAgentEventHandler>();
 
         [DataMember(Name = "OnSubmittedMessage")]
-        public IList<IAgentEventHandler> OnSubmittedMessage
-        {
-            get { return _onSubmittedMessage; }
-            set { _onSubmittedMessage = value; }
-        }
+        public IList<IAgentEventHandler> OnSubmittedMessage { get; set; } = new List<IAgentEventHandler>();
     }
 }

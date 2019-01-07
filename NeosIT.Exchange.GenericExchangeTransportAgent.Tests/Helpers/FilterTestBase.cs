@@ -25,23 +25,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
 
         protected void PrepareLogger(object testObject)
         {
-            var loggingBase = testObject as LoggingBase;
-            if (null != loggingBase)
+            if (testObject is LoggingBase loggingBase)
             {
                 loggingBase.Kernel = NInjectHelper.GetKernel();
                 loggingBase.Logger = loggingBase.Kernel.Get<ILoggerFactory>().GetLogger(typeof(T));
             }
-            
-            var ifilterable = testObject as IFilterable;
-            if (null != ifilterable)
+
+            if (!(testObject is IFilterable ifilterable)) return;
+
+            if (null == ifilterable.Filters || ifilterable.Filters.Count <= 0) return;
+
+            foreach (var filter in ifilterable.Filters)
             {
-                if (null != ifilterable.Filters && ifilterable.Filters.Count > 0)
-                {
-                    foreach (var filter in ifilterable.Filters)
-                    {
-                        PrepareLogger(filter);
-                    }
-                }
+                PrepareLogger(filter);
             }
         }
     }

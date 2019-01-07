@@ -4,21 +4,15 @@
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.Runtime.Serialization;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+    using Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "DkimSigningHandler", Namespace = "")]
     public class DkimSigningHandler : FilterableHandlerBase, IDkimSigningHandler
     {
-        private DkimAlgorithmKind _algorithm = DkimAlgorithmKind.RsaSha1;
-
         [DataMember]
-        public DkimAlgorithmKind Algorithm
-        {
-            get { return _algorithm; }
-            set { _algorithm = value; }
-        }
+        public DkimAlgorithmKind Algorithm { get; set; } = DkimAlgorithmKind.RsaSha1;
 
         [DataMember]
         public string Selector { get; internal set; }
@@ -31,7 +25,7 @@
 
         [DataMember]
         public string EncodedKey { get; internal set; }
-        
+
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
             if (AppliesTo(emailItem, lastExitCode))
@@ -55,7 +49,7 @@
 
                 if (null != Handlers && Handlers.Count > 0)
                 {
-                    foreach (IHandler handler in Handlers)
+                    foreach (var handler in Handlers)
                     {
                         handler.Execute(emailItem, lastExitCode);
                     }
@@ -63,10 +57,7 @@
             }
         }
 
-        public override string Name
-        {
-            get { return "DkimSigningHandler"; }
-        }
+        public override string Name => "DkimSigningHandler";
 
         public void Load()
         {
@@ -82,7 +73,7 @@
         {
             throw new NotImplementedException();
         }
-        
+
         public override string ToString()
         {
             return Name;

@@ -6,29 +6,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
     [DataContract(Name = "GenericTransportAgent", Namespace = "")]
     public class TransportAgentConfig
     {
-        private DeliveryAgentConfig _deliveryAgentConfig = new DeliveryAgentConfig();
-        private RoutingAgentConfig _routingAgentConfig = new RoutingAgentConfig();
-        private SmtpReceiveAgentConfig _smtpReceiveAgentConfig = new SmtpReceiveAgentConfig();
-
         [DataMember(Name = "DeliveryAgent")]
-        public DeliveryAgentConfig DeliveryAgentConfig
-        {
-            get { return _deliveryAgentConfig; }
-            set { _deliveryAgentConfig = value; }
-        }
+        public DeliveryAgentConfig DeliveryAgentConfig { get; set; } = new DeliveryAgentConfig();
 
         [DataMember(Name = "RoutingAgent")]
-        public RoutingAgentConfig RoutingAgentConfig
-        {
-            get { return _routingAgentConfig; }
-            set { _routingAgentConfig = value; }
-        }
+        public RoutingAgentConfig RoutingAgentConfig { get; set; } = new RoutingAgentConfig();
 
         [DataMember(Name = "SmtpReceiveAgent")]
-        public SmtpReceiveAgentConfig SmtpReceiveAgentConfig
-        {
-            get { return _smtpReceiveAgentConfig; }
-            set { _smtpReceiveAgentConfig = value; }
-        }
+        public SmtpReceiveAgentConfig SmtpReceiveAgentConfig { get; set; } = new SmtpReceiveAgentConfig();
     }
 }

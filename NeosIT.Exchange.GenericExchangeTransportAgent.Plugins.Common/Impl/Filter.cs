@@ -7,21 +7,15 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Text.RegularExpressions;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+    using Enums;
+    using Extensions;
 
     [Export(typeof(IFilterable))]
     [DataContract(Name = "Filter", Namespace = "")]
     public class Filter : LoggingBase, IFilterable
     {
-        private IList<IFilterable> _filters = new List<IFilterable>();
-
         [DataMember]
-        public virtual IList<IFilterable> Filters
-        {
-            get { return _filters; }
-            set { _filters = value; }
-        }
+        public virtual IList<IFilterable> Filters { get; set; } = new List<IFilterable>();
 
         [DataMember]
         public virtual FilterKeyEnum On { get; internal set; }

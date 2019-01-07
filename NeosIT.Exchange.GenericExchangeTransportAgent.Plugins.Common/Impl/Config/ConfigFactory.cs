@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config
 {
-    public class ConfigFactory
+    public static class ConfigFactory
     {
         private static readonly string ConfigFileName =
             Path.Combine(Path.GetDirectoryName(Assembly.GetAssembly(typeof (TransportAgentConfig)).Location),
@@ -26,7 +26,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
             }
             else
             {
-                byte[] computedHash = ComputeConfigHash();
+                var computedHash = ComputeConfigHash();
                 if (computedHash != _configFileHash)
                 {
                     LoadConfiguration();
@@ -38,7 +38,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
 
         private static byte[] ComputeConfigHash()
         {
-            HashAlgorithm hash = HashAlgorithm.Create();
+            var hash = HashAlgorithm.Create();
             using (var fileStream = new FileStream(ConfigFileName, FileMode.Open, FileAccess.Read))
             {
                 return hash.ComputeHash(fileStream);
@@ -50,13 +50,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             IPluginHost pluginHost = new PluginHost(path);
-            
+
             var fileInfo = new FileInfo(ConfigFileName);
             _configFileSize = fileInfo.Length;
             _configFileHash = ComputeConfigHash();
             var settings = new XmlReaderSettings {ConformanceLevel = ConformanceLevel.Auto,};
             var serializer = new DataContractSerializer(typeof (TransportAgentConfig), pluginHost.KnownTypes);
-            using (XmlReader reader = XmlReader.Create(ConfigFileName, settings))
+            using (var reader = XmlReader.Create(ConfigFileName, settings))
             {
                 _config = (TransportAgentConfig) serializer.ReadObject(reader, true);
             }

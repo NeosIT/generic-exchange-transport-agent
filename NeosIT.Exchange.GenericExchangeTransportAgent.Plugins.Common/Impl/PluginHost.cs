@@ -43,14 +43,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
         {
             var exePath = Assembly.GetExecutingAssembly().Location;
 
-            if (!string.IsNullOrEmpty(exePath))
-            {
-                var path = Path.GetDirectoryName(exePath);
+            if (string.IsNullOrEmpty(exePath)) return;
 
-                if (!string.IsNullOrEmpty(path))
-                {
-                    Init(path);
-                }
+            var path = Path.GetDirectoryName(exePath);
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                Init(path);
             }
         }
 
@@ -70,10 +69,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
 
         public void Dispose()
         {
-            if (null != _container)
-            {
-                _container.Dispose();
-            }
+            _container?.Dispose();
         }
     }
 }

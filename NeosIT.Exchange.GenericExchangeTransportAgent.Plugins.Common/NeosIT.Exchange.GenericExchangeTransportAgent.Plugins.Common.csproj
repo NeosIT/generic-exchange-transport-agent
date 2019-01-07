@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\Dependencies\Libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\Dependencies\Libs\System.ComponentModel.Composition.dll</HintPath>
+      <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />

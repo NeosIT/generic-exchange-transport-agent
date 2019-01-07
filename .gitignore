@@ -108,5 +108,5 @@ Backup*/
 UpgradeLog*.XML
 .idea/
 
-# ignore
-Dependencies/Libs/Microsofot.Exchange.*
+# ignore exchange dlls because we need to get them manually
+libs/Microsoft.Exchange.*

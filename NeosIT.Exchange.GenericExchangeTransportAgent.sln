@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{10D3175B-387D-4252-908D-E453BB4E1D8D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication", "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication.csproj", "{06EA279A-FF8F-47DE-A57D-CF49B1B14261}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj", "{0B8B0A99-CD43-46CD-BF2C-A317441E1F24}"
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{10D3175B-387D-4252-908D-E453BB4E1D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10D3175B-387D-4252-908D-E453BB4E1D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10D3175B-387D-4252-908D-E453BB4E1D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10D3175B-387D-4252-908D-E453BB4E1D8D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06EA279A-FF8F-47DE-A57D-CF49B1B14261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06EA279A-FF8F-47DE-A57D-CF49B1B14261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06EA279A-FF8F-47DE-A57D-CF49B1B14261}.Release|Any CPU.ActiveCfg = Release|Any CPU

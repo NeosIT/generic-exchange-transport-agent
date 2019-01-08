@@ -19,19 +19,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExecutableTest()
         {
-            const string path = @"c:\temp\unittests\geta\executablehandler";
+            const string path = @"Fixtures\ExecutableHandler\";
             const string emlFilePath = path + @"testfile.eml";
-            const string testFilePath = path + @"\testfile.txt";
+            const string testFilePath = path + @"testfile.txt";
 
-            if (File.Exists(emlFilePath))
-            {
-                File.Delete(emlFilePath);
-            }
-
-            if (File.Exists(testFilePath))
-            {
-                File.Delete(testFilePath);
-            }
+            Directory.CreateDirectory(path);
+            File.Delete(emlFilePath);
+            File.Delete(testFilePath);
 
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExecutableHandlerTest Subject",
                                                                      "ExecutableHandlerTest Body");
@@ -71,7 +65,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
                                                                          "ExecutableHandlerRunTest Body");
 
             TestObject.Cmd = "cmd.exe";
-            
+
             PrepareLogger();
 
             TestObject.Execute(new EmailItem(emailMessage));

@@ -51,9 +51,11 @@
                     if (!attachment.TryGetContentReadStream(out var contentStream)) continue;
 
                     Logger.Debug("[GenericTransportAgent] Extracting {1} to {2}...", attachment.FileName, outputPath);
-                    using (
-                        var fs = new FileStream(Path.Combine(outputPath, attachment.FileName), FileMode.Create,
-                            FileAccess.ReadWrite))
+                    Directory.CreateDirectory(outputPath);
+                    using (var fs = new FileStream(
+                        Path.Combine(outputPath, attachment.FileName),
+                        FileMode.Create,
+                        FileAccess.ReadWrite))
                     {
                         contentStream.CopyTo(fs);
                     }

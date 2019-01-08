@@ -134,18 +134,22 @@
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <TestData Include="Fixtures\**\*" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <RemoveDir Directories="$(OutDir)\Fixtures" />
+    <Copy SourceFiles="@(TestData)" DestinationFolder="$(OutDir)\Fixtures\%(RecursiveDir)" />
+  </Target>
 </Project>

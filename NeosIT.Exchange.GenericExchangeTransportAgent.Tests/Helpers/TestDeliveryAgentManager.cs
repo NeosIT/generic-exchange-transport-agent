@@ -4,9 +4,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
 {
     public class TestDeliveryAgentManager : DeliveryAgentManager
     {
-        public override string SupportedDeliveryProtocol
-        {
-            get { return "local"; }
-        }
+        public override string SupportedDeliveryProtocol => "local";
     }
 }

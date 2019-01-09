@@ -77,54 +77,54 @@
             if (encodedKey == null ||
                 encodedKey.Trim().Length == 0)
             {
-                throw new ArgumentNullException("encodedKey");
+                throw new ArgumentNullException(nameof(encodedKey));
             }
 
             if (selector == null ||
                 selector.Trim().Length == 0)
             {
-                throw new ArgumentNullException("selector");
+                throw new ArgumentNullException(nameof(selector));
             }
 
             if (domain == null ||
                 domain.Trim().Length == 0)
             {
-                throw new ArgumentNullException("domain");
+                throw new ArgumentNullException(nameof(domain));
             }
 
-            this.cryptoProvider = CryptHelper.GetProviderFromPemEncodedRsaPrivateKey(encodedKey);
+            cryptoProvider = CryptHelper.GetProviderFromPemEncodedRsaPrivateKey(encodedKey);
             this.domain = domain;
             this.selector = selector;
 
             switch (signatureKind)
             {
                 case DkimAlgorithmKind.RsaSha1:
-                    this.hashAlgorithm = new SHA1CryptoServiceProvider();
-                    this.hashAlgorithmCryptoCode = "SHA1";
-                    this.hashAlgorithmDkimCode = "rsa-sha1";
+                    hashAlgorithm = new SHA1CryptoServiceProvider();
+                    hashAlgorithmCryptoCode = "SHA1";
+                    hashAlgorithmDkimCode = "rsa-sha1";
                     break;
                 case DkimAlgorithmKind.RsaSha256:
-                    this.hashAlgorithm = new SHA256CryptoServiceProvider();
-                    this.hashAlgorithmCryptoCode = "SHA256";
-                    this.hashAlgorithmDkimCode = "rsa-sha256";
+                    hashAlgorithm = new SHA256CryptoServiceProvider();
+                    hashAlgorithmCryptoCode = "SHA256";
+                    hashAlgorithmDkimCode = "rsa-sha256";
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("signatureKind");
+                    throw new ArgumentOutOfRangeException(nameof(signatureKind));
             }
 
-            this.eligibleHeaders = new HashSet<string>();
+            eligibleHeaders = new HashSet<string>();
 
             if (headersToSign != null)
             {
                 foreach (var headerToSign in headersToSign)
                 {
-                    this.eligibleHeaders.Add(headerToSign.Trim());
+                    eligibleHeaders.Add(headerToSign.Trim());
                 }
             }
 
-            // The From header must always be signed according to the 
+            // The From header must always be signed according to the
             // DKIM specification.
-            this.eligibleHeaders.Add("From");
+            eligibleHeaders.Add("From");
         }
 
         /// <summary>
@@ -132,16 +132,16 @@
         /// </summary>
         ~DefaultDkimSigner()
         {
-            this.Dispose(false);
+            Dispose(false);
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, 
+        /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -155,31 +155,24 @@
         /// <returns>The output stream.</returns>
         public bool CanSign(Stream inputStream)
         {
-            bool canSign;
-            string line;
-            StreamReader reader;
-
-            if (this.disposed)
+            if (disposed)
             {
                 throw new ObjectDisposedException("DomainKeysSigner");
             }
 
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
 
-            canSign = false;
-            reader = new StreamReader(inputStream);
+            bool canSign = false;
+            var reader = new StreamReader(inputStream);
 
             inputStream.Seek(0, SeekOrigin.Begin);
 
-            line = reader.ReadLine();
+            string line = reader.ReadLine();
             while (line != null)
             {
-                string header;
-                string[] headerParts;
-
                 // We've reached the end of the headers (headers are
                 // separated from the body by a blank line).
                 if (line.Length == 0)
@@ -191,7 +184,7 @@
                 // subsequent lines, we have to keep reading lines until we
                 // run into the end-of-headers marker (an empty line) or another
                 // line that doesn't begin with a whitespace character.
-                header = line + "\r\n";
+                string header = line + "\r\n";
                 line = reader.ReadLine();
                 while (!string.IsNullOrEmpty(line) &&
                     (line.StartsWith("\t", StringComparison.Ordinal) ||
@@ -204,22 +197,20 @@
                 // Extract the name of the header. Then store the full header
                 // in the dictionary. We do this because DKIM mandates that we
                 // only sign the LAST instance of any header that occurs.
-                headerParts = header.Split(new char[] { ':' }, 2);
-                if (headerParts.Length == 2)
+                var headerParts = header.Split(new[] { ':' }, 2);
+
+                if (headerParts.Length != 2) continue;
+
+                string headerName = headerParts[0];
+
+                if (headerName.Equals("From", StringComparison.OrdinalIgnoreCase))
                 {
-                    string headerName;
-
-                    headerName = headerParts[0];
-
-                    if (headerName.Equals("From", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // We don't break here because we want to read the bottom-most
-                        // instance of the From: header (there should be only one, but
-                        // if there are multiple, it's the last one that matters).
-                        canSign = header
-                            .ToUpperInvariant()
-                            .Contains("@" + this.domain.ToUpperInvariant());
-                    }
+                    // We don't break here because we want to read the bottom-most
+                    // instance of the From: header (there should be only one, but
+                    // if there are multiple, it's the last one that matters).
+                    canSign = header
+                        .ToUpperInvariant()
+                        .Contains("@" + domain.ToUpperInvariant());
                 }
             }
 
@@ -236,25 +227,25 @@
         /// <param name="outputStream">The output stream.</param>
         public void Sign(Stream inputStream, Stream outputStream)
         {
-            if (this.disposed)
+            if (disposed)
             {
                 throw new ObjectDisposedException("DomainKeysSigner");
             }
 
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
 
             if (outputStream == null)
             {
-                throw new ArgumentNullException("outputStream");
+                throw new ArgumentNullException(nameof(outputStream));
             }
 
-            var bodyHash = this.GetBodyHash(inputStream);
-            var unsignedDkimHeader = this.GetUnsignedDkimHeader(bodyHash);
-            var canonicalizedHeaders = this.GetCanonicalizedHeaders(inputStream);
-            var signedDkimHeader = this.GetSignedDkimHeader(unsignedDkimHeader, canonicalizedHeaders);
+            var bodyHash = GetBodyHash(inputStream);
+            var unsignedDkimHeader = GetUnsignedDkimHeader(bodyHash);
+            var canonicalizedHeaders = GetCanonicalizedHeaders(inputStream);
+            var signedDkimHeader = GetSignedDkimHeader(unsignedDkimHeader, canonicalizedHeaders);
 
             WriteSignedMimeMessage(inputStream, outputStream, signedDkimHeader);
         }
@@ -272,9 +263,9 @@
                 return false;
             }
 
-            for (int i = 0; i < candidate.Length; ++i)
+            foreach (byte b in candidate)
             {
-                if (stream.ReadByte() != candidate[i])
+                if (stream.ReadByte() != b)
                 {
                     return false;
                 }
@@ -292,15 +283,13 @@
         private static void WriteSignedMimeMessage(Stream input, Stream output, string signedDkimHeader)
         {
             int bytesRead;
-            byte[] headerBuffer;
-            byte[] streamBuffer;
 
             input.Seek(0, SeekOrigin.Begin);
 
-            headerBuffer = Encoding.ASCII.GetBytes(signedDkimHeader);
+            var headerBuffer = Encoding.ASCII.GetBytes(signedDkimHeader);
             output.Write(headerBuffer, 0, headerBuffer.Length);
 
-            streamBuffer = new byte[1024];
+            var streamBuffer = new byte[1024];
             while ((bytesRead = input.Read(streamBuffer, 0, streamBuffer.Length)) > 0)
             {
                 output.Write(streamBuffer, 0, bytesRead);
@@ -316,20 +305,20 @@
         {
             if (disposing)
             {
-                if (this.cryptoProvider != null)
+                if (cryptoProvider != null)
                 {
-                    this.cryptoProvider.Clear();
-                    this.cryptoProvider = null;
+                    cryptoProvider.Clear();
+                    cryptoProvider = null;
                 }
 
-                if (this.hashAlgorithm != null)
+                if (hashAlgorithm != null)
                 {
-                    this.hashAlgorithm.Clear();
-                    this.hashAlgorithm = null;
+                    hashAlgorithm.Clear();
+                    hashAlgorithm = null;
                 }
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         /// <summary>
@@ -341,12 +330,7 @@
         /// <returns>The base64-encoded hash of the body.</returns>
         private string GetBodyHash(Stream stream)
         {
-            byte[] bodyBytes;
-            string bodyText;
-            string hashText;
-            long index;
-
-            index = -1;
+            long index = -1;
 
             stream.Seek(0, SeekOrigin.Begin);
 
@@ -363,18 +347,18 @@
             {
                 throw new ArgumentException(
                     "The stream did not have a MIME body.",
-                    "stream");
+                    nameof(stream));
             }
 
             // We have to ignore all empty lines at the end of the message body.
             // This means we have to read the whole body and fix up the end of the
             // body if necessary.
-            bodyText = new StreamReader(stream).ReadToEnd();
+            string bodyText = new StreamReader(stream).ReadToEnd();
             bodyText = Regex.Replace(bodyText, "(\r?\n)*$", string.Empty);
             bodyText += "\r\n";
-            bodyBytes = Encoding.ASCII.GetBytes(bodyText);
+            var bodyBytes = Encoding.ASCII.GetBytes(bodyText);
 
-            hashText = Convert.ToBase64String(this.hashAlgorithm.ComputeHash(bodyBytes));
+            string hashText = Convert.ToBase64String(hashAlgorithm.ComputeHash(bodyBytes));
 
             stream.Seek(0, SeekOrigin.Begin);
 
@@ -391,21 +375,14 @@
         /// <returns>An enumerable of the headers that should be a part of the signature.</returns>
         private IEnumerable<string> GetCanonicalizedHeaders(Stream stream)
         {
-            Dictionary<string, string> headerNameToLineMap;
-            string line;
-            StreamReader reader;
-
             stream.Seek(0, SeekOrigin.Begin);
 
-            headerNameToLineMap = new Dictionary<string, string>();
-            reader = new StreamReader(stream);
+            var headerNameToLineMap = new Dictionary<string, string>();
+            var reader = new StreamReader(stream);
 
-            line = reader.ReadLine();
+            string line = reader.ReadLine();
             while (line != null)
             {
-                string header;
-                string[] headerParts;
-
                 // We've reached the end of the headers (headers are
                 // separated from the body by a blank line).
                 if (line.Length == 0)
@@ -417,7 +394,7 @@
                 // subsequent lines, we have to keep reading lines until we
                 // run into the end-of-headers marker (an empty line) or another
                 // line that doesn't begin with a whitespace character.
-                header = line + "\r\n";
+                string header = line + "\r\n";
                 line = reader.ReadLine();
                 while (!string.IsNullOrEmpty(line) &&
                     (line.StartsWith("\t", StringComparison.Ordinal) ||
@@ -430,18 +407,16 @@
                 // Extract the name of the header. Then store the full header
                 // in the dictionary. We do this because DKIM mandates that we
                 // only sign the LAST instance of any header that occurs.
-                headerParts = header.Split(new char[] { ':' }, 2);
-                if (headerParts.Length == 2)
+                var headerParts = header.Split(new char[] { ':' }, 2);
+
+                if (headerParts.Length != 2) continue;
+
+                string headerName = headerParts[0];
+
+                // We only want to sign the header if we were told to sign it!
+                if (eligibleHeaders.Contains(headerName, StringComparer.OrdinalIgnoreCase))
                 {
-                    string headerName;
-
-                    headerName = headerParts[0];
-
-                    // We only want to sign the header if we were told to sign it!
-                    if (this.eligibleHeaders.Contains(headerName, StringComparer.OrdinalIgnoreCase))
-                    {
-                        headerNameToLineMap[headerName] = header;
-                    }
+                    headerNameToLineMap[headerName] = header;
                 }
             }
 
@@ -462,8 +437,6 @@
             IEnumerable<string> canonicalizedHeaders)
         {
             byte[] signatureBytes;
-            string signatureText;
-            StringBuilder signedDkimHeader;
 
             using (var stream = new MemoryStream())
             {
@@ -485,12 +458,12 @@
                     // by the Crypto .NET classes won't recognize the new SHA256CryptoServiceProvider type.
                     // So, we have to use the string method instead. More details available at
                     // http://blogs.msdn.com/b/shawnfa/archive/2008/08/25/using-rsacryptoserviceprovider-for-rsa-sha256-signatures.aspx
-                    signatureBytes = this.cryptoProvider.SignData(stream, this.hashAlgorithmCryptoCode);
+                    signatureBytes = cryptoProvider.SignData(stream, hashAlgorithmCryptoCode);
                 }
             }
 
-            signatureText = Convert.ToBase64String(signatureBytes);
-            signedDkimHeader = new StringBuilder(unsignedDkimHeader.Substring(0, unsignedDkimHeader.Length - 1));
+            string signatureText = Convert.ToBase64String(signatureBytes);
+            var signedDkimHeader = new StringBuilder(unsignedDkimHeader.Substring(0, unsignedDkimHeader.Length - 1));
 
             signedDkimHeader.Append(signatureText);
             signedDkimHeader.Append(";\r\n");
@@ -509,10 +482,10 @@
             return string.Format(
                 CultureInfo.InvariantCulture,
                 "DKIM-Signature: v=1; a={0}; s={1}; d={2}; c=simple/simple; q=dns/txt; h={3}; bh={4}; b=;",
-                this.hashAlgorithmDkimCode,
-                this.selector,
-                this.domain,
-                string.Join(" : ", this.eligibleHeaders.OrderBy(x => x, StringComparer.Ordinal).ToArray()),
+                hashAlgorithmDkimCode,
+                selector,
+                domain,
+                string.Join(" : ", eligibleHeaders.OrderBy(x => x, StringComparer.Ordinal).ToArray()),
                 bodyHash);
         }
     }

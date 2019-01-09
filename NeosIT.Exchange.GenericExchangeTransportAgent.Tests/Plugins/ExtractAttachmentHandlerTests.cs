@@ -28,7 +28,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExtractAttachmentHandler Subject",
                                                                      "ExtractAttachmentHandler Body");
 
-            Attachment attachment = emailMessage.Attachments.Add(filename);
+            var attachment = emailMessage.Attachments.Add(filename);
             using (var writeStream = attachment.GetContentWriteStream())
             {
                 using (var fileStream = new FileStream(existingFilename, FileMode.Open))
@@ -36,19 +36,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
                     fileStream.CopyTo(writeStream);
                 }
             }
-            
-            
+
+
             TestObject.Settings[ExtractAttachmentHandler.OutputPathKey] = outputPath;
 
             PrepareLogger();
 
             TestObject.Execute(new EmailItem(emailMessage));
 
-            FileInfo fileInfo = new FileInfo(Path.Combine(outputPath, filename));
+            var fileInfo = new FileInfo(Path.Combine(outputPath, filename));
             Assert.IsTrue(fileInfo.Exists);
             Assert.IsTrue(fileInfo.Length > 0);
-            
-            FileInfo existingFileInfo = new FileInfo(existingFilename);
+
+            var existingFileInfo = new FileInfo(existingFilename);
             Assert.AreEqual(existingFileInfo.Length, fileInfo.Length);
         }
     }

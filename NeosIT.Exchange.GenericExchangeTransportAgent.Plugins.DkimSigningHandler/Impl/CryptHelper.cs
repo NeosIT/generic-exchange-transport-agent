@@ -4,7 +4,7 @@
     using System.IO;
     using System.Security.Cryptography;
     using System.Text;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Properties;
+    using Properties;
 
     /// <summary>
     /// Contains helper methods for retrieving encryption objects.
@@ -22,7 +22,7 @@
         private const string PemRsaPrivateKeyFooter = "-----END RSA PRIVATE KEY-----";
 
         /// <summary>
-        /// Attempts to get an instance of an RSACryptoServiceProvider from a 
+        /// Attempts to get an instance of an RSACryptoServiceProvider from a
         /// PEM-encoded RSA private key, commonly used by OpenSSL. You would think
         /// that this would be built into the .NET framework, but oh well.
         /// </summary>
@@ -38,7 +38,7 @@
             {
                 throw new ArgumentException(
                     Resources.CryptHelper_BadPemFormat,
-                    "encodedKey");
+                    nameof(encodedKey));
             }
 
             encodedKey = encodedKey.Substring(
@@ -64,8 +64,6 @@
             {
                 using (var reader = new BinaryReader(stream))
                 {
-                    var count = 0;
-
                     try
                     {
                         // The data is read as little endian order.
@@ -95,7 +93,7 @@
                             return null;
                         }
 
-                        count = ReadFieldLength(reader);
+                        int count = ReadFieldLength(reader);
                         var modulus = reader.ReadBytes(count);
 
                         count = ReadFieldLength(reader);
@@ -119,15 +117,17 @@
                         count = ReadFieldLength(reader);
                         var inverseQ = reader.ReadBytes(count);
 
-                        var parameters = new RSAParameters();
-                        parameters.Modulus = modulus;
-                        parameters.Exponent = exponent;
-                        parameters.D = d;
-                        parameters.P = p;
-                        parameters.Q = q;
-                        parameters.DP = dp;
-                        parameters.DQ = dq;
-                        parameters.InverseQ = inverseQ;
+                        var parameters = new RSAParameters
+                        {
+                            Modulus = modulus,
+                            Exponent = exponent,
+                            D = d,
+                            P = p,
+                            Q = q,
+                            DP = dp,
+                            DQ = dq,
+                            InverseQ = inverseQ
+                        };
 
                         provider = new RSACryptoServiceProvider();
                         provider.ImportParameters(parameters);
@@ -136,7 +136,7 @@
                     {
                         throw new ArgumentException(
                             Resources.CryptHelper_BadDerFormat,
-                            "encodedKey",
+                            nameof(encodedKey),
                             ex);
                     }
                 }
@@ -153,19 +153,14 @@
         /// <returns>The length of the next RSA key field, in bytes.</returns>
         private static int ReadFieldLength(BinaryReader reader)
         {
-            byte bt;    // The value of the last read byte
-            int count;  // The length of the next field, in bytes.
-
-            bt = 0;
-            count = 0;
-
             if (reader.ReadByte() != 0x02)
             {
                 // We expect an integer.
                 return 0;
             }
 
-            bt = reader.ReadByte();
+            byte bt = reader.ReadByte(); // The value of the last read byte
+            int count;  // The length of the next field, in bytes.
 
             switch (bt)
             {

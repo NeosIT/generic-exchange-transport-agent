@@ -34,7 +34,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
             _handler.Timeout = Convert.ToInt32(TimeoutNumericUpDown.Value);
             _handler.Export = ExportEmlFileCheckBox.Checked;
             _handler.EmlFileName = ExportEmlFileFilenameTextBox.Text;
-            _handler.ExportPath = ExportEmlFilePathTextBox.Text; 
+            _handler.ExportPath = ExportEmlFilePathTextBox.Text;
 
             Close();
         }
@@ -51,7 +51,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
                 CommandTextBox.Text = CommandFileDialog.FileName;
             }
         }
-        
+
         private void ExportEmlFileCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             ExportEmlFilePathTextBox.Enabled = ExportEmlFileCheckBox.Checked;

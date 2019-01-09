@@ -25,9 +25,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
         public void AssertSetValues()
         {
             Assert.NotNull(TestObject);
-            
+
             Assert.AreEqual("alice@neos-it.de", TestObject.FromAddress.ToString());
-            
+
             Assert.IsTrue(1 == TestObject.Message.To.Count);
             Assert.AreEqual("bob@neos-it.de", TestObject.Message.To.Single().SmtpAddress);
             Assert.AreEqual("bob@neos-it.de", TestObject.Message.To.Single().NativeAddress);
@@ -57,19 +57,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
                 sw = new StreamWriter(TestObject.MimeReadStream);
                 sw.Write(str);
                 sw.Flush();
-                
                 TestObject.Save(testFilename);
                 Assert.IsTrue(TestObject.IsExported);
                 Assert.IsTrue(File.Exists(testFilename));
             }
             finally
             {
-                if (null != sw)
-                {
-                    sw.Dispose();
-                }
+                sw?.Dispose();
             }
-            
+
             TestObject.Load(testFilename);
             Assert.IsFalse(TestObject.IsImported);
         }

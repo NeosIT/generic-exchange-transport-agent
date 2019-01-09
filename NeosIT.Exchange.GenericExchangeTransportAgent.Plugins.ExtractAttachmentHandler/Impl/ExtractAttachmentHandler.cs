@@ -16,14 +16,9 @@
     public class ExtractAttachmentHandler : FilterableHandlerBase, IExtractAttachmentHandler
     {
         public const string OutputPathKey = "OutputPath";
-        private IDictionary<string, string> _settings = new Dictionary<string, string> { { OutputPathKey, "" }, };
 
         [DataMember]
-        public IDictionary<string, string> Settings
-        {
-            get { return _settings; }
-            internal set { _settings = value; }
-        }
+        public IDictionary<string, string> Settings { get; internal set; } = new Dictionary<string, string> { { OutputPathKey, "" }, };
 
         public void Load()
         {
@@ -43,50 +38,41 @@
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            if (AppliesTo(emailItem, lastExitCode))
+            if (!AppliesTo(emailItem, lastExitCode)) return;
+
+            if (emailItem?.Message?.Attachments != null &&
+                emailItem.Message.Attachments.Count != 0
+            )
             {
-                if (null != emailItem &&
-                null != emailItem.Message &&
-                null != emailItem.Message.Attachments &&
-                0 != emailItem.Message.Attachments.Count
-                )
-                {
-                    string outputPath = GetSetting(OutputPathKey);
+                string outputPath = GetSetting(OutputPathKey);
 
-                    foreach (Attachment attachment in emailItem.Message.Attachments)
-                    {
-                        Stream contentStream;
-                        if (attachment.TryGetContentReadStream(out contentStream))
-                        {
-                            this.Debug("[MessageId {0}] Extracting {1} to {2}...", emailItem.Message.MessageId, attachment.FileName, outputPath);
-                            using (
-                                var fs = new FileStream(Path.Combine(outputPath, attachment.FileName), FileMode.Create,
-                                                        FileAccess.ReadWrite))
-                            {
-                                contentStream.CopyTo(fs);
-                            }
-                        }
-                    }
-                }
-
-                if (null != Handlers && Handlers.Count > 0)
+                foreach (var attachment in emailItem.Message.Attachments)
                 {
-                    foreach (IHandler handler in Handlers)
+                    if (!attachment.TryGetContentReadStream(out var contentStream)) continue;
+
+                    Logger.Debug("[GenericTransportAgent] Extracting {1} to {2}...", attachment.FileName, outputPath);
+                    using (
+                        var fs = new FileStream(Path.Combine(outputPath, attachment.FileName), FileMode.Create,
+                            FileAccess.ReadWrite))
                     {
-                        handler.Execute(emailItem, lastExitCode);
+                        contentStream.CopyTo(fs);
                     }
                 }
             }
+
+            if (null == Handlers || Handlers.Count <= 0) return;
+
+            foreach (var handler in Handlers)
+            {
+                handler.Execute(emailItem, lastExitCode);
+            }
         }
 
-        public override string Name
-        {
-            get { return "ExtractAttachmentHandler"; }
-        }
+        public override string Name => "ExtractAttachmentHandler";
 
         private string GetSetting(string key)
         {
-            return _settings.ContainsKey(key) ? _settings[key] : string.Empty;
+            return Settings.ContainsKey(key) ? Settings[key] : string.Empty;
         }
 
         public override string ToString()

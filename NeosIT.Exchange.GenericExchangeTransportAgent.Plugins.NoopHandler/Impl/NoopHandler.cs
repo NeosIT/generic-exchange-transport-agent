@@ -29,22 +29,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            if (null != emailItem)
+            if (null == emailItem) return;
+            if (null == Handlers || Handlers.Count <= 0) return;
+
+            foreach (var handler in Handlers)
             {
-                if (null != Handlers && Handlers.Count > 0)
-                {
-                    foreach (var handler in Handlers)
-                    {
-                        handler.Execute(emailItem, lastExitCode);
-                    }
-                }
+                handler.Execute(emailItem, lastExitCode);
             }
         }
 
-        public override string Name
-        {
-            get { return "NoopHandler"; }
-        }
+        public override string Name => "NoopHandler";
 
         public override string ToString()
         {

@@ -1,8 +1,8 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms
-{
-    using System;
-    using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms
+{
     public partial class ConfigForm : Form
     {
         private readonly TwitterNotificationHandler _handler;

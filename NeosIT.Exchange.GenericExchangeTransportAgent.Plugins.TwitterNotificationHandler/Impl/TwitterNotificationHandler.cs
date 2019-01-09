@@ -15,7 +15,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
     {
         [DataMember]
         public string AccessToken { get; internal set; }
-        
         [DataMember]
         public string AccessTokenSecret { get; internal set; }
 
@@ -24,32 +23,27 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
 
         [DataMember]
         public string ConsumerSecret { get; internal set; }
-        
+
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            if (AppliesTo(emailItem, lastExitCode))
-            {
-                if (null != emailItem &&
-                null != emailItem.Message &&
-                null != emailItem.Message.From
-                )
-                {
-                    OAuthTokens oAuthTokens;
-                    if (GetOAuthToken(out oAuthTokens))
-                    {
-                        var fromEmailRecipient = emailItem.Message.From;
-                        string from = !string.IsNullOrEmpty(fromEmailRecipient.DisplayName) ? fromEmailRecipient.DisplayName : !string.IsNullOrEmpty(fromEmailRecipient.NativeAddress) ? fromEmailRecipient.NativeAddress : fromEmailRecipient.SmtpAddress;
-                        TwitterResponse<TwitterStatus> response = TwitterStatus.Update(oAuthTokens, string.Format("[{0}] New mail from {1}", DateTime.Now, from));
-                    }
-                }
+            if (!AppliesTo(emailItem, lastExitCode)) return;
 
-                if (null != Handlers && Handlers.Count > 0)
+            if (emailItem?.Message?.From != null)
+            {
+                if (GetOAuthToken(out var oAuthTokens))
                 {
-                    foreach (IHandler handler in Handlers)
-                    {
-                        handler.Execute(emailItem, lastExitCode);
-                    }
+                    var fromEmailRecipient = emailItem.Message.From;
+                    string from = !string.IsNullOrEmpty(fromEmailRecipient.DisplayName) ? fromEmailRecipient.DisplayName : !string.IsNullOrEmpty(fromEmailRecipient.NativeAddress) ? fromEmailRecipient.NativeAddress : fromEmailRecipient.SmtpAddress;
+                    var response = TwitterStatus.Update(oAuthTokens,
+                        $"[{DateTime.Now}] New mail from {@from}");
                 }
+            }
+
+            if (null == Handlers || Handlers.Count <= 0) return;
+
+            foreach (var handler in Handlers)
+            {
+                handler.Execute(emailItem, lastExitCode);
             }
         }
 
@@ -69,10 +63,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
             configForm.ShowDialog();
         }
 
-        public override string Name
-        {
-            get { return "TwitterNotificationHandler"; }
-        }
+        public override string Name => "TwitterNotificationHandler";
 
         public override string ToString()
         {
@@ -83,16 +74,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
         {
             oAuthTokens = null;
 
-            if (!string.IsNullOrEmpty(AccessToken) &&
-                !string.IsNullOrEmpty(AccessTokenSecret) &&
-                !string.IsNullOrEmpty(ConsumerKey) && 
-                !string.IsNullOrEmpty(ConsumerSecret))
-            {
-                oAuthTokens = new OAuthTokens { AccessToken = AccessToken, AccessTokenSecret = AccessTokenSecret, ConsumerKey = ConsumerKey, ConsumerSecret = ConsumerSecret, };
-                return true;
-            }
+            if (string.IsNullOrEmpty(AccessToken) ||
+                string.IsNullOrEmpty(AccessTokenSecret) ||
+                string.IsNullOrEmpty(ConsumerKey) ||
+                string.IsNullOrEmpty(ConsumerSecret)) return false;
 
-            return false;
+            oAuthTokens = new OAuthTokens
+            {
+                AccessToken = AccessToken,
+                AccessTokenSecret = AccessTokenSecret,
+                ConsumerKey = ConsumerKey,
+                ConsumerSecret = ConsumerSecret
+            };
+            return true;
         }
     }
 }

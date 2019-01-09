@@ -20,7 +20,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Factories
 
         public override RoutingAgent CreateAgent(SmtpServer server)
         {
-            Logger.Debug("[GenericTransportAgent] [RoutingAgentFactory] Creating new RoutingAgent...");
+            Logger.Debug("[GenericTransportAgent] RoutingAgentFactory - Creating new RoutingAgent...");
             return new GenericRoutingAgent();
         }
     }

@@ -20,8 +20,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl
             var settings = CreateSettings();
             IKernel kernel = new StandardKernel(settings, new Log4NetModule());
 
-            string configFilename = string.Format("{0}.config", assembly.Location);
-            FileInfo fileInfo = new FileInfo(configFilename);
+            string configFilename = $"{assembly.Location}.config";
+            var fileInfo = new FileInfo(configFilename);
 
             XmlConfigurator.ConfigureAndWatch(fileInfo);
             return kernel;
@@ -29,8 +29,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl
 
         private static INinjectSettings CreateSettings()
         {
-            var settings = new NinjectSettings();
-            settings.LoadExtensions = false;
+            var settings = new NinjectSettings {LoadExtensions = false};
             return settings;
         }
     }

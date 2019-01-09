@@ -40,93 +40,93 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
             OnRsetCommand += OnRsetCommandHandler;
         }
 
-        void OnAuthCommandHandler(ReceiveCommandEventSource source, AuthCommandEventArgs e)
+        private void OnAuthCommandHandler(ReceiveCommandEventSource source, AuthCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnAuthCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnAuthCommand fired...");
             _config.SmtpReceiveAgentConfig.OnAuthCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnAuthCommand"""); } });
         }
 
-        void OnConnectHandler(ConnectEventSource source, ConnectEventArgs e)
+        private void OnConnectHandler(ConnectEventSource source, ConnectEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnConnect fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnConnect fired...");
             _config.SmtpReceiveAgentConfig.OnConnect.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnConnect"""); } });
         }
 
-        void OnDataCommandHandler(ReceiveCommandEventSource source, DataCommandEventArgs e)
+        private void OnDataCommandHandler(ReceiveCommandEventSource source, DataCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnDataCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnDataCommand fired...");
             _config.SmtpReceiveAgentConfig.OnDataCommand.ToList().ForEach(x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnDataCommand"""); } });
         }
 
-        void OnDisconnectHandler(DisconnectEventSource source, DisconnectEventArgs e)
+        private void OnDisconnectHandler(DisconnectEventSource source, DisconnectEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnDisconnect fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnDisconnect fired...");
             _config.SmtpReceiveAgentConfig.OnDisconnect.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnDisconnect"""); } });
         }
 
-        void OnEhloCommandHandler(ReceiveCommandEventSource source, EhloCommandEventArgs e)
+        private void OnEhloCommandHandler(ReceiveCommandEventSource source, EhloCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnEhloCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEhloCommand fired...");
             _config.SmtpReceiveAgentConfig.OnEhloCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnEhloCommand"""); } });
         }
 
-        void OnEndOfAuthenticationHandler(EndOfAuthenticationEventSource source, EndOfAuthenticationEventArgs e)
+        private void OnEndOfAuthenticationHandler(EndOfAuthenticationEventSource source, EndOfAuthenticationEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnEndOfAuthentication fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfAuthentication fired...");
             _config.SmtpReceiveAgentConfig.OnEndOfAuthentication.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnEndOfAuthentication"""); } });
         }
 
-        void OnEndOfDataHandler(ReceiveMessageEventSource source, EndOfDataEventArgs e)
+        private void OnEndOfDataHandler(ReceiveMessageEventSource source, EndOfDataEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnEndOfData fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfData fired...");
             _config.SmtpReceiveAgentConfig.OnEndOfData.ToList().ForEach(x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnEndOfData"""); } });
         }
 
-        void OnEndOfHeadersHandler(ReceiveMessageEventSource source, EndOfHeadersEventArgs e)
+        private void OnEndOfHeadersHandler(ReceiveMessageEventSource source, EndOfHeadersEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnEndOfHeaders fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfHeaders fired...");
             _config.SmtpReceiveAgentConfig.OnEndOfHeaders.ToList().ForEach(x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnEndOfHeaders"""); } });
         }
 
-        void OnHeloCommandHandler(ReceiveCommandEventSource source, HeloCommandEventArgs e)
+        private void OnHeloCommandHandler(ReceiveCommandEventSource source, HeloCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnHeloCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnHeloCommand fired...");
             _config.SmtpReceiveAgentConfig.OnHeloCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnHeloCommand"""); } });
         }
 
-        void OnHelpCommandHandler(ReceiveCommandEventSource source, HelpCommandEventArgs e)
+        private void OnHelpCommandHandler(ReceiveCommandEventSource source, HelpCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnHelpCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnHelpCommand fired...");
             _config.SmtpReceiveAgentConfig.OnHelpCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnHelpCommand"""); } });
         }
 
-        void OnMailCommandHandler(ReceiveCommandEventSource source, MailCommandEventArgs e)
+        private void OnMailCommandHandler(ReceiveCommandEventSource source, MailCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnMailCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnMailCommand fired...");
             _config.SmtpReceiveAgentConfig.OnMailCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnMailCommand"""); } });
         }
 
-        void OnNoopCommandHandler(ReceiveCommandEventSource source, NoopCommandEventArgs e)
+        private void OnNoopCommandHandler(ReceiveCommandEventSource source, NoopCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnNoopCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnNoopCommand fired...");
             _config.SmtpReceiveAgentConfig.OnNoopCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnNoopCommand"""); } });
         }
 
-        void OnRcptCommandHandler(ReceiveCommandEventSource source, RcptCommandEventArgs e)
+        private void OnRcptCommandHandler(ReceiveCommandEventSource source, RcptCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnRcptCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnRcptCommand fired...");
             _config.SmtpReceiveAgentConfig.OnRcptCommand.ToList().ForEach(x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnRcptCommand"""); } });
         }
 
-        void OnRejectHandler(RejectEventSource source, RejectEventArgs e)
+        private void OnRejectHandler(RejectEventSource source, RejectEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnReject fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnReject fired...");
             _config.SmtpReceiveAgentConfig.OnReject.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnReject"""); } });
         }
 
-        void OnRsetCommandHandler(ReceiveCommandEventSource source, RsetCommandEventArgs e)
+        private void OnRsetCommandHandler(ReceiveCommandEventSource source, RsetCommandEventArgs e)
         {
-            Logger.Debug("[GenericExchangeTransportagent] [SmtpReceiveAgent] OnRsetCommand fired...");
+            Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnRsetCommand fired...");
             _config.SmtpReceiveAgentConfig.OnRsetCommand.ToList().ForEach(x => { try { x.Execute(); } catch (Exception ex) { Logger.Error(ex, @"Error executing ""OnRsetCommand"""); } });
         }
     }

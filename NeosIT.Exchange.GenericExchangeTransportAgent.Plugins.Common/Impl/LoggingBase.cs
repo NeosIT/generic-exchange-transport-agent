@@ -8,8 +8,8 @@
     [DataContract(Namespace = "")]
     public abstract class LoggingBase
     {
-        public IKernel Kernel { get; set; }
-        public ILogger Logger { get; set; }
+        public IKernel Kernel { get; protected internal set; }
+        public ILogger Logger { get; protected internal set; }
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext c)

@@ -28,7 +28,7 @@
 
             using (var stream = emailMessage.Body.GetContentWriteStream())
             {
-                using (StreamWriter sw = new StreamWriter(stream))
+                using (var sw = new StreamWriter(stream))
                 {
                     sw.Write(body);
                 }

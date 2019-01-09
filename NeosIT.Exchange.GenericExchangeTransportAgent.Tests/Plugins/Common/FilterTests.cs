@@ -273,15 +273,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
             TestObject.Operator = FilterOperatorEnum.Equals;
             TestObject.Value = "alice@neos-it.de";
 
-            Filter toFilter = new Filter();
-            toFilter.On = FilterKeyEnum.To;
-            toFilter.Operator = FilterOperatorEnum.Equals;
-            toFilter.Value = "bob@neos-it.de";
+            var toFilter = new Filter
+            {
+                On = FilterKeyEnum.To,
+                Operator = FilterOperatorEnum.Equals,
+                Value = "bob@neos-it.de"
+            };
 
-            Filter subjectFilter = new Filter();
-            subjectFilter.On = FilterKeyEnum.Subject;
-            subjectFilter.Operator = FilterOperatorEnum.Equals;
-            subjectFilter.Value = "FilterSubFilterTest Subject";
+            var subjectFilter = new Filter
+            {
+                On = FilterKeyEnum.Subject,
+                Operator = FilterOperatorEnum.Equals,
+                Value = "FilterSubFilterTest Subject"
+            };
 
             TestObject.Filters.Add(toFilter);
             toFilter.Filters.Add(subjectFilter);
@@ -300,15 +304,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
             TestObject.Operator = FilterOperatorEnum.Equals;
             TestObject.Value = "alice@neos-it.de";
 
-            Filter toFilter = new Filter();
-            toFilter.On = FilterKeyEnum.To;
-            toFilter.Operator = FilterOperatorEnum.Equals;
-            toFilter.Value = "bob@neos-it.de";
+            var toFilter = new Filter
+            {
+                On = FilterKeyEnum.To,
+                Operator = FilterOperatorEnum.Equals,
+                Value = "bob@neos-it.de"
+            };
 
-            Filter subjectFilter = new Filter();
-            subjectFilter.On = FilterKeyEnum.Subject;
-            subjectFilter.Operator = FilterOperatorEnum.Equals;
-            subjectFilter.Value = "This can't be true!!!";
+            var subjectFilter = new Filter
+            {
+                On = FilterKeyEnum.Subject,
+                Operator = FilterOperatorEnum.Equals,
+                Value = "This can't be true!!!"
+            };
 
             TestObject.Filters.Add(toFilter);
             toFilter.Filters.Add(subjectFilter);

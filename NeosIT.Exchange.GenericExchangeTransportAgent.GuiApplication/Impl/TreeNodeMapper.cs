@@ -14,17 +14,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != config)
-            {
-                const string configText = "Config";
-                node.Name = configText;
-                node.Text = configText;
-                node.Tag = config;
+            if (null == config) return node;
 
-                node.Nodes.Add(MapDeliveryAgentConfig(config.DeliveryAgentConfig));
-                node.Nodes.Add(MapRoutingAgentConfig(config.RoutingAgentConfig));
-                node.Nodes.Add(MapSmtpReceiveAgentConfig(config.SmtpReceiveAgentConfig));
-            }
+            const string configText = "Config";
+            node.Name = configText;
+            node.Text = configText;
+            node.Tag = config;
+
+            node.Nodes.Add(MapDeliveryAgentConfig(config.DeliveryAgentConfig));
+            node.Nodes.Add(MapRoutingAgentConfig(config.RoutingAgentConfig));
+            node.Nodes.Add(MapSmtpReceiveAgentConfig(config.SmtpReceiveAgentConfig));
 
             return node;
         }
@@ -33,17 +32,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != agentConfig)
-            {
-                const string deliveryAgentText = "DeliveryAgent";
-                node.Name = deliveryAgentText;
-                node.Text = deliveryAgentText;
-                node.Tag = agentConfig;
+            if (null == agentConfig) return node;
 
-                node.Nodes.Add(MapAgentEvent("OnCloseConnection", agentConfig.OnCloseConnection));
-                node.Nodes.Add(MapAgentEvent("OnDeliverMailItem", agentConfig.OnDeliverMailItem));
-                node.Nodes.Add(MapAgentEvent("OnOpenConnection", agentConfig.OnOpenConnection));
-            }
+            const string deliveryAgentText = "DeliveryAgent";
+            node.Name = deliveryAgentText;
+            node.Text = deliveryAgentText;
+            node.Tag = agentConfig;
+
+            node.Nodes.Add(MapAgentEvent("OnCloseConnection", agentConfig.OnCloseConnection));
+            node.Nodes.Add(MapAgentEvent("OnDeliverMailItem", agentConfig.OnDeliverMailItem));
+            node.Nodes.Add(MapAgentEvent("OnOpenConnection", agentConfig.OnOpenConnection));
 
             return node;
         }
@@ -52,18 +50,17 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != agentConfig)
-            {
-                const string routingAgentText = "RoutingAgent";
-                node.Name = routingAgentText;
-                node.Text = routingAgentText;
-                node.Tag = agentConfig;
+            if (null == agentConfig) return node;
 
-                node.Nodes.Add(MapAgentEvent("OnCategorizedMessage", agentConfig.OnCategorizedMessage));
-                node.Nodes.Add(MapAgentEvent("OnResolvedMessage", agentConfig.OnResolvedMessage));
-                node.Nodes.Add(MapAgentEvent("OnRoutedMessage", agentConfig.OnRoutedMessage));
-                node.Nodes.Add(MapAgentEvent("OnSubmittedMessage", agentConfig.OnSubmittedMessage));
-            }
+            const string routingAgentText = "RoutingAgent";
+            node.Name = routingAgentText;
+            node.Text = routingAgentText;
+            node.Tag = agentConfig;
+
+            node.Nodes.Add(MapAgentEvent("OnCategorizedMessage", agentConfig.OnCategorizedMessage));
+            node.Nodes.Add(MapAgentEvent("OnResolvedMessage", agentConfig.OnResolvedMessage));
+            node.Nodes.Add(MapAgentEvent("OnRoutedMessage", agentConfig.OnRoutedMessage));
+            node.Nodes.Add(MapAgentEvent("OnSubmittedMessage", agentConfig.OnSubmittedMessage));
 
             return node;
         }
@@ -72,29 +69,28 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != agentConfig)
-            {
-                const string smtpReceiveAgentText = "SmtpReceiveAgent";
-                node.Name = smtpReceiveAgentText;
-                node.Text = smtpReceiveAgentText;
-                node.Tag = agentConfig;
+            if (null == agentConfig) return node;
 
-                node.Nodes.Add(MapAgentEvent("OnAuthCommand", agentConfig.OnAuthCommand));
-                node.Nodes.Add(MapAgentEvent("OnConnect", agentConfig.OnConnect));
-                node.Nodes.Add(MapAgentEvent("OnDataCommand", agentConfig.OnDataCommand));
-                node.Nodes.Add(MapAgentEvent("OnDisconnect", agentConfig.OnDisconnect));
-                node.Nodes.Add(MapAgentEvent("OnEhloCommand", agentConfig.OnEhloCommand));
-                node.Nodes.Add(MapAgentEvent("OnEndOfAuthentication", agentConfig.OnEndOfAuthentication));
-                node.Nodes.Add(MapAgentEvent("OnEndOfData", agentConfig.OnEndOfData));
-                node.Nodes.Add(MapAgentEvent("OnEndOfHeaders", agentConfig.OnEndOfHeaders));
-                node.Nodes.Add(MapAgentEvent("OnHeloCommand", agentConfig.OnHeloCommand));
-                node.Nodes.Add(MapAgentEvent("OnHelpCommand", agentConfig.OnHelpCommand));
-                node.Nodes.Add(MapAgentEvent("OnMailCommand", agentConfig.OnMailCommand));
-                node.Nodes.Add(MapAgentEvent("OnNoopCommand", agentConfig.OnNoopCommand));
-                node.Nodes.Add(MapAgentEvent("OnRcptCommand", agentConfig.OnRcptCommand));
-                node.Nodes.Add(MapAgentEvent("OnReject", agentConfig.OnReject));
-                node.Nodes.Add(MapAgentEvent("OnRsetCommand", agentConfig.OnRsetCommand));
-            }
+            const string smtpReceiveAgentText = "SmtpReceiveAgent";
+            node.Name = smtpReceiveAgentText;
+            node.Text = smtpReceiveAgentText;
+            node.Tag = agentConfig;
+
+            node.Nodes.Add(MapAgentEvent("OnAuthCommand", agentConfig.OnAuthCommand));
+            node.Nodes.Add(MapAgentEvent("OnConnect", agentConfig.OnConnect));
+            node.Nodes.Add(MapAgentEvent("OnDataCommand", agentConfig.OnDataCommand));
+            node.Nodes.Add(MapAgentEvent("OnDisconnect", agentConfig.OnDisconnect));
+            node.Nodes.Add(MapAgentEvent("OnEhloCommand", agentConfig.OnEhloCommand));
+            node.Nodes.Add(MapAgentEvent("OnEndOfAuthentication", agentConfig.OnEndOfAuthentication));
+            node.Nodes.Add(MapAgentEvent("OnEndOfData", agentConfig.OnEndOfData));
+            node.Nodes.Add(MapAgentEvent("OnEndOfHeaders", agentConfig.OnEndOfHeaders));
+            node.Nodes.Add(MapAgentEvent("OnHeloCommand", agentConfig.OnHeloCommand));
+            node.Nodes.Add(MapAgentEvent("OnHelpCommand", agentConfig.OnHelpCommand));
+            node.Nodes.Add(MapAgentEvent("OnMailCommand", agentConfig.OnMailCommand));
+            node.Nodes.Add(MapAgentEvent("OnNoopCommand", agentConfig.OnNoopCommand));
+            node.Nodes.Add(MapAgentEvent("OnRcptCommand", agentConfig.OnRcptCommand));
+            node.Nodes.Add(MapAgentEvent("OnReject", agentConfig.OnReject));
+            node.Nodes.Add(MapAgentEvent("OnRsetCommand", agentConfig.OnRsetCommand));
 
             return node;
         }
@@ -103,11 +99,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode {Name = eventName, Text = eventName};
 
-            if (null != agentEventHandlers)
-            {
-                node.Nodes.AddRange(MapAgentEventHandlers(agentEventHandlers));
-                node.Tag = agentEventHandlers;
-            }
+            if (null == agentEventHandlers) return node;
+
+            node.Nodes.AddRange(MapAgentEventHandlers(agentEventHandlers));
+            node.Tag = agentEventHandlers;
 
             return node;
         }
@@ -128,14 +123,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != agentEventHandler)
-            {
-                node.Name = agentEventHandler.ToString();
-                node.Text = agentEventHandler.ToString();
-                node.Tag = agentEventHandler;
+            if (null == agentEventHandler) return node;
 
-                node.Nodes.AddRange(MapHandlers(agentEventHandler.Handlers));
-            }
+            node.Name = agentEventHandler.ToString();
+            node.Text = agentEventHandler.ToString();
+            node.Tag = agentEventHandler;
+
+            node.Nodes.AddRange(MapHandlers(agentEventHandler.Handlers));
 
             return node;
         }
@@ -157,14 +151,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (null != handler)
-            {
-                node.Name = handler.ToString();
-                node.Text = handler.ToString();
-                node.Tag = handler;
+            if (null == handler) return node;
 
-                node.Nodes.AddRange(MapHandlers(handler.Handlers));
-            }
+            node.Name = handler.ToString();
+            node.Text = handler.ToString();
+            node.Tag = handler;
+
+            node.Nodes.AddRange(MapHandlers(handler.Handlers));
 
             return node;
         }
@@ -185,16 +178,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
         {
             var node = new TreeNode();
 
-            if (filterable is Filter)
-            {
-                Filter filter = (Filter) filterable;
-                string filterText = string.Format("{0} {1} {2}", filter.On, filter.Operator, filter.Value);
-                node.Name = filterText;
-                node.Text = filterText;
-                node.Tag = filterable;
+            if (!(filterable is Filter filter)) return node;
 
-                node.Nodes.AddRange(MapFilters(filterable.Filters));
-            }
+            string filterText = $"{filter.On} {filter.Operator} {filter.Value}";
+            node.Name = filterText;
+            node.Text = filterText;
+            node.Tag = filterable;
+
+            node.Nodes.AddRange(MapFilters(filter.Filters));
 
             return node;
         }

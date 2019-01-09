@@ -9,42 +9,30 @@
     [DataContract(Name = "EventHandler", Namespace = "")]
     public class AgentEventHandler : LoggingBase, IAgentEventHandler
     {
-        public string Name { get { return "EventHandler"; } }
-
-        private IList<IFilterable> _filters = new List<IFilterable>();
-        private IList<IHandler> _handlers = new List<IHandler>();
+        public string Name => "EventHandler";
 
         [DataMember]
-        public IList<IHandler> Handlers
-        {
-            get { return _handlers; }
-            set { _handlers = value; }
-        }
+        public IList<IHandler> Handlers { get; set; } = new List<IHandler>();
 
         [DataMember]
-        public IList<IFilterable> Filters
-        {
-            get { return _filters; }
-            set { _filters = value; }
-        }
+        public IList<IFilterable> Filters { get; set; } = new List<IFilterable>();
 
         #region IAgentEventHandler Members
 
         public void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            Logger.Info("[GenericTransportAgent] AgentEventHandler - Execute called...");
-            if (AppliesTo(emailItem))
-            {
-                Logger.Info("[GenericTransportAgent] AgentEventHandler - Calling execute on handlers...");
-                Handlers.ToList().ForEach(x => x.Execute(emailItem));
-            }
+            Logger.Debug("[GenericTransportAgent] AgentEventHandler - Execute called...");
+            if (!AppliesTo(emailItem)) return;
+
+            Logger.Debug("[GenericTransportAgent] AgentEventHandler - Calling execute on handlers...");
+            Handlers.ToList().ForEach(x => x.Execute(emailItem));
         }
 
         public bool AppliesTo(IEmailItem emailItem, int? lastExitCode = null)
         {
             if (null == emailItem)
             {
-                Logger.Fatal("[GenericTransportAgent] AgentEventHandler - No MailItem available...");
+                Logger.Warn("[GenericTransportAgent] AgentEventHandler - No MailItem available...");
                 return false;
             }
 

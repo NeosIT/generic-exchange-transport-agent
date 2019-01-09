@@ -21,48 +21,43 @@
         [DataMember]
         public string HeaderKey { get; set; }
 
-        public override string Name
-        {
-            get { return "Mail2NewsHandler"; }
-        }
+        public override string Name => "Mail2NewsHandler";
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            if (AppliesTo(emailItem, lastExitCode))
+            if (!AppliesTo(emailItem, lastExitCode)) return;
+
+            var sb = new StringBuilder();
+
+            if (emailItem.GetUnderlyingObject() is MailItem mailItem)
             {
-                var sb = new StringBuilder();
-                var mailItem = emailItem.GetUnderlyingObject() as MailItem;
+                var rcptsToRemove = mailItem.Recipients.Where(x => !ToSmtpAddress.Equals(x.Address.ToString(), StringComparison.InvariantCultureIgnoreCase));
 
-                if (null != mailItem)
+                foreach (var rcpt in rcptsToRemove)
                 {
-                    var rcptsToRemove = mailItem.Recipients.Where(x => !ToSmtpAddress.Equals(x.Address.ToString(), StringComparison.InvariantCultureIgnoreCase));
-
-                    foreach (var rcpt in rcptsToRemove)
-                    {
-                        this.Info("[MessageID {0}] Removing {1} from CC...", emailItem.Message.MessageId, rcpt.Address.ToString());
-                        sb.Append(rcpt.Address.ToString() + ";");
-                        mailItem.Recipients.Remove(rcpt);
-                    }
+                    Logger.Info("[MessageID {0}] Removing {1} from CC...", emailItem.Message.MessageId, rcpt.Address.ToString());
+                    sb.Append(rcpt.Address.ToString() + ";");
+                    mailItem.Recipients.Remove(rcpt);
                 }
-
-                this.Info("[MessageID {0}] Share-With: {1}...", emailItem.Message.MessageId, sb.ToString());
-
-                var header = new TextHeader(HeaderKey, sb.ToString());
-                emailItem.Message.RootPart.Headers.AppendChild(header);
             }
+
+            Logger.Info("[MessageID {0}] Share-With: {1}...", emailItem.Message.MessageId, sb.ToString());
+
+            var header = new TextHeader(HeaderKey, sb.ToString());
+            emailItem.Message.RootPart.Headers.AppendChild(header);
         }
 
         public override bool AppliesTo(IEmailItem emailItem, int? lastExitCode = null)
         {
             if (null == emailItem)
             {
-                this.Fatal("No MailItem available...", Name);
+                Logger.Fatal("No MailItem available...", Name);
                 return false;
             }
 
             if (string.IsNullOrEmpty(ToSmtpAddress) || string.IsNullOrEmpty(HeaderKey))
             {
-                this.Info(@"[MessageId {0}] Missing ToSmtpAddress ""{1}"" or HeaderKey ""{2}"" ...", emailItem.Message.MessageId, ToSmtpAddress, HeaderKey);
+                Logger.Info(@"[MessageId {0}] Missing ToSmtpAddress ""{1}"" or HeaderKey ""{2}"" ...", emailItem.Message.MessageId, ToSmtpAddress, HeaderKey);
                 return false;
             }
 
@@ -70,7 +65,7 @@
                 !emailItem.Message.To.Any(
                     x => x.SmtpAddress.Equals(ToSmtpAddress, StringComparison.InvariantCultureIgnoreCase)))
             {
-                this.Info("[MessageId {0}] - ToSmtpAddress not found in recipients...", emailItem.Message.MessageId);
+                Logger.Info("[MessageId {0}] - ToSmtpAddress not found in recipients...", emailItem.Message.MessageId);
                 return false;
             }
             

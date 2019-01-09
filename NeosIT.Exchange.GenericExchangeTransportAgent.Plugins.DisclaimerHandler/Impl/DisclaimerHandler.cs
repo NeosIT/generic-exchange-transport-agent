@@ -26,64 +26,61 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
-            if (AppliesTo(emailItem, lastExitCode))
+            if (!AppliesTo(emailItem, lastExitCode)) return;
+
+            // AppliesTo() will return false, if emailItem is null.
+            // ReSharper disable once PossibleNullReferenceException
+            if (BodyFormat.Text == emailItem.Message.Body.BodyFormat)
             {
-                if (BodyFormat.Text == emailItem.Message.Body.BodyFormat)
+                var sb = new StringBuilder();
+                sb.Append(emailItem.Message.GetBody());
+                sb.AppendLine();
+                sb.AppendLine();
+                sb.Append(Text);
+                emailItem.Message.SetBody(sb.ToString());
+            }
+
+            if (BodyFormat.Rtf == emailItem.Message.Body.BodyFormat)
+            {
+                var messageRtf = new RtfDocument(emailItem.Message.GetBody());
+                var mergeRtf = new RtfDocument(Rtf);
+
+                if (messageRtf.Merge(mergeRtf))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append(emailItem.Message.GetBody());
-                    sb.AppendLine();
-                    sb.AppendLine();
-                    sb.Append(Text);
-                    emailItem.Message.SetBody(sb.ToString());
+                    emailItem.Message.SetBody(messageRtf.Content);
                 }
+            }
 
-                if (BodyFormat.Rtf == emailItem.Message.Body.BodyFormat)
-                {
-                    var messageRtf = new RtfDocument(emailItem.Message.GetBody());
-                    var mergeRtf = new RtfDocument(Rtf);
+            if (BodyFormat.Html == emailItem.Message.Body.BodyFormat)
+            {
+                var messageDoc = new HtmlDocument();
+                messageDoc.LoadHtml(emailItem.Message.GetBody());
 
-                    if (messageRtf.Merge(mergeRtf))
-                    {
-                        emailItem.Message.SetBody(messageRtf.Content);
-                    }
-                }
+                var disclaimerDoc = new HtmlDocument();
+                disclaimerDoc.LoadHtml(Html);
 
-                if (BodyFormat.Html == emailItem.Message.Body.BodyFormat)
-                {
-                    var messageDoc = new HtmlDocument();
-                    messageDoc.LoadHtml(emailItem.Message.GetBody());
+                var messageBodyNode = messageDoc.DocumentNode.SelectSingleNode("//body");
+                var disclaimerBodyNode = disclaimerDoc.DocumentNode.SelectSingleNode("//body");
 
-                    var disclaimerDoc = new HtmlDocument();
-                    disclaimerDoc.LoadHtml(Html);
+                var brNode = messageDoc.CreateElement("br");
 
-                    var messageBodyNode = messageDoc.DocumentNode.SelectSingleNode("//body");
-                    var disclaimerBodyNode = disclaimerDoc.DocumentNode.SelectSingleNode("//body");
+                messageBodyNode.AppendChild(brNode);
 
-                    var brNode = messageDoc.CreateElement("br");
+                messageBodyNode.AppendChildren(disclaimerBodyNode.ChildNodes);
 
-                    messageBodyNode.AppendChild(brNode);
+                emailItem.Message.SetBody(messageDoc.DocumentNode.InnerHtml);
+            }
 
-                    messageBodyNode.AppendChildren(disclaimerBodyNode.ChildNodes);
+            if (null == Handlers || Handlers.Count <= 0) return;
 
-                    emailItem.Message.SetBody(messageDoc.DocumentNode.InnerHtml);
-                }
-
-                if (null != Handlers && Handlers.Count > 0)
-                {
-                    foreach (IHandler handler in Handlers)
-                    {
-                        handler.Execute(emailItem, lastExitCode);
-                    }
-                }
+            foreach (var handler in Handlers)
+            {
+                handler.Execute(emailItem, lastExitCode);
             }
         }
 
-        public override string Name
-        {
-            get { return "DisclaimerHandler"; }
-        }
-        
+        public override string Name => "DisclaimerHandler";
+
         public void Load()
         {
             throw new NotImplementedException();

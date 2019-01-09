@@ -36,8 +36,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
                     fileStream.CopyTo(writeStream);
                 }
             }
-            
-            
+
+
             TestObject.Settings[ExtractAttachmentHandler.OutputPathKey] = outputPath;
 
             PrepareLogger();
@@ -47,7 +47,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             var fileInfo = new FileInfo(Path.Combine(outputPath, filename));
             Assert.IsTrue(fileInfo.Exists);
             Assert.IsTrue(fileInfo.Length > 0);
-            
+
             var existingFileInfo = new FileInfo(existingFilename);
             Assert.AreEqual(existingFileInfo.Length, fileInfo.Length);
         }

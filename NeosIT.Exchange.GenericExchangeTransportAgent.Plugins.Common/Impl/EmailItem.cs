@@ -40,13 +40,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
         public Stream MimeReadStream { get; internal set; }
         public bool IsExported { get; internal set; }
         public bool IsImported { get; internal set; }
+        public bool ShouldBeDeletedFromQueue { get; set; }
 
         public Stream GetMimeWriteStream()
         {
             var underlyingObject = _underlyingObject as MailItem;
             return underlyingObject != null ? underlyingObject.GetMimeWriteStream() : null;
         }
-        
+
         public object GetUnderlyingObject()
         {
             return _underlyingObject;

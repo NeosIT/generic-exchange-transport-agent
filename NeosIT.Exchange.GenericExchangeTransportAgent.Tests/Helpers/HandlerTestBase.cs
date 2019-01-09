@@ -22,7 +22,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
             TestObject = new T();
             TestObject.Handlers.Add(new NoopHandler());
         }
-
         [Test]
         public void NameTest()
         {

@@ -29,36 +29,65 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
             OnSubmittedMessage += OnSubmittedMessageHandler;
         }
 
-        private void OnCategorizedMessageHandler(CategorizedMessageEventSource source,
-                                                 QueuedMessageEventArgs e)
+        private void OnCategorizedMessageHandler(CategorizedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnCategorizedMessage fired...");
-            _config.RoutingAgentConfig.OnCategorizedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnCategorizedMessage"""); } });
+            var emailItem = new EmailItem(e.MailItem);
+            foreach(var x in _config.RoutingAgentConfig.OnCategorizedMessage) {
+                try
+                {
+                    x.Execute(emailItem);
+                } catch (Exception ex)
+                {
+                    Logger.Error(ex, @"Error Executing ""OnCategorizedMessage""");
+                }
+            }
+
+            if (emailItem.ShouldBeDeletedFromQueue)
+            {
+                source.Delete();
+            }
         }
 
-        private void OnResolvedMessageHandler(ResolvedMessageEventSource source,
-                                              QueuedMessageEventArgs e)
+        private void OnResolvedMessageHandler(ResolvedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnResolvedMessage fired...");
+            var emailItem = new EmailItem(e.MailItem);
             _config.RoutingAgentConfig.OnResolvedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnResolvedMessage"""); } });
+                x => { try { x.Execute(emailItem); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnResolvedMessage"""); } });
+
+            if (emailItem.ShouldBeDeletedFromQueue)
+            {
+                source.Delete();
+            }
         }
 
         private void OnRoutedMessageHandler(RoutedMessageEventSource source,
                                             QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnRoutedMessage fired...");
+            var emailItem = new EmailItem(e.MailItem);
             _config.RoutingAgentConfig.OnRoutedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnRoutedMessage"""); } });
+                x => { try { x.Execute(emailItem); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnRoutedMessage"""); } });
+
+            if (emailItem.ShouldBeDeletedFromQueue)
+            {
+                source.Delete();
+            }
         }
 
         private void OnSubmittedMessageHandler(SubmittedMessageEventSource source,
                                                QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnSubmittedMessage fired...");
+            var emailItem = new EmailItem(e.MailItem);
             _config.RoutingAgentConfig.OnSubmittedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnSubmittedMessage"""); } });
+                x => { try { x.Execute(emailItem); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnSubmittedMessage"""); } });
+
+            if (emailItem.ShouldBeDeletedFromQueue)
+            {
+                source.Delete();
+            }
         }
     }
 }

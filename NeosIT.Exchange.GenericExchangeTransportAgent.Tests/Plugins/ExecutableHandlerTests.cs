@@ -71,7 +71,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
                                                                          "ExecutableHandlerRunTest Body");
 
             TestObject.Cmd = "cmd.exe";
-            
+
             PrepareLogger();
 
             TestObject.Execute(new EmailItem(emailMessage));

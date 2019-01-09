@@ -23,7 +23,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 ms.Position = 0;
                 _filters = ((IFilterable)serializer.ReadObject(ms)).Filters;
             }
-
             InitializeComponent();
         }
 

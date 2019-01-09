@@ -16,5 +16,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
         object GetUnderlyingObject();
         void Save(string filename);
         void Load(string filename);
+        bool ShouldBeDeletedFromQueue { get; set; }
     }
 }

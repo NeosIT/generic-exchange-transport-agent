@@ -21,10 +21,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExtractTest()
         {
-            const string outputPath = @"Fixtures\ExtractAttachmentHandler";
+            string outputPath = TestData.RootPath + @"Fixtures\ExtractAttachmentHandler";
             const string filename = @"Bunny.png";
 
-            const string existingFilename = @"Fixtures\Bunny.png";
+            string existingFilename = TestData.RootPath + @"Fixtures\" + filename;
 
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExtractAttachmentHandler Subject",
                                                                      "ExtractAttachmentHandler Body");

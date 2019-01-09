@@ -19,9 +19,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExecutableTest()
         {
-            const string path = @"Fixtures\ExecutableHandler\";
-            const string emlFilePath = path + @"testfile.eml";
-            const string testFilePath = path + @"testfile.txt";
+            string path = TestData.RootPath + @"Fixtures\ExecutableHandler\";
+            string emlFilePath = path + @"testfile.eml";
+            string testFilePath = path + @"testfile.txt";
 
             Directory.CreateDirectory(path);
             File.Delete(emlFilePath);

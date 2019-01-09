@@ -40,7 +40,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
             Assert.IsInstanceOf<object>(underlyingObject);
             Assert.IsInstanceOf<EmailMessage>(underlyingObject);
 
-            const string testFilename = @"Fixtures\EmailItem\testfile.eml";
+            string testFilename = TestData.RootPath + @"Fixtures\EmailItem\testfile.eml";
 
             TestObject.Save(testFilename);
             Assert.IsFalse(TestObject.IsExported);

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Microsoft.Exchange.Data.Transport;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl
@@ -42,10 +41,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
         [DataMember(Name = "UploadFieldName")]
         public string UploadFieldName { get; set; }
         
-        public override string Name
-        {
-            get { return "MailEndpointHandler"; }
-        }
+        public override string Name => "MailEndpointHandler";
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {

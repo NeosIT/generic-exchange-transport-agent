@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj", "{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.csproj", "{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.csproj", "{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,11 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
-{
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
+using Ninject.Extensions.Logging;
+
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+{
     [DataContract(Namespace = "")]
     public abstract class HandlerBase : LoggingBase, IHandler
     {

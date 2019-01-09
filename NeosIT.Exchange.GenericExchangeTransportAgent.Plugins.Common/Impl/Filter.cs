@@ -7,6 +7,8 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Text.RegularExpressions;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
     using Enums;
     using Extensions;
 
@@ -32,12 +34,12 @@
         {
             if (null == emailItem)
             {
-                Logger.Debug("[GenericTransportAgent] Filter - No MailItem available...");
+                Logger.Warn("[GenericTransportAgent] Filter - No MailItem available...");
                 return false;
             }
 
-            Logger.Debug(@"[GenericTransportAgent] Filter - MailItem Subject: ""{0}""; From: ""{1}""...", emailItem.Message.Subject, emailItem.FromAddress.ToString());
-            Logger.Debug("[GenericTransportAgent] Filter - Applying filter {0} {1} {2}...", On, Operator, Value);
+            Logger.Debug(@"[GenericTransportAgent] [MessageID {0}] Filter - MailItem Subject: ""{1}""; From: ""{2}""...", emailItem.Message.MessageId, emailItem.Message.Subject, emailItem.FromAddress.ToString());
+            Logger.Info("[GenericTransportAgent] [MessageID {0}] Filter - Applying filter {1} {2} {3}...", emailItem.Message.MessageId, On, Operator, Value);
 
             bool appliesTo = false;
 
@@ -65,7 +67,7 @@
 
             if (appliesTo && null != Filters && 0 != Filters.Count)
             {
-                Logger.Debug("[GenericTransportAgent] Filter - Applying subfilters...");
+                Logger.Debug("[GenericTransportAgent] [MessageID {0}] Filter - Applying subfilters...", emailItem.Message.MessageId);
                 subFilterApplyTo = Filters.Aggregate(false,
                                                      (current, subFilter) => current || subFilter.AppliesTo(emailItem));
             }

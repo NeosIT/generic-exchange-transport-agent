@@ -372,7 +372,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
 
             TestObject.Filters.Add(fromFilter);
             PrepareLogger();
-
             Assert.IsFalse(TestObject.AppliesTo(new EmailItem(emailMessage)));
         }
 

@@ -50,7 +50,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             IPluginHost pluginHost = new PluginHost(path);
-
             var fileInfo = new FileInfo(ConfigFileName);
             _configFileSize = fileInfo.Length;
             _configFileHash = ComputeConfigHash();

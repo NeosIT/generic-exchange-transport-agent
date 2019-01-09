@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.Runtime.Serialization;
-    using Common;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
     [Export(typeof(IHandler))]
@@ -25,7 +25,6 @@
 
         [DataMember]
         public string EncodedKey { get; internal set; }
-
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
             if (AppliesTo(emailItem, lastExitCode))
@@ -73,7 +72,6 @@
         {
             throw new NotImplementedException();
         }
-
         public override string ToString()
         {
             return Name;

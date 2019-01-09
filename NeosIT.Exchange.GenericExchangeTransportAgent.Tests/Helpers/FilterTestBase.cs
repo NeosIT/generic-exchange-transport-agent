@@ -32,7 +32,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
             }
 
             if (!(testObject is IFilterable ifilterable)) return;
-
             if (null == ifilterable.Filters || ifilterable.Filters.Count <= 0) return;
 
             foreach (var filter in ifilterable.Filters)

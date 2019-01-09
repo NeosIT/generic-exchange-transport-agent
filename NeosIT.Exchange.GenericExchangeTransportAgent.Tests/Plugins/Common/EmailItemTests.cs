@@ -58,7 +58,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
                 sw = new StreamWriter(TestObject.MimeReadStream);
                 sw.Write(str);
                 sw.Flush();
-
                 TestObject.Save(testFilename);
                 Assert.IsTrue(TestObject.IsExported);
                 Assert.IsTrue(File.Exists(testFilename));

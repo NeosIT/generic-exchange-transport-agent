@@ -30,7 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Exchange.Data.Transport">
+    <Reference Include="Microsoft.Exchange.Data.Common, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
@@ -69,11 +72,13 @@
     <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />
     <Compile Include="Impl\Extensions\StreamExtensions.cs" />
     <Compile Include="Impl\Extensions\StringExtensions.cs" />
+    <Compile Include="Impl\Extensions\WebRequestExtensions.cs" />
     <Compile Include="Impl\Filter.cs" />
     <Compile Include="Impl\FilterableHandlerBase.cs" />
     <Compile Include="Impl\HandlerBase.cs" />
     <Compile Include="Impl\LoggingBase.cs" />
     <Compile Include="Impl\PluginHost.cs" />
+    <Compile Include="Impl\Utils\Win32.cs" />
     <Compile Include="IOptions.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="IViewOptions.cs" />
@@ -88,9 +93,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -6,10 +6,10 @@
     using System.IO;
     using System.Runtime.Serialization;
     using Microsoft.Exchange.Data.Transport.Email;
-    using Common;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-    using Forms;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "ExtractAttachmentHandler", Namespace = "")]

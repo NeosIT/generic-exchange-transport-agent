@@ -17,7 +17,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
             var exitCode = lastExitCode;
 
             if (null == Handlers || Handlers.Count <= 0) return;
-            
+
             foreach (var handler in Handlers)
             {
                 handler.Execute(emailItem, exitCode);

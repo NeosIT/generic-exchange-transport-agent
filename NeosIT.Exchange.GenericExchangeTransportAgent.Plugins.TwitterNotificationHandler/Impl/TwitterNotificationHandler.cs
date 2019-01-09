@@ -5,7 +5,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
     using System;
     using System.ComponentModel.Composition;
     using System.Runtime.Serialization;
-    using Common;
+    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
     using Twitterizer;
 
@@ -15,7 +15,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
     {
         [DataMember]
         public string AccessToken { get; internal set; }
-
         [DataMember]
         public string AccessTokenSecret { get; internal set; }
 

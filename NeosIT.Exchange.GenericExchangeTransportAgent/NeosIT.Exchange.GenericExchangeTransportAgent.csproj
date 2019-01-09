@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Exchange.Data.Common">
       <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
@@ -53,6 +57,9 @@
     <Compile Include="Impl\Agents\GenericDeliveryAgent.cs" />
     <Compile Include="Impl\Agents\GenericRoutingAgent.cs" />
     <Compile Include="Impl\Agents\GenericSmtpReceiveAgent.cs" />
+    <Compile Include="Impl\Extensions\AgentConfigExtensions.cs" />
+    <Compile Include="Impl\Extensions\OldNetExtensions.cs" />
+    <Compile Include="Impl\Extensions\TransportAgentExtensions.cs" />
     <Compile Include="Impl\Factories\GenericDeliveryAgentFactory.cs" />
     <Compile Include="Impl\Factories\GenericRoutingAgentFactory.cs" />
     <Compile Include="Impl\Factories\GenericSmtpReceiveAgentFactory.cs" />

@@ -55,6 +55,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxEvent.Name = "comboBoxEvent";
             this.comboBoxEvent.Size = new System.Drawing.Size(505, 21);
             this.comboBoxEvent.TabIndex = 0;
+            this.comboBoxEvent.SelectedValueChanged += new System.EventHandler(this.comboBoxEvent_SelectedValueChanged);
             // 
             // comboBoxParent
             // 
@@ -107,7 +108,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.tabPageTxt.Location = new System.Drawing.Point(4, 22);
             this.tabPageTxt.Name = "tabPageTxt";
             this.tabPageTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTxt.Size = new System.Drawing.Size(568, 277);
+            this.tabPageTxt.Size = new System.Drawing.Size(571, 375);
             this.tabPageTxt.TabIndex = 0;
             this.tabPageTxt.Text = "Text";
             this.tabPageTxt.UseVisualStyleBackColor = true;
@@ -117,7 +118,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.tabPageRtf.Location = new System.Drawing.Point(4, 22);
             this.tabPageRtf.Name = "tabPageRtf";
             this.tabPageRtf.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRtf.Size = new System.Drawing.Size(568, 277);
+            this.tabPageRtf.Size = new System.Drawing.Size(571, 375);
             this.tabPageRtf.TabIndex = 1;
             this.tabPageRtf.Text = "RTF";
             this.tabPageRtf.UseVisualStyleBackColor = true;
@@ -141,6 +142,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // labelEvent
             // 

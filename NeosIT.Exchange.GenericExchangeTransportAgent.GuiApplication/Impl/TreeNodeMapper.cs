@@ -95,7 +95,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
             return node;
         }
 
-        public static TreeNode MapAgentEvent(string eventName, IEnumerable<IAgentEventHandler> agentEventHandlers)
+        public static TreeNode MapAgentEvent(string eventName, IEnumerable<IHandler> agentEventHandlers)
         {
             var node = new TreeNode {Name = eventName, Text = eventName};
 
@@ -107,7 +107,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
             return node;
         }
 
-        public static TreeNode[] MapAgentEventHandlers(IEnumerable<IAgentEventHandler> agentEventHandlers)
+        public static TreeNode[] MapAgentEventHandlers(IEnumerable<IHandler> agentEventHandlers)
         {
             var nodes = new List<TreeNode>();
 
@@ -119,7 +119,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
             return nodes.ToArray();
         }
 
-        public static TreeNode MapAgentEventHandler(IAgentEventHandler agentEventHandler)
+        public static TreeNode MapAgentEventHandler(IHandler agentEventHandler)
         {
             var node = new TreeNode();
 

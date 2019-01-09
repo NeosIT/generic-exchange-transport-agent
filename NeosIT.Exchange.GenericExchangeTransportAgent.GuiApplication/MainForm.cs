@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml;
+using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
@@ -14,13 +20,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
     {
         public MainForm()
         {
+            _agentConfigs = new List<IAgentConfig>();
             InitializeComponent();
         }
 
-        private IEnumerable<IHandler> _handlers;
         private IEnumerable<Type> _knownTypes;
         private string _configFilename;
         private TransportAgentConfig _config;
+
+        private readonly List<IAgentConfig> _agentConfigs;
 
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -70,7 +78,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void ConfigButtonClick(object sender, EventArgs e)
         {
-            ((IViewOptions)treeViewEntries.SelectedNode.Tag).ShowConfigDialog();
+            ((IViewOptions) treeViewEntries.SelectedNode.Tag).ShowConfigDialog();
         }
 
         private void ExitButtonClick(object sender, EventArgs e)
@@ -85,11 +93,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _configFilename = OpenConfigFileDialog.FileName;
 
             var serializer = new DataContractSerializer(typeof(TransportAgentConfig), _knownTypes);
-            var settings = new XmlReaderSettings { ConformanceLevel = ConformanceLevel.Auto, };
+            var settings = new XmlReaderSettings {ConformanceLevel = ConformanceLevel.Auto,};
 
             using (var reader = XmlReader.Create(_configFilename, settings))
             {
-                _config = (TransportAgentConfig)serializer.ReadObject(reader, true);
+                _config = (TransportAgentConfig) serializer.ReadObject(reader, true);
             }
 
             treeViewEntries.Nodes.Clear();
@@ -236,8 +244,97 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void buttonNewEntry_Click(object sender, EventArgs e)
         {
-            var form = new NewEntryForm(treeViewEntries.Nodes);
+            var form = new NewEntryForm(this, _agentConfigs);
             form.Show(this);
+        }
+
+        /// <summary>
+        /// Adds an entry to the tree view. Also adds it to the internal collection.
+        /// </summary>
+        /// <param name="agentProperty">Identifier for the event. Using the <see cref="PropertyInfo" /> we can review the type on which it's declared and the given property name for the event name.</param>
+        /// <param name="handler">The actual handler for this tree node.</param>
+        /// <exception cref="ArgumentException">When a handler already exist for the given event.</exception>
+        public void AddEntry([NotNull] PropertyInfo agentProperty, [NotNull] IHandler handler)
+        {
+            Debug.Assert(agentProperty.DeclaringType != null, "Declaring type must never be null");
+            Debug.Assert(agentProperty.IsValidHandlerPropertyType(), $"Parameter {nameof(agentProperty)} must be of type IList<IAgentConfig>.");
+
+            IAgentConfig agentConfig = null;
+            TreeNode groupNode = null;
+            TreeNode eventNode = null;
+            TreeNode handlerNode = null;
+
+            // do group search / create
+            // TODO Replace is dirty
+            var groupName = agentProperty.DeclaringType.Name.Replace("AgentConfig", "");
+            foreach (TreeNode node in treeViewEntries.Nodes)
+            {
+                if (node.Name == groupName)
+                {
+                    groupNode = node;
+                    agentConfig = _agentConfigs.Single(x => x.GetType() == agentProperty.DeclaringType);
+                    break;
+                }
+            }
+
+            if (groupNode == null)
+            {
+                groupNode = new TreeNode(groupName)
+                {
+                    Name = groupName
+                };
+                treeViewEntries.Nodes.Add(groupNode);
+                agentConfig = (IAgentConfig) Activator.CreateInstance(agentProperty.DeclaringType);
+                _agentConfigs.Add(agentConfig);
+            }
+
+            // do event search / create
+            var eventName = agentProperty.Name;
+            if (groupNode.Nodes.Count > 0)
+            {
+                foreach (TreeNode node in groupNode.Nodes)
+                {
+                    if (node.Name == eventName)
+                    {
+                        eventNode = node;
+                        break;
+                    }
+                }
+            }
+
+            if (eventNode == null)
+            {
+                eventNode = new TreeNode(eventName)
+                {
+                    Name = eventName
+                };
+
+                groupNode.Nodes.Add(eventNode);
+            }
+
+
+            // do handler search / create
+            if (groupNode.Nodes.Count > 0)
+            {
+                foreach (TreeNode subNode in eventNode.Nodes)
+                {
+                    if (subNode.Name == handler.Name)
+                    {
+                        // as for now the GUI limits the usage of multiple handlers of the same type for an event.
+                        throw new ArgumentException(
+                            $"Handler {handler.Name} is not allowed here. It's already been added.");
+                    }
+                }
+            }
+
+            // add new handler node if the type does not exist already
+            handlerNode = new TreeNode(handler.Name)
+            {
+                Name = handler.Name
+            };
+            eventNode.Nodes.Add(handlerNode);
+
+            agentConfig.AddHandler(agentProperty, handler);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
@@ -17,6 +18,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 AppDomain.CurrentDomain.Load(referencedAssembly);
             }
+            var pluginHost = new PluginHost();
+            pluginHost.Init(".");
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

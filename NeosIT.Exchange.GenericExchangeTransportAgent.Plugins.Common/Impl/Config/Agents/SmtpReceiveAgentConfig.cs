@@ -7,48 +7,48 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
     public class SmtpReceiveAgentConfig : IAgentConfig
     {
         [DataMember(Name = "OnAuthCommand")]
-        public IList<IAgentEventHandler> OnAuthCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnAuthCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnConnect")]
-        public IList<IAgentEventHandler> OnConnect { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnConnect { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnDataCommand")]
-        public IList<IAgentEventHandler> OnDataCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnDataCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnDisconnect")]
-        public IList<IAgentEventHandler> OnDisconnect { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnDisconnect { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnEhloCommand")]
-        public IList<IAgentEventHandler> OnEhloCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnEhloCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnEndOfAuthentication")]
-        public IList<IAgentEventHandler> OnEndOfAuthentication { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnEndOfAuthentication { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnEndOfData")]
-        public IList<IAgentEventHandler> OnEndOfData { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnEndOfData { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnEndOfHeaders")]
-        public IList<IAgentEventHandler> OnEndOfHeaders { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnEndOfHeaders { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnHeloCommand")]
-        public IList<IAgentEventHandler> OnHeloCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnHeloCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnHelpCommand")]
-        public IList<IAgentEventHandler> OnHelpCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnHelpCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnMailCommand")]
-        public IList<IAgentEventHandler> OnMailCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnMailCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnNoopCommand")]
-        public IList<IAgentEventHandler> OnNoopCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnNoopCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnRcptCommand")]
-        public IList<IAgentEventHandler> OnRcptCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnRcptCommand { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnReject")]
-        public IList<IAgentEventHandler> OnReject { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnReject { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnRsetCommand")]
-        public IList<IAgentEventHandler> OnRsetCommand { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnRsetCommand { get; set; } = new List<IHandler>();
     }
 }

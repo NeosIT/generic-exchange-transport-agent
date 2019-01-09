@@ -7,15 +7,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Conf
     public class RoutingAgentConfig : IAgentConfig
     {
         [DataMember(Name = "OnCategorizedMessage")]
-        public IList<IAgentEventHandler> OnCategorizedMessage { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnCategorizedMessage { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnResolvedMessage")]
-        public IList<IAgentEventHandler> OnResolvedMessage { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnResolvedMessage { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnRoutedMessage")]
-        public IList<IAgentEventHandler> OnRoutedMessage { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnRoutedMessage { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnSubmittedMessage")]
-        public IList<IAgentEventHandler> OnSubmittedMessage { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnSubmittedMessage { get; set; } = new List<IHandler>();
     }
 }

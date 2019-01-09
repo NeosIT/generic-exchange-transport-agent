@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -83,6 +87,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,6 +126,10 @@
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj">
       <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
+      <Project>{0b1622b1-0301-45bb-a2f4-21359de6b66a}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

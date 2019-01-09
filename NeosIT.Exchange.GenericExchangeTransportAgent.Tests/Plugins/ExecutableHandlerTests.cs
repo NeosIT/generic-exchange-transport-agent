@@ -10,7 +10,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class ExecutableHandlerHandlerTests : OptionsHandlerTestBase<ExecutableHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "ExecutableHandler";

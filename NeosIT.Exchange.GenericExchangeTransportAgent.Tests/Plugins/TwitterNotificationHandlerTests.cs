@@ -7,7 +7,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class TwitterNotificationHandlerHandlerTests : OptionsHandlerTestBase<TwitterNotificationHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "TwitterNotificationHandler";

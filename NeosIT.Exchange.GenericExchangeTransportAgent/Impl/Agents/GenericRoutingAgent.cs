@@ -29,36 +29,68 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
             OnSubmittedMessage += OnSubmittedMessageHandler;
         }
 
-        private void OnCategorizedMessageHandler(CategorizedMessageEventSource source,
-                                                 QueuedMessageEventArgs e)
+        private void OnCategorizedMessageHandler(CategorizedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnCategorizedMessage fired...");
-            _config.RoutingAgentConfig.OnCategorizedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnCategorizedMessage"""); } });
+            foreach (var x in _config.RoutingAgentConfig.OnCategorizedMessage)
+            {
+                try
+                {
+                    x.Execute(new EmailItem(e.MailItem));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, @"Error Executing ""OnCategorizedMessage""");
+                }
+            }
         }
 
-        private void OnResolvedMessageHandler(ResolvedMessageEventSource source,
-                                              QueuedMessageEventArgs e)
+        private void OnResolvedMessageHandler(ResolvedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnResolvedMessage fired...");
-            _config.RoutingAgentConfig.OnResolvedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnResolvedMessage"""); } });
+            foreach (var x in _config.RoutingAgentConfig.OnResolvedMessage)
+            {
+                 try
+                 {
+                     x.Execute(new EmailItem(e.MailItem));
+                 }
+                 catch (Exception ex)
+                 {
+                     Logger.Error(ex, @"Error Executing ""OnResolvedMessage""");
+                 }
+            }
         }
 
-        private void OnRoutedMessageHandler(RoutedMessageEventSource source,
-                                            QueuedMessageEventArgs e)
+        private void OnRoutedMessageHandler(RoutedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnRoutedMessage fired...");
-            _config.RoutingAgentConfig.OnRoutedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnRoutedMessage"""); } });
+            foreach (var x in _config.RoutingAgentConfig.OnRoutedMessage)
+            {
+                try
+                {
+                    x.Execute(new EmailItem(e.MailItem));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, @"Error Executing ""OnRoutedMessage""");
+                }
+            }
         }
 
-        private void OnSubmittedMessageHandler(SubmittedMessageEventSource source,
-                                               QueuedMessageEventArgs e)
+        private void OnSubmittedMessageHandler(SubmittedMessageEventSource source, QueuedMessageEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnSubmittedMessage fired...");
-            _config.RoutingAgentConfig.OnSubmittedMessage.ToList().ForEach(
-                x => { try { x.Execute(new EmailItem(e.MailItem)); } catch (Exception ex) { Logger.Error(ex, @"Error Executing ""OnSubmittedMessage"""); } });
+            foreach (var x in _config.RoutingAgentConfig.OnSubmittedMessage)
+            {
+                try
+                {
+                    x.Execute(new EmailItem(e.MailItem));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, @"Error Executing ""OnSubmittedMessage""");
+                }
+            }
         }
     }
 }

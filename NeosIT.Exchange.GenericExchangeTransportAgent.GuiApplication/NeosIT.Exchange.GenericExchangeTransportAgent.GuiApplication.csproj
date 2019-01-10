@@ -56,11 +56,11 @@
     </Compile>
     <Compile Include="Impl\Models\Entry.cs" />
     <Compile Include="Impl\TreeNodeMapper.cs" />
-    <Compile Include="NewEntryForm.cs">
+    <Compile Include="EntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewEntryForm.designer.cs">
-      <DependentUpon>NewEntryForm.cs</DependentUpon>
+    <Compile Include="EntryForm.designer.cs">
+      <DependentUpon>EntryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -73,8 +73,8 @@
     <EmbeddedResource Include="FilterForm.resx">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewEntryForm.resx">
-      <DependentUpon>NewEntryForm.cs</DependentUpon>
+    <EmbeddedResource Include="EntryForm.resx">
+      <DependentUpon>EntryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

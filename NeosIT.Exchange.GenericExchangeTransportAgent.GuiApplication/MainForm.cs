@@ -34,7 +34,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private TransportAgentConfig _config;
 
         private readonly List<IAgentConfig> _agentConfigs;
-        private TreeNode _selectedNode;
 
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -175,20 +174,20 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void buttonNewEntry_Click(object sender, EventArgs e)
         {
-            var form = new NewEntryForm(this, _agentConfigs);
+            var form = new EntryForm(this, _agentConfigs);
             form.Show(this);
         }
 
         /// <summary>
         /// Adds an entry to the tree view. Also adds it to the internal collection.
         /// </summary>
-        /// <param name="agentProperty">Identifier for the event. Using the <see cref="PropertyInfo" /> we can review the type on which it's declared and the given property name for the event name.</param>
+        /// <param name="eventProperty">Identifier for the event. Using the <see cref="PropertyInfo" /> we can review the type on which it's declared and the given property name for the event name.</param>
         /// <param name="handler">The actual handler for this tree node.</param>
         /// <exception cref="ArgumentException">When a handler already exist for the given event.</exception>
-        public void AddEntry([NotNull] PropertyInfo agentProperty, [NotNull] IHandler handler)
+        public void AddEntry([NotNull] PropertyInfo eventProperty, [NotNull] IHandler handler)
         {
-            Debug.Assert(agentProperty.DeclaringType != null, "Declaring type must never be null");
-            Debug.Assert(agentProperty.IsValidHandlerPropertyType(), $"Parameter {nameof(agentProperty)} must be of type IList<IAgentConfig>.");
+            Debug.Assert(eventProperty.DeclaringType != null, "Declaring type must never be null");
+            Debug.Assert(eventProperty.IsValidHandlerPropertyType(), $"Parameter {nameof(eventProperty)} must be of type IList<IAgentConfig>.");
 
             IAgentConfig agentConfig = null;
             TreeNode groupNode = null;
@@ -197,13 +196,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
             // do group search / create
             // TODO Replace is dirty
-            var groupName = agentProperty.DeclaringType.Name.Replace("AgentConfig", "");
+            var groupName = eventProperty.DeclaringType.Name.Replace("AgentConfig", "");
             foreach (TreeNode node in treeViewEntries.Nodes)
             {
                 if (node.Name == groupName)
                 {
                     groupNode = node;
-                    agentConfig = _agentConfigs.Single(x => x.GetType() == agentProperty.DeclaringType);
+                    agentConfig = _agentConfigs.Single(x => x.GetType() == eventProperty.DeclaringType);
                     break;
                 }
             }
@@ -215,12 +214,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                     Name = groupName
                 };
                 treeViewEntries.Nodes.Add(groupNode);
-                agentConfig = (IAgentConfig) Activator.CreateInstance(agentProperty.DeclaringType);
-                _agentConfigs.Add(agentConfig);
+                agentConfig = _agentConfigs.SingleOrDefault(x => x.GetType() == eventProperty.DeclaringType);
+                if (agentConfig == null)
+                {
+                    agentConfig = (IAgentConfig) Activator.CreateInstance(eventProperty.DeclaringType);
+                    _agentConfigs.Add(agentConfig);
+                }
             }
 
             // do event search / create
-            var eventName = agentProperty.Name;
+            var eventName = eventProperty.Name;
             if (groupNode.Nodes.Count > 0)
             {
                 foreach (TreeNode node in groupNode.Nodes)
@@ -265,7 +268,42 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             };
             eventNode.Nodes.Add(handlerNode);
 
-            agentConfig.AddHandler(agentProperty, handler);
+            agentConfig.AddHandler(eventProperty, handler);
+        }
+
+        public void RemoveEntry(PropertyInfo eventProperty, Type handlerType)
+        {
+            var agentConfig = _agentConfigs.Single(x => x.GetType() == eventProperty.DeclaringType);
+            var result = agentConfig.RemoveHandler(eventProperty, handlerType);
+
+            if (result)
+            {
+                var removedAgentNode = RemoveNode(agentConfig.GetType().Name.Replace("AgentConfig", ""),eventProperty.Name, handlerType.Name);
+
+                if (removedAgentNode)
+                {
+                    _agentConfigs.Remove(agentConfig);                    
+                }
+            }
+        }
+
+        public void ReplaceEntry(PropertyInfo eventProperty, IHandler oldHandler, IHandler newHandler)
+        {
+            var agentConfig = _agentConfigs.Single(x => x.GetType() == eventProperty.DeclaringType);
+            var result = agentConfig.ReplaceHandler(eventProperty, oldHandler, newHandler);
+
+            if (result)
+            {
+                var groupNode = treeViewEntries.Nodes.Find(agentConfig.GetType().Name.Replace("AgentConfig", ""), false).SingleOrDefault();
+                var eventNode = groupNode?.Nodes.Find(eventProperty.Name, false).SingleOrDefault();
+                var handlerNode = eventNode?.Nodes.Find(oldHandler.GetType().Name, false).SingleOrDefault();
+
+                if (handlerNode != null)
+                {
+                    handlerNode.Text = newHandler.GetType().Name;
+                    handlerNode.Name = newHandler.GetType().Name;
+                }
+            }
         }
 
         private void treeViewEntries_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -293,44 +331,49 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RemoveNode(treeViewEntries.SelectedNode);
+            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == treeViewEntries.SelectedNode.Parent.Parent.Name);
+            var eventName = treeViewEntries.SelectedNode.Parent.Name;
+            var handler = agentConfig.GetHandler(eventName, treeViewEntries.SelectedNode.Text);
+            
+            Debug.Assert(handler != null, "handler != null");
+
+            RemoveEntry(agentConfig.GetType().GetProperty(eventName), handler.GetType());
         }
 
-        private void EditNode(TreeNode eNode)
+        private void EditNode(TreeNode selectedNode)
         {
-            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == eNode.Parent.Parent.Name);
-            var eventName = eNode.Parent.Name;
-            var entry = new Entry
-            {
-                AgentConfig = agentConfig,
-                EventName = eventName, 
-                Handler = agentConfig.GetHandler(eventName, eNode.Name)
-            };
-            var form = new NewEntryForm(this, _agentConfigs, entry);
+            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == selectedNode.Parent.Parent.Name);
+            var eventName = selectedNode.Parent.Name;
+            var handler = agentConfig.GetHandler(eventName, selectedNode.Text);
+            
+            Debug.Assert(handler != null, "handler != null");
+            
+            var entry = new Entry(agentConfig, eventName, handler);
+            var form = new EntryForm(this, _agentConfigs, entry);
             form.Show();
         }
 
-        [Pure]
-        private IHandler GetHandlerFromNode([NotNull] TreeNode eNode)
+        private bool RemoveNode(string agentConfigName, string eventName, string handlerName)
         {
-            if (!IsHandlerNode(eNode)) return null;
-            foreach (var agentConfig in _agentConfigs)
-            {
-                var prop = agentConfig.GetType()
-                    .GetProperties()
-                    .SingleOrDefault(p => p.Name == eNode.Parent.Name);
-                if(prop == null) continue;
+            var groupNode = treeViewEntries.Nodes.Find(agentConfigName, false).SingleOrDefault();
+            var eventNode = groupNode?.Nodes.Find(eventName, false).SingleOrDefault();
+            var handlerNode = eventNode?.Nodes.Find(handlerName, false).SingleOrDefault();
                 
-                var handler = agentConfig.GetHandlers(prop).SingleOrDefault(h => h.Name == eNode.Name);
-                if(handler != null) return handler;
+            handlerNode?.Remove();
+
+            // delete parents if necessary
+            if (eventNode?.Nodes.Count == 0)
+            {
+                eventNode.Remove();
+                    
+                if (groupNode.Nodes.Count == 0)
+                {
+                    groupNode.Remove();
+                    return true;
+                }
             }
 
-            return null;
-        }
-
-        private void RemoveNode(TreeNode selectedNode)
-        {
-            throw new NotImplementedException();
+            return false;
         }
 
         private static bool IsHandlerNode(TreeNode node)

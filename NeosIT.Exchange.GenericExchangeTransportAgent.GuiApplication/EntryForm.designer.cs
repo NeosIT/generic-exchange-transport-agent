@@ -2,7 +2,7 @@
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
-    partial class NewEntryForm
+    partial class EntryForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -31,7 +31,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private void InitializeComponent()
         {
             this.comboBoxEvent = new System.Windows.Forms.ComboBox();
-            this.comboBoxParent = new System.Windows.Forms.ComboBox();
             this.comboBoxHandler = new System.Windows.Forms.ComboBox();
             this.buttonConditions = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -40,7 +39,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.tabPageHtml = new System.Windows.Forms.TabPage();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelEvent = new System.Windows.Forms.Label();
-            this.labelParentNode = new System.Windows.Forms.Label();
             this.labelHandler = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -53,20 +51,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxEvent.FormattingEnabled = true;
             this.comboBoxEvent.Location = new System.Drawing.Point(86, 12);
             this.comboBoxEvent.Name = "comboBoxEvent";
-            this.comboBoxEvent.Size = new System.Drawing.Size(505, 21);
+            this.comboBoxEvent.Size = new System.Drawing.Size(396, 21);
             this.comboBoxEvent.TabIndex = 0;
             this.comboBoxEvent.SelectedValueChanged += new System.EventHandler(this.comboBoxEvent_SelectedValueChanged);
-            // 
-            // comboBoxParent
-            // 
-            this.comboBoxParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxParent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxParent.FormattingEnabled = true;
-            this.comboBoxParent.Location = new System.Drawing.Point(86, 39);
-            this.comboBoxParent.Name = "comboBoxParent";
-            this.comboBoxParent.Size = new System.Drawing.Size(505, 21);
-            this.comboBoxParent.TabIndex = 1;
             // 
             // comboBoxHandler
             // 
@@ -74,15 +61,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxHandler.FormattingEnabled = true;
-            this.comboBoxHandler.Location = new System.Drawing.Point(86, 66);
+            this.comboBoxHandler.Location = new System.Drawing.Point(86, 39);
             this.comboBoxHandler.Name = "comboBoxHandler";
-            this.comboBoxHandler.Size = new System.Drawing.Size(505, 21);
+            this.comboBoxHandler.Size = new System.Drawing.Size(396, 21);
             this.comboBoxHandler.TabIndex = 2;
             // 
             // buttonConditions
             // 
             this.buttonConditions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonConditions.Location = new System.Drawing.Point(460, 93);
+            this.buttonConditions.Location = new System.Drawing.Point(351, 66);
             this.buttonConditions.Name = "buttonConditions";
             this.buttonConditions.Size = new System.Drawing.Size(131, 23);
             this.buttonConditions.TabIndex = 3;
@@ -97,10 +84,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.tabControl1.Controls.Add(this.tabPageTxt);
             this.tabControl1.Controls.Add(this.tabPageRtf);
             this.tabControl1.Controls.Add(this.tabPageHtml);
-            this.tabControl1.Location = new System.Drawing.Point(12, 122);
+            this.tabControl1.Location = new System.Drawing.Point(16, 95);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(579, 401);
+            this.tabControl1.Size = new System.Drawing.Size(470, 291);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPageTxt
@@ -108,7 +95,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.tabPageTxt.Location = new System.Drawing.Point(4, 22);
             this.tabPageTxt.Name = "tabPageTxt";
             this.tabPageTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTxt.Size = new System.Drawing.Size(571, 375);
+            this.tabPageTxt.Size = new System.Drawing.Size(462, 265);
             this.tabPageTxt.TabIndex = 0;
             this.tabPageTxt.Text = "Text";
             this.tabPageTxt.UseVisualStyleBackColor = true;
@@ -136,7 +123,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(460, 529);
+            this.buttonSave.Location = new System.Drawing.Point(351, 392);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(131, 23);
             this.buttonSave.TabIndex = 0;
@@ -153,40 +140,29 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.labelEvent.TabIndex = 5;
             this.labelEvent.Text = "Event";
             // 
-            // labelParentNode
-            // 
-            this.labelParentNode.AutoSize = true;
-            this.labelParentNode.Location = new System.Drawing.Point(13, 42);
-            this.labelParentNode.Name = "labelParentNode";
-            this.labelParentNode.Size = new System.Drawing.Size(67, 13);
-            this.labelParentNode.TabIndex = 6;
-            this.labelParentNode.Text = "Parent Node";
-            // 
             // labelHandler
             // 
             this.labelHandler.AutoSize = true;
-            this.labelHandler.Location = new System.Drawing.Point(13, 69);
+            this.labelHandler.Location = new System.Drawing.Point(13, 42);
             this.labelHandler.Name = "labelHandler";
             this.labelHandler.Size = new System.Drawing.Size(44, 13);
             this.labelHandler.TabIndex = 7;
             this.labelHandler.Text = "Handler";
             // 
-            // NewEntryForm
+            // EntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 564);
+            this.ClientSize = new System.Drawing.Size(494, 427);
             this.Controls.Add(this.labelHandler);
-            this.Controls.Add(this.labelParentNode);
             this.Controls.Add(this.labelEvent);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonConditions);
             this.Controls.Add(this.comboBoxHandler);
-            this.Controls.Add(this.comboBoxParent);
             this.Controls.Add(this.comboBoxEvent);
-            this.Name = "NewEntryForm";
-            this.Text = "GETA - New Entry";
+            this.Name = "EntryForm";
+            this.Text = "GETA - ";
             this.Load += new System.EventHandler(this.NewEntryForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -197,7 +173,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         #endregion
 
         private System.Windows.Forms.ComboBox comboBoxEvent;
-        private System.Windows.Forms.ComboBox comboBoxParent;
         private System.Windows.Forms.ComboBox comboBoxHandler;
         private System.Windows.Forms.Button buttonConditions;
         private System.Windows.Forms.TabControl tabControl1;
@@ -206,7 +181,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private System.Windows.Forms.TabPage tabPageHtml;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelEvent;
-        private System.Windows.Forms.Label labelParentNode;
         private System.Windows.Forms.Label labelHandler;
     }
 }

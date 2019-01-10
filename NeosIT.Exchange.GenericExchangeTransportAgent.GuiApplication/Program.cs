@@ -14,7 +14,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         public static void Main()
         {
             // enforce all referenced assemblies to be loaded 
-            foreach (var referencedAssembly in Assembly.GetAssembly(typeof(NewEntryForm)).GetReferencedAssemblies())
+            foreach (var referencedAssembly in Assembly.GetAssembly(typeof(EntryForm)).GetReferencedAssemblies())
             {
                 AppDomain.CurrentDomain.Load(referencedAssembly);
             }

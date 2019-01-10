@@ -31,6 +31,40 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
 
             insertMethod.Invoke(list, new object[] {list.Count, handler});
         }
+        
+        public static bool RemoveHandler([NotNull] this IAgentConfig agentConfig, [NotNull] PropertyInfo eventPropertyInfo,
+            [NotNull] Type handlerType)
+        {
+            var list = (IList) eventPropertyInfo.GetValue(agentConfig, new object[0]);
+            var removeMethod = list.GetType().GetMethods().Single(x => x.Name == nameof(IList<IHandler>.Remove));
+            IHandler handler = null;
+            foreach (var obj in list)
+            {
+                if (obj.GetType() == handlerType)
+                {
+                    handler = (IHandler)obj;
+                }
+            }
+
+            if (handler == null)
+            {
+                return false;
+            }
+
+            return (bool)removeMethod.Invoke(list, new object[] {handler});
+        }
+        
+        public static bool ReplaceHandler([NotNull] this IAgentConfig agentConfig, [NotNull] PropertyInfo eventPropertyInfo,
+            [NotNull] IHandler oldHandler, [NotNull] IHandler newHandler)
+        {
+            var result = agentConfig.RemoveHandler(eventPropertyInfo, oldHandler.GetType());
+            if (result)
+            {
+                agentConfig.AddHandler(eventPropertyInfo, newHandler);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Checks the agent configs property (via <see cref="eventPropertyInfo"/>) whether it contains the given handler type.

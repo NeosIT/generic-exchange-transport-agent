@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using JetBrains.Annotations;
+using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
@@ -12,55 +14,64 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
     {
         private readonly MainForm _mainForm;
         private readonly IEnumerable<IAgentConfig> _agentConfigs;
+        private readonly Entry _initialEntry;
+        private IEnumerable<Type> _handlerTypes;
 
-        public NewEntryForm(MainForm mainForm, IEnumerable<IAgentConfig> agentConfigs)
+        public NewEntryForm(MainForm mainForm, IEnumerable<IAgentConfig> agentConfigs, Entry entry = null)
         {
             _mainForm = mainForm;
             _agentConfigs = agentConfigs;
 
-
             InitializeComponent();
+
+            _handlerTypes = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes();
+            _initialEntry = entry;
         }
 
         private void NewEntryForm_Load(object sender, System.EventArgs e)
         {
             LoadEvents();
-            LoadHandlers();
+            
+            if (_initialEntry != null)
+            {
+                var selectedEvent = comboBoxEvent.Items.Cast<string>()
+                    .SingleOrDefault(x => x == $"{_initialEntry.EventName} ({_initialEntry.AgentConfig.GetType().Name})");
+                comboBoxEvent.SelectedItem = selectedEvent;
+                
+                LoadHandlers();
+                
+                var selectedHandler = comboBoxHandler.Items.Cast<string>()
+                    .SingleOrDefault(x => x == _initialEntry.Handler?.GetType().Name);
+                comboBoxHandler.SelectedItem = selectedHandler;
+            }
+            else
+            {
+                comboBoxEvent.SelectedItem = comboBoxEvent.Items[0];
+                
+                LoadHandlers();
+                comboBoxHandler.SelectedItem = comboBoxEvent.Items[0];
+            }
         }
 
         private void LoadHandlers()
         {
             comboBoxHandler.BeginUpdate();
-            comboBoxHandler.Items.Clear();
-            // get all agent config types in all assemblies
-            var handlers = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes();
 
-            // format combo box values
-            var pairs = new List<KeyValuePair<string, Type>>();
+            var handlers = new List<string>();
             
-            // get infos from event combo box
-            var propInfo = ((KeyValuePair<string, PropertyInfo>?) comboBoxEvent.SelectedItem)?.Value;
-            var agentConfigType = _agentConfigs.SingleOrDefault(x => x.GetType() == propInfo?.DeclaringType);
-            
-            foreach (var handler in handlers)
+            foreach (var handler in _handlerTypes)
             {
-                if (agentConfigType.HasHandler(propInfo, handler.DeclaringType))
+                if (CurrentAgent?.GetHandler(CurrentEventName, handler.Name) != null && _initialEntry == null)
                 {
                     continue;
                 }
-                var pair = new KeyValuePair<string, Type>(handler.GetTranslatedNameOrDefault(), handler);
-                pairs.Add(pair);
+                handlers.Add(handler.Name);
             }
 
 
-            var handlerObjects = pairs.OrderBy(x => x.Key).Cast<object>().ToArray();
+            var handlerObjects = handlers.OrderBy(x => x).Cast<object>().ToArray();
+            comboBoxHandler.Items.Clear();
             comboBoxHandler.Items.AddRange(handlerObjects);
-            comboBoxHandler.EndUpdate();
-
-            comboBoxHandler.ValueMember = nameof(KeyValuePair<string, PropertyInfo>.Value);
-            comboBoxHandler.DisplayMember = nameof(KeyValuePair<string, PropertyInfo>.Key);
-            comboBoxHandler.SelectedItem = comboBoxHandler.Items[0];
-
             comboBoxHandler.EndUpdate();
         }
 
@@ -68,38 +79,27 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             comboBoxEvent.BeginUpdate();
 
-            var events = new List<KeyValuePair<string, PropertyInfo>>();
-
             // get all agent config types in all assemblies
             var agentConfigTypes = AppDomain.CurrentDomain.GetAssemblies().GetAgentConfigTypes();
+            var events = agentConfigTypes
+                .SelectMany(x => x.GetPropertyInfosFromAgentConfigType().Select(p => $"{p.Name} ({p.DeclaringType.Name})"));
 
-            foreach (var agent in agentConfigTypes)
-            {
-                // filter all properties by type of IList<IHandler>
-                var handlers = agent.GetPropertyInfosFromAgentConfigType();
-                foreach (var handler in handlers)
-                {
-                    var agentName = agent.GetTranslatedNameOrDefault().Replace("AgentConfig", "");
-                    var pair = new KeyValuePair<string, PropertyInfo>($"{handler.Name} ({agentName})", handler);
-                    events.Add(pair);
-                }
-            }
-
-            var eventObjects = events.OrderBy(x => x.Key).Cast<object>().ToArray();
+            var eventObjects = events.OrderBy(x => x).Cast<object>().ToArray();
+            comboBoxEvent.Items.Clear();
             comboBoxEvent.Items.AddRange(eventObjects);
             comboBoxEvent.EndUpdate();
-
-            comboBoxEvent.ValueMember = nameof(KeyValuePair<string, PropertyInfo>.Value);
-            comboBoxEvent.DisplayMember = nameof(KeyValuePair<string, PropertyInfo>.Key);
-            comboBoxEvent.SelectedItem = comboBoxEvent.Items[0];
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            var propertyInfo = ((KeyValuePair<string, PropertyInfo>)comboBoxEvent.SelectedItem).Value;
-            var handlerType = ((KeyValuePair<string, Type>)comboBoxHandler.SelectedItem).Value;
-            var instance = (IHandler)Activator.CreateInstance(handlerType);
-            _mainForm.AddEntry(propertyInfo, instance);
+            var handler = CurrentAgent?.GetHandler(CurrentEventName, CurrentHandlerName);
+            
+            // TODO show dialog
+            if(handler == null) throw new ArgumentException("Handler must not be null");
+            
+            var eventProperty = CurrentAgent?.GetType().GetProperty(CurrentEventName);
+            var instance = (IHandler)Activator.CreateInstance(handler.GetType());
+            _mainForm.AddEntry(eventProperty, instance);
             Hide();
         }
 
@@ -107,5 +107,29 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             LoadHandlers();
         }
+        
+        [CanBeNull]
+        private IAgentConfig CurrentAgent
+        {
+            get
+            {
+                var eventParts = (string) comboBoxEvent?.SelectedItem;
+                return _agentConfigs?.SingleOrDefault(x =>
+                    x.GetType().Name == eventParts?.Split(' ')[1].TrimStart('(').TrimEnd(')'));
+            }
+        }
+        
+        private string CurrentEventName
+        {
+            get
+            {
+                var eventParts = (string) comboBoxEvent?.SelectedItem;
+
+                return eventParts?.Split(' ')[0];
+            }
+        }
+        
+        [CanBeNull]
+        private string CurrentHandlerName => (string) comboBoxHandler?.SelectedItem;
     }
 }

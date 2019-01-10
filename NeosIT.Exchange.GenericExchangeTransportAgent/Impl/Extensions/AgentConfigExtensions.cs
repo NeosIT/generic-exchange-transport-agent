@@ -206,5 +206,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
 
             return returnList;
         }
+
+        [Pure, CanBeNull]
+        public static IHandler GetHandler([NotNull]this IAgentConfig agentConfig, [CanBeNull]string eventName, [CanBeNull]string handlerName)
+        {
+            if (eventName == null || handlerName == null) return null;
+            
+            var prop = agentConfig.GetType().GetProperty(eventName);
+            if (prop == null) return null;
+
+            return agentConfig.GetHandlers(prop).SingleOrDefault(x => x.GetType().Name == handlerName);
+        }
     }
 }

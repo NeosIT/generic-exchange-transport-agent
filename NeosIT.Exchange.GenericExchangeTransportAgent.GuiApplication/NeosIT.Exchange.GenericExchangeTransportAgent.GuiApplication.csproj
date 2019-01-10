@@ -54,6 +54,7 @@
     <Compile Include="FilterForm.designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Impl\Models\Entry.cs" />
     <Compile Include="Impl\TreeNodeMapper.cs" />
     <Compile Include="NewEntryForm.cs">
       <SubType>Form</SubType>

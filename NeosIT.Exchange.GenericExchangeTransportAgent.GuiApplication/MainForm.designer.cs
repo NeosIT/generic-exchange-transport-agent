@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.treeViewEntries = new System.Windows.Forms.TreeView();
             this.OpenConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveConfigFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -40,7 +41,11 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.buttonNewEntry = new System.Windows.Forms.Button();
+            this.treeViewNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
+            this.treeViewNodeContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewEntries
@@ -54,7 +59,8 @@
             this.treeViewEntries.Name = "treeViewEntries";
             this.treeViewEntries.Size = new System.Drawing.Size(516, 500);
             this.treeViewEntries.TabIndex = 0;
-            this.treeViewEntries.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ConfigurationTreeViewAfterSelect);
+            this.treeViewEntries.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseClick);
+            this.treeViewEntries.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseDoubleClick);
             // 
             // OpenConfigFileDialog
             // 
@@ -145,6 +151,28 @@
             this.buttonNewEntry.UseVisualStyleBackColor = true;
             this.buttonNewEntry.Click += new System.EventHandler(this.buttonNewEntry_Click);
             // 
+            // treeViewNodeContextMenu
+            // 
+            this.treeViewNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.treeViewNodeContextMenu.Name = "contextMenuStrip";
+            this.treeViewNodeContextMenu.Size = new System.Drawing.Size(181, 70);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,6 +188,7 @@
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.treeViewNodeContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +208,9 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button buttonNewEntry;
+        private System.Windows.Forms.ContextMenuStrip treeViewNodeContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 

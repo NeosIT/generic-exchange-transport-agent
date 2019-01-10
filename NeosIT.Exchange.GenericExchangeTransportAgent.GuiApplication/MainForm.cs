@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
@@ -33,52 +34,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private TransportAgentConfig _config;
 
         private readonly List<IAgentConfig> _agentConfigs;
+        private TreeNode _selectedNode;
 
 
         private void MainFormLoad(object sender, EventArgs e)
         {
-            //AvailableHandlersTreeView.Nodes.AddRange(TreeNodeMapper.MapHandlers(_handlers));
-            //AvailableHandlersTreeView.SelectedNode = AvailableHandlersTreeView.Nodes[0];
-
-            //_config = new TransportAgentConfig();
-
-            //ConfigurationTreeView.Nodes.Add(TreeNodeMapper.MapTransportAgentConfig(_config));
-        }
-
-        private void ConfigurationTreeViewAfterSelect(object sender, TreeViewEventArgs e)
-        {
-            //ConfigHandlerButton.Enabled = false;
-            //ConfigFiltersButton.Enabled = false;
-            //AddHandlerButton.Enabled = false;
-            //RemoveHandlerButton.Enabled = false;
-
-            //if (ConfigurationTreeView.SelectedNode?.Tag == null) return;
-
-            //if (ConfigurationTreeView.SelectedNode.Tag is IHandler)
-            //{
-            //    AddHandlerButton.Enabled = true;
-            //    RemoveHandlerButton.Enabled = true;
-            //}
-
-            //if (ConfigurationTreeView.SelectedNode.Tag is IViewOptions)
-            //{
-            //    ConfigHandlerButton.Enabled = true;
-            //}
-
-            //if (ConfigurationTreeView.SelectedNode.Tag is IFilterable)
-            //{
-            //    ConfigFiltersButton.Enabled = true;
-            //}
-
-            //if (ConfigurationTreeView.SelectedNode.Tag is IEnumerable<IAgentEventHandler>)
-            //{
-            //    AddHandlerButton.Enabled = true;
-            //}
-        }
-
-        private void ConfigButtonClick(object sender, EventArgs e)
-        {
-            ((IViewOptions) treeViewEntries.SelectedNode.Tag).ShowConfigDialog();
         }
 
         private void ExitButtonClick(object sender, EventArgs e)
@@ -102,6 +62,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                     _config = (TransportAgentConfig) serializer.ReadObject(reader, true);
                 }
 
+                // TODO make list flat
                 treeViewEntries.Nodes.Clear();
                 var agents = new IAgentConfig[]
                     {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig};
@@ -121,7 +82,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                         }
                     }
                 }
-//                treeViewEntries.Nodes.Add(TreeNodeMapper.MapTransportAgentConfig(_config));
             }
             catch (SerializationException ex)
             {
@@ -168,62 +128,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             }
 
             _configFilename = filename;
-        }
-
-        private void ConfigFiltersButtonClick(object sender, EventArgs e)
-        {
-            var filterable = (IFilterable) treeViewEntries.SelectedNode.Tag;
-            Form form = new FilterForm(filterable, _knownTypes);
-            form.ShowDialog();
-        }
-
-        private void AddHandlerButtonClick(object sender, EventArgs e)
-        {
-            //if (ConfigurationTreeView.SelectedNode?.Tag == null) return;
-
-            //var handler = (IHandler)
-            //    Activator.CreateInstance(AvailableHandlersTreeView.SelectedNode.Tag.GetType());
-
-            //switch (ConfigurationTreeView.SelectedNode.Tag)
-            //{
-            //    case IAgentEventHandler eventHandler:
-            //    {
-            //        if (eventHandler.Handlers.IsReadOnly)
-            //        {
-            //            eventHandler.Handlers = new List<IHandler>(eventHandler.Handlers);
-            //        }
-
-            //        eventHandler.Handlers.Add(handler);
-            //        ConfigurationTreeView.SelectedNode.Nodes.Add(TreeNodeMapper.MapHandler(handler));
-            //        break;
-            //    }
-            //    case IList<IAgentEventHandler> eventHandlers:
-            //    {
-            //        if (eventHandlers.IsReadOnly)
-            //        {
-            //            eventHandlers = new List<IAgentEventHandler>(eventHandlers);
-            //            ConfigurationTreeView.SelectedNode.Tag = eventHandlers;
-            //        }
-
-            //        IAgentEventHandler eventHandler = new AgentEventHandler();
-            //        eventHandler.Handlers.Add(handler);
-
-            //        eventHandlers.Add(eventHandler);
-            //        ConfigurationTreeView.SelectedNode.Nodes.Add(TreeNodeMapper.MapAgentEventHandler(eventHandler));
-            //        break;
-            //    }
-            //    case IHandler parentHandler:
-            //    {
-            //        if (parentHandler.Handlers.IsReadOnly)
-            //        {
-            //            parentHandler.Handlers = new List<IHandler>(parentHandler.Handlers);
-            //        }
-
-            //        parentHandler.Handlers.Add(handler);
-            //        ConfigurationTreeView.SelectedNode.Nodes.Add(TreeNodeMapper.MapHandler(handler));
-            //        break;
-            //    }
-            //}
         }
 
         private void RemoveHandlerButtonClick(object sender, EventArgs e)
@@ -355,13 +259,83 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             }
 
             // add new handler node if the type does not exist already
-            handlerNode = new TreeNode(handler.Name)
+            handlerNode = new TreeNode(handler.GetType().Name)
             {
-                Name = handler.Name
+                Name = handler.GetType().Name
             };
             eventNode.Nodes.Add(handlerNode);
 
             agentConfig.AddHandler(agentProperty, handler);
+        }
+
+        private void treeViewEntries_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            treeViewEntries.SelectedNode = e.Node;
+            
+            // only right mouse button allowed
+            if (e.Button != MouseButtons.Right) return;
+            // skip parents - no action
+            if (!IsHandlerNode(e.Node)) return;
+            
+            treeViewNodeContextMenu.Show(treeViewEntries, e.Location);
+        }
+
+        private void treeViewEntries_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (!IsHandlerNode(e.Node)) return;
+            EditNode(e.Node);
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNode(treeViewEntries.SelectedNode);
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveNode(treeViewEntries.SelectedNode);
+        }
+
+        private void EditNode(TreeNode eNode)
+        {
+            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == eNode.Parent.Parent.Name);
+            var eventName = eNode.Parent.Name;
+            var entry = new Entry
+            {
+                AgentConfig = agentConfig,
+                EventName = eventName, 
+                Handler = agentConfig.GetHandler(eventName, eNode.Name)
+            };
+            var form = new NewEntryForm(this, _agentConfigs, entry);
+            form.Show();
+        }
+
+        [Pure]
+        private IHandler GetHandlerFromNode([NotNull] TreeNode eNode)
+        {
+            if (!IsHandlerNode(eNode)) return null;
+            foreach (var agentConfig in _agentConfigs)
+            {
+                var prop = agentConfig.GetType()
+                    .GetProperties()
+                    .SingleOrDefault(p => p.Name == eNode.Parent.Name);
+                if(prop == null) continue;
+                
+                var handler = agentConfig.GetHandlers(prop).SingleOrDefault(h => h.Name == eNode.Name);
+                if(handler != null) return handler;
+            }
+
+            return null;
+        }
+
+        private void RemoveNode(TreeNode selectedNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static bool IsHandlerNode(TreeNode node)
+        {
+            return node.Nodes.Count == 0 && node.Parent != null;
         }
     }
 }

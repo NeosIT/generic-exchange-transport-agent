@@ -21,10 +21,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         public MainForm()
         {
             _agentConfigs = new List<IAgentConfig>();
+            
+            var pluginHost = new PluginHost();
+            _knownTypes = pluginHost.KnownTypes;
+            
             InitializeComponent();
         }
 
-        private IEnumerable<Type> _knownTypes;
+        private readonly IEnumerable<Type> _knownTypes;
         private string _configFilename;
         private TransportAgentConfig _config;
 
@@ -33,12 +37,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void MainFormLoad(object sender, EventArgs e)
         {
-            //var pluginHost = new PluginHost();
-            //_handlers = pluginHost.Handlers;
             //AvailableHandlersTreeView.Nodes.AddRange(TreeNodeMapper.MapHandlers(_handlers));
             //AvailableHandlersTreeView.SelectedNode = AvailableHandlersTreeView.Nodes[0];
-
-            //_knownTypes = pluginHost.KnownTypes;
 
             //_config = new TransportAgentConfig();
 
@@ -95,13 +95,40 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             var serializer = new DataContractSerializer(typeof(TransportAgentConfig), _knownTypes);
             var settings = new XmlReaderSettings {ConformanceLevel = ConformanceLevel.Auto,};
 
-            using (var reader = XmlReader.Create(_configFilename, settings))
+            try
             {
-                _config = (TransportAgentConfig) serializer.ReadObject(reader, true);
-            }
+                using (var reader = XmlReader.Create(_configFilename, settings))
+                {
+                    _config = (TransportAgentConfig) serializer.ReadObject(reader, true);
+                }
 
-            treeViewEntries.Nodes.Clear();
-            treeViewEntries.Nodes.Add(TreeNodeMapper.MapTransportAgentConfig(_config));
+                treeViewEntries.Nodes.Clear();
+                var agents = new IAgentConfig[]
+                    {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig};
+                foreach (var agent in agents)
+                {
+                    var props = agent.GetType().GetProperties();
+                    foreach (var prop in props)
+                    {
+                        var handlers = agent.GetHandlers(prop);
+                        foreach (var handler in handlers)
+                        {
+                            var andAllSubHandlers = handler.GetAndAllSubHandlers();
+                            foreach (var andAllSubHandler in andAllSubHandlers)
+                            {
+                                AddEntry(prop, andAllSubHandler);
+                            }
+                        }
+                    }
+                }
+//                treeViewEntries.Nodes.Add(TreeNodeMapper.MapTransportAgentConfig(_config));
+            }
+            catch (SerializationException ex)
+            {
+                // TODO Logger
+                Console.WriteLine(ex.Message);
+                MessageBox.Show(null, "The file could not be read.", "An error has occurred", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
         }
 
         private void SaveAsButtonClick(object sender, EventArgs e)

@@ -124,11 +124,87 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
             if (!typeof(IAgentConfig).IsAssignableFrom(agentConfigType)) return Enumerable.Empty<PropertyInfo>();
 
             return agentConfigType.GetProperties()
-                .Where(x =>
-                    x.PropertyType.IsGenericType &&
-                    typeof(IList<>).IsAssignableFrom(x.PropertyType.GetGenericTypeDefinition()) &&
-                    typeof(IHandler).IsAssignableFrom(x.PropertyType.GetGenericArguments()[0]))
+                .Where(x => x.IsValidHandlerPropertyType())
                 .ToArray();
+        }
+
+        /// <summary>
+        /// Checks whether the given property is a valid handler property.
+        /// </summary>
+        /// <param name="propertyInfo">The property you want to check</param>
+        /// <returns>Whether the property is a valid handler property.</returns>
+        [Pure]
+        public static bool IsValidHandlerPropertyType(this PropertyInfo propertyInfo)
+        {
+            return propertyInfo.PropertyType.IsGenericType &&
+                   propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(IList<>) &&
+                   typeof(IHandler).IsAssignableFrom(propertyInfo.PropertyType.GetGenericArguments()[0]);
+        }
+
+        /// <summary>
+        /// Gets all handlers from an agent configs property. This is useful if you don't know the agent configs type or
+        /// the IHandler type of the property.
+        /// </summary>
+        /// <param name="agentConfig">The object for the property info. On this object the property must exist.</param>
+        /// <param name="propertyInfo">Property on which to look for handlers. Must be declared on the type of agent config.</param>
+        /// <returns>A collection of all handlers in the property.</returns>
+        /// <exception cref="ArgumentNullException">When agent config or property info is null.</exception>
+        /// <exception cref="ArgumentException">When the property info does not match the agent configs type.</exception>
+        [Pure]
+        public static IEnumerable<IHandler> GetHandlers([NotNull] this IAgentConfig agentConfig,
+            [NotNull] PropertyInfo propertyInfo)
+        {
+            if (agentConfig == null) throw new ArgumentNullException(nameof(agentConfig));
+            if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+
+            if (!agentConfig.GetType().IsAssignableFrom(propertyInfo.DeclaringType))
+            {
+                throw new ArgumentException("PropertyInfo is not declared on the type of agent config.", nameof(propertyInfo));
+            }
+            
+            var list = (IList) propertyInfo.GetValue(agentConfig, new object[0]);
+            return list.Cast<IHandler>();
+        }
+
+        /// <summary>
+        /// Gets the handler and all its sub handlers in one flat collection. 
+        /// </summary>
+        /// <param name="handler">The handler in which to search for sub handlers.</param>
+        /// <returns>A flat collection of the handler itself and all sub handlers.</returns>
+        /// <exception cref="Exception">
+        ///     If there is a circular reference in the handlers.
+        ///     Can not happen after serialization. Can only happen if the object is built manually.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">If <see cref="handler"/> is null.</exception>
+        [Pure]
+        public static IEnumerable<IHandler> GetAndAllSubHandlers([NotNull] this IHandler handler)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+
+            var returnList = new List<IHandler>();
+            var currentHandlers = new List<IHandler> {handler};
+            var depth = 0;
+            while (currentHandlers.Any())
+            {
+                foreach (var x in currentHandlers)
+                {
+                    if (returnList.Contains(x))
+                    {
+                        // item already existing -> circular reference
+                        throw new Exception(
+                            "Circular reference detected in handlers and its sub handlers: " +
+                            $"Handler: {handler.Name} | SubHandler: {x.Name} | Depth: {depth}");
+                    }
+                }
+
+                depth++;
+
+                returnList.AddRange(currentHandlers);
+
+                currentHandlers = currentHandlers.SelectMany(x => x.Handlers).ToList();
+            }
+
+            return returnList;
         }
     }
 }

@@ -5,6 +5,10 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models
 {
+    /// <summary>
+    /// Holds require data for all interactions in the GUI.
+    /// Creates a shallow copy of the handler. It is not reference equal!
+    /// </summary>
     public class Entry
     {
         public IAgentConfig AgentConfig { get; }

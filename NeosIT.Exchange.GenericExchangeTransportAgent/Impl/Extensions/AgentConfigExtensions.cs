@@ -31,10 +31,23 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
 
             insertMethod.Invoke(list, new object[] {list.Count, handler});
         }
-        
-        public static bool RemoveHandler([NotNull] this IAgentConfig agentConfig, [NotNull] PropertyInfo eventPropertyInfo,
+
+        /// <summary>
+        /// Removes a handler from the given event in the given agent.
+        /// </summary>
+        /// <param name="agentConfig">Agent config on which the event property must be declared</param>
+        /// <param name="eventPropertyInfo">Property info of the list where the handler shall exist.</param>
+        /// <param name="handlerType">The type of the handler to remove. Should be unique</param>
+        /// <returns>Whether the item could be removed (not found).</returns>
+        /// <exception cref="InvalidOperationException">If more than one type given <see cref="handlerType"/> exist in the list. Usually should never happen.</exception>
+        public static bool RemoveHandler([NotNull] this IAgentConfig agentConfig,
+            [NotNull] PropertyInfo eventPropertyInfo,
             [NotNull] Type handlerType)
         {
+            if (agentConfig == null) throw new ArgumentNullException(nameof(agentConfig));
+            if (eventPropertyInfo == null) throw new ArgumentNullException(nameof(eventPropertyInfo));
+            if (handlerType == null) throw new ArgumentNullException(nameof(handlerType));
+
             var list = (IList) eventPropertyInfo.GetValue(agentConfig, new object[0]);
             var removeMethod = list.GetType().GetMethods().Single(x => x.Name == nameof(IList<IHandler>.Remove));
             IHandler handler = null;
@@ -42,7 +55,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
             {
                 if (obj.GetType() == handlerType)
                 {
-                    handler = (IHandler)obj;
+                    handler = (IHandler) obj;
                 }
             }
 
@@ -51,10 +64,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
                 return false;
             }
 
-            return (bool)removeMethod.Invoke(list, new object[] {handler});
+            return (bool) removeMethod.Invoke(list, new object[] {handler});
         }
-        
-        public static bool ReplaceHandler([NotNull] this IAgentConfig agentConfig, [NotNull] PropertyInfo eventPropertyInfo,
+
+        /// <summary>
+        /// Replaces handler with a new one in the given event delegate.
+        /// </summary>
+        /// <param name="agentConfig">Agent on which the event list should exist.</param>
+        /// <param name="eventPropertyInfo">Property info to the event list on the agent config.</param>
+        /// <param name="oldHandler">Old handler to remove.</param>
+        /// <param name="newHandler">New handler to add.</param>
+        /// <returns>Whether the old could be removed (and the new could be added).</returns>
+        public static bool ReplaceHandler([NotNull] this IAgentConfig agentConfig,
+            [NotNull] PropertyInfo eventPropertyInfo,
             [NotNull] IHandler oldHandler, [NotNull] IHandler newHandler)
         {
             var result = agentConfig.RemoveHandler(eventPropertyInfo, oldHandler.GetType());
@@ -193,9 +215,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
 
             if (!agentConfig.GetType().IsAssignableFrom(propertyInfo.DeclaringType))
             {
-                throw new ArgumentException("PropertyInfo is not declared on the type of agent config.", nameof(propertyInfo));
+                throw new ArgumentException("PropertyInfo is not declared on the type of agent config.",
+                    nameof(propertyInfo));
             }
-            
+
             var list = (IList) propertyInfo.GetValue(agentConfig, new object[0]);
             return list.Cast<IHandler>();
         }
@@ -241,11 +264,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions
             return returnList;
         }
 
+        /// <summary>
+        /// Gets the handler on the given agent by strings instead of property infos.
+        /// </summary>
+        /// <param name="agentConfig">Agent config on which to search for the event and the handler.</param>
+        /// <param name="eventName">Event list which shall be found.</param>
+        /// <param name="handlerName">Handler in the event list which shall be found.</param>
+        /// <returns>The handler in the event list if found.</returns>
         [Pure, CanBeNull]
-        public static IHandler GetHandler([NotNull]this IAgentConfig agentConfig, [CanBeNull]string eventName, [CanBeNull]string handlerName)
+        public static IHandler GetHandler([NotNull] this IAgentConfig agentConfig, [CanBeNull] string eventName,
+            [CanBeNull] string handlerName)
         {
             if (eventName == null || handlerName == null) return null;
-            
+
             var prop = agentConfig.GetType().GetProperty(eventName);
             if (prop == null) return null;
 

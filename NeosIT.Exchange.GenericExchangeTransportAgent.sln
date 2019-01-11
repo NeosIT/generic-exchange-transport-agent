@@ -1,33 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication", "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication.csproj", "{06EA279A-FF8F-47DE-A57D-CF49B1B14261}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication", "Geta.ConsoleApplication\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication.csproj", "{06EA279A-FF8F-47DE-A57D-CF49B1B14261}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj", "{0B8B0A99-CD43-46CD-BF2C-A317441E1F24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler", "Geta.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj", "{0B8B0A99-CD43-46CD-BF2C-A317441E1F24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Common", "NeosIT.Exchange.GenericExchangeTransportAgent.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj", "{7BA33E40-29B7-4E16-8604-5265D5999F04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Common", "Geta.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj", "{7BA33E40-29B7-4E16-8604-5265D5999F04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj", "{BBEA07C8-5924-4A67-8A03-9E6459A66E68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common", "Geta.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj", "{BBEA07C8-5924-4A67-8A03-9E6459A66E68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj", "{3395CD93-59E3-453A-8806-49F4DEF9E3B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler", "Geta.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj", "{3395CD93-59E3-453A-8806-49F4DEF9E3B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj", "{085E66F6-6806-456E-A33C-5ED32D636EE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler", "Geta.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj", "{085E66F6-6806-456E-A33C-5ED32D636EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj", "{96949535-995A-4536-ADBA-F2D60D54B8D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler", "Geta.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj", "{96949535-995A-4536-ADBA-F2D60D54B8D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Tests", "NeosIT.Exchange.GenericExchangeTransportAgent.Tests\NeosIT.Exchange.GenericExchangeTransportAgent.Tests.csproj", "{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Tests", "Geta.Tests\NeosIT.Exchange.GenericExchangeTransportAgent.Tests.csproj", "{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent", "NeosIT.Exchange.GenericExchangeTransportAgent\NeosIT.Exchange.GenericExchangeTransportAgent.csproj", "{0B1622B1-0301-45BB-A2F4-21359DE6B66A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent", "Geta\NeosIT.Exchange.GenericExchangeTransportAgent.csproj", "{0B1622B1-0301-45BB-A2F4-21359DE6B66A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication", "NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication\NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.csproj", "{5A17E259-3DB1-4176-B15F-69E4B77E90D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication", "Geta.GuiApplication\NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.csproj", "{5A17E259-3DB1-4176-B15F-69E4B77E90D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.csproj", "{3EFCF61F-A6BB-4EB3-B73B-A72B0CF044F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler", "Geta.Plugins.DkimSigningHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.csproj", "{3EFCF61F-A6BB-4EB3-B73B-A72B0CF044F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj", "{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler", "Geta.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj", "{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.csproj", "{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler", "Geta.Plugins.Mail2NewsHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.csproj", "{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.csproj", "{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler", "Geta.Plugins.MailEndpointHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.csproj", "{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

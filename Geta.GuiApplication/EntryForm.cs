@@ -111,7 +111,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 return;
             }
 
-            if (_initialEntry == null || _agentConfigs.All(x => x.GetType().Name != CurrentAgentConfigName))
+            if (_initialEntry == null && _agentConfigs.All(x => x.GetType().Name != CurrentAgentConfigName))
             {
                 // add a new agent config to the agent config list if
                 // no config agent yet or
@@ -122,8 +122,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                     .GetAgentConfigTypes()
                     .Single(x => x.Name == CurrentAgentConfigName);
                 _agentConfigs.Add((IAgentConfig) Activator.CreateInstance(agentType));
-                Debug.Assert(CurrentAgentConfig != null, "CurrentAgent != null");
             }
+            
+            Debug.Assert(CurrentAgentConfig != null, "CurrentAgent != null");
 
             var existingEventProperty = _initialEntry?.AgentConfig.GetType().GetProperty(_initialEntry.EventName);
             var existingHandler =
@@ -133,14 +134,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 .Single(x => x.Name == CurrentHandlerName);
             var newHandler = (IHandler) Activator.CreateInstance(newHandlerType);
 
-            Debug.Assert(existingEventProperty != null, "existingEventProperty != null");
             Debug.Assert(newEventProperty != null, "eventProperty != null");
-            Debug.Assert(_initialEntry.Handler != null, "_initialEntry.Handler != null");
 
             if (_initialEntry != null && _initialEntry.AgentConfig != CurrentAgentConfig)
             {
                 // when agent config changed
-                _mainForm.RemoveEntry(existingEventProperty, _initialEntry.Handler.GetType());
+                _mainForm.RemoveEntry(existingEventProperty, _initialEntry.Handler?.GetType());
                 _mainForm.AddEntry(newEventProperty, newHandler);
             }
             else if (_initialEntry != null && _initialEntry.EventName == CurrentEventName &&

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</ProjectGuid>
+    <ProjectGuid>{3395CD93-59E3-453A-8806-49F4DEF9E3B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</AssemblyName>
+    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</RootNamespace>
+    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Exchange.Data.Common, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Exchange.Data.Transport, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Exchange.Data.Transport, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
@@ -43,50 +41,28 @@
       <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition">
+    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAgentConfig.cs" />
-    <Compile Include="IAgentEventHandler.cs" />
-    <Compile Include="IEmailItem.cs" />
-    <Compile Include="IFilterable.cs" />
-    <Compile Include="IHandler.cs" />
-    <Compile Include="Impl\AgentEventHandler.cs" />
-    <Compile Include="Impl\Config\Agents\DeliveryAgentConfig.cs" />
-    <Compile Include="Impl\Config\Agents\RoutingAgentConfig.cs" />
-    <Compile Include="Impl\Config\Agents\SmtpReceiveAgentConfig.cs" />
-    <Compile Include="Impl\Config\ConfigFactory.cs" />
-    <Compile Include="Impl\Config\TransportAgentConfig.cs" />
-    <Compile Include="Impl\EmailItem.cs" />
-    <Compile Include="Impl\Enums\ExitCodeEnum.cs" />
-    <Compile Include="Impl\Enums\FilterKeyEnum.cs" />
-    <Compile Include="Impl\Enums\FilterOperatorEnum.cs" />
-    <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />
-    <Compile Include="Impl\Extensions\StreamExtensions.cs" />
-    <Compile Include="Impl\Extensions\StringExtensions.cs" />
-    <Compile Include="Impl\Extensions\WebRequestExtensions.cs" />
-    <Compile Include="Impl\Filter.cs" />
-    <Compile Include="Impl\FilterableHandlerBase.cs" />
-    <Compile Include="Impl\HandlerBase.cs" />
-    <Compile Include="Impl\LoggingBase.cs" />
-    <Compile Include="Impl\PluginHost.cs" />
-    <Compile Include="Impl\Utils\Win32.cs" />
-    <Compile Include="IOptions.cs" />
-    <Compile Include="IPluginHost.cs" />
+    <Compile Include="IExecutableHandler.cs" />
+    <Compile Include="Impl\ExecutableHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj">
-      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
+    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
+      <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -63,33 +63,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj">
+    <ProjectReference Include="..\Geta.Common\Geta.Common.csproj">
       <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
+    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
       <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\Geta.Plugins.DisclaimerHandler.csproj">
       <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.ExecutableHandler\Geta.Plugins.ExecutableHandler.csproj">
       <Project>{3395cd93-59e3-453a-8806-49f4def9e3b8}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.ExtractAttachmentHandler\Geta.Plugins.ExtractAttachmentHandler.csproj">
       <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.NoopHandler\Geta.Plugins.NoopHandler.csproj">
       <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

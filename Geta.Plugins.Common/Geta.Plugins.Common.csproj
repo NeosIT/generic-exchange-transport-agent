@@ -85,7 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj">
+    <ProjectReference Include="..\Geta.Common\Geta.Common.csproj">
       <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
     </ProjectReference>

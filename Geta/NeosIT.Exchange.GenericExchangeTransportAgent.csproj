@@ -4,31 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06EA279A-FF8F-47DE-A57D-CF49B1B14261}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</AssemblyName>
+    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent</RootNamespace>
+    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <PublishUrl>veröffentlichen\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -38,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,6 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Common">
+      <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport">
+      <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Logging">
+      <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,42 +54,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Impl\Agents\GenericDeliveryAgent.cs" />
+    <Compile Include="Impl\Agents\GenericRoutingAgent.cs" />
+    <Compile Include="Impl\Agents\GenericSmtpReceiveAgent.cs" />
+    <Compile Include="Impl\Extensions\AgentConfigExtensions.cs" />
+    <Compile Include="Impl\Extensions\OldNetExtensions.cs" />
+    <Compile Include="Impl\Extensions\TransportAgentExtensions.cs" />
+    <Compile Include="Impl\Factories\GenericDeliveryAgentFactory.cs" />
+    <Compile Include="Impl\Factories\GenericRoutingAgentFactory.cs" />
+    <Compile Include="Impl\Factories\GenericSmtpReceiveAgentFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Geta.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Common.csproj">
+      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Geta.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
       <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.csproj">
       <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.ExecutableHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.csproj">
       <Project>{3395cd93-59e3-453a-8806-49f4def9e3b8}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.ExtractAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.csproj">
       <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
+    <ProjectReference Include="..\Geta.Plugins.NoopHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.csproj">
       <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class ExecutableHandlerHandlerTests : OptionsHandlerTestBase<ExecutableHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "ExecutableHandler";
@@ -19,19 +19,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExecutableTest()
         {
-            const string path = @"c:\temp\unittests\geta\executablehandler";
-            const string emlFilePath = path + @"testfile.eml";
-            const string testFilePath = path + @"\testfile.txt";
+            string path = TestData.RootPath + @"Fixtures\ExecutableHandler\";
+            string emlFilePath = path + @"testfile.eml";
+            string testFilePath = path + @"testfile.txt";
 
-            if (File.Exists(emlFilePath))
-            {
-                File.Delete(emlFilePath);
-            }
-
-            if (File.Exists(testFilePath))
-            {
-                File.Delete(testFilePath);
-            }
+            Directory.CreateDirectory(path);
+            File.Delete(emlFilePath);
+            File.Delete(testFilePath);
 
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExecutableHandlerTest Subject",
                                                                      "ExecutableHandlerTest Body");

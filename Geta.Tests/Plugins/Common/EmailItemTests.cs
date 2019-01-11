@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.Exchange.Data.Transport.Email;
 using NUnit.Framework;
@@ -39,7 +40,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
             Assert.IsInstanceOf<object>(underlyingObject);
             Assert.IsInstanceOf<EmailMessage>(underlyingObject);
 
-            const string testFilename = @"c:\temp\unittests\geta\emailitem\testfile.eml";
+            string testFilename = TestData.RootPath + @"Fixtures\EmailItem\testfile.eml";
 
             TestObject.Save(testFilename);
             Assert.IsFalse(TestObject.IsExported);

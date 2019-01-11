@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Reflection;
 using Microsoft.Exchange.Data.Transport.Email;
 using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
@@ -11,7 +12,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class ExtractAttachmentHandlerHandlerTests : OptionsHandlerTestBase<ExtractAttachmentHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "ExtractAttachmentHandler";
@@ -20,10 +21,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExtractTest()
         {
-            const string outputPath = @"C:\temp\unittests\geta\extractattachmenthandler";
-            const string filename = @"config.xml";
+            string outputPath = TestData.RootPath + @"Fixtures\ExtractAttachmentHandler";
+            const string filename = @"Bunny.png";
 
-            const string existingFilename = @"C:\temp\config.xml";
+            string existingFilename = TestData.RootPath + @"Fixtures\" + filename;
 
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExtractAttachmentHandler Subject",
                                                                      "ExtractAttachmentHandler Body");
@@ -31,6 +32,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             var attachment = emailMessage.Attachments.Add(filename);
             using (var writeStream = attachment.GetContentWriteStream())
             {
+                var dirName = Path.GetDirectoryName(existingFilename);
+                if (dirName != null)
+                {
+                    Directory.CreateDirectory(dirName);
+                }
                 using (var fileStream = new FileStream(existingFilename, FileMode.Open))
                 {
                     fileStream.CopyTo(writeStream);

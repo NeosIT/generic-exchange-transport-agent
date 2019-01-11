@@ -6,7 +6,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     public class DkimSigningHandlerHandlerTests : OptionsHandlerTestBase<DkimSigningHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "DkimSigningHandler";

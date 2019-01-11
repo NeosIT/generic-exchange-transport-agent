@@ -8,7 +8,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
     [TestFixture]
     public class FilterableHandlerTests : HandlerTestBase<FilterableHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "FilterableHandler";

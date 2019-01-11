@@ -1,14 +1,14 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
+{
     /// <summary>
     /// Signs MIME messages according to the DKIM standard.
     /// </summary>

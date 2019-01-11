@@ -1,9 +1,9 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+{
     [DataContract(Namespace = "")]
     public abstract class FilterableHandlerBase : HandlerBase, IFilterable
     {

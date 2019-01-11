@@ -1,12 +1,12 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using System.Runtime.Serialization;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
+{
     [Export(typeof(IHandler))]
     [DataContract(Name = "DkimSigningHandler", Namespace = "")]
     public class DkimSigningHandler : FilterableHandlerBase, IDkimSigningHandler

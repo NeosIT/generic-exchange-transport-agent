@@ -1,10 +1,10 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
-{
-    using System;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows.Forms;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
+{
     public partial class ConfigForm : Form
     {
         private readonly ExtractAttachmentHandler _handler;

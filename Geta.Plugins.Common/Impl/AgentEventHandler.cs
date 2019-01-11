@@ -1,10 +1,10 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using System.Linq;
-    using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Runtime.Serialization;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+{
     [Export(typeof(IFilterable))]
     [DataContract(Name = "EventHandler", Namespace = "")]
     public class AgentEventHandler : LoggingBase, IAgentEventHandler

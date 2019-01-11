@@ -1,4 +1,3 @@
-﻿using System;
 using System.IO;
 using System.Security.AccessControl;
 using Microsoft.Exchange.Data.Transport;

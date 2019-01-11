@@ -1,8 +1,8 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
-{
-    using System.IO;
-    using Microsoft.Exchange.Data.Transport.Email;
+﻿using System.IO;
+using Microsoft.Exchange.Data.Transport.Email;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
+{
     public static class EmailMessageHelper
     {
         public static EmailMessage CreateHtmlEmailMessage(string subject, string body)

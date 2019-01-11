@@ -136,7 +136,7 @@
       <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
+    <ProjectReference Include="..\Geta\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
       <Project>{0b1622b1-0301-45bb-a2f4-21359de6b66a}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>

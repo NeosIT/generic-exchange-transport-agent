@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
@@ -19,6 +19,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private readonly Entry _initialEntry;
         private readonly IEnumerable<Type> _handlerTypes;
         private Type _currentHandlerFormType;
+        private IHandler _currentHandler;
 
         public EntryForm(MainForm mainForm, List<IAgentConfig> agentConfigs, Entry entry = null)
         {
@@ -35,13 +36,25 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void NewEntryForm_Load(object sender, EventArgs e) => Initialize();
 
-        private void comboBoxEvent_SelectedValueChanged(object sender, EventArgs e) => LoadHandlers();
+
+        private void comboBoxEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadHandlers();
+            
+            buttonSave.Enabled = comboBoxHandler.SelectedItem != null;
+        }
+
+        private void comboBoxHandler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshCanConfigure();
+
+            Debug.Assert(CurrentHandlerType != null, nameof(CurrentHandlerType) + " != null");
+            _currentHandler = (IHandler) Activator.CreateInstance(CurrentHandlerType);
+        }
 
         private void buttonSave_Click(object sender, EventArgs e) => SaveAndHide();
 
         private void buttonConfigure_Click(object sender, EventArgs e) => ConfigureHandler();
-
-        private void comboBoxHandler_SelectedIndexChanged(object sender, EventArgs e) => RefreshCanConfigure();
 
         #endregion
 
@@ -63,18 +76,17 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 LoadHandlers();
 
                 var selectedHandler = comboBoxHandler.Items.Cast<string>()
-                    .SingleOrDefault(x => x == _initialEntry.Handler?.GetType().Name);
+                    .SingleOrDefault(x => x == _initialEntry.Handler.GetType().Name);
                 comboBoxHandler.SelectedItem = selectedHandler;
+            
+                _currentHandler = _initialEntry.Handler;
             }
             else
             {
                 comboBoxEvent.SelectedItem = comboBoxEvent.Items[0];
 
                 LoadHandlers();
-                comboBoxHandler.SelectedItem = comboBoxEvent.Items[0];
             }
-            
-            RefreshCanConfigure();
         }
 
         private void LoadHandlers()
@@ -100,6 +112,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             comboBoxHandler.Items.Clear();
             comboBoxHandler.Items.AddRange(handlerObjects);
             comboBoxHandler.EndUpdate();
+
+            if (comboBoxHandler.Items.Count > 0)
+            {
+                comboBoxHandler.SelectedIndex = 0;
+            }
+            else
+            {
+                RefreshCanConfigure();
+            }
         }
 
         private void LoadEvents()
@@ -125,16 +146,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveAndHide()
         {
-            // check for errors
-            var errors = new[] {comboBoxEvent, comboBoxHandler}.Where(x => x.SelectedItem == null);
-
-            if (errors.Any())
-            {
-                MessageBox.Show(null, "Form is invalid.", "Validation Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
-
             if (_initialEntry == null && _agentConfigs.All(x => x.GetType().Name != CurrentAgentConfigName))
             {
                 // add a new agent config to the agent config list if
@@ -156,7 +167,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             var newEventProperty = CurrentAgentConfig.GetType().GetProperty(CurrentEventName);
             var newHandlerType = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes()
                 .Single(x => x.Name == CurrentHandlerName);
-            var newHandler = (IHandler) Activator.CreateInstance(newHandlerType);
 
             Debug.Assert(newEventProperty != null, "eventProperty != null");
 
@@ -164,7 +174,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 // when agent config changed
                 _mainForm.RemoveEntry(existingEventProperty, _initialEntry.Handler?.GetType());
-                _mainForm.AddEntry(newEventProperty, newHandler);
+                _mainForm.AddEntry(newEventProperty, _currentHandler);
             }
             else if (_initialEntry != null && _initialEntry.EventName == CurrentEventName &&
                      _initialEntry.Handler?.GetType().Name == CurrentHandlerName)
@@ -178,17 +188,34 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 {
                     // replace existing handler with new one
                     _mainForm.ReplaceEntry(CurrentAgentConfig.GetType().GetProperty(_initialEntry.EventName),
-                        existingHandler, newHandler);
+                        existingHandler, _currentHandler);
                 }
                 else
                 {
                     // add new entry
-                    _mainForm.AddEntry(newEventProperty, newHandler);
+                    _mainForm.AddEntry(newEventProperty, _currentHandler);
                 }
             }
 
 
             Hide();
+        }
+        
+        private void ConfigureHandler()
+        {
+            if (_currentHandlerFormType == null) return;
+            Debug.Assert(CurrentHandlerType != null, nameof(CurrentHandlerType) + " != null");
+            
+            var form = (Form)Activator.CreateInstance(_currentHandlerFormType);
+            
+            // now initialize the form using reflection
+            // reflection is required as we cannot cast the object to IGenericConfigForm<IHandler>
+            var initMethod = form.GetType().GetMethod(nameof(IGenericConfigForm<IHandler>.Init));
+
+            Debug.Assert(initMethod != null, nameof(initMethod) + " != null");
+            
+            initMethod.Invoke(form, new object[] {_currentHandler});
+            form.Show();
         }
 
         private void RefreshCanConfigure()
@@ -202,24 +229,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _currentHandlerFormType = AppDomain.CurrentDomain.GetAssemblies().GetGenericForm(CurrentHandlerType);
 
             buttonConfigure.Enabled = _currentHandlerFormType != null;
-        }
-        
-        private void ConfigureHandler()
-        {
-            if (_currentHandlerFormType == null) return;
-            Debug.Assert(CurrentHandlerType != null, nameof(CurrentHandlerType) + " != null");
-            
-            var currentHandler = _initialEntry?.Handler ?? (IHandler)Activator.CreateInstance(CurrentHandlerType);
-            
-            var form = Activator.CreateInstance(_currentHandlerFormType);
-            var initMethod = form.GetType().GetMethod(nameof(IGenericConfigForm<IHandler>.Init));
-            var showMethod = form.GetType().GetMethod(nameof(IGenericConfigForm<IHandler>.Show), new Type[0]);
-
-            Debug.Assert(initMethod != null, nameof(initMethod) + " != null");
-            Debug.Assert(showMethod != null, nameof(showMethod) + " != null");
-            
-            initMethod.Invoke(form, new object[] {currentHandler});
-            showMethod.Invoke(form, new object[] {});
         }
 
         #endregion

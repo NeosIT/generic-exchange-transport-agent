@@ -14,12 +14,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Exte
         public static Type GetGenericForm(this IEnumerable<Assembly> assemblies, Type genericType)
         {
             // TODO warn when multiple fitting types
-            return assemblies.SelectMany(x => x.GetTypes()).FirstOrDefault(x => x.GetInterfaces().Any(i =>
-                i.IsGenericType && 
-                i.GetGenericTypeDefinition() == typeof(IGenericConfigForm<>) &&
-                i.GenericTypeArguments.Length == 1 && 
-                i.GenericTypeArguments[0] == genericType
-            ));
+            return assemblies.SelectMany(x => x.GetTypes()).FirstOrDefault(x =>
+                typeof(Form).IsAssignableFrom(x) && x.GetInterfaces().Any(i =>
+                    i.IsGenericType &&
+                    i.GetGenericTypeDefinition() == typeof(IGenericConfigForm<>) &&
+                    i.GenericTypeArguments.Length == 1 &&
+                    i.GenericTypeArguments[0] == genericType
+                )
+            );
         }
     }
 }

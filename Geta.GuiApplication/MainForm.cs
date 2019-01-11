@@ -19,6 +19,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
     public partial class MainForm : Form
     {
+        private readonly IEnumerable<Type> _knownTypes;
+        private string _configFilename;
+        private TransportAgentConfig _config;
+        private List<IAgentConfig> _agentConfigs;
+        
         public MainForm()
         {
             _agentConfigs = new List<IAgentConfig>();
@@ -28,12 +33,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             
             InitializeComponent();
         }
-
-        private readonly IEnumerable<Type> _knownTypes;
-        private string _configFilename;
-        private TransportAgentConfig _config;
-
-        private readonly List<IAgentConfig> _agentConfigs;
 
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -92,7 +91,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveAsButtonClick(object sender, EventArgs e)
         {
-            SaveConfigFileDialog.FileName = string.IsNullOrEmpty(_configFilename) ? "config.xml" : _configFilename;
+            SaveConfigFileDialog.FileName = string.IsNullOrWhiteSpace(_configFilename) ? "config.xml" : _configFilename;
             if (DialogResult.OK == SaveConfigFileDialog.ShowDialog())
             {
                 SaveConfig(SaveConfigFileDialog.FileName);
@@ -101,7 +100,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_configFilename))
+            if (string.IsNullOrWhiteSpace(_configFilename))
             {
                 SaveAsButtonClick(sender, e);
             }
@@ -127,49 +126,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             }
 
             _configFilename = filename;
-        }
-
-        private void RemoveHandlerButtonClick(object sender, EventArgs e)
-        {
-            if (treeViewEntries.SelectedNode?.Tag == null) return;
-
-            if (treeViewEntries.SelectedNode.Tag is IAgentEventHandler eventHandler1)
-            {
-                var eventHandlers =
-                    (IList<IAgentEventHandler>) treeViewEntries.SelectedNode.Parent.Tag;
-
-                if (eventHandlers.IsReadOnly)
-                {
-                    eventHandlers = new List<IAgentEventHandler>(eventHandlers);
-                    treeViewEntries.SelectedNode.Parent.Tag = eventHandlers;
-                }
-
-                eventHandlers.Remove(eventHandler1);
-                treeViewEntries.SelectedNode.Remove();
-            }
-            else if (treeViewEntries.SelectedNode.Tag is IHandler handler)
-            {
-                if (treeViewEntries.SelectedNode.Parent.Tag is IAgentEventHandler eventHandler)
-                {
-                    if (eventHandler.Handlers.IsReadOnly)
-                    {
-                        eventHandler.Handlers = new List<IHandler>(eventHandler.Handlers);
-                    }
-
-                    eventHandler.Handlers.Remove(handler);
-                    treeViewEntries.SelectedNode.Remove();
-                }
-                else if (treeViewEntries.SelectedNode.Parent.Tag is IHandler parentHandler)
-                {
-                    if (parentHandler.Handlers.IsReadOnly)
-                    {
-                        parentHandler.Handlers = new List<IHandler>(parentHandler.Handlers);
-                    }
-
-                    parentHandler.Handlers.Remove(handler);
-                    treeViewEntries.SelectedNode.Remove();
-                }
-            }
         }
 
         private void buttonNewEntry_Click(object sender, EventArgs e)
@@ -269,6 +225,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             eventNode.Nodes.Add(handlerNode);
 
             agentConfig.AddHandler(eventProperty, handler);
+
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
         }
 
         public void RemoveEntry(PropertyInfo eventProperty, Type handlerType)
@@ -282,7 +241,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
                 if (removedAgentNode)
                 {
-                    _agentConfigs.Remove(agentConfig);                    
+                    _agentConfigs.Remove(agentConfig);
+
+                    if (treeViewEntries.Nodes.Count == 0)
+                    {
+                        saveToolStripMenuItem.Enabled = false;
+                        saveAsToolStripMenuItem.Enabled = false;
+                    }
                 }
             }
         }
@@ -379,6 +344,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private static bool IsHandlerNode(TreeNode node)
         {
             return node.Nodes.Count == 0 && node.Parent != null;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeViewEntries.Nodes.Clear();
+
+            _config = null;
+            _agentConfigs = new List<IAgentConfig>();
         }
     }
 }

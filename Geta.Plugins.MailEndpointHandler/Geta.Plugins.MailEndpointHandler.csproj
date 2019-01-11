@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{96949535-995A-4536-ADBA-F2D60D54B8D6}</ProjectGuid>
+    <ProjectGuid>{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</AssemblyName>
+    <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler</RootNamespace>
+    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,15 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Exchange.Data.Common, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport, Version=14.2.214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.3.0.2-unstable-9\lib\net35\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Extensions.Logging">
       <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
@@ -51,26 +58,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMailEndpointHandler.cs" />
     <Compile Include="Impl\Forms\ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Impl\Forms\ConfigForm.designer.cs">
+    <Compile Include="Impl\Forms\ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Impl\NoopHandler.cs" />
-    <Compile Include="INoopHandler.cs" />
+    <Compile Include="Impl\HttpMethod.cs" />
+    <Compile Include="Impl\MailContent.cs" />
+    <Compile Include="Impl\MailEndpointHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Plugins.Common\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.csproj">
+    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
       <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Impl\Forms\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>

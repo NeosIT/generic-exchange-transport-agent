@@ -10,7 +10,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class DisclaimerHandlerHandlerTests : OptionsHandlerTestBase<DisclaimerHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "DisclaimerHandler";
@@ -27,7 +27,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             emailMessage.To.Add(new EmailRecipient("Bob", "bob@neos-it.de"));
             emailMessage.SetBody("<html><head><title>DisclaimerHandlerHtmlTest Subject</title><body>DisclaimerHandlerHtmlTest Body</body></html>");
             emailMessage.Subject = "DisclaimerHandlerHtmlTest Subject";
-            
+
             TestObject.Html = wrappedValue;
 
             PrepareLogger();
@@ -52,7 +52,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             emailMessage.Subject = "DisclaimerHandlerRtfTest Subject";
 
             TestObject.Rtf = value;
-            
+
             PrepareLogger();
 
             TestObject.Execute(new EmailItem(emailMessage));

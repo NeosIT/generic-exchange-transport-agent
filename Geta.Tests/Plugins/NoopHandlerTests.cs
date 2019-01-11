@@ -8,7 +8,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
     [TestFixture]
     public class NoopHandlerHandlerTests : OptionsHandlerTestBase<NoopHandler>
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Name = "NoopHandler";

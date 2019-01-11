@@ -2,7 +2,7 @@
 {
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
-    public interface IMailEndpointHandler : IHandler, IViewOptions, IFilterable
+    public interface IMailEndpointHandler : IHandler, IFilterable
     {
     }
 }

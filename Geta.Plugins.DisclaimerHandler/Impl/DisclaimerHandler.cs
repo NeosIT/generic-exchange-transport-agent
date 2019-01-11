@@ -7,7 +7,6 @@ using Microsoft.Exchange.Data.Transport.Email;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl
 {
@@ -16,13 +15,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
     public class DisclaimerHandler : FilterableHandlerBase, IDisclaimerHandler
     {
         [DataMember(Name = "Text")]
-        public string Text { get; internal set; }
+        public string Text { get; set; }
 
         [DataMember(Name = "Rtf")]
-        public string Rtf { get; internal set; }
+        public string Rtf { get; set; }
 
         [DataMember(Name = "Html")]
-        public string Html { get; internal set; }
+        public string Html { get; set; }
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
@@ -80,22 +79,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
         }
 
         public override string Name => "DisclaimerHandler";
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
-        }
 
         public override string ToString()
         {

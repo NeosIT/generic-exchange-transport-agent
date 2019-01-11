@@ -57,21 +57,7 @@
         }
 
         public override string Name => "DkimSigningHandler";
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            throw new NotImplementedException();
-        }
+        
         public override string ToString()
         {
             return Name;

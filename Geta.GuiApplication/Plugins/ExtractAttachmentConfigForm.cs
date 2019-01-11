@@ -1,10 +1,12 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms
-{
-    using System;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
+{
     public partial class ConfigForm : Form
     {
         private readonly ExtractAttachmentHandler _handler;
@@ -17,7 +19,7 @@
 
         private void ApplyButtonClick(object sender, EventArgs e)
         {
-            var list = (BindingList<Setting>) SettingsDataGridView.DataSource;
+            var list = (BindingList<KeyValuePair<string, string>>) SettingsDataGridView.DataSource;
             _handler.Settings = list.ToDictionary(x => x.Key, x => x.Value);
             Close();
         }
@@ -29,11 +31,11 @@
 
         private void ConfigFormLoad(object sender, EventArgs e)
         {
-            var list = new BindingList<Setting> { AllowEdit = true, AllowNew = true, AllowRemove = true, RaiseListChangedEvents = true, };
+            var list = new BindingList<KeyValuePair<string, string>> { AllowEdit = true, AllowNew = true, AllowRemove = true, RaiseListChangedEvents = true, };
 
             foreach (var kvp in _handler.Settings)
             {
-                list.Add(new Setting { Key = kvp.Key, Value = kvp.Value, });
+                list.Add(kvp);
             }
 
             SettingsDataGridView.DataSource = list;

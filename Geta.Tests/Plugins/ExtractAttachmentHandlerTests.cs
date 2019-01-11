@@ -10,7 +10,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class ExtractAttachmentHandlerHandlerTests : OptionsHandlerTestBase<ExtractAttachmentHandler>
+    public class ExtractAttachmentHandlerHandlerTests : HandlerTestBase<ExtractAttachmentHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

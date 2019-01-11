@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class MailEndpointConfigForm
     {
         /// <summary>
         /// Required designer variable.

@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class Mail2NewsConfigForm : Form
     {
         private readonly Mail2NewsHandler _handler;
 
-        public ConfigForm(Mail2NewsHandler handler)
+        public Mail2NewsConfigForm(Mail2NewsHandler handler)
         {
             _handler = handler;
             InitializeComponent();

@@ -2,7 +2,7 @@
 {
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
-    public interface ITwitterNotificationHandler : IHandler, IViewOptions, IFilterable
+    public interface ITwitterNotificationHandler : IHandler, IFilterable
     {
     }
 }

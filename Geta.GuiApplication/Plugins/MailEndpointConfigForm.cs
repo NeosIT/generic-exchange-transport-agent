@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class MailEndpointConfigForm : Form
     {
         private readonly MailEndpointHandler _handler;
 
-        public ConfigForm(MailEndpointHandler handler)
+        public MailEndpointConfigForm(MailEndpointHandler handler)
         {
             _handler = handler;
             InitializeComponent();

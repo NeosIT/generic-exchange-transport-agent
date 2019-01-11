@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class Mail2NewsConfigForm
     {
         /// <summary>
         /// Required designer variable.

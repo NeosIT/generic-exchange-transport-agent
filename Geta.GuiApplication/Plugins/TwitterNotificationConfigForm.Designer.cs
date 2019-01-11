@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class TwitterNotificationConfigForm
     {
         /// <summary>
         /// Required designer variable.

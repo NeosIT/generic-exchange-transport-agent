@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class TwitterNotificationConfigForm : Form
     {
         private readonly TwitterNotificationHandler _handler;
 
-        public ConfigForm(TwitterNotificationHandler handler)
+        public TwitterNotificationConfigForm(TwitterNotificationHandler handler)
         {
             InitializeComponent();
             _handler = handler;

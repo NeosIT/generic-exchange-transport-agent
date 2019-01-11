@@ -7,9 +7,8 @@
     using System.Text;
     using Microsoft.Exchange.Data.Mime;
     using Microsoft.Exchange.Data.Transport;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+    using Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "Mail2NewsHandler", Namespace = "")]
@@ -74,16 +73,6 @@
 
         public void Load()
         {
-        }
-
-        public void Save()
-        {
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
         }
 
         public override string ToString()

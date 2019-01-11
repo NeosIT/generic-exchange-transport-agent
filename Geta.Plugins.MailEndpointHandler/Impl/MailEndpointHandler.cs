@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl
 {
@@ -148,22 +147,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
             }
 
             return base.AppliesTo(emailItem, lastExitCode);
-        }
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
         }
 
         public override string ToString()

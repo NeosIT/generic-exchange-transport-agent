@@ -81,7 +81,6 @@
     <Compile Include="Impl\Utils\Win32.cs" />
     <Compile Include="IOptions.cs" />
     <Compile Include="IPluginHost.cs" />
-    <Compile Include="IViewOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

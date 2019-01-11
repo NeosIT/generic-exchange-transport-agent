@@ -5,11 +5,9 @@
     using System.ComponentModel.Composition;
     using System.IO;
     using System.Runtime.Serialization;
-    using Microsoft.Exchange.Data.Transport.Email;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "ExtractAttachmentHandler", Namespace = "")]
@@ -18,23 +16,7 @@
         public const string OutputPathKey = "OutputPath";
 
         [DataMember]
-        public IDictionary<string, string> Settings { get; internal set; } = new Dictionary<string, string> { { OutputPathKey, "" }, };
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
-        }
+        public IDictionary<string, string> Settings { get; set; } = new Dictionary<string, string> { { OutputPathKey, "" }, };
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {

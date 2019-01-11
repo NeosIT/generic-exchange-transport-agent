@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class NoopConfigForm : Form
     {
-        public ConfigForm()
+        public NoopConfigForm()
         {
             InitializeComponent();
         }

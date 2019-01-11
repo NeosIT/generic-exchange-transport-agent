@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class ExecutableConfigForm
     {
         /// <summary>
         /// Required designer variable.

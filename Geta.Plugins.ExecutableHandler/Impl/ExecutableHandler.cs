@@ -9,7 +9,6 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl
 {
@@ -18,44 +17,28 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
     public class ExecutableHandler : FilterableHandlerBase, IExecutableHandler
     {
         [DataMember]
-        public int Timeout { get; internal set; }
+        public int Timeout { get; set; }
 
         [DataMember]
-        public bool Export { get; internal set; }
+        public bool Export { get; set; }
 
         [DataMember]
         public string ExportPath { get; set; }
 
         [DataMember]
-        public string EmlFileName { get; internal set; }
+        public string EmlFileName { get; set; }
 
         [DataMember]
-        public string Cmd { get; internal set; }
+        public string Cmd { get; set; }
 
         [DataMember]
-        public string Args { get; internal set; }
+        public string Args { get; set; }
 
-        public int ExitCode { get; internal set; }
+        public int ExitCode { get; set; }
 
         public ExecutableHandler()
         {
             Timeout = 5000;
-        }
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
         }
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)

@@ -2,7 +2,7 @@
 {
     using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
-    public interface IExtractAttachmentHandler : IHandler, IViewOptions, IFilterable
+    public interface IExtractAttachmentHandler : IHandler, IFilterable
     {
     }
 }

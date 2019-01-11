@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class DisclaimerConfigForm : Form
     {
         private readonly DisclaimerHandler _handler;
 
-        public ConfigForm(DisclaimerHandler handler)
+        public DisclaimerConfigForm(DisclaimerHandler handler)
         {
             _handler = handler;
             InitializeComponent();

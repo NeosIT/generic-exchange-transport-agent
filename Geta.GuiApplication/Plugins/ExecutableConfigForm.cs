@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class ExecutableConfigForm : Form
     {
         private readonly ExecutableHandler _handler;
 
-        public ConfigForm(ExecutableHandler handler)
+        public ExecutableConfigForm(ExecutableHandler handler)
         {
             _handler = handler;
             InitializeComponent();

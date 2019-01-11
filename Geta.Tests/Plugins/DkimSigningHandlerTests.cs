@@ -4,7 +4,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
-    public class DkimSigningHandlerHandlerTests : OptionsHandlerTestBase<DkimSigningHandler>
+    public class DkimSigningHandlerHandlerTests : HandlerTestBase<DkimSigningHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

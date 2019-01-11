@@ -158,7 +158,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             this.Controls.Add(this.CancelDialogButton);
             this.Controls.Add(this.ApplyDialogButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
+            this.Name = "DisclaimerConfigForm";
             this.Text = "DisclaimerHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.DisclaimerTabControl.ResumeLayout(false);

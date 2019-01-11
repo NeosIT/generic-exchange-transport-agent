@@ -4,38 +4,42 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Im
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ExecutableConfigForm : Form
+    public partial class ExecutableConfigForm : Form, IGenericConfigForm<ExecutableHandler>
     {
-        private readonly ExecutableHandler _handler;
+        public ExecutableHandler Handler { get; private set; }
 
-        public ExecutableConfigForm(ExecutableHandler handler)
+        public void Init(ExecutableHandler handler)
         {
-            _handler = handler;
+            Handler = handler;
+        }
+
+        public ExecutableConfigForm()
+        {
             InitializeComponent();
         }
 
         private void ConfigFormLoad(object sender, EventArgs e)
         {
-            CommandTextBox.Text = _handler.Cmd;
-            ArgumentsTextBox.Text = _handler.Args;
-            TimeoutNumericUpDown.Value = _handler.Timeout;
-            ExportEmlFileCheckBox.Checked = _handler.Export;
+            CommandTextBox.Text = Handler.Cmd;
+            ArgumentsTextBox.Text = Handler.Args;
+            TimeoutNumericUpDown.Value = Handler.Timeout;
+            ExportEmlFileCheckBox.Checked = Handler.Export;
             ExportEmlFilePathTextBox.Enabled = ExportEmlFileCheckBox.Checked;
             ExportEmlFilePathBrowseButton.Enabled = ExportEmlFileCheckBox.Checked;
             ExportEmlFileFilenameLabel.Enabled = ExportEmlFileCheckBox.Checked;
             ExportEmlFileFilenameTextBox.Enabled = ExportEmlFileCheckBox.Checked;
-            ExportEmlFilePathTextBox.Text = _handler.ExportPath;
-            ExportEmlFileFilenameTextBox.Text = _handler.EmlFileName;
+            ExportEmlFilePathTextBox.Text = Handler.ExportPath;
+            ExportEmlFileFilenameTextBox.Text = Handler.EmlFileName;
         }
 
         private void ApplyButtonClick(object sender, EventArgs e)
         {
-            _handler.Cmd = CommandTextBox.Text;
-            _handler.Args = ArgumentsTextBox.Text;
-            _handler.Timeout = Convert.ToInt32(TimeoutNumericUpDown.Value);
-            _handler.Export = ExportEmlFileCheckBox.Checked;
-            _handler.EmlFileName = ExportEmlFileFilenameTextBox.Text;
-            _handler.ExportPath = ExportEmlFilePathTextBox.Text;
+            Handler.Cmd = CommandTextBox.Text;
+            Handler.Args = ArgumentsTextBox.Text;
+            Handler.Timeout = Convert.ToInt32(TimeoutNumericUpDown.Value);
+            Handler.Export = ExportEmlFileCheckBox.Checked;
+            Handler.EmlFileName = ExportEmlFileFilenameTextBox.Text;
+            Handler.ExportPath = ExportEmlFilePathTextBox.Text;
 
             Close();
         }

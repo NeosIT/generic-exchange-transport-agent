@@ -61,6 +61,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxHandler.Name = "comboBoxHandler";
             this.comboBoxHandler.Size = new System.Drawing.Size(472, 21);
             this.comboBoxHandler.TabIndex = 2;
+            this.comboBoxHandler.SelectedIndexChanged += new System.EventHandler(this.comboBoxHandler_SelectedIndexChanged);
             // 
             // buttonSave
             // 
@@ -100,9 +101,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.buttonConfigure.TabIndex = 8;
             this.buttonConfigure.Text = "Configure";
             this.buttonConfigure.UseVisualStyleBackColor = true;
+            this.buttonConfigure.Click += new System.EventHandler(this.buttonConfigure_Click);
             // 
             // buttonPlaceholderFilters
             // 
+            this.buttonPlaceholderFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonPlaceholderFilters.Location = new System.Drawing.Point(12, 66);
             this.buttonPlaceholderFilters.Name = "buttonPlaceholderFilters";
             this.buttonPlaceholderFilters.Size = new System.Drawing.Size(546, 122);

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using JetBrains.Annotations;
+using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
@@ -16,6 +18,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private readonly List<IAgentConfig> _agentConfigs;
         private readonly Entry _initialEntry;
         private readonly IEnumerable<Type> _handlerTypes;
+        private Type _currentHandlerFormType;
 
         public EntryForm(MainForm mainForm, List<IAgentConfig> agentConfigs, Entry entry = null)
         {
@@ -35,6 +38,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private void comboBoxEvent_SelectedValueChanged(object sender, EventArgs e) => LoadHandlers();
 
         private void buttonSave_Click(object sender, EventArgs e) => SaveAndHide();
+
+        private void buttonConfigure_Click(object sender, EventArgs e) => ConfigureHandler();
+
+        private void comboBoxHandler_SelectedIndexChanged(object sender, EventArgs e) => RefreshCanConfigure();
 
         #endregion
 
@@ -66,6 +73,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 LoadHandlers();
                 comboBoxHandler.SelectedItem = comboBoxEvent.Items[0];
             }
+            
+            RefreshCanConfigure();
         }
 
         private void LoadHandlers()
@@ -182,6 +191,37 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             Hide();
         }
 
+        private void RefreshCanConfigure()
+        {
+            if (CurrentHandlerType == null)
+            {
+                buttonConfigure.Enabled = false;
+                return;
+            }
+            
+            _currentHandlerFormType = AppDomain.CurrentDomain.GetAssemblies().GetGenericForm(CurrentHandlerType);
+
+            buttonConfigure.Enabled = _currentHandlerFormType != null;
+        }
+        
+        private void ConfigureHandler()
+        {
+            if (_currentHandlerFormType == null) return;
+            Debug.Assert(CurrentHandlerType != null, nameof(CurrentHandlerType) + " != null");
+            
+            var currentHandler = _initialEntry?.Handler ?? (IHandler)Activator.CreateInstance(CurrentHandlerType);
+            
+            var form = Activator.CreateInstance(_currentHandlerFormType);
+            var initMethod = form.GetType().GetMethod(nameof(IGenericConfigForm<IHandler>.Init));
+            var showMethod = form.GetType().GetMethod(nameof(IGenericConfigForm<IHandler>.Show), new Type[0]);
+
+            Debug.Assert(initMethod != null, nameof(initMethod) + " != null");
+            Debug.Assert(showMethod != null, nameof(showMethod) + " != null");
+            
+            initMethod.Invoke(form, new object[] {currentHandler});
+            showMethod.Invoke(form, new object[] {});
+        }
+
         #endregion
 
         #region Private Calculated Properties
@@ -209,6 +249,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         }
 
         [CanBeNull] private string CurrentHandlerName => (string) comboBoxHandler?.SelectedItem;
+
+        [CanBeNull]
+        private Type CurrentHandlerType => _handlerTypes?.SingleOrDefault(x => x.Name == CurrentHandlerName);
 
         #endregion
     }

@@ -216,7 +216,7 @@
             this.Controls.Add(this.TextBoxEndpointAddress);
             this.Controls.Add(this.LabelEndpointAddress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
+            this.Name = "MailEndpointConfigForm";
             this.Text = "MailEndpointHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);

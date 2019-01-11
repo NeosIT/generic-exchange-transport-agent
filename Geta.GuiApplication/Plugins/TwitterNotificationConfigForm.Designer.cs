@@ -140,8 +140,8 @@
             this.Controls.Add(this.AccessTokenTextBox);
             this.Controls.Add(this.AccessTokenLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
-            this.Text = "ConfigForm";
+            this.Name = "TwitterNotificationConfigForm";
+            this.Text = "TwitterNotification";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();

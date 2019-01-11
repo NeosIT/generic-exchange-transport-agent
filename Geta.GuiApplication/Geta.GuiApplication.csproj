@@ -57,6 +57,8 @@
     <Compile Include="FilterForm.designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenericConfigForm.cs" />
+    <Compile Include="Impl\Extensions\GenericFormExtensions.cs" />
     <Compile Include="Impl\Models\Entry.cs" />
     <Compile Include="Impl\TreeNodeMapper.cs" />
     <Compile Include="EntryForm.cs">
@@ -76,12 +78,6 @@
     </Compile>
     <Compile Include="Plugins\TwitterNotificationConfigForm.Designer.cs">
       <DependentUpon>TwitterNotificationConfigForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\NoopConfigForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Plugins\NoopConfigForm.designer.cs">
-      <DependentUpon>NoopConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugins\MailEndpointConfigForm.cs">
       <SubType>Form</SubType>
@@ -126,9 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Plugins\TwitterNotificationConfigForm.resx">
       <DependentUpon>TwitterNotificationConfigForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\NoopConfigForm.resx">
-      <DependentUpon>NoopConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Plugins\MailEndpointConfigForm.resx">
       <DependentUpon>MailEndpointConfigForm.cs</DependentUpon>
@@ -202,7 +195,7 @@
       <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
+    <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{0b1622b1-0301-45bb-a2f4-21359de6b66a}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>

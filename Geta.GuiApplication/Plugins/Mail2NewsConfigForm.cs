@@ -4,20 +4,24 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Imp
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class Mail2NewsConfigForm : Form
+    public partial class Mail2NewsConfigForm : Form, IGenericConfigForm<Mail2NewsHandler>
     {
-        private readonly Mail2NewsHandler _handler;
+        public Mail2NewsHandler Handler { get; private set; }
 
-        public Mail2NewsConfigForm(Mail2NewsHandler handler)
+        public void Init(Mail2NewsHandler handler)
         {
-            _handler = handler;
+            Handler = handler;
+        }
+
+        public Mail2NewsConfigForm()
+        {
             InitializeComponent();
         }
 
         private void ButtonApplyClick(object sender, EventArgs e)
         {
-            _handler.ToSmtpAddress = TextBoxToSmtpAddress.Text;
-            _handler.HeaderKey = TextBoxHeaderKey.Text;
+            Handler.ToSmtpAddress = TextBoxToSmtpAddress.Text;
+            Handler.HeaderKey = TextBoxHeaderKey.Text;
             Close();
         }
 
@@ -28,8 +32,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 
         private void ConfigFormLoad(object sender, EventArgs e)
         {
-            TextBoxToSmtpAddress.Text = _handler.ToSmtpAddress;
-            TextBoxHeaderKey.Text = _handler.HeaderKey;
+            TextBoxToSmtpAddress.Text = Handler.ToSmtpAddress;
+            TextBoxHeaderKey.Text = Handler.HeaderKey;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class ExtractAttachmentConfigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -84,8 +84,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(400, 300);
             this.MinimumSize = new System.Drawing.Size(400, 300);
-            this.Name = "ConfigForm";
-            this.Text = "ExtractAttachmentHandler configuration";
+            this.Name = "ExtractAttachmentConfigForm";
+            this.Text = "ExtractAttachmentHandler";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsDataGridView)).EndInit();
             this.ResumeLayout(false);

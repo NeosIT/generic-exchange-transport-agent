@@ -4,30 +4,34 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationH
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class TwitterNotificationConfigForm : Form
+    public partial class TwitterNotificationConfigForm : Form, IGenericConfigForm<TwitterNotificationHandler>
     {
-        private readonly TwitterNotificationHandler _handler;
+        public TwitterNotificationHandler Handler { get; private set; }
 
-        public TwitterNotificationConfigForm(TwitterNotificationHandler handler)
+        public void Init(TwitterNotificationHandler handler)
+        {
+            Handler = handler;
+        }
+
+        public TwitterNotificationConfigForm()
         {
             InitializeComponent();
-            _handler = handler;
         }
 
         private void ConfigFormLoad(object sender, EventArgs e)
         {
-            AccessTokenTextBox.Text = _handler.AccessToken;
-            AccessTokenSecretTextBox.Text = _handler.AccessTokenSecret;
-            ConsumerKeyTextBox.Text = _handler.ConsumerKey;
-            ConsumerSecretTextBox.Text = _handler.ConsumerSecret;
+            AccessTokenTextBox.Text = Handler.AccessToken;
+            AccessTokenSecretTextBox.Text = Handler.AccessTokenSecret;
+            ConsumerKeyTextBox.Text = Handler.ConsumerKey;
+            ConsumerSecretTextBox.Text = Handler.ConsumerSecret;
         }
 
         private void ApplyDialogButtonClick(object sender, EventArgs e)
         {
-            _handler.AccessToken = AccessTokenTextBox.Text;
-            _handler.AccessTokenSecret = AccessTokenSecretTextBox.Text;
-            _handler.ConsumerKey = ConsumerKeyTextBox.Text;
-            _handler.ConsumerSecret = ConsumerSecretTextBox.Text;
+            Handler.AccessToken = AccessTokenTextBox.Text;
+            Handler.AccessTokenSecret = AccessTokenSecretTextBox.Text;
+            Handler.ConsumerKey = ConsumerKeyTextBox.Text;
+            Handler.ConsumerSecret = ConsumerSecretTextBox.Text;
 
             Close();
         }
@@ -36,7 +40,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
         {
             Close();
         }
-        
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (Keys.Escape == keyData)

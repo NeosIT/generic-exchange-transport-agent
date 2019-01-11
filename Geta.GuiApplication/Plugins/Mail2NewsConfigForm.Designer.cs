@@ -100,7 +100,7 @@
             this.Controls.Add(this.TextBoxToSmtpAddress);
             this.Controls.Add(this.LabelToSmtpAddress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
+            this.Name = "Mail2NewsConfigForm";
             this.Text = "Mail2NewsHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);

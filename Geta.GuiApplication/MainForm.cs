@@ -14,6 +14,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config.Agents;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
@@ -27,6 +28,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         public MainForm()
         {
             _agentConfigs = new List<IAgentConfig>();
+            _config = new TransportAgentConfig();
             
             var pluginHost = new PluginHost();
             _knownTypes = pluginHost.KnownTypes;
@@ -63,7 +65,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 // TODO make list flat
                 treeViewEntries.Nodes.Clear();
                 var agents = new IAgentConfig[]
-                    {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig};
+                    {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig}
+                    .Where(x => x != null);
                 foreach (var agent in agents)
                 {
                     var props = agent.GetType().GetProperties();
@@ -117,8 +120,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 Indent = true,
                 ConformanceLevel = ConformanceLevel.Auto,
-                NewLineHandling = NewLineHandling.Entitize
+                NewLineHandling = NewLineHandling.Entitize,
+                OmitXmlDeclaration = true
             };
+
+            _config.RoutingAgentConfig = (RoutingAgentConfig)_agentConfigs.SingleOrDefault(x => x is RoutingAgentConfig);
+            _config.DeliveryAgentConfig = (DeliveryAgentConfig)_agentConfigs.SingleOrDefault(x => x is DeliveryAgentConfig);
+            _config.SmtpReceiveAgentConfig = (SmtpReceiveAgentConfig)_agentConfigs.SingleOrDefault(x => x is SmtpReceiveAgentConfig);
 
             using (var writer = XmlWriter.Create(filename, settings))
             {
@@ -350,8 +358,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             treeViewEntries.Nodes.Clear();
 
-            _config = null;
+            _config = new TransportAgentConfig();
             _agentConfigs = new List<IAgentConfig>();
+
+            saveToolStripMenuItem.Enabled = false;
+            saveAsToolStripMenuItem.Enabled = false;
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler
-{
-    using System;
-    using System.IO;
+﻿using System;
+using System.IO;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler
+{
     /// <summary>
     /// An object that knows how to sign a MIME message according to the DKIM standard.
     /// </summary>

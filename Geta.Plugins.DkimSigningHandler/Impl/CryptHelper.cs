@@ -1,11 +1,10 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
-{
-    using System;
-    using System.IO;
-    using System.Security.Cryptography;
-    using System.Text;
-    using Properties;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Properties;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.Impl
+{
     /// <summary>
     /// Contains helper methods for retrieving encryption objects.
     /// </summary>

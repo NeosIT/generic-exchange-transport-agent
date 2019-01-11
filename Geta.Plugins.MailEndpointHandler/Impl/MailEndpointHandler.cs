@@ -1,16 +1,16 @@
-﻿using System.Text;
+using System;
+using System.Text;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Runtime.Serialization;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl
 {
-    using System;
-    using System.ComponentModel.Composition;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-    using System.Runtime.Serialization;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
 
     [Export(typeof(IHandler))]
     [DataContract(Name = "MailEndpointHandler", Namespace="")]
@@ -39,7 +39,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
 
         [DataMember(Name = "UploadFieldName")]
         public string UploadFieldName { get; set; }
-        
+
         public override string Name => "MailEndpointHandler";
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
@@ -60,7 +60,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                 if (MailContent.Attachments == MailContent)
                 {
                     var attachments = emailItem.Message.Attachments.ToList();
-                    
+
                     if (!string.IsNullOrEmpty(AttachmentFileExtensions))
                     {
                         var includedFileExts = AttachmentFileExtensions.Split(new[] { ';', });
@@ -112,7 +112,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHand
                         }
                     }
                 }
-                
+
 
                 if (DropMailAfterProcessing)
                 {

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</AssemblyName>
+    <AssemblyName>Geta.Plugins.ExtractAttachmentHandler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

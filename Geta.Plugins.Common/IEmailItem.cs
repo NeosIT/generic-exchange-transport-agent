@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Microsoft.Exchange.Data.Transport;
 using Microsoft.Exchange.Data.Transport.Email;
 

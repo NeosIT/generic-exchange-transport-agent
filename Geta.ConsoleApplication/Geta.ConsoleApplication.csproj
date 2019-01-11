@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</AssemblyName>
+    <AssemblyName>Geta.ConsoleApplication</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>veröffentlichen\</PublishUrl>

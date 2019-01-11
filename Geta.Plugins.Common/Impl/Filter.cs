@@ -1,17 +1,15 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using System.Globalization;
-    using System.Linq;
-    using System.Runtime.Serialization;
-    using System.Text.RegularExpressions;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
-    using Enums;
-    using Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Globalization;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
+{
     [Export(typeof(IFilterable))]
     [DataContract(Name = "Filter", Namespace = "")]
     public class Filter : LoggingBase, IFilterable
@@ -20,13 +18,13 @@
         public virtual IList<IFilterable> Filters { get; set; } = new List<IFilterable>();
 
         [DataMember]
-        public virtual FilterKeyEnum On { get; internal set; }
+        public virtual FilterKeyEnum On { get; set; }
 
         [DataMember]
-        public virtual FilterOperatorEnum Operator { get; internal set; }
+        public virtual FilterOperatorEnum Operator { get; set; }
 
         [DataMember]
-        public virtual string Value { get; internal set; }
+        public virtual string Value { get; set; }
 
         #region IFilterable Members
 

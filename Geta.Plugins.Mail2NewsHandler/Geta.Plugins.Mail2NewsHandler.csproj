@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler</AssemblyName>
+    <AssemblyName>Geta.Plugins.Mail2NewsHandler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

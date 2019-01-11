@@ -1,7 +1,7 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler
-{
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+﻿using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler
+{
     public interface IMailEndpointHandler : IHandler, IFilterable
     {
     }

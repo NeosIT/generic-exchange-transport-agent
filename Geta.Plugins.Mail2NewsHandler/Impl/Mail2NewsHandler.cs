@@ -1,15 +1,15 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl
-{
-    using System;
-    using System.ComponentModel.Composition;
-    using System.Linq;
-    using System.Runtime.Serialization;
-    using System.Text;
-    using Microsoft.Exchange.Data.Mime;
-    using Microsoft.Exchange.Data.Transport;
-    using Common;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using Microsoft.Exchange.Data.Mime;
+using Microsoft.Exchange.Data.Transport;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl
+{
     [Export(typeof(IHandler))]
     [DataContract(Name = "Mail2NewsHandler", Namespace = "")]
     public class Mail2NewsHandler: FilterableHandlerBase, IMail2NewsHandler
@@ -67,7 +67,7 @@
                 Logger.Info("[MessageId {0}] - ToSmtpAddress not found in recipients...", emailItem.Message.MessageId);
                 return false;
             }
-            
+
             return base.AppliesTo(emailItem, lastExitCode);
         }
 

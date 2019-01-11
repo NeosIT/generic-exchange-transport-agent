@@ -1,4 +1,3 @@
-﻿using System;
 using System.IO;
 using System.Security.AccessControl;
 using Microsoft.Exchange.Data.Transport;
@@ -38,7 +37,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl
 
         public EmailMessage Message { get; internal set; }
         public RoutingAddress FromAddress { get; internal set; }
-        public Stream MimeReadStream { get; internal set; }
+        public Stream MimeReadStream { get; set; }
         public bool IsExported { get; internal set; }
         public bool IsImported { get; internal set; }
         public bool ShouldBeDeletedFromQueue { get; set; }

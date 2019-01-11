@@ -1,7 +1,7 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler
-{
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+﻿using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler
+{
     public interface IExtractAttachmentHandler : IHandler, IFilterable
     {
     }

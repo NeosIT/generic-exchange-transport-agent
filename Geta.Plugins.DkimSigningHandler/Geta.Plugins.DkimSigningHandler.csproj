@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler</AssemblyName>
+    <AssemblyName>Geta.Plugins.DkimSigningHandler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

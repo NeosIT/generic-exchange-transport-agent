@@ -1,12 +1,12 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl
-{
-    using System;
-    using System.ComponentModel.Composition;
-    using System.Runtime.Serialization;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-    using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-    using Twitterizer;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Runtime.Serialization;
+using Twitterizer;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl
+{
     [Export(typeof(IHandler))]
     [DataContract(Name = "TwitterNotificationHandler", Namespace = "")]
     public class TwitterNotificationHandler : FilterableHandlerBase, ITwitterNotificationHandler

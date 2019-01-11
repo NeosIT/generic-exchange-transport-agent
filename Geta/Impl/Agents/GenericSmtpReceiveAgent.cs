@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.Exchange.Data.Transport.Smtp;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;

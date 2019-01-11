@@ -1,7 +1,7 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common
+{
     public interface IFilterable
     {
         IList<IFilterable> Filters { get; set; }

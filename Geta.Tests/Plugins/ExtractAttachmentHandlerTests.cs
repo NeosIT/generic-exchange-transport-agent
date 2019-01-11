@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using System.Reflection;
-using Microsoft.Exchange.Data.Transport.Email;
 using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;

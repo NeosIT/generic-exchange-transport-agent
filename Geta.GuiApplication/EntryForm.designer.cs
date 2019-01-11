@@ -32,15 +32,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             this.comboBoxEvent = new System.Windows.Forms.ComboBox();
             this.comboBoxHandler = new System.Windows.Forms.ComboBox();
-            this.buttonConditions = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageTxt = new System.Windows.Forms.TabPage();
-            this.tabPageRtf = new System.Windows.Forms.TabPage();
-            this.tabPageHtml = new System.Windows.Forms.TabPage();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelEvent = new System.Windows.Forms.Label();
             this.labelHandler = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.buttonConfigure = new System.Windows.Forms.Button();
+            this.buttonPlaceholderFilters = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxEvent
@@ -51,7 +47,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxEvent.FormattingEnabled = true;
             this.comboBoxEvent.Location = new System.Drawing.Point(86, 12);
             this.comboBoxEvent.Name = "comboBoxEvent";
-            this.comboBoxEvent.Size = new System.Drawing.Size(396, 21);
+            this.comboBoxEvent.Size = new System.Drawing.Size(472, 21);
             this.comboBoxEvent.TabIndex = 0;
             this.comboBoxEvent.SelectedValueChanged += new System.EventHandler(this.comboBoxEvent_SelectedValueChanged);
             // 
@@ -63,69 +59,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxHandler.FormattingEnabled = true;
             this.comboBoxHandler.Location = new System.Drawing.Point(86, 39);
             this.comboBoxHandler.Name = "comboBoxHandler";
-            this.comboBoxHandler.Size = new System.Drawing.Size(396, 21);
+            this.comboBoxHandler.Size = new System.Drawing.Size(472, 21);
             this.comboBoxHandler.TabIndex = 2;
-            // 
-            // buttonConditions
-            // 
-            this.buttonConditions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonConditions.Location = new System.Drawing.Point(351, 66);
-            this.buttonConditions.Name = "buttonConditions";
-            this.buttonConditions.Size = new System.Drawing.Size(131, 23);
-            this.buttonConditions.TabIndex = 3;
-            this.buttonConditions.Text = "Conditions";
-            this.buttonConditions.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPageTxt);
-            this.tabControl1.Controls.Add(this.tabPageRtf);
-            this.tabControl1.Controls.Add(this.tabPageHtml);
-            this.tabControl1.Location = new System.Drawing.Point(16, 95);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(470, 291);
-            this.tabControl1.TabIndex = 4;
-            // 
-            // tabPageTxt
-            // 
-            this.tabPageTxt.Location = new System.Drawing.Point(4, 22);
-            this.tabPageTxt.Name = "tabPageTxt";
-            this.tabPageTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTxt.Size = new System.Drawing.Size(462, 265);
-            this.tabPageTxt.TabIndex = 0;
-            this.tabPageTxt.Text = "Text";
-            this.tabPageTxt.UseVisualStyleBackColor = true;
-            // 
-            // tabPageRtf
-            // 
-            this.tabPageRtf.Location = new System.Drawing.Point(4, 22);
-            this.tabPageRtf.Name = "tabPageRtf";
-            this.tabPageRtf.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRtf.Size = new System.Drawing.Size(571, 375);
-            this.tabPageRtf.TabIndex = 1;
-            this.tabPageRtf.Text = "RTF";
-            this.tabPageRtf.UseVisualStyleBackColor = true;
-            // 
-            // tabPageHtml
-            // 
-            this.tabPageHtml.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHtml.Name = "tabPageHtml";
-            this.tabPageHtml.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHtml.Size = new System.Drawing.Size(571, 375);
-            this.tabPageHtml.TabIndex = 2;
-            this.tabPageHtml.Text = "HTML";
-            this.tabPageHtml.UseVisualStyleBackColor = true;
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(351, 392);
+            this.buttonSave.Location = new System.Drawing.Point(463, 194);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(131, 23);
+            this.buttonSave.Size = new System.Drawing.Size(95, 23);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -149,22 +91,40 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.labelHandler.TabIndex = 7;
             this.labelHandler.Text = "Handler";
             // 
+            // buttonConfigure
+            // 
+            this.buttonConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonConfigure.Location = new System.Drawing.Point(12, 194);
+            this.buttonConfigure.Name = "buttonConfigure";
+            this.buttonConfigure.Size = new System.Drawing.Size(94, 23);
+            this.buttonConfigure.TabIndex = 8;
+            this.buttonConfigure.Text = "Configure";
+            this.buttonConfigure.UseVisualStyleBackColor = true;
+            // 
+            // buttonPlaceholderFilters
+            // 
+            this.buttonPlaceholderFilters.Location = new System.Drawing.Point(12, 66);
+            this.buttonPlaceholderFilters.Name = "buttonPlaceholderFilters";
+            this.buttonPlaceholderFilters.Size = new System.Drawing.Size(546, 122);
+            this.buttonPlaceholderFilters.TabIndex = 9;
+            this.buttonPlaceholderFilters.Text = "Placeholder Filter";
+            this.buttonPlaceholderFilters.UseVisualStyleBackColor = true;
+            // 
             // EntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 427);
+            this.ClientSize = new System.Drawing.Size(570, 228);
+            this.Controls.Add(this.buttonPlaceholderFilters);
+            this.Controls.Add(this.buttonConfigure);
             this.Controls.Add(this.labelHandler);
             this.Controls.Add(this.labelEvent);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.buttonConditions);
             this.Controls.Add(this.comboBoxHandler);
             this.Controls.Add(this.comboBoxEvent);
             this.Name = "EntryForm";
             this.Text = "GETA - ";
             this.Load += new System.EventHandler(this.NewEntryForm_Load);
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,14 +134,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private System.Windows.Forms.ComboBox comboBoxEvent;
         private System.Windows.Forms.ComboBox comboBoxHandler;
-        private System.Windows.Forms.Button buttonConditions;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPageTxt;
-        private System.Windows.Forms.TabPage tabPageRtf;
-        private System.Windows.Forms.TabPage tabPageHtml;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelEvent;
         private System.Windows.Forms.Label labelHandler;
+        private System.Windows.Forms.Button buttonConfigure;
+        private System.Windows.Forms.Button buttonPlaceholderFilters;
     }
 }
 

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
@@ -30,7 +28,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _initialEntry = entry;
         }
 
-        private void NewEntryForm_Load(object sender, System.EventArgs e)
+        #region EventHandlers
+
+        private void NewEntryForm_Load(object sender, EventArgs e) => Initialize();
+
+        private void comboBoxEvent_SelectedValueChanged(object sender, EventArgs e) => LoadHandlers();
+
+        private void buttonSave_Click(object sender, EventArgs e) => SaveAndHide();
+
+        #endregion
+
+        #region Private Methods
+
+        private void Initialize()
         {
             Text += _initialEntry == null ? "New Entry" : "Editing Entry";
 
@@ -40,7 +50,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 var selectedEvent = comboBoxEvent.Items.Cast<string>()
                     .SingleOrDefault(
-                        x => x == $"{_initialEntry.EventName} ({_initialEntry.AgentConfig.GetType().Name})");
+                        x => x == _initialEntry.EventNameFormatted);
                 comboBoxEvent.SelectedItem = selectedEvent;
 
                 LoadHandlers();
@@ -91,7 +101,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             var agentConfigTypes = AppDomain.CurrentDomain.GetAssemblies().GetAgentConfigTypes();
             var events = agentConfigTypes
                 .SelectMany(x =>
-                    x.GetPropertyInfosFromAgentConfigType().Select(p => $"{p.Name} ({p.DeclaringType.Name})"));
+                    x.GetPropertyInfosFromAgentConfigType()
+                        .Select(p =>
+                        {
+                            Debug.Assert(p.DeclaringType != null, "p.DeclaringType != null");
+                            return Entry.FormatEventName(p.Name, p.DeclaringType.Name);
+                        }));
 
             var eventObjects = events.OrderBy(x => x).Cast<object>().ToArray();
             comboBoxEvent.Items.Clear();
@@ -99,10 +114,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             comboBoxEvent.EndUpdate();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void SaveAndHide()
         {
             // check for errors
-            var errors = new ComboBox[] {comboBoxEvent, comboBoxHandler}.Where(x => x.SelectedItem == null);
+            var errors = new[] {comboBoxEvent, comboBoxHandler}.Where(x => x.SelectedItem == null);
 
             if (errors.Any())
             {
@@ -123,7 +138,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                     .Single(x => x.Name == CurrentAgentConfigName);
                 _agentConfigs.Add((IAgentConfig) Activator.CreateInstance(agentType));
             }
-            
+
             Debug.Assert(CurrentAgentConfig != null, "CurrentAgent != null");
 
             var existingEventProperty = _initialEntry?.AgentConfig.GetType().GetProperty(_initialEntry.EventName);
@@ -167,10 +182,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             Hide();
         }
 
-        private void comboBoxEvent_SelectedValueChanged(object sender, EventArgs e)
-        {
-            LoadHandlers();
-        }
+        #endregion
+
+        #region Private Calculated Properties
 
         [CanBeNull]
         private IAgentConfig CurrentAgentConfig =>
@@ -195,5 +209,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         }
 
         [CanBeNull] private string CurrentHandlerName => (string) comboBoxHandler?.SelectedItem;
+
+        #endregion
     }
 }

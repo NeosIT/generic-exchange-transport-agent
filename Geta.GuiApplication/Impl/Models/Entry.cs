@@ -30,5 +30,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Mode
                 propertyInfo.SetValue(Handler, parameters, new object[0]);
             }
         }
+
+        public string EventNameFormatted => FormatEventName(EventName, AgentConfig.GetType().Name);
+
+        public static string FormatEventName(string eventName, string agentName)
+        {
+            return $"{eventName} ({agentName})";
+        }
     }
 }

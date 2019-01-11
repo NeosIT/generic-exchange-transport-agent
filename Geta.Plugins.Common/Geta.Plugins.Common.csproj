@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</RootNamespace>
-    <AssemblyName>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</AssemblyName>
+    <AssemblyName>Geta.Plugins.Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -30,10 +30,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
         public string EmlFileName { get; internal set; }
 
         [DataMember]
-        public string Cmd { get; internal set; }
+        public string Cmd { get; set; }
 
         [DataMember]
-        public string Args { get; internal set; }
+        public string Args { get; set; }
 
         public int ExitCode { get; internal set; }
 

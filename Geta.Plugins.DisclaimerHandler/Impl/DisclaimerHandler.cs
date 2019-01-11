@@ -16,13 +16,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
     public class DisclaimerHandler : FilterableHandlerBase, IDisclaimerHandler
     {
         [DataMember(Name = "Text")]
-        public string Text { get; internal set; }
+        public string Text { get; set; }
 
         [DataMember(Name = "Rtf")]
-        public string Rtf { get; internal set; }
+        public string Rtf { get; set; }
 
         [DataMember(Name = "Html")]
-        public string Html { get; internal set; }
+        public string Html { get; set; }
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {

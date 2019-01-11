@@ -20,13 +20,13 @@
         public virtual IList<IFilterable> Filters { get; set; } = new List<IFilterable>();
 
         [DataMember]
-        public virtual FilterKeyEnum On { get; internal set; }
+        public virtual FilterKeyEnum On { get; set; }
 
         [DataMember]
-        public virtual FilterOperatorEnum Operator { get; internal set; }
+        public virtual FilterOperatorEnum Operator { get; set; }
 
         [DataMember]
-        public virtual string Value { get; internal set; }
+        public virtual string Value { get; set; }
 
         #region IFilterable Members
 

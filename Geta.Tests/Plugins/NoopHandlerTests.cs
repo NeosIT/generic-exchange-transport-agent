@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+﻿using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 

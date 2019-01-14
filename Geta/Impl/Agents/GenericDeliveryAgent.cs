@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.Exchange.Data.Transport.Delivery;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
 using Ninject;
 using Ninject.Extensions.Logging;
 

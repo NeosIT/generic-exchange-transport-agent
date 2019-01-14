@@ -5,10 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Enums;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl
@@ -98,7 +96,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandle
 
                 if (!string.IsNullOrEmpty(Args))
                 {
-                    if (Args.Contains("$emlfile$", StringComparison.InvariantCultureIgnoreCase))
+                    if (Args.Contains("$emlfile$"))
                     {
                         Args = Args.Replace("$emlfile$", exportFileName);
                     }

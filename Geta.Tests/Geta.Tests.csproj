@@ -100,10 +100,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\Geta.Common.csproj">
-      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Geta.ConsoleApplication\Geta.ConsoleApplication.csproj">
       <Project>{06ea279a-ff8f-47de-a57d-cf49b1b14261}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</Name>
@@ -112,7 +108,7 @@
       <Project>{5a17e259-3db1-4176-b15f-69e4b77e90d7}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
+    <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{bbea07c8-5924-4a67-8a03-9e6459a66e68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>

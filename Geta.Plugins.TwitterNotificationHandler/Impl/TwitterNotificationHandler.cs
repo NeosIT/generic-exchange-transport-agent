@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using Twitterizer;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl

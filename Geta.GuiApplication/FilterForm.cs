@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Enums;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {

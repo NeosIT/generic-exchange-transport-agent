@@ -4,9 +4,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using HtmlAgilityPack;
 using Microsoft.Exchange.Data.Transport.Email;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl

@@ -5,8 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Exchange.Data.Mime;
 using Microsoft.Exchange.Data.Transport;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Exchange.Data.Transport.Email;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;

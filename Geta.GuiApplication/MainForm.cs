@@ -4,9 +4,8 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {

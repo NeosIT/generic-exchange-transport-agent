@@ -1,5 +1,5 @@
 ﻿using System;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication
 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Exchange.Data.Transport;
 using Microsoft.Exchange.Data.Transport.Smtp;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents;
 using Ninject;
 using Ninject.Extensions.Logging;

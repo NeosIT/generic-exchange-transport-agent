@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config.Agents;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config.Agents;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl
 {

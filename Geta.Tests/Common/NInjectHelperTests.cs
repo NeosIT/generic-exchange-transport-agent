@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
 using Ninject;
 using Ninject.Extensions.Logging.Log4net;
 using Ninject.Modules;

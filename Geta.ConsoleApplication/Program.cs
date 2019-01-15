@@ -1,5 +1,6 @@
 ﻿using System;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication
 {
@@ -7,7 +8,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication
     {
         private static void Main(string[] args)
         {
-            using (var fac = new PluginHost())
+            using (var fac = Configuration.PluginHost)
             {
                 if (null != fac.Handlers)
                 {

@@ -7,12 +7,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config.Agents
     public class DeliveryAgentConfig : IAgentConfig
     {
         [DataMember(Name = "OnCloseConnection")]
-        public IList<IAgentEventHandler> OnCloseConnection { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnCloseConnection { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnDeliverMailItem")]
-        public IList<IAgentEventHandler> OnDeliverMailItem { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnDeliverMailItem { get; set; } = new List<IHandler>();
 
         [DataMember(Name = "OnOpenConnection")]
-        public IList<IAgentEventHandler> OnOpenConnection { get; set; } = new List<IAgentEventHandler>();
+        public IList<IHandler> OnOpenConnection { get; set; } = new List<IHandler>();
     }
 }

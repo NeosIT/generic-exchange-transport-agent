@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
       <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -77,7 +81,7 @@
     <Compile Include="Impl\Config\Agents\DeliveryAgentConfig.cs" />
     <Compile Include="Impl\Config\Agents\RoutingAgentConfig.cs" />
     <Compile Include="Impl\Config\Agents\SmtpReceiveAgentConfig.cs" />
-    <Compile Include="Impl\Config\ConfigFactory.cs" />
+    <Compile Include="Impl\Config\Configuration.cs" />
     <Compile Include="Impl\Config\TransportAgentConfig.cs" />
     <Compile Include="Impl\EmailItem.cs" />
     <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />

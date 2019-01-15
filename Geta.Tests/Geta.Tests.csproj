@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Tests</RootNamespace>
     <AssemblyName>Geta.Tests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,7 +55,7 @@
       <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>..\packages\NUnit.3.11.0\lib\net35\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -69,6 +69,7 @@
     <Compile Include="Base\Agents\GenericDeliveryAgentTests.cs" />
     <Compile Include="Base\Agents\GenericRoutingAgentTests.cs" />
     <Compile Include="Base\Agents\GenericSmtpReceiveAgentTests.cs" />
+    <Compile Include="ConfigTests.cs" />
     <Compile Include="Helpers\AgentTestBase.cs" />
     <Compile Include="Base\Factories\GenericDeliveryAgentFactoryTests.cs" />
     <Compile Include="Base\Factories\GenericRoutingAgentFactoryTests.cs" />

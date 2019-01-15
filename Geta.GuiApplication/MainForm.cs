@@ -24,12 +24,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void MainFormLoad(object sender, EventArgs e)
         {
-            var pluginHost = new PluginHost();
-            _handlers = pluginHost.Handlers;
+            _handlers = Configuration.PluginHost.Handlers;
             AvailableHandlersTreeView.Nodes.AddRange(TreeNodeMapper.MapHandlers(_handlers));
             AvailableHandlersTreeView.SelectedNode = AvailableHandlersTreeView.Nodes[0];
 
-            _knownTypes = pluginHost.KnownTypes;
+            _knownTypes = Configuration.PluginHost.KnownTypes;
 
             _config = new TransportAgentConfig();
 

@@ -11,14 +11,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         public IKernel Kernel { get; internal set; }
         public ILogger Logger { get; internal set; }
 
-        private readonly TransportAgentConfig _config;
-
         public GenericRoutingAgent()
         {
             Kernel = NInjectHelper.GetKernel();
             Logger = Kernel.Get<ILoggerFactory>().GetCurrentClassLogger();
-
-            _config = ConfigFactory.GetConfig();
 
             OnCategorizedMessage += OnCategorizedMessageHandler;
             OnResolvedMessage += OnResolvedMessageHandler;
@@ -30,7 +26,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnCategorizedMessage fired...");
             var emailItem = new EmailItem(e.MailItem);
-            foreach(var x in _config.RoutingAgentConfig.OnCategorizedMessage)
+            foreach(var x in Configuration.Config.RoutingAgentConfig.OnCategorizedMessage)
             {
                 try
                 {
@@ -52,7 +48,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnResolvedMessage fired...");
             var emailItem = new EmailItem(e.MailItem);
-            foreach (var x in _config.RoutingAgentConfig.OnResolvedMessage)
+            foreach (var x in Configuration.Config.RoutingAgentConfig.OnResolvedMessage)
             {
                  try
                  {
@@ -74,7 +70,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnRoutedMessage fired...");
             var emailItem = new EmailItem(e.MailItem);
-            foreach (var x in _config.RoutingAgentConfig.OnRoutedMessage)
+            foreach (var x in Configuration.Config.RoutingAgentConfig.OnRoutedMessage)
             {
                 try
                 {
@@ -96,7 +92,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         {
             Logger.Debug("[GenericTransportAgent] RoutingAgent - OnSubmittedMessage fired...");
             var emailItem = new EmailItem(e.MailItem);
-            foreach (var x in _config.RoutingAgentConfig.OnSubmittedMessage)
+            foreach (var x in Configuration.Config.RoutingAgentConfig.OnSubmittedMessage)
             {
                 try
                 {

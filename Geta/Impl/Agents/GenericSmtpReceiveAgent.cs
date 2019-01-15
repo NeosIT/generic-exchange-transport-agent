@@ -11,14 +11,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         public IKernel Kernel { get; internal set; }
         public ILogger Logger { get; internal set; }
 
-        private readonly TransportAgentConfig _config;
-
         public GenericSmtpReceiveAgent()
         {
             Kernel = NInjectHelper.GetKernel();
             Logger = Kernel.Get<ILoggerFactory>().GetCurrentClassLogger();
-
-            _config = ConfigFactory.GetConfig();
 
             OnAuthCommand += OnAuthCommandHandler;
             OnConnect += OnConnectHandler;
@@ -40,7 +36,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnAuthCommandHandler(ReceiveCommandEventSource source, AuthCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnAuthCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnAuthCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnAuthCommand)
             {
                 try
                 {
@@ -56,7 +52,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnConnectHandler(ConnectEventSource source, ConnectEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnConnect fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnConnect)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnConnect)
             {
                 try
                 {
@@ -72,7 +68,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnDataCommandHandler(ReceiveCommandEventSource source, DataCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnDataCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnDataCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnDataCommand)
             {
                 try
                 {
@@ -88,7 +84,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnDisconnectHandler(DisconnectEventSource source, DisconnectEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnDisconnect fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnDisconnect)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnDisconnect)
             {
                 try
                 {
@@ -104,7 +100,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnEhloCommandHandler(ReceiveCommandEventSource source, EhloCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEhloCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnEhloCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnEhloCommand)
             {
                 try
                 {
@@ -120,7 +116,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnEndOfAuthenticationHandler(EndOfAuthenticationEventSource source, EndOfAuthenticationEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfAuthentication fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnEndOfAuthentication)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnEndOfAuthentication)
             {
                 try
                 {
@@ -136,7 +132,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnEndOfDataHandler(ReceiveMessageEventSource source, EndOfDataEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfData fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnEndOfData)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnEndOfData)
             {
                 try
                 {
@@ -152,7 +148,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnEndOfHeadersHandler(ReceiveMessageEventSource source, EndOfHeadersEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnEndOfHeaders fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnEndOfHeaders)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnEndOfHeaders)
             {
                 try
                 {
@@ -168,7 +164,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnHeloCommandHandler(ReceiveCommandEventSource source, HeloCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnHeloCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnHeloCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnHeloCommand)
             {
                 try
                 {
@@ -184,7 +180,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnHelpCommandHandler(ReceiveCommandEventSource source, HelpCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnHelpCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnHelpCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnHelpCommand)
             {
                 try
                 {
@@ -200,7 +196,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnMailCommandHandler(ReceiveCommandEventSource source, MailCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnMailCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnMailCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnMailCommand)
             {
                 try
                 {
@@ -216,7 +212,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnNoopCommandHandler(ReceiveCommandEventSource source, NoopCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnNoopCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnNoopCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnNoopCommand)
             {
                 try
                 {
@@ -232,7 +228,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnRcptCommandHandler(ReceiveCommandEventSource source, RcptCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnRcptCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnRcptCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnRcptCommand)
             {
                 try
                 {
@@ -248,7 +244,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnRejectHandler(RejectEventSource source, RejectEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnReject fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnReject)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnReject)
             {
                 try
                 {
@@ -264,7 +260,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnRsetCommandHandler(ReceiveCommandEventSource source, RsetCommandEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] SmtpReceiveAgent - OnRsetCommand fired...");
-            foreach (var x in _config.SmtpReceiveAgentConfig.OnRsetCommand)
+            foreach (var x in Configuration.Config.SmtpReceiveAgentConfig.OnRsetCommand)
             {
                 try
                 {

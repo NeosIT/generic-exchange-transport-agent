@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
@@ -11,6 +12,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         [STAThread]
         public static void Main()
         {
+            Configuration.HotReloadEnabled = false;
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

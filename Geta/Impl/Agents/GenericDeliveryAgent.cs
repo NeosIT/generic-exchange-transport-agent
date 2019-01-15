@@ -11,15 +11,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         public IKernel Kernel { get; internal set; }
         public ILogger Logger { get; internal set; }
 
-        private readonly TransportAgentConfig _config;
-
         public GenericDeliveryAgent()
         {
             Kernel = NInjectHelper.GetKernel();
             Logger = Kernel.Get<ILoggerFactory>().GetCurrentClassLogger();
-
-            _config = ConfigFactory.GetConfig();
-
             OnCloseConnection += OnCloseConnectionHandler;
             OnDeliverMailItem += OnDeliverMailItemHandler;
             OnOpenConnection += OnOpenConnectionHandler;
@@ -28,7 +23,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnCloseConnectionHandler(CloseConnectionEventSource source, CloseConnectionEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] DeliveryAgent - OnClose fired...");
-            foreach (var x in _config.DeliveryAgentConfig.OnCloseConnection)
+            foreach (var x in Configuration.Config.DeliveryAgentConfig.OnCloseConnection)
             {
                 try
                 {
@@ -44,7 +39,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnDeliverMailItemHandler(DeliverMailItemEventSource source, DeliverMailItemEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] DeliveryAgent - OnDeliverMailItem fired...");
-            foreach (var x in _config.DeliveryAgentConfig.OnDeliverMailItem)
+            foreach (var x in Configuration.Config.DeliveryAgentConfig.OnDeliverMailItem)
             {
                 try
                 {
@@ -60,7 +55,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents
         private void OnOpenConnectionHandler(OpenConnectionEventSource source, OpenConnectionEventArgs e)
         {
             Logger.Debug("[GenericTransportAgent] DeliveryAgent - OpenConnection fired...");
-            foreach (var x in _config.DeliveryAgentConfig.OnOpenConnection)
+            foreach (var x in Configuration.Config.DeliveryAgentConfig.OnOpenConnection)
             {
                 try
                 {

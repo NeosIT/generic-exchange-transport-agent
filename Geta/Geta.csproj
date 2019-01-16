@@ -1,118 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent</RootNamespace>
     <AssemblyName>Geta</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>net35;net472;netstandard2.0</TargetFrameworks>
+    
+    <!-- AssemblyInfo.cs -->
+    <Title>Geta</Title>
+    <Company>Neos IT GmbH</Company>
+    <Product>Generic Exchange Transport Agent</Product>
+    <Description>Generic transport agent for Microsoft Exchange.</Description>
+    <Copyright>Copyright © Neos IT GmbH 2012 - 2019</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>0.1</AssemblyVersion>
+    <VersionPrefix>0.1</VersionPrefix>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
-      <HintPath>..\packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
-      <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0.0" />
+    <PackageReference Include="Ninject" Version="3.0.1.10" />
+    <PackageReference Include="Ninject.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Ninject.Extensions.Logging.Log4Net" Version="3.0.1" />    
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Common">
       <HintPath>..\libs\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
       <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Logging">
-      <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Logging.Log4Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
-      <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Enums\ExitCodeEnum.cs" />
-    <Compile Include="Enums\FilterKeyEnum.cs" />
-    <Compile Include="Enums\FilterOperatorEnum.cs" />
-    <Compile Include="IAgentConfig.cs" />
-    <Compile Include="IAgentEventHandler.cs" />
-    <Compile Include="IEmailItem.cs" />
-    <Compile Include="IFilterable.cs" />
-    <Compile Include="IHandler.cs" />
-    <Compile Include="Impl\AgentEventHandler.cs" />
-    <Compile Include="Impl\Agents\GenericDeliveryAgent.cs" />
-    <Compile Include="Impl\Agents\GenericRoutingAgent.cs" />
-    <Compile Include="Impl\Agents\GenericSmtpReceiveAgent.cs" />
-    <Compile Include="Impl\Config\Agents\DeliveryAgentConfig.cs" />
-    <Compile Include="Impl\Config\Agents\RoutingAgentConfig.cs" />
-    <Compile Include="Impl\Config\Agents\SmtpReceiveAgentConfig.cs" />
-    <Compile Include="Impl\Config\Configuration.cs" />
-    <Compile Include="Impl\Config\TransportAgentConfig.cs" />
-    <Compile Include="Impl\EmailItem.cs" />
-    <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />
-    <Compile Include="Impl\Extensions\StreamExtensions.cs" />
-    <Compile Include="Impl\Extensions\StringExtensions.cs" />
-    <Compile Include="Impl\Extensions\WebRequestExtensions.cs" />
-    <Compile Include="Impl\Factories\GenericDeliveryAgentFactory.cs" />
-    <Compile Include="Impl\Factories\GenericRoutingAgentFactory.cs" />
-    <Compile Include="Impl\Factories\GenericSmtpReceiveAgentFactory.cs" />
-    <Compile Include="Impl\Filter.cs" />
-    <Compile Include="Impl\FilterableHandlerBase.cs" />
-    <Compile Include="Impl\HandlerBase.cs" />
-    <Compile Include="Impl\LoggingBase.cs" />
-    <Compile Include="Impl\NInjectHelper.cs" />
-    <Compile Include="Impl\PluginHost.cs" />
-    <Compile Include="Impl\Utils\Win32.cs" />
-    <Compile Include="IOptions.cs" />
-    <Compile Include="IPluginHost.cs" />
-    <Compile Include="IViewOptions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

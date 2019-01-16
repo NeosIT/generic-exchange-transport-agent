@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using JetBrains.Annotations;
 using log4net;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config.Agents;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config
 {
@@ -86,9 +87,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config
                 return;
             }
 
-            _config.RoutingAgentConfig = newConfig.RoutingAgentConfig;
-            _config.DeliveryAgentConfig = newConfig.DeliveryAgentConfig;
-            _config.SmtpReceiveAgentConfig = newConfig.SmtpReceiveAgentConfig;
+            _config.RoutingAgentConfig = newConfig.RoutingAgentConfig ?? new RoutingAgentConfig();
+            _config.DeliveryAgentConfig = newConfig.DeliveryAgentConfig ?? new DeliveryAgentConfig();
+            _config.SmtpReceiveAgentConfig = newConfig.SmtpReceiveAgentConfig ?? new SmtpReceiveAgentConfig();
         }
 
         /// <summary>
@@ -100,28 +101,26 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config
         {
             var settings = new XmlReaderSettings {ConformanceLevel = ConformanceLevel.Auto};
             var serializer = new DataContractSerializer(typeof(TransportAgentConfig), PluginHost.KnownTypes);
-            using (var reader = XmlReader.Create(FullPath, settings))
+            try
             {
-                try
+                using (var reader = XmlReader.Create(FullPath, settings))
                 {
-                    return (TransportAgentConfig) serializer.ReadObject(reader, true);
+                    var conf = (TransportAgentConfig) serializer.ReadObject(reader, true);
+                    
+                    if(conf.RoutingAgentConfig == null) conf.RoutingAgentConfig = new RoutingAgentConfig();
+                    if(conf.DeliveryAgentConfig == null) conf.DeliveryAgentConfig= new DeliveryAgentConfig();
+                    if(conf.SmtpReceiveAgentConfig == null) conf.SmtpReceiveAgentConfig = new SmtpReceiveAgentConfig();
+                    
+                    return conf;
                 }
-                catch (InvalidCastException e)
-                {
-                    Logger.Debug("Failed to load configuration:\n" + File.ReadAllText(FullPath));
-                    Logger.Error($"Failed to cast configuration into {nameof(TransportAgentConfig)}", e);
-                }
-                catch (IOException e)
-                {
-                    Logger.Error("IO Exception", e);
-                }
-                catch (Exception e)
-                {
-                    Logger.Error("Unexpected error.", e);
-                }
-
-                return null;
             }
+            catch (SerializationException e)
+            {
+                Logger.Debug("Failed to load configuration:\n" + File.ReadAllText(FullPath));
+                Logger.Error($"Failed to serialize configuration into {nameof(TransportAgentConfig)}", e);
+            }
+
+            return null;
         }
     }
 }

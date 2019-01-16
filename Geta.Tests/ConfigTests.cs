@@ -7,6 +7,10 @@ using NUnit.Framework;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
 {
+    /// <summary>
+    /// In these test we have to delay the tests because the filesystem watcher is not instant. We wait for ~1s every
+    /// time we rely on the filesystem watcher.
+    /// </summary>
     [TestFixture]
     public class ConfigTests
     {
@@ -19,19 +23,21 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
         }
 
         [TearDown]
-        public void Teardown()
+        public async Task Teardown()
         {
+            Configuration.HotReloadEnabled = true;
             // relies on the file watcher to reload / reset the config. 
             File.WriteAllText(Configuration.FullPath, _configFileContents);
+            await Task.Delay(1000);
         }
-        
+
         [Test]
         public async Task TestHotReload()
         {
             var config = Configuration.Config;
-            
+
             Assert.IsEmpty(config.RoutingAgentConfig.OnRoutedMessage);
-            
+
             File.WriteAllText(Configuration.FullPath, @"
 <GenericTransportAgent xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">
   <RoutingAgent>
@@ -41,13 +47,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
     </OnRoutedMessage>
   </RoutingAgent>
 </GenericTransportAgent>");
-            
+
             await Task.Delay(1000); // wait for filesystem watcher to catch up
 
             var config2 = Configuration.Config;
-            
+
             Assert.AreSame(config, config2);
-            
+
             Assert.IsNotEmpty(config.RoutingAgentConfig.OnRoutedMessage);
             Assert.IsInstanceOf<MailEndpointHandler>(config.RoutingAgentConfig.OnRoutedMessage.First());
         }
@@ -56,21 +62,21 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
         public async Task TestHotReloadSwitch()
         {
             Configuration.HotReloadEnabled = false;
-            
+
             var config = Configuration.Config;
-            
+
             Assert.IsEmpty(config.RoutingAgentConfig.OnRoutedMessage);
 
             File.WriteAllText(Configuration.FullPath, "");
-            
+
             await Task.Delay(1000); // be sure to wait. When the watcher is still enabled it may not be fast enough.
-            
+
             Assert.IsEmpty(config.RoutingAgentConfig.OnRoutedMessage);
         }
 
         [Test]
         public async Task TestHotReloadIsFailSafe()
-        {            
+        {
             var config = Configuration.Config;
 
             File.WriteAllText(Configuration.FullPath, @"
@@ -82,13 +88,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
     </OnRoutedMessage>
   </RoutingAgent>
 </GenericTransportAgent>");
-            
+
             await Task.Delay(1000); // wait for filesystem watcher to catch up
 
             Assert.IsNotEmpty(config.RoutingAgentConfig.OnRoutedMessage);
 
             File.WriteAllText(Configuration.FullPath, @"");
-            
+
             await Task.Delay(1000); // wait for filesystem watcher to catch up
 
             Assert.IsNotEmpty(config.RoutingAgentConfig.OnRoutedMessage);

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl
 {

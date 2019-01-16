@@ -1,5 +1,5 @@
 ﻿using System;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 using NUnit.Framework;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common.Extensions

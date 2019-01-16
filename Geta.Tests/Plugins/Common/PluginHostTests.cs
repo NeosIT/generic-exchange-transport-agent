@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common
 {

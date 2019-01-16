@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {

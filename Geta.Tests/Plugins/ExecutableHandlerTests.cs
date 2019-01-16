@@ -1,7 +1,7 @@
 ﻿using System.IO;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Enums;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Enums;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 

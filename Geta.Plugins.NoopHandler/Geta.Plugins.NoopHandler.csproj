@@ -56,7 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
+    <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>

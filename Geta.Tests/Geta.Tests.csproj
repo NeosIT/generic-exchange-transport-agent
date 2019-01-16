@@ -55,7 +55,7 @@
       <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>..\packages\NUnit.3.11.0\lib\net35\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -69,6 +69,7 @@
     <Compile Include="Base\Agents\GenericDeliveryAgentTests.cs" />
     <Compile Include="Base\Agents\GenericRoutingAgentTests.cs" />
     <Compile Include="Base\Agents\GenericSmtpReceiveAgentTests.cs" />
+    <Compile Include="ConfigTests.cs" />
     <Compile Include="Helpers\AgentTestBase.cs" />
     <Compile Include="Base\Factories\GenericDeliveryAgentFactoryTests.cs" />
     <Compile Include="Base\Factories\GenericRoutingAgentFactoryTests.cs" />
@@ -100,10 +101,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\Geta.Common.csproj">
-      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Geta.ConsoleApplication\Geta.ConsoleApplication.csproj">
       <Project>{06ea279a-ff8f-47de-a57d-cf49b1b14261}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</Name>
@@ -112,7 +109,7 @@
       <Project>{5a17e259-3db1-4176-b15f-69e4b77e90d7}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
+    <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{bbea07c8-5924-4a67-8a03-9e6459a66e68}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
     </ProjectReference>

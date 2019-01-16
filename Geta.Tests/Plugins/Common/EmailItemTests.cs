@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
 using Microsoft.Exchange.Data.Transport.Email;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins.Common

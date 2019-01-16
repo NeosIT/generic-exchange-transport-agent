@@ -1,6 +1,4 @@
-﻿using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler
 {
     public interface ITwitterNotificationHandler : IHandler, IFilterable
     {

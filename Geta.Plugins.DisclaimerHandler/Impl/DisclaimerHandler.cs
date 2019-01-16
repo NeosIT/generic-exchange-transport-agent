@@ -1,12 +1,10 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
 using System.Text;
 using HtmlAgilityPack;
 using Microsoft.Exchange.Data.Transport.Email;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl
 {

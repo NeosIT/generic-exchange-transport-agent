@@ -1,13 +1,12 @@
-using System;
+﻿using System;
 using System.Text;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl
 {

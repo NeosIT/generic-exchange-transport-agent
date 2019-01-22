@@ -111,3 +111,4 @@ UpgradeLog*.XML
 
 # ignore exchange dlls because we need to get them manually
 libs/Microsoft.Exchange.*
+nuget.exe

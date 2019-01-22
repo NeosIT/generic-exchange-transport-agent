@@ -47,6 +47,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Setup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Setup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="wix\$(ProjectName).g.wxs" />
@@ -59,6 +64,19 @@
       <Project>{5a17e259-3db1-4176-b15f-69e4b77e90d7}</Project>
       <Name>Geta.GuiApplication</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\MSI BG.png" />
+    <Content Include="license.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Setup.de-DE.resx">
+      <DependentUpon>Setup.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Setup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\WixSharp.bin.1.9.3\build\WixSharp.bin.targets" Condition="Exists('..\packages\WixSharp.bin.1.9.3\build\WixSharp.bin.targets')" />

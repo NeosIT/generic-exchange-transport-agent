@@ -7,11 +7,11 @@
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="c90f9189-39bf-4dc4-9bf4-b4de190b40a7" Name="Generic Exchange Transport Agent" Language="1033" Codepage="Windows-1252" Version="1.0.0.0" UpgradeCode="1480f3a0-dc3a-4d10-bf7b-90f7410fa88b" Manufacturer="Neos IT GmbH">
-    <Package InstallerVersion="200" Compressed="yes" Platform="x64" SummaryCodepage="Windows-1252" Languages="1033" InstallScope="perMachine" />
+    <Package InstallerVersion="200" Compressed="yes" Description="Lorem Ipsum" Platform="x64" SummaryCodepage="Windows-1252" Languages="1033" InstallScope="perMachine" />
     <Media Id="1" Cabinet="_...neric_Exchange_Transport_Agent.cab" EmbedCab="yes" />
 
-    <Condition Message="A 64 bit operation system is required.">PLATFORM=x64</Condition>
-    <Condition Message="Windows 7 or Server 2008 R2 or higher is required."><![CDATA[VersionNT>600]]></Condition>
+    <Condition Message="Ein 64 Bit Betriebssystem wird benötigt.">PLATFORM=x64</Condition>
+    <Condition Message="Windows 7 oder Server 2008 R2 oder neuer wird benötigt."><![CDATA[VersionNT>600]]></Condition>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="INSTALL_DIR" Name="Generic Exchange Transport Agent">
@@ -246,6 +246,10 @@
     <UI />
 
     <Icon Id="app_icon.ico" SourceFile="..\Geta.GuiApplication\Icon.ico" />
+
+    <WixVariable Id="WixUIDialogBmp" Value="Images\MSI BG.png" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
     <Icon Id="IconFile1_Icon.ico" SourceFile="..\Geta.GuiApplication\Icon.ico" />
 
     <CustomAction Id="WixSharp_InitRuntime_Action" BinaryKey="WixSharp_InitRuntime_Action_File" DllEntry="WixSharp_InitRuntime_Action" Return="check" Execute="immediate" />

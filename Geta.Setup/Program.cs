@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
+using System.Threading;
 using Microsoft.Deployment.WindowsInstaller;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication;
 using WixSharp;
@@ -11,7 +14,7 @@ namespace Geta.Setup
 {
     internal static class Program
     {
-        private static readonly string StartMenuPath = $@"%ProgramMenu%\{CompanyName}\{AppName}";
+        private const string StartMenuPath = @"%ProgramMenu%\" + CompanyName + "\\" + AppName;
         private const string AppName = "Generic Exchange Transport Agent";
         private const string AppFileName = "Geta.GuiApplication.exe";
         private const string AppGuid = "C90F9189-39BF-4DC4-9BF4-B4DE090B40A6";
@@ -21,11 +24,15 @@ namespace Geta.Setup
         private const InstallScope InstallScope = WixSharp.InstallScope.perMachine;
         private const string IconPath = @"..\Geta.GuiApplication\Icon.ico";
         private const string ContactEmail = "info@neos-it.de";
+        private const string AppDescription = "Lorem Ipsum"; // TODO
+        private const string LicenseFile = "license.rtf";
+        private const string BackgroundImagePath = @"Images\MSI BG.png";
+        private const string BannerImagePath = null;
 
         public static void Main()
         {
             Compiler.WixLocation = Path.GetFullPath(@"..\packages\WixSharp.wix.bin.3.11.0\tools\bin");
-            
+
             var project = new ManagedProject
             {
                 Name = AppName,
@@ -47,8 +54,8 @@ namespace Geta.Setup
                 },
                 LaunchConditions = new List<LaunchCondition>
                 {
-                    new LaunchCondition("PLATFORM=x64", "A 64 bit operation system is required."),
-                    new LaunchCondition("VersionNT>600", "Windows 7 or Server 2008 R2 or higher is required.")
+                    new LaunchCondition("PLATFORM=x64", Setup.ErrorPlatform64Required),
+                    new LaunchCondition("VersionNT>600", Setup.ErrorVersionTooLow)
                 },
                 Dirs = new[]
                 {
@@ -68,7 +75,11 @@ namespace Geta.Setup
                         }
                     }
                 },
-                UI = WUI.WixUI_Minimal
+                BannerImage = BannerImagePath,
+                BackgroundImage = BackgroundImagePath,
+                ValidateBackgroundImage = false,
+                LicenceFile = LicenseFile,
+                Description = AppDescription
             };
 
             project.Load += ProjectOnBeforeInstall;

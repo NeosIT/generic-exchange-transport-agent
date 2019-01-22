@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 {
-    public class TaggedTree : FlowLayoutPanel , ITaggedParent
+    public class TaggedTree : FlowLayoutPanel, ITaggedParent
     {
         private static int count = 0;
         private int _count;
         private ITaggedChild _selected;
-		private int _oldWidth;
+        private int _oldWidth;
 
         public ToolTip SharedToolTip { get; }
         public ColorTag TagInfo => null;
@@ -72,7 +72,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 
         public int IndexOf(Control child)
         {
-            return Controls.IndexOf(child); 
+            return Controls.IndexOf(child);
         }
 
         public void InsertAt(Control insert, int index)

@@ -249,7 +249,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             Parent.AsControl.SuspendLayout();
             //Only 1 child left, dissolve this node.
             var remainder = (ITaggedChild)content[0];
-            var index = Parent.IndexOf(this);
+            int index = Parent.IndexOf(this);
             Parent.ReplaceChildAt(index, remainder);
             Parent.AsControl.ResumeLayout(true);
         }

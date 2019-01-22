@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 {
-    public class TaggedLeaf : Panel , ITaggedChild
+    public class TaggedLeaf : Panel, ITaggedChild
     {
         private static int count = 0;
         private int _count;

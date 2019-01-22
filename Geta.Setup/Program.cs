@@ -78,12 +78,12 @@ namespace Geta.Setup
 
         private static File[] GetApplicationFiles()
         {
-            return new DirectoryInfo("..\\Geta.GuiApplication\\bin\\Release").GetFiles()
+            return new DirectoryInfo(@"..\Geta.GuiApplication\bin\Release").GetFiles()
                 .Select(x =>
                 {
                     
                     var file = new File(x.FullName);
-                    if (x.Name == "Geta.GuiApplication.exe")
+                    if (x.Name == AppFileName)
                     {
                         file.Shortcuts = new[]
                         {

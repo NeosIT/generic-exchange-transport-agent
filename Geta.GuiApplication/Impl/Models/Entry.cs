@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using System.Reflection;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models
 {

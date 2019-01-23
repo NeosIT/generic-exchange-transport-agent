@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -10,30 +11,33 @@ using System.Xml;
 using JetBrains.Annotations;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config.Agents;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Config;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
     public partial class MainForm : Form
     {
-        public MainForm()
-        {
-            _agentConfigs = new List<IAgentConfig>();
-            
-            var pluginHost = new PluginHost();
-            _knownTypes = pluginHost.KnownTypes;
-            
-            InitializeComponent();
-        }
+        public static Color HighlightColor = Color.Yellow;
+        public static Color NotHighlightedColor = Color.Transparent;
 
         private readonly IEnumerable<Type> _knownTypes;
         private string _configFilename;
         private TransportAgentConfig _config;
+        private List<IAgentConfig> _agentConfigs;
 
-        private readonly List<IAgentConfig> _agentConfigs;
+        public MainForm()
+        {
+            _agentConfigs = new List<IAgentConfig>();
+            _config = new TransportAgentConfig();
+
+            var pluginHost = new PluginHost();
+            _knownTypes = pluginHost.KnownTypes;
+
+            InitializeComponent();
+        }
 
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -64,7 +68,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 // TODO make list flat
                 treeViewEntries.Nodes.Clear();
                 var agents = new IAgentConfig[]
-                    {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig};
+                        {_config.RoutingAgentConfig, _config.DeliveryAgentConfig, _config.SmtpReceiveAgentConfig}
+                    .Where(x => x != null);
                 foreach (var agent in agents)
                 {
                     var props = agent.GetType().GetProperties();
@@ -81,18 +86,38 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                         }
                     }
                 }
-            }
+            } // TODO Logger
             catch (SerializationException ex)
             {
-                // TODO Logger
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(null, "The file could not be read.", "An error has occurred", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show(
+                    null,
+                    "The file seems to be corrupt or invalid.",
+                    "The file could not be read.",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly
+                );
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show(
+                    null,
+                    "The file has duplicate handlers for some events. Please fix this manually.",
+                    "The file could not be read.",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly
+                );
             }
         }
 
         private void SaveAsButtonClick(object sender, EventArgs e)
         {
-            SaveConfigFileDialog.FileName = string.IsNullOrEmpty(_configFilename) ? "config.xml" : _configFilename;
+            SaveConfigFileDialog.FileName = string.IsNullOrWhiteSpace(_configFilename) ? "config.xml" : _configFilename;
             if (DialogResult.OK == SaveConfigFileDialog.ShowDialog())
             {
                 SaveConfig(SaveConfigFileDialog.FileName);
@@ -101,7 +126,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_configFilename))
+            if (string.IsNullOrWhiteSpace(_configFilename))
             {
                 SaveAsButtonClick(sender, e);
             }
@@ -118,8 +143,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 Indent = true,
                 ConformanceLevel = ConformanceLevel.Auto,
-                NewLineHandling = NewLineHandling.Entitize
+                NewLineHandling = NewLineHandling.Entitize,
+                OmitXmlDeclaration = true
             };
+
+            _config.RoutingAgentConfig =
+                (RoutingAgentConfig) _agentConfigs.SingleOrDefault(x => x is RoutingAgentConfig);
+            _config.DeliveryAgentConfig =
+                (DeliveryAgentConfig) _agentConfigs.SingleOrDefault(x => x is DeliveryAgentConfig);
+            _config.SmtpReceiveAgentConfig =
+                (SmtpReceiveAgentConfig) _agentConfigs.SingleOrDefault(x => x is SmtpReceiveAgentConfig);
 
             using (var writer = XmlWriter.Create(filename, settings))
             {
@@ -127,49 +160,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             }
 
             _configFilename = filename;
-        }
-
-        private void RemoveHandlerButtonClick(object sender, EventArgs e)
-        {
-            if (treeViewEntries.SelectedNode?.Tag == null) return;
-
-            if (treeViewEntries.SelectedNode.Tag is IAgentEventHandler eventHandler1)
-            {
-                var eventHandlers =
-                    (IList<IAgentEventHandler>) treeViewEntries.SelectedNode.Parent.Tag;
-
-                if (eventHandlers.IsReadOnly)
-                {
-                    eventHandlers = new List<IAgentEventHandler>(eventHandlers);
-                    treeViewEntries.SelectedNode.Parent.Tag = eventHandlers;
-                }
-
-                eventHandlers.Remove(eventHandler1);
-                treeViewEntries.SelectedNode.Remove();
-            }
-            else if (treeViewEntries.SelectedNode.Tag is IHandler handler)
-            {
-                if (treeViewEntries.SelectedNode.Parent.Tag is IAgentEventHandler eventHandler)
-                {
-                    if (eventHandler.Handlers.IsReadOnly)
-                    {
-                        eventHandler.Handlers = new List<IHandler>(eventHandler.Handlers);
-                    }
-
-                    eventHandler.Handlers.Remove(handler);
-                    treeViewEntries.SelectedNode.Remove();
-                }
-                else if (treeViewEntries.SelectedNode.Parent.Tag is IHandler parentHandler)
-                {
-                    if (parentHandler.Handlers.IsReadOnly)
-                    {
-                        parentHandler.Handlers = new List<IHandler>(parentHandler.Handlers);
-                    }
-
-                    parentHandler.Handlers.Remove(handler);
-                    treeViewEntries.SelectedNode.Remove();
-                }
-            }
         }
 
         private void buttonNewEntry_Click(object sender, EventArgs e)
@@ -187,7 +177,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         public void AddEntry([NotNull] PropertyInfo eventProperty, [NotNull] IHandler handler)
         {
             Debug.Assert(eventProperty.DeclaringType != null, "Declaring type must never be null");
-            Debug.Assert(eventProperty.IsValidHandlerPropertyType(), $"Parameter {nameof(eventProperty)} must be of type IList<IAgentConfig>.");
+            Debug.Assert(eventProperty.IsValidHandlerPropertyType(),
+                $"Parameter {nameof(eventProperty)} must be of type IList<IAgentConfig>.");
 
             IAgentConfig agentConfig = null;
             TreeNode groupNode = null;
@@ -269,6 +260,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             eventNode.Nodes.Add(handlerNode);
 
             agentConfig.AddHandler(eventProperty, handler);
+
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
         }
 
         public void RemoveEntry(PropertyInfo eventProperty, Type handlerType)
@@ -278,11 +272,18 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
             if (result)
             {
-                var removedAgentNode = RemoveNode(agentConfig.GetType().Name.Replace("AgentConfig", ""),eventProperty.Name, handlerType.Name);
+                var removedAgentNode = RemoveNode(agentConfig.GetType().Name.Replace("AgentConfig", ""),
+                    eventProperty.Name, handlerType.Name);
 
                 if (removedAgentNode)
                 {
-                    _agentConfigs.Remove(agentConfig);                    
+                    _agentConfigs.Remove(agentConfig);
+
+                    if (treeViewEntries.Nodes.Count == 0)
+                    {
+                        saveToolStripMenuItem.Enabled = false;
+                        saveAsToolStripMenuItem.Enabled = false;
+                    }
                 }
             }
         }
@@ -294,7 +295,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
             if (result)
             {
-                var groupNode = treeViewEntries.Nodes.Find(agentConfig.GetType().Name.Replace("AgentConfig", ""), false).SingleOrDefault();
+                var groupNode = treeViewEntries.Nodes.Find(agentConfig.GetType().Name.Replace("AgentConfig", ""), false)
+                    .SingleOrDefault();
                 var eventNode = groupNode?.Nodes.Find(eventProperty.Name, false).SingleOrDefault();
                 var handlerNode = eventNode?.Nodes.Find(oldHandler.GetType().Name, false).SingleOrDefault();
 
@@ -309,12 +311,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private void treeViewEntries_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             treeViewEntries.SelectedNode = e.Node;
-            
+
             // only right mouse button allowed
             if (e.Button != MouseButtons.Right) return;
             // skip parents - no action
             if (!IsHandlerNode(e.Node)) return;
-            
+
             treeViewNodeContextMenu.Show(treeViewEntries, e.Location);
         }
 
@@ -331,10 +333,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == treeViewEntries.SelectedNode.Parent.Parent.Name);
+            var agentConfig = _agentConfigs.Single(x =>
+                x.GetType().Name.Replace("AgentConfig", "") == treeViewEntries.SelectedNode.Parent.Parent.Name);
             var eventName = treeViewEntries.SelectedNode.Parent.Name;
             var handler = agentConfig.GetHandler(eventName, treeViewEntries.SelectedNode.Text);
-            
+
             Debug.Assert(handler != null, "handler != null");
 
             RemoveEntry(agentConfig.GetType().GetProperty(eventName), handler.GetType());
@@ -342,12 +345,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void EditNode(TreeNode selectedNode)
         {
-            var agentConfig = _agentConfigs.Single(x => x.GetType().Name.Replace("AgentConfig", "") == selectedNode.Parent.Parent.Name);
+            var agentConfig = _agentConfigs.Single(x =>
+                x.GetType().Name.Replace("AgentConfig", "") == selectedNode.Parent.Parent.Name);
             var eventName = selectedNode.Parent.Name;
             var handler = agentConfig.GetHandler(eventName, selectedNode.Text);
-            
+
             Debug.Assert(handler != null, "handler != null");
-            
+
             var entry = new Entry(agentConfig, eventName, handler);
             var form = new EntryForm(this, _agentConfigs, entry);
             form.Show();
@@ -358,14 +362,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             var groupNode = treeViewEntries.Nodes.Find(agentConfigName, false).SingleOrDefault();
             var eventNode = groupNode?.Nodes.Find(eventName, false).SingleOrDefault();
             var handlerNode = eventNode?.Nodes.Find(handlerName, false).SingleOrDefault();
-                
+
             handlerNode?.Remove();
 
             // delete parents if necessary
             if (eventNode?.Nodes.Count == 0)
             {
                 eventNode.Remove();
-                    
+
                 if (groupNode.Nodes.Count == 0)
                 {
                     groupNode.Remove();
@@ -379,6 +383,53 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private static bool IsHandlerNode(TreeNode node)
         {
             return node.Nodes.Count == 0 && node.Parent != null;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeViewEntries.Nodes.Clear();
+
+            _config = new TransportAgentConfig();
+            _agentConfigs = new List<IAgentConfig>();
+
+            saveToolStripMenuItem.Enabled = false;
+            saveAsToolStripMenuItem.Enabled = false;
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            var str = textBoxSearch.Text;
+
+            foreach (TreeNode node in treeViewEntries.Nodes)
+            {
+                TryHighlightNode(node, str);
+            }
+        }
+
+        private static void TryHighlightNode(TreeNode node, string text)
+        {
+            var color = default(Color);
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                color = NotHighlightedColor;
+            }
+            else if (node.Text.Contains(text))
+            {
+                color = HighlightColor;
+                node.Expand();
+                var parent = node;
+                while ((parent = parent.Parent) != null)
+                {
+                    parent.Expand();
+                }
+            }
+
+            node.BackColor = color;
+
+            foreach (TreeNode child in node.Nodes)
+            {
+                TryHighlightNode(child, text);
+            }
         }
     }
 }

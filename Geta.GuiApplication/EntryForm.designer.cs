@@ -49,7 +49,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.comboBoxEvent.Name = "comboBoxEvent";
             this.comboBoxEvent.Size = new System.Drawing.Size(472, 21);
             this.comboBoxEvent.TabIndex = 0;
-            this.comboBoxEvent.SelectedValueChanged += new System.EventHandler(this.comboBoxEvent_SelectedValueChanged);
+            this.comboBoxEvent.SelectedIndexChanged += new System.EventHandler(this.comboBoxEvent_SelectedIndexChanged);
             // 
             // comboBoxHandler
             // 

@@ -1,5 +1,3 @@
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
     public interface IGenericConfigForm<T> where T : IHandler

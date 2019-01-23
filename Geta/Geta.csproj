@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
-      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
+      <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Common">
@@ -46,54 +50,65 @@
     <Reference Include="Ninject.Extensions.Logging">
       <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Logging.Log4Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
+      <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ExitCodeEnum.cs" />
+    <Compile Include="Enums\FilterKeyEnum.cs" />
+    <Compile Include="Enums\FilterOperatorEnum.cs" />
+    <Compile Include="IAgentConfig.cs" />
+    <Compile Include="IAgentEventHandler.cs" />
+    <Compile Include="IEmailItem.cs" />
+    <Compile Include="IFilterable.cs" />
+    <Compile Include="IHandler.cs" />
+    <Compile Include="Impl\AgentEventHandler.cs" />
     <Compile Include="Impl\Agents\GenericDeliveryAgent.cs" />
     <Compile Include="Impl\Agents\GenericRoutingAgent.cs" />
     <Compile Include="Impl\Agents\GenericSmtpReceiveAgent.cs" />
     <Compile Include="Impl\Extensions\AgentConfigExtensions.cs" />
     <Compile Include="Impl\Extensions\OldNetExtensions.cs" />
     <Compile Include="Impl\Extensions\TransportAgentExtensions.cs" />
+    <Compile Include="Impl\Config\Agents\DeliveryAgentConfig.cs" />
+    <Compile Include="Impl\Config\Agents\RoutingAgentConfig.cs" />
+    <Compile Include="Impl\Config\Agents\SmtpReceiveAgentConfig.cs" />
+    <Compile Include="Impl\Config\Configuration.cs" />
+    <Compile Include="Impl\Config\TransportAgentConfig.cs" />
+    <Compile Include="Impl\EmailItem.cs" />
+    <Compile Include="Impl\Extensions\EmailMessageExtensions.cs" />
+    <Compile Include="Impl\Extensions\StreamExtensions.cs" />
+    <Compile Include="Impl\Extensions\StringExtensions.cs" />
+    <Compile Include="Impl\Extensions\WebRequestExtensions.cs" />
     <Compile Include="Impl\Factories\GenericDeliveryAgentFactory.cs" />
     <Compile Include="Impl\Factories\GenericRoutingAgentFactory.cs" />
     <Compile Include="Impl\Factories\GenericSmtpReceiveAgentFactory.cs" />
+    <Compile Include="Impl\Filter.cs" />
+    <Compile Include="Impl\FilterableHandlerBase.cs" />
+    <Compile Include="Impl\HandlerBase.cs" />
+    <Compile Include="Impl\LoggingBase.cs" />
+    <Compile Include="Impl\NInjectHelper.cs" />
+    <Compile Include="Impl\PluginHost.cs" />
+    <Compile Include="Impl\Utils\Win32.cs" />
+    <Compile Include="IOptions.cs" />
+    <Compile Include="IPluginHost.cs" />
+    <Compile Include="IViewOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Geta.Common\Geta.Common.csproj">
-      <Project>{7BA33E40-29B7-4E16-8604-5265D5999F04}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.Common\Geta.Plugins.Common.csproj">
-      <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\Geta.Plugins.DisclaimerHandler.csproj">
-      <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.ExecutableHandler\Geta.Plugins.ExecutableHandler.csproj">
-      <Project>{3395cd93-59e3-453a-8806-49f4def9e3b8}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.ExtractAttachmentHandler\Geta.Plugins.ExtractAttachmentHandler.csproj">
-      <Project>{085e66f6-6806-456e-a33c-5ed32d636ee6}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Plugins.NoopHandler\Geta.Plugins.NoopHandler.csproj">
-      <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,7 +1,5 @@
-﻿using NUnit.Framework;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
+﻿using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
+using NUnit.Framework;
 using Ninject;
 using Ninject.Extensions.Logging;
 

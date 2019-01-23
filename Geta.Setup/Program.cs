@@ -22,7 +22,7 @@ namespace Geta.Setup
         private const string CompanyName = "Neos IT GmbH";
         private const string AboutUrl = "https://github.com/NeosIT/generic-exchange-transport-agent";
         private const InstallScope InstallScope = WixSharp.InstallScope.perMachine;
-        private const string IconPath = @"..\Geta.GuiApplication\Icon.ico";
+        private const string IconPath = @"..\Geta.GuiApplication\Resources\Icon.ico";
         private const string ContactEmail = "info@neos-it.de";
         private const string AppDescription = "Lorem Ipsum"; // TODO
         private const string LicenseFile = "license.rtf";

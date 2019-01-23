@@ -195,6 +195,7 @@
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.treeViewEntries);
             this.Controls.Add(this.MenuStrip);
+            this.Icon = Properties.Resources.Icon;
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
             this.Text = "GETA";

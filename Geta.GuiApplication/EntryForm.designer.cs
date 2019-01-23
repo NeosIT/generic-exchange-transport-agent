@@ -127,6 +127,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxHandler);
             this.Controls.Add(this.comboBoxEvent);
+            this.Icon = Properties.Resources.Icon;
             this.Name = "EntryForm";
             this.Text = "GETA - ";
             this.Load += new System.EventHandler(this.NewEntryForm_Load);

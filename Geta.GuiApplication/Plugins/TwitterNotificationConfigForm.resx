@@ -112,9 +112,272 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AccessTokenLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AccessTokenLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 13</value>
+  </data>
+  <data name="AccessTokenLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 13</value>
+  </data>
+  <data name="AccessTokenLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="AccessTokenLabel.Text" xml:space="preserve">
+    <value>AccessToken</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenLabel.Name" xml:space="preserve">
+    <value>AccessTokenLabel</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="AccessTokenTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 30</value>
+  </data>
+  <data name="AccessTokenTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 20</value>
+  </data>
+  <data name="AccessTokenTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenTextBox.Name" xml:space="preserve">
+    <value>AccessTokenTextBox</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="AccessTokenSecretLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AccessTokenSecretLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 13</value>
+  </data>
+  <data name="AccessTokenSecretLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 13</value>
+  </data>
+  <data name="AccessTokenSecretLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="AccessTokenSecretLabel.Text" xml:space="preserve">
+    <value>AccessTokenSecret</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretLabel.Name" xml:space="preserve">
+    <value>AccessTokenSecretLabel</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="AccessTokenSecretTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 30</value>
+  </data>
+  <data name="AccessTokenSecretTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 20</value>
+  </data>
+  <data name="AccessTokenSecretTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretTextBox.Name" xml:space="preserve">
+    <value>AccessTokenSecretTextBox</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AccessTokenSecretTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ConsumerKeyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ConsumerKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 53</value>
+  </data>
+  <data name="ConsumerKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="ConsumerKeyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="ConsumerKeyLabel.Text" xml:space="preserve">
+    <value>ConsumerKey</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyLabel.Name" xml:space="preserve">
+    <value>ConsumerKeyLabel</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="ConsumerKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 69</value>
+  </data>
+  <data name="ConsumerKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 20</value>
+  </data>
+  <data name="ConsumerKeyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyTextBox.Name" xml:space="preserve">
+    <value>ConsumerKeyTextBox</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConsumerKeyTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ConsumerSecretLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ConsumerSecretLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 53</value>
+  </data>
+  <data name="ConsumerSecretLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="ConsumerSecretLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="ConsumerSecretLabel.Text" xml:space="preserve">
+    <value>ConsumerSecret</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretLabel.Name" xml:space="preserve">
+    <value>ConsumerSecretLabel</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ConsumerSecretTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 69</value>
+  </data>
+  <data name="ConsumerSecretTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 20</value>
+  </data>
+  <data name="ConsumerSecretTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretTextBox.Name" xml:space="preserve">
+    <value>ConsumerSecretTextBox</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConsumerSecretTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CancelDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 120</value>
+  </data>
+  <data name="CancelDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="CancelDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="CancelDialogButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Name" xml:space="preserve">
+    <value>CancelDialogButton</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SaveDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 120</value>
+  </data>
+  <data name="SaveDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="SaveDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="SaveDialogButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Name" xml:space="preserve">
+    <value>SaveDialogButton</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>390, 155</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>TwitterNotification configuration</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>TwitterNotificationConfigForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

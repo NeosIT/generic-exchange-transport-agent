@@ -70,7 +70,7 @@
     <Content Include="license.rtf" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Setup.de-DE.resx">
+    <EmbeddedResource Include="Setup.de.resx">
       <DependentUpon>Setup.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup.resx">

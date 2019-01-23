@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.treeViewEntries = new System.Windows.Forms.TreeView();
             this.OpenConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveConfigFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -51,38 +52,31 @@
             // 
             // treeViewEntries
             // 
+            resources.ApplyResources(this.treeViewEntries, "treeViewEntries");
             this.treeViewEntries.AllowDrop = true;
-            this.treeViewEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewEntries.HideSelection = false;
-            this.treeViewEntries.Location = new System.Drawing.Point(12, 62);
             this.treeViewEntries.Name = "treeViewEntries";
-            this.treeViewEntries.Size = new System.Drawing.Size(516, 500);
-            this.treeViewEntries.TabIndex = 0;
             this.treeViewEntries.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseClick);
             this.treeViewEntries.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseDoubleClick);
             // 
             // OpenConfigFileDialog
             // 
-            this.OpenConfigFileDialog.Filter = "Xml-Dateien|*.xml|Alle Dateien|*.*";
+            resources.ApplyResources(this.OpenConfigFileDialog, "OpenConfigFileDialog");
             // 
             // SaveConfigFileDialog
             // 
-            this.SaveConfigFileDialog.Filter = "Xml-Dateien|*.xml|Alle Dateien|*.*";
+            resources.ApplyResources(this.SaveConfigFileDialog, "SaveConfigFileDialog");
             // 
             // MenuStrip
             // 
+            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(540, 24);
-            this.MenuStrip.TabIndex = 12;
-            this.MenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
@@ -91,114 +85,86 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
+            resources.ApplyResources(this.newToolStripMenuItem, "newToolStripMenuItem");
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
+            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.LoadButtonClick);
             // 
             // saveToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Enabled = false;
+            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // saveAsToolStripMenuItem
             // 
-            this.saveAsToolStripMenuItem.Enabled = false;
+            resources.ApplyResources(this.saveAsToolStripMenuItem, "saveAsToolStripMenuItem");
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.saveAsToolStripMenuItem.Text = "Save as...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsButtonClick);
             // 
             // toolStripMenuItem1
             // 
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(190, 6);
             // 
             // exitToolStripMenuItem
             // 
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitButtonClick);
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSearch.Location = new System.Drawing.Point(12, 27);
+            resources.ApplyResources(this.textBoxSearch, "textBoxSearch");
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(407, 20);
-            this.textBoxSearch.TabIndex = 13;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // buttonNewEntry
             // 
-            this.buttonNewEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonNewEntry.Location = new System.Drawing.Point(425, 25);
+            resources.ApplyResources(this.buttonNewEntry, "buttonNewEntry");
             this.buttonNewEntry.Name = "buttonNewEntry";
-            this.buttonNewEntry.Size = new System.Drawing.Size(103, 23);
-            this.buttonNewEntry.TabIndex = 14;
-            this.buttonNewEntry.Text = "New";
             this.buttonNewEntry.UseVisualStyleBackColor = true;
             this.buttonNewEntry.Click += new System.EventHandler(this.buttonNewEntry_Click);
             // 
             // treeViewNodeContextMenu
             // 
+            resources.ApplyResources(this.treeViewNodeContextMenu, "treeViewNodeContextMenu");
             this.treeViewNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.treeViewNodeContextMenu.Name = "contextMenuStrip";
-            this.treeViewNodeContextMenu.Size = new System.Drawing.Size(118, 48);
             // 
             // editToolStripMenuItem
             // 
+            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
+            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 574);
             this.Controls.Add(this.buttonNewEntry);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.treeViewEntries);
             this.Controls.Add(this.MenuStrip);
-            this.Icon = Properties.Resources.Icon;
+            this.Icon = global::NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Properties.Resources.Icon;
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
-            this.Text = "GETA";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();

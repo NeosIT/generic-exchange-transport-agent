@@ -30,7 +30,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             Close();
         }
 
-        private void ApplyDialogButtonClick(object sender, EventArgs e)
+        private void SaveDialogButtonClick(object sender, EventArgs e)
         {
             Handler.Text = DisclaimerTextTextBox.Text ?? string.Empty;
             //_handler.Rtf = DisclaimerRtfRichTextEditor.Rtf ?? string.Empty;

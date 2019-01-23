@@ -112,9 +112,443 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;ComboBoxHttpMethod.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxHttpMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelRecipientsHeader.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelServiceMail.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;LabelUploadFieldName.Name" xml:space="preserve">
+    <value>LabelUploadFieldName</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ComboBoxHttpMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 21</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxHttpMethod.Name" xml:space="preserve">
+    <value>ComboBoxHttpMethod</value>
+  </data>
+  <data name="TextBoxServiceMail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="TextBoxEndpointAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 26</value>
+  </data>
+  <data name="ButtonSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelEndpointAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TextBoxRecipientsHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelServiceMail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 53</value>
+  </data>
+  <data name="&gt;&gt;LabelEndpointAddress.Name" xml:space="preserve">
+    <value>LabelEndpointAddress</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LabelAttachmentFileExtensions.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;TextBoxServiceMail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ButtonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;LabelEndpointAddress.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;LabelRecipientsHeader.Name" xml:space="preserve">
+    <value>LabelRecipientsHeader</value>
+  </data>
+  <data name="TextBoxAttachmentFileExtensions.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="ButtonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;TextBoxUploadFieldName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ButtonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 227</value>
+  </data>
+  <data name="&gt;&gt;LabelAttachmentFileExtensions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxAttachmentFileExtensions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>MailEndpointHandler configuration</value>
+  </data>
+  <data name="ComboBoxHttpMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 113</value>
+  </data>
+  <data name="LabelDataContent.Text" xml:space="preserve">
+    <value>Data content</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxDataContent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelHttpMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TextBoxUploadFieldName.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;LabelAttachmentFileExtensions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="LabelServiceMail.Text" xml:space="preserve">
+    <value>Service mail</value>
+  </data>
+  <data name="&gt;&gt;CheckBoxDropMailAfterProcessing.Name" xml:space="preserve">
+    <value>CheckBoxDropMailAfterProcessing</value>
+  </data>
+  <data name="ComboBoxDataContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 113</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="LabelDataContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="TextBoxRecipientsHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="LabelHttpMethod.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LabelHttpMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="LabelUploadFieldName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
+  </data>
+  <data name="TextBoxAttachmentFileExtensions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 157</value>
+  </data>
+  <data name="ButtonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="ComboBoxDataContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 21</value>
+  </data>
+  <data name="LabelEndpointAddress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LabelAttachmentFileExtensions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 141</value>
+  </data>
+  <data name="&gt;&gt;LabelAttachmentFileExtensions.Name" xml:space="preserve">
+    <value>LabelAttachmentFileExtensions</value>
+  </data>
+  <data name="TextBoxRecipientsHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 20</value>
+  </data>
+  <data name="LabelRecipientsHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 141</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Name" xml:space="preserve">
+    <value>ButtonCancel</value>
+  </data>
+  <data name="LabelUploadFieldName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TextBoxAttachmentFileExtensions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 20</value>
+  </data>
+  <data name="ComboBoxHttpMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="LabelServiceMail.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ButtonSave.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;CheckBoxDropMailAfterProcessing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ComboBoxDataContent.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="CheckBoxDropMailAfterProcessing.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="LabelAttachmentFileExtensions.Text" xml:space="preserve">
+    <value>Attachment file extensions (optional)</value>
+  </data>
+  <data name="&gt;&gt;TextBoxAttachmentFileExtensions.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MailEndpointConfigForm</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelHttpMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 97</value>
+  </data>
+  <data name="&gt;&gt;TextBoxServiceMail.Name" xml:space="preserve">
+    <value>TextBoxServiceMail</value>
+  </data>
+  <data name="LabelHttpMethod.Text" xml:space="preserve">
+    <value>Http method</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;TextBoxEndpointAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelAttachmentFileExtensions.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LabelServiceMail.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LabelRecipientsHeader.Text" xml:space="preserve">
+    <value>Recipients header (optional)</value>
+  </data>
+  <data name="LabelEndpointAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LabelDataContent.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LabelEndpointAddress.Text" xml:space="preserve">
+    <value>Endpoint address</value>
+  </data>
+  <data name="&gt;&gt;LabelDataContent.Name" xml:space="preserve">
+    <value>LabelDataContent</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxDataContent.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="LabelRecipientsHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 13</value>
+  </data>
+  <data name="&gt;&gt;CheckBoxDropMailAfterProcessing.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="TextBoxServiceMail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 70</value>
+  </data>
+  <data name="LabelUploadFieldName.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;TextBoxUploadFieldName.Name" xml:space="preserve">
+    <value>TextBoxUploadFieldName</value>
+  </data>
+  <data name="&gt;&gt;LabelDataContent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelEndpointAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ButtonSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;LabelDataContent.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;LabelHttpMethod.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TextBoxRecipientsHeader.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelServiceMail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelHttpMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="LabelAttachmentFileExtensions.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TextBoxServiceMail.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="CheckBoxDropMailAfterProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 17</value>
+  </data>
+  <data name="&gt;&gt;TextBoxUploadFieldName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelHttpMethod.Name" xml:space="preserve">
+    <value>LabelHttpMethod</value>
+  </data>
+  <data name="LabelRecipientsHeader.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;LabelRecipientsHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelEndpointAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="&gt;&gt;TextBoxEndpointAddress.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;TextBoxAttachmentFileExtensions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelDataContent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;LabelServiceMail.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelHttpMethod.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Name" xml:space="preserve">
+    <value>ButtonSave</value>
+  </data>
+  <data name="ButtonSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 227</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxRecipientsHeader.Name" xml:space="preserve">
+    <value>TextBoxRecipientsHeader</value>
+  </data>
+  <data name="&gt;&gt;LabelUploadFieldName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxServiceMail.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="LabelDataContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 97</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxDataContent.Name" xml:space="preserve">
+    <value>ComboBoxDataContent</value>
+  </data>
+  <data name="LabelUploadFieldName.Text" xml:space="preserve">
+    <value>Upload field name</value>
+  </data>
+  <data name="TextBoxEndpointAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 20</value>
+  </data>
+  <data name="LabelEndpointAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 13</value>
+  </data>
+  <data name="LabelServiceMail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="&gt;&gt;LabelUploadFieldName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxDataContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ComboBoxHttpMethod.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;TextBoxEndpointAddress.Name" xml:space="preserve">
+    <value>TextBoxEndpointAddress</value>
+  </data>
+  <data name="&gt;&gt;LabelDataContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxServiceMail.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CheckBoxDropMailAfterProcessing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxAttachmentFileExtensions.Name" xml:space="preserve">
+    <value>TextBoxAttachmentFileExtensions</value>
+  </data>
+  <data name="LabelUploadFieldName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 9</value>
+  </data>
+  <data name="&gt;&gt;LabelServiceMail.Name" xml:space="preserve">
+    <value>LabelServiceMail</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>440, 262</value>
+  </data>
+  <data name="&gt;&gt;TextBoxEndpointAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="TextBoxRecipientsHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 157</value>
+  </data>
+  <data name="CheckBoxDropMailAfterProcessing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 70</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;TextBoxUploadFieldName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TextBoxEndpointAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="LabelRecipientsHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="CheckBoxDropMailAfterProcessing.Text" xml:space="preserve">
+    <value>Drop mail after processing</value>
+  </data>
+  <data name="&gt;&gt;LabelRecipientsHeader.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CheckBoxDropMailAfterProcessing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;TextBoxRecipientsHeader.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="TextBoxUploadFieldName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 26</value>
+  </data>
+  <data name="LabelAttachmentFileExtensions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 13</value>
+  </data>
+  <data name="TextBoxUploadFieldName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 20</value>
+  </data>
+  <data name="&gt;&gt;LabelUploadFieldName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en</value>
+  </metadata>
 </root>

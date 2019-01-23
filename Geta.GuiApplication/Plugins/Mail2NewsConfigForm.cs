@@ -18,7 +18,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             InitializeComponent();
         }
 
-        private void ButtonApplyClick(object sender, EventArgs e)
+        private void ButtonSaveClick(object sender, EventArgs e)
         {
             Handler.ToSmtpAddress = TextBoxToSmtpAddress.Text;
             Handler.HeaderKey = TextBoxHeaderKey.Text;

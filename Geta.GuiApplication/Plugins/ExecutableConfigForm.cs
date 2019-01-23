@@ -32,7 +32,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             ExportEmlFileFilenameTextBox.Text = Handler.EmlFileName;
         }
 
-        private void ApplyButtonClick(object sender, EventArgs e)
+        private void SaveButtonClick(object sender, EventArgs e)
         {
             Handler.Cmd = CommandTextBox.Text;
             Handler.Args = ArgumentsTextBox.Text;

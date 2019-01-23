@@ -117,129 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="SettingsDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 29</value>
-  </data>
-  <data name="SettingsDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 154</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SettingsDataGridView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;SettingsDataGridView.Name" xml:space="preserve">
-    <value>SettingsDataGridView</value>
-  </data>
-  <data name="&gt;&gt;SettingsDataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SettingsDataGridView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SettingsDataGridView.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="SaveDialogButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 227</value>
-  </data>
-  <data name="SaveDialogButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="SaveDialogButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="SaveDialogButton.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;SaveDialogButton.Name" xml:space="preserve">
-    <value>SaveDialogButton</value>
-  </data>
-  <data name="&gt;&gt;SaveDialogButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SaveDialogButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SaveDialogButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="CancelDialogButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 227</value>
-  </data>
-  <data name="CancelDialogButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="CancelDialogButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>Speichern</value>
   </data>
   <data name="CancelDialogButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;CancelDialogButton.Name" xml:space="preserve">
-    <value>CancelDialogButton</value>
-  </data>
-  <data name="&gt;&gt;CancelDialogButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CancelDialogButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CancelDialogButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SettingsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="SettingsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 13</value>
-  </data>
-  <data name="SettingsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="SettingsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>Abbrechen</value>
   </data>
   <data name="SettingsLabel.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="&gt;&gt;SettingsLabel.Name" xml:space="preserve">
-    <value>SettingsLabel</value>
-  </data>
-  <data name="&gt;&gt;SettingsLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SettingsLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SettingsLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>384, 261</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 300</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 300</value>
+    <value>Einstellungen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ExtractAttachmentHandler configuration</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ExtractAttachmentConfigForm</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>ExtractAttachmentHandler Konfiguration</value>
   </data>
 </root>

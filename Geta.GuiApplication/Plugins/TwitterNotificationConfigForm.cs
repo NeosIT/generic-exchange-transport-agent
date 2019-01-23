@@ -26,7 +26,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             ConsumerSecretTextBox.Text = Handler.ConsumerSecret;
         }
 
-        private void ApplyDialogButtonClick(object sender, EventArgs e)
+        private void SaveDialogButtonClick(object sender, EventArgs e)
         {
             Handler.AccessToken = AccessTokenTextBox.Text;
             Handler.AccessTokenSecret = AccessTokenSecretTextBox.Text;

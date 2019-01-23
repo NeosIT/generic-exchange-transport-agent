@@ -112,15 +112,447 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="CommandFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="CancelDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="CommandBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TimeoutNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;TimeoutLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileLabel.Name" xml:space="preserve">
+    <value>ExportEmlFileLabel</value>
+  </data>
+  <data name="CommandFileDialog.Filter" xml:space="preserve">
+    <value>All FIles|*.*</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathBrowseButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CommandLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ExportEmlFileCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="CommandBrowseButton.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="ExportEmlFileLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="ExportEmlFileFilenameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 137</value>
+  </data>
+  <data name="&gt;&gt;ExportFolderBrowserDialog.Name" xml:space="preserve">
+    <value>ExportFolderBrowserDialog</value>
+  </data>
+  <data name="ExportEmlFileFilenameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CommandLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ExportEmlFilePathTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 20</value>
+  </data>
+  <data name="ExportEmlFileFilenameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 20</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CancelDialogButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="CancelDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 231</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;CommandTextBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathBrowseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ExecutableHandler configuration</value>
+  </data>
+  <data name="&gt;&gt;TimeoutNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TimeoutNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="TimeoutLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileCheckBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ExportEmlFileFilenameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TimeoutNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="ExportEmlFilePathTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 114</value>
+  </data>
+  <data name="&gt;&gt;CommandFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExportEmlFileCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CommandBrowseButton.Name" xml:space="preserve">
+    <value>CommandBrowseButton</value>
+  </data>
+  <data name="CommandLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="&gt;&gt;CommandFileDialog.Name" xml:space="preserve">
+    <value>CommandFileDialog</value>
+  </data>
+  <data name="CommandTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="ArgumentsTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 70</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathBrowseButton.Name" xml:space="preserve">
+    <value>ExportEmlFilePathBrowseButton</value>
+  </data>
+  <data name="ExportEmlFileLabel.Text" xml:space="preserve">
+    <value>Export EML file:</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameLabel.Name" xml:space="preserve">
+    <value>ExportEmlFileFilenameLabel</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 300</value>
+  </data>
+  <data name="CommandBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="SaveDialogButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="ExportEmlFileFilenameLabel.Text" xml:space="preserve">
+    <value>Filename:</value>
+  </data>
+  <data name="&gt;&gt;CommandTextBox.Name" xml:space="preserve">
+    <value>CommandTextBox</value>
+  </data>
+  <data name="ArgumentsLabel.Text" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ExecutableConfigForm</value>
+  </data>
+  <data name="CommandTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 26</value>
+  </data>
+  <data name="ExportEmlFileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="TimeoutLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="ArgumentsTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 20</value>
+  </data>
+  <data name="CommandLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="SaveDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;TimeoutNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ExportEmlFilePathBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;CommandBrowseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CommandTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ArgumentsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SaveDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 231</value>
+  </data>
+  <data name="&gt;&gt;CommandBrowseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CommandBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 23</value>
+  </data>
+  <data name="&gt;&gt;TimeoutLabel.Name" xml:space="preserve">
+    <value>TimeoutLabel</value>
+  </data>
+  <data name="ExportEmlFileCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="&gt;&gt;TimeoutNumericUpDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsLabel.Name" xml:space="preserve">
+    <value>ArgumentsLabel</value>
+  </data>
+  <data name="CancelDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathTextBox.Name" xml:space="preserve">
+    <value>ExportEmlFilePathTextBox</value>
+  </data>
+  <data name="ExportEmlFilePathBrowseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;TimeoutLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Name" xml:space="preserve">
+    <value>CancelDialogButton</value>
+  </data>
+  <data name="TimeoutLabel.Text" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameTextBox.Name" xml:space="preserve">
+    <value>ExportEmlFileFilenameTextBox</value>
+  </data>
+  <data name="&gt;&gt;CommandLabel.Name" xml:space="preserve">
+    <value>CommandLabel</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathBrowseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ExportEmlFilePathBrowseButton.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="CommandTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ExportFolderBrowserDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExportEmlFileCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 114</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CommandTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CommandLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExportEmlFileLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 97</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Name" xml:space="preserve">
+    <value>SaveDialogButton</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExportEmlFileFilenameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="TimeoutNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 69</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExportEmlFilePathTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;TimeoutLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ExportEmlFileFilenameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="ExportEmlFileFilenameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 153</value>
+  </data>
+  <data name="TimeoutLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="TimeoutLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ArgumentsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileFilenameLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ExportEmlFilePathBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="ExportEmlFileLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ArgumentsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 53</value>
+  </data>
+  <data name="CommandLabel.Text" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="CommandBrowseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CommandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="&gt;&gt;TimeoutNumericUpDown.Name" xml:space="preserve">
+    <value>TimeoutNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileCheckBox.Name" xml:space="preserve">
+    <value>ExportEmlFileCheckBox</value>
+  </data>
+  <data name="ArgumentsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>384, 261</value>
+  </data>
+  <data name="ExportEmlFilePathBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 112</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFilePathTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="TimeoutLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 53</value>
+  </data>
+  <data name="ExportEmlFilePathTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="ArgumentsTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ExportEmlFileCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="CancelDialogButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CommandTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 20</value>
+  </data>
+  <data name="ExportEmlFileFilenameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CommandBrowseButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ArgumentsTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;CommandLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;ArgumentsTextBox.Name" xml:space="preserve">
+    <value>ArgumentsTextBox</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 300</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CommandFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="ExportFolderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+    <value>de</value>
+  </data>
+  <data name="ExportFolderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>179, 17</value>
-  </metadata>
+  </data>
 </root>

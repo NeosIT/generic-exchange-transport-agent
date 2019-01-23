@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TwitterNotificationConfigForm));
             this.AccessTokenLabel = new System.Windows.Forms.Label();
             this.AccessTokenTextBox = new System.Windows.Forms.TextBox();
             this.AccessTokenSecretLabel = new System.Windows.Forms.Label();
@@ -37,99 +38,68 @@
             this.ConsumerSecretLabel = new System.Windows.Forms.Label();
             this.ConsumerSecretTextBox = new System.Windows.Forms.TextBox();
             this.CancelDialogButton = new System.Windows.Forms.Button();
-            this.ApplyDialogButton = new System.Windows.Forms.Button();
+            this.SaveDialogButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AccessTokenLabel
             // 
-            this.AccessTokenLabel.AutoSize = true;
-            this.AccessTokenLabel.Location = new System.Drawing.Point(13, 13);
+            resources.ApplyResources(this.AccessTokenLabel, "AccessTokenLabel");
             this.AccessTokenLabel.Name = "AccessTokenLabel";
-            this.AccessTokenLabel.Size = new System.Drawing.Size(76, 13);
-            this.AccessTokenLabel.TabIndex = 0;
-            this.AccessTokenLabel.Text = "AccessToken:";
             // 
             // AccessTokenTextBox
             // 
-            this.AccessTokenTextBox.Location = new System.Drawing.Point(16, 30);
+            resources.ApplyResources(this.AccessTokenTextBox, "AccessTokenTextBox");
             this.AccessTokenTextBox.Name = "AccessTokenTextBox";
-            this.AccessTokenTextBox.Size = new System.Drawing.Size(177, 20);
-            this.AccessTokenTextBox.TabIndex = 1;
             // 
             // AccessTokenSecretLabel
             // 
-            this.AccessTokenSecretLabel.AutoSize = true;
-            this.AccessTokenSecretLabel.Location = new System.Drawing.Point(196, 13);
+            resources.ApplyResources(this.AccessTokenSecretLabel, "AccessTokenSecretLabel");
             this.AccessTokenSecretLabel.Name = "AccessTokenSecretLabel";
-            this.AccessTokenSecretLabel.Size = new System.Drawing.Size(107, 13);
-            this.AccessTokenSecretLabel.TabIndex = 2;
-            this.AccessTokenSecretLabel.Text = "AccessTokenSecret:";
             // 
             // AccessTokenSecretTextBox
             // 
-            this.AccessTokenSecretTextBox.Location = new System.Drawing.Point(199, 30);
+            resources.ApplyResources(this.AccessTokenSecretTextBox, "AccessTokenSecretTextBox");
             this.AccessTokenSecretTextBox.Name = "AccessTokenSecretTextBox";
-            this.AccessTokenSecretTextBox.Size = new System.Drawing.Size(177, 20);
-            this.AccessTokenSecretTextBox.TabIndex = 3;
             // 
             // ConsumerKeyLabel
             // 
-            this.ConsumerKeyLabel.AutoSize = true;
-            this.ConsumerKeyLabel.Location = new System.Drawing.Point(13, 53);
+            resources.ApplyResources(this.ConsumerKeyLabel, "ConsumerKeyLabel");
             this.ConsumerKeyLabel.Name = "ConsumerKeyLabel";
-            this.ConsumerKeyLabel.Size = new System.Drawing.Size(75, 13);
-            this.ConsumerKeyLabel.TabIndex = 4;
-            this.ConsumerKeyLabel.Text = "ConsumerKey:";
             // 
             // ConsumerKeyTextBox
             // 
-            this.ConsumerKeyTextBox.Location = new System.Drawing.Point(16, 69);
+            resources.ApplyResources(this.ConsumerKeyTextBox, "ConsumerKeyTextBox");
             this.ConsumerKeyTextBox.Name = "ConsumerKeyTextBox";
-            this.ConsumerKeyTextBox.Size = new System.Drawing.Size(177, 20);
-            this.ConsumerKeyTextBox.TabIndex = 5;
             // 
             // ConsumerSecretLabel
             // 
-            this.ConsumerSecretLabel.AutoSize = true;
-            this.ConsumerSecretLabel.Location = new System.Drawing.Point(196, 53);
+            resources.ApplyResources(this.ConsumerSecretLabel, "ConsumerSecretLabel");
             this.ConsumerSecretLabel.Name = "ConsumerSecretLabel";
-            this.ConsumerSecretLabel.Size = new System.Drawing.Size(88, 13);
-            this.ConsumerSecretLabel.TabIndex = 6;
-            this.ConsumerSecretLabel.Text = "ConsumerSecret:";
             // 
             // ConsumerSecretTextBox
             // 
-            this.ConsumerSecretTextBox.Location = new System.Drawing.Point(199, 69);
+            resources.ApplyResources(this.ConsumerSecretTextBox, "ConsumerSecretTextBox");
             this.ConsumerSecretTextBox.Name = "ConsumerSecretTextBox";
-            this.ConsumerSecretTextBox.Size = new System.Drawing.Size(177, 20);
-            this.ConsumerSecretTextBox.TabIndex = 7;
             // 
             // CancelDialogButton
             // 
-            this.CancelDialogButton.Location = new System.Drawing.Point(303, 120);
+            resources.ApplyResources(this.CancelDialogButton, "CancelDialogButton");
             this.CancelDialogButton.Name = "CancelDialogButton";
-            this.CancelDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelDialogButton.TabIndex = 8;
-            this.CancelDialogButton.Text = "Cancel";
             this.CancelDialogButton.UseVisualStyleBackColor = true;
             this.CancelDialogButton.Click += new System.EventHandler(this.CancelDialogButtonClick);
             // 
-            // ApplyDialogButton
+            // SaveDialogButton
             // 
-            this.ApplyDialogButton.Location = new System.Drawing.Point(222, 120);
-            this.ApplyDialogButton.Name = "ApplyDialogButton";
-            this.ApplyDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.ApplyDialogButton.TabIndex = 9;
-            this.ApplyDialogButton.Text = "Apply";
-            this.ApplyDialogButton.UseVisualStyleBackColor = true;
-            this.ApplyDialogButton.Click += new System.EventHandler(this.ApplyDialogButtonClick);
+            resources.ApplyResources(this.SaveDialogButton, "SaveDialogButton");
+            this.SaveDialogButton.Name = "SaveDialogButton";
+            this.SaveDialogButton.UseVisualStyleBackColor = true;
+            this.SaveDialogButton.Click += new System.EventHandler(this.SaveDialogButtonClick);
             // 
-            // ConfigForm
+            // TwitterNotificationConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 155);
-            this.Controls.Add(this.ApplyDialogButton);
+            this.Controls.Add(this.SaveDialogButton);
             this.Controls.Add(this.CancelDialogButton);
             this.Controls.Add(this.ConsumerSecretTextBox);
             this.Controls.Add(this.ConsumerSecretLabel);
@@ -141,7 +111,6 @@
             this.Controls.Add(this.AccessTokenLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TwitterNotificationConfigForm";
-            this.Text = "TwitterNotification";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -159,6 +128,6 @@
         private System.Windows.Forms.Label ConsumerSecretLabel;
         private System.Windows.Forms.TextBox ConsumerSecretTextBox;
         private System.Windows.Forms.Button CancelDialogButton;
-        private System.Windows.Forms.Button ApplyDialogButton;
+        private System.Windows.Forms.Button SaveDialogButton;
     }
 }

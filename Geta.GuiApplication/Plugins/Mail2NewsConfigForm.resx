@@ -112,9 +112,176 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;LabelToSmtpAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ButtonSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;TextBoxToSmtpAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TextBoxHeaderKey.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="TextBoxToSmtpAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;TextBoxHeaderKey.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxToSmtpAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TextBoxHeaderKey.Name" xml:space="preserve">
+    <value>TextBoxHeaderKey</value>
+  </data>
+  <data name="ButtonSave.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="ButtonSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>247, 157</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Mail2NewsConfigForm</value>
+  </data>
+  <data name="ButtonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TextBoxToSmtpAddress.Name" xml:space="preserve">
+    <value>TextBoxToSmtpAddress</value>
+  </data>
+  <data name="ButtonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;LabelHeaderKey.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="LabelToSmtpAddress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;TextBoxHeaderKey.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LabelToSmtpAddress.Name" xml:space="preserve">
+    <value>LabelToSmtpAddress</value>
+  </data>
+  <data name="ButtonSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 118</value>
+  </data>
+  <data name="&gt;&gt;LabelHeaderKey.Name" xml:space="preserve">
+    <value>LabelHeaderKey</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Name" xml:space="preserve">
+    <value>ButtonSave</value>
+  </data>
+  <data name="LabelHeaderKey.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="TextBoxHeaderKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 70</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="TextBoxToSmtpAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 20</value>
+  </data>
+  <data name="ButtonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 118</value>
+  </data>
+  <data name="&gt;&gt;TextBoxHeaderKey.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LabelToSmtpAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="LabelToSmtpAddress.Text" xml:space="preserve">
+    <value>ToSmtpAddress</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelHeaderKey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="ButtonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LabelToSmtpAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LabelHeaderKey.Text" xml:space="preserve">
+    <value>Header key</value>
+  </data>
+  <data name="&gt;&gt;LabelToSmtpAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="LabelHeaderKey.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;LabelToSmtpAddress.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="TextBoxHeaderKey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 20</value>
+  </data>
+  <data name="TextBoxToSmtpAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 26</value>
+  </data>
+  <data name="&gt;&gt;TextBoxToSmtpAddress.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ButtonSave.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ButtonCancel.Name" xml:space="preserve">
+    <value>ButtonCancel</value>
+  </data>
+  <data name="&gt;&gt;LabelHeaderKey.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LabelToSmtpAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Mail2NewsHandler configuration</value>
+  </data>
+  <data name="&gt;&gt;LabelHeaderKey.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LabelHeaderKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 53</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de</value>
+  </metadata>
 </root>

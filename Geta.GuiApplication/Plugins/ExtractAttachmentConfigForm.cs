@@ -21,7 +21,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             InitializeComponent();
         }
 
-        private void ApplyButtonClick(object sender, EventArgs e)
+        private void SaveButtonClick(object sender, EventArgs e)
         {
             var list = (BindingList<KeyValuePair<string, string>>) SettingsDataGridView.DataSource;
             Handler.Settings = list.ToDictionary(x => x.Key, x => x.Value);

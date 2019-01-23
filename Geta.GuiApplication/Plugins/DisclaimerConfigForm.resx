@@ -112,9 +112,270 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;DisclaimerHtmlTabPage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTabPage.Name" xml:space="preserve">
+    <value>DisclaimerTextTabPage</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="DisclaimerRtfRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Name" xml:space="preserve">
+    <value>CancelDialogButton</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DisclaimerHtmlTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="DisclaimerRtfTabPage.Text" xml:space="preserve">
+    <value>Rtf</value>
+  </data>
+  <data name="CancelDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlHtmlEditor.Name" xml:space="preserve">
+    <value>DisclaimerHtmlHtmlEditor</value>
+  </data>
+  <data name="CancelDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>589, 533</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>DisclaimerConfigForm</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTabControl.Name" xml:space="preserve">
+    <value>DisclaimerTabControl</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Name" xml:space="preserve">
+    <value>SaveDialogButton</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DisclaimerRtfTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlHtmlEditor.Parent" xml:space="preserve">
+    <value>DisclaimerHtmlTabPage</value>
+  </data>
+  <data name="DisclaimerTextTabPage.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTextBox.Parent" xml:space="preserve">
+    <value>DisclaimerTextTabPage</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTextBox.Name" xml:space="preserve">
+    <value>DisclaimerTextTextBox</value>
+  </data>
+  <data name="SaveDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="DisclaimerHtmlHtmlEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfRichTextBox.Name" xml:space="preserve">
+    <value>DisclaimerRtfRichTextBox</value>
+  </data>
+  <data name="DisclaimerTextTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>632, 477</value>
+  </data>
+  <data name="CancelDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="DisclaimerTabControl.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DisclaimerHtmlTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="DisclaimerTextTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfTabPage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DisclaimerRtfRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>632, 477</value>
+  </data>
+  <data name="DisclaimerTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTabPage.Parent" xml:space="preserve">
+    <value>DisclaimerTabControl</value>
+  </data>
+  <data name="SaveDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 533</value>
+  </data>
+  <data name="CancelDialogButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="DisclaimerHtmlTabPage.Text" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="DisclaimerRtfRichTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlTabPage.Parent" xml:space="preserve">
+    <value>DisclaimerTabControl</value>
+  </data>
+  <data name="DisclaimerTextTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="DisclaimerHtmlHtmlEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>632, 480</value>
+  </data>
+  <data name="DisclaimerRtfTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="DisclaimerTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="DisclaimerTextTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfTabPage.Parent" xml:space="preserve">
+    <value>DisclaimerTabControl</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlHtmlEditor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DisclaimerTextTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="DisclaimerTextTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DisclaimerTextTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="DisclaimerRtfRichTextBox.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DisclaimerHtmlTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTabPage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfRichTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelDialogButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DisclaimerTextTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>644, 489</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfRichTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DisclaimerHtmlTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>644, 489</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>DisclaimerHandler configuration</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlHtmlEditor.Type" xml:space="preserve">
+    <value>MSDN.Html.Editor.HtmlEditorControl, MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="DisclaimerRtfTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="DisclaimerHtmlHtmlEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
+  <data name="DisclaimerRtfRichTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerHtmlTabPage.Name" xml:space="preserve">
+    <value>DisclaimerHtmlTabPage</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfRichTextBox.Parent" xml:space="preserve">
+    <value>DisclaimerRtfTabPage</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CancelDialogButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DisclaimerHtmlHtmlEditor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="SaveDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>676, 568</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerTextTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveDialogButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DisclaimerRtfTabPage.Name" xml:space="preserve">
+    <value>DisclaimerRtfTabPage</value>
+  </data>
+  <data name="DisclaimerTextTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="DisclaimerRtfTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>644, 489</value>
+  </data>
+  <data name="DisclaimerTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="DisclaimerTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>652, 515</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de</value>
+  </metadata>
+  <data name="SaveDialogButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

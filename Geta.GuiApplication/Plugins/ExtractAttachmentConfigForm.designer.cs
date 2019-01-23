@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExtractAttachmentConfigForm));
             this.SettingsDataGridView = new System.Windows.Forms.DataGridView();
-            this.ApplyDialogButton = new System.Windows.Forms.Button();
+            this.SaveDialogButton = new System.Windows.Forms.Button();
             this.CancelDialogButton = new System.Windows.Forms.Button();
             this.SettingsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsDataGridView)).BeginInit();
@@ -38,54 +39,38 @@
             // SettingsDataGridView
             // 
             this.SettingsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SettingsDataGridView.Location = new System.Drawing.Point(13, 29);
+            resources.ApplyResources(this.SettingsDataGridView, "SettingsDataGridView");
             this.SettingsDataGridView.Name = "SettingsDataGridView";
-            this.SettingsDataGridView.Size = new System.Drawing.Size(360, 154);
-            this.SettingsDataGridView.TabIndex = 0;
             // 
-            // ApplyDialogButton
+            // SaveDialogButton
             // 
-            this.ApplyDialogButton.Location = new System.Drawing.Point(216, 227);
-            this.ApplyDialogButton.Name = "ApplyDialogButton";
-            this.ApplyDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.ApplyDialogButton.TabIndex = 1;
-            this.ApplyDialogButton.Text = "Apply";
-            this.ApplyDialogButton.UseVisualStyleBackColor = true;
-            this.ApplyDialogButton.Click += new System.EventHandler(this.ApplyButtonClick);
+            resources.ApplyResources(this.SaveDialogButton, "SaveDialogButton");
+            this.SaveDialogButton.Name = "SaveDialogButton";
+            this.SaveDialogButton.UseVisualStyleBackColor = true;
+            this.SaveDialogButton.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // CancelDialogButton
             // 
-            this.CancelDialogButton.Location = new System.Drawing.Point(297, 227);
+            resources.ApplyResources(this.CancelDialogButton, "CancelDialogButton");
             this.CancelDialogButton.Name = "CancelDialogButton";
-            this.CancelDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelDialogButton.TabIndex = 2;
-            this.CancelDialogButton.Text = "Cancel";
             this.CancelDialogButton.UseVisualStyleBackColor = true;
             this.CancelDialogButton.Click += new System.EventHandler(this.CancelDialogButtonClick);
             // 
             // SettingsLabel
             // 
-            this.SettingsLabel.AutoSize = true;
-            this.SettingsLabel.Location = new System.Drawing.Point(13, 13);
+            resources.ApplyResources(this.SettingsLabel, "SettingsLabel");
             this.SettingsLabel.Name = "SettingsLabel";
-            this.SettingsLabel.Size = new System.Drawing.Size(48, 13);
-            this.SettingsLabel.TabIndex = 3;
-            this.SettingsLabel.Text = "Settings:";
             // 
-            // ConfigForm
+            // ExtractAttachmentConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 262);
             this.Controls.Add(this.SettingsLabel);
             this.Controls.Add(this.CancelDialogButton);
-            this.Controls.Add(this.ApplyDialogButton);
+            this.Controls.Add(this.SaveDialogButton);
             this.Controls.Add(this.SettingsDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MaximumSize = new System.Drawing.Size(400, 300);
-            this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "ExtractAttachmentConfigForm";
-            this.Text = "ExtractAttachmentHandler";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -96,7 +81,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView SettingsDataGridView;
-        private System.Windows.Forms.Button ApplyDialogButton;
+        private System.Windows.Forms.Button SaveDialogButton;
         private System.Windows.Forms.Button CancelDialogButton;
         private System.Windows.Forms.Label SettingsLabel;
     }

@@ -37,7 +37,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
             Close();
         }
 
-        private void ButtonApplyClick(object sender, EventArgs e)
+        private void ButtonSaveClick(object sender, EventArgs e)
         {
             Handler.Endpoint = TextBoxEndpointAddress.Text;
             Handler.ServiceMail = TextBoxServiceMail.Text;

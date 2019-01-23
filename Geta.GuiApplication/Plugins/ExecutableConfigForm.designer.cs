@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExecutableHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class ExecutableConfigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -229,7 +229,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(400, 300);
             this.MinimumSize = new System.Drawing.Size(400, 300);
-            this.Name = "ConfigForm";
+            this.Name = "ExecutableConfigForm";
             this.Text = "ExecutableHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.TimeoutNumericUpDown)).EndInit();

@@ -5,7 +5,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class TwitterNotificationHandlerHandlerTests : OptionsHandlerTestBase<TwitterNotificationHandler>
+    public class TwitterNotificationHandlerHandlerTests : HandlerTestBase<TwitterNotificationHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

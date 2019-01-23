@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl;
 
-namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl.Forms
+namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    public partial class ConfigForm : Form
+    public partial class DisclaimerConfigForm : Form, IGenericConfigForm<DisclaimerHandler>
     {
-        private readonly DisclaimerHandler _handler;
-
-        public ConfigForm(DisclaimerHandler handler)
+        public DisclaimerHandler Handler { get; private set; }
+        
+        public void Init(DisclaimerHandler handler)
         {
-            _handler = handler;
+            Handler = handler;
+        }
+
+        public DisclaimerConfigForm()
+        {
             InitializeComponent();
         }
 
         private void ConfigFormLoad(object sender, EventArgs e)
         {
-            DisclaimerTextTextBox.Text = _handler.Text ?? string.Empty;
+            DisclaimerTextTextBox.Text = Handler.Text ?? string.Empty;
             //DisclaimerRtfRichTextEditor.Rtf = _handler.Rtf ?? string.Empty;
-            DisclaimerHtmlHtmlEditor.BodyHtml = _handler.Html ?? string.Empty;
+            DisclaimerHtmlHtmlEditor.BodyHtml = Handler.Html ?? string.Empty;
         }
 
         private void CancelDialogButtonClick(object sender, EventArgs e)
@@ -27,9 +32,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
 
         private void ApplyDialogButtonClick(object sender, EventArgs e)
         {
-            _handler.Text = DisclaimerTextTextBox.Text ?? string.Empty;
+            Handler.Text = DisclaimerTextTextBox.Text ?? string.Empty;
             //_handler.Rtf = DisclaimerRtfRichTextEditor.Rtf ?? string.Empty;
-            _handler.Html = DisclaimerHtmlHtmlEditor.BodyHtml ?? string.Empty;
+            Handler.Html = DisclaimerHtmlHtmlEditor.BodyHtml ?? string.Empty;
             Close();
         }
 

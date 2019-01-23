@@ -68,24 +68,4 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers
             }
         }
     }
-
-    [TestFixture]
-    public abstract class ViewOptionsHandlerTestBase<T> : HandlerTestBase<T> where T : IViewOptions, IHandler, new()
-    {
-        [Test]
-        public void LoadTest()
-        {
-            Assert.Throws<NotImplementedException>(TestObject.Load);
-        }
-    }
-
-    [TestFixture]
-    public abstract class OptionsHandlerTestBase<T> : ViewOptionsHandlerTestBase<T> where T : IOptions, IViewOptions, IHandler, new()
-    {
-        [Test]
-        public void SaveTest()
-        {
-            Assert.Throws<NotImplementedException>(TestObject.Save);
-        }
-    }
 }

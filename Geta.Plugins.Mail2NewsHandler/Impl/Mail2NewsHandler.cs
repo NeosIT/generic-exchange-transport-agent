@@ -6,11 +6,9 @@ using System.Text;
 using Microsoft.Exchange.Data.Mime;
 using Microsoft.Exchange.Data.Transport;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl
 {
-
     [Export(typeof(IHandler))]
     [DataContract(Name = "Mail2NewsHandler", Namespace = "")]
     public class Mail2NewsHandler: FilterableHandlerBase, IMail2NewsHandler
@@ -74,16 +72,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler
 
         public void Load()
         {
-        }
-
-        public void Save()
-        {
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
         }
 
         public override string ToString()

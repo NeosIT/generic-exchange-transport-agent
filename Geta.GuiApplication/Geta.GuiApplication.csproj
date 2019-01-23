@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</RootNamespace>
     <AssemblyName>Geta.GuiApplication</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -31,7 +31,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\MSDN.HtmlEditorControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -50,20 +60,86 @@
     <Compile Include="FilterForm.designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenericConfigForm.cs" />
+    <Compile Include="Impl\Extensions\GenericFormExtensions.cs" />
+    <Compile Include="Impl\Models\Entry.cs" />
     <Compile Include="Impl\TreeNodeMapper.cs" />
+    <Compile Include="EntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EntryForm.designer.cs">
+      <DependentUpon>EntryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\TwitterNotificationConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\TwitterNotificationConfigForm.Designer.cs">
+      <DependentUpon>TwitterNotificationConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\MailEndpointConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\MailEndpointConfigForm.Designer.cs">
+      <DependentUpon>MailEndpointConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Mail2NewsConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\Mail2NewsConfigForm.Designer.cs">
+      <DependentUpon>Mail2NewsConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ExtractAttachmentConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\ExtractAttachmentConfigForm.designer.cs">
+      <DependentUpon>ExtractAttachmentConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ExecutableConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\ExecutableConfigForm.designer.cs">
+      <DependentUpon>ExecutableConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\DisclaimerConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plugins\DisclaimerConfigForm.designer.cs">
+      <DependentUpon>DisclaimerConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FilterForm.resx">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EntryForm.resx">
+      <DependentUpon>EntryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\TwitterNotificationConfigForm.resx">
+      <DependentUpon>TwitterNotificationConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\MailEndpointConfigForm.resx">
+      <DependentUpon>MailEndpointConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\Mail2NewsConfigForm.resx">
+      <DependentUpon>Mail2NewsConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\ExtractAttachmentConfigForm.resx">
+      <DependentUpon>ExtractAttachmentConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\ExecutableConfigForm.resx">
+      <DependentUpon>ExecutableConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\DisclaimerConfigForm.resx">
+      <DependentUpon>DisclaimerConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +150,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +199,10 @@
     <ProjectReference Include="..\Geta.Plugins.TwitterNotificationHandler\Geta.Plugins.TwitterNotificationHandler.csproj">
       <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Geta\Geta.csproj">
+      <Project>{0b1622b1-0301-45bb-a2f4-21359de6b66a}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

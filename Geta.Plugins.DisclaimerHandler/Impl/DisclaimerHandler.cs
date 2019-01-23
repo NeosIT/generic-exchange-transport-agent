@@ -1,12 +1,10 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
 using System.Text;
 using HtmlAgilityPack;
 using Microsoft.Exchange.Data.Transport.Email;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler.Impl
 {
@@ -79,22 +77,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandle
         }
 
         public override string Name => "DisclaimerHandler";
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
-        }
 
         public override string ToString()
         {

@@ -6,7 +6,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class NoopHandlerHandlerTests : OptionsHandlerTestBase<NoopHandler>
+    public class NoopHandlerHandlerTests : HandlerTestBase<NoopHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl
 {
@@ -10,22 +9,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler.Impl
     [DataContract(Name = "NoopHandler", Namespace = "")]
     public class NoopHandler : FilterableHandlerBase, INoopHandler
     {
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm();
-            configForm.ShowDialog();
-        }
-
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
             if (null == emailItem) return;

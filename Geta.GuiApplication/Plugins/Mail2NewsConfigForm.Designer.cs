@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Mail2NewsHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class Mail2NewsConfigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -100,7 +100,7 @@
             this.Controls.Add(this.TextBoxToSmtpAddress);
             this.Controls.Add(this.LabelToSmtpAddress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
+            this.Name = "Mail2NewsConfigForm";
             this.Text = "Mail2NewsHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);

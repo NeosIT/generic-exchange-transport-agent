@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl
 {
@@ -16,23 +14,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmen
         public const string OutputPathKey = "OutputPath";
 
         [DataMember]
-        public IDictionary<string, string> Settings { get; internal set; } = new Dictionary<string, string> { { OutputPathKey, "" }, };
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
-        }
+        public IDictionary<string, string> Settings { get; set; } = new Dictionary<string, string> { { OutputPathKey, "" }, };
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {

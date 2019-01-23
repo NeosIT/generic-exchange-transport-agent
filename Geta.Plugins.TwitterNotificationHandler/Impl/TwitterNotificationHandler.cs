@@ -3,7 +3,6 @@ using System.ComponentModel.Composition;
 using System.Runtime.Serialization;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using Twitterizer;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl
 {
@@ -12,15 +11,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
     public class TwitterNotificationHandler : FilterableHandlerBase, ITwitterNotificationHandler
     {
         [DataMember]
-        public string AccessToken { get; internal set; }
+        public string AccessToken { get; set; }
         [DataMember]
-        public string AccessTokenSecret { get; internal set; }
+        public string AccessTokenSecret { get; set; }
 
         [DataMember]
-        public string ConsumerKey { get; internal set; }
+        public string ConsumerKey { get; set; }
 
         [DataMember]
-        public string ConsumerSecret { get; internal set; }
+        public string ConsumerSecret { get; set; }
 
         public override void Execute(IEmailItem emailItem = null, int? lastExitCode = null)
         {
@@ -43,22 +42,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificat
             {
                 handler.Execute(emailItem, lastExitCode);
             }
-        }
-
-        public void Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowConfigDialog()
-        {
-            var configForm = new ConfigForm(this);
-            configForm.ShowDialog();
         }
 
         public override string Name => "TwitterNotificationHandler";

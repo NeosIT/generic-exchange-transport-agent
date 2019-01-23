@@ -1,6 +1,6 @@
 ﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler
 {
-    public interface ITwitterNotificationHandler : IHandler, IViewOptions, IFilterable
+    public interface ITwitterNotificationHandler : IHandler, IFilterable
     {
     }
 }

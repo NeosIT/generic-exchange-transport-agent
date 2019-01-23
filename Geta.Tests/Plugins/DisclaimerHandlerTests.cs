@@ -8,7 +8,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class DisclaimerHandlerHandlerTests : OptionsHandlerTestBase<DisclaimerHandler>
+    public class DisclaimerHandlerHandlerTests : HandlerTestBase<DisclaimerHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

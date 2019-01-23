@@ -28,118 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ConfigurationTreeView = new System.Windows.Forms.TreeView();
-            this.ConfigurationLabel = new System.Windows.Forms.Label();
-            this.AvailableHandlersLabel = new System.Windows.Forms.Label();
-            this.AvailableHandlersTreeView = new System.Windows.Forms.TreeView();
-            this.ConfigHandlerButton = new System.Windows.Forms.Button();
-            this.ConfigFiltersButton = new System.Windows.Forms.Button();
-            this.LoadButton = new System.Windows.Forms.Button();
-            this.SaveAsButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.ExitButton = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.treeViewEntries = new System.Windows.Forms.TreeView();
             this.OpenConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveConfigFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.AddHandlerButton = new System.Windows.Forms.Button();
-            this.RemoveHandlerButton = new System.Windows.Forms.Button();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.buttonNewEntry = new System.Windows.Forms.Button();
+            this.treeViewNodeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStrip.SuspendLayout();
+            this.treeViewNodeContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ConfigurationTreeView
+            // treeViewEntries
             // 
-            this.ConfigurationTreeView.AllowDrop = true;
-            this.ConfigurationTreeView.HideSelection = false;
-            this.ConfigurationTreeView.Location = new System.Drawing.Point(12, 25);
-            this.ConfigurationTreeView.Name = "ConfigurationTreeView";
-            this.ConfigurationTreeView.Size = new System.Drawing.Size(220, 434);
-            this.ConfigurationTreeView.TabIndex = 0;
-            this.ConfigurationTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ConfigurationTreeViewAfterSelect);
-            // 
-            // ConfigurationLabel
-            // 
-            this.ConfigurationLabel.AutoSize = true;
-            this.ConfigurationLabel.Location = new System.Drawing.Point(12, 9);
-            this.ConfigurationLabel.Name = "ConfigurationLabel";
-            this.ConfigurationLabel.Size = new System.Drawing.Size(184, 13);
-            this.ConfigurationLabel.TabIndex = 1;
-            this.ConfigurationLabel.Text = "GenericTransportAgent configuration:";
-            // 
-            // AvailableHandlersLabel
-            // 
-            this.AvailableHandlersLabel.AutoSize = true;
-            this.AvailableHandlersLabel.Location = new System.Drawing.Point(235, 9);
-            this.AvailableHandlersLabel.Name = "AvailableHandlersLabel";
-            this.AvailableHandlersLabel.Size = new System.Drawing.Size(96, 13);
-            this.AvailableHandlersLabel.TabIndex = 2;
-            this.AvailableHandlersLabel.Text = "Available handlers:";
-            // 
-            // AvailableHandlersTreeView
-            // 
-            this.AvailableHandlersTreeView.AllowDrop = true;
-            this.AvailableHandlersTreeView.HideSelection = false;
-            this.AvailableHandlersTreeView.Location = new System.Drawing.Point(238, 25);
-            this.AvailableHandlersTreeView.Name = "AvailableHandlersTreeView";
-            this.AvailableHandlersTreeView.Size = new System.Drawing.Size(220, 434);
-            this.AvailableHandlersTreeView.TabIndex = 3;
-            // 
-            // ConfigHandlerButton
-            // 
-            this.ConfigHandlerButton.Location = new System.Drawing.Point(12, 494);
-            this.ConfigHandlerButton.Name = "ConfigHandlerButton";
-            this.ConfigHandlerButton.Size = new System.Drawing.Size(107, 23);
-            this.ConfigHandlerButton.TabIndex = 4;
-            this.ConfigHandlerButton.Text = "Config handler...";
-            this.ConfigHandlerButton.UseVisualStyleBackColor = true;
-            this.ConfigHandlerButton.Click += new System.EventHandler(this.ConfigButtonClick);
-            // 
-            // ConfigFiltersButton
-            // 
-            this.ConfigFiltersButton.Location = new System.Drawing.Point(125, 494);
-            this.ConfigFiltersButton.Name = "ConfigFiltersButton";
-            this.ConfigFiltersButton.Size = new System.Drawing.Size(107, 23);
-            this.ConfigFiltersButton.TabIndex = 5;
-            this.ConfigFiltersButton.Text = "Config filters...";
-            this.ConfigFiltersButton.UseVisualStyleBackColor = true;
-            this.ConfigFiltersButton.Click += new System.EventHandler(this.ConfigFiltersButtonClick);
-            // 
-            // LoadButton
-            // 
-            this.LoadButton.Location = new System.Drawing.Point(238, 465);
-            this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(107, 23);
-            this.LoadButton.TabIndex = 6;
-            this.LoadButton.Text = "Load...";
-            this.LoadButton.UseVisualStyleBackColor = true;
-            this.LoadButton.Click += new System.EventHandler(this.LoadButtonClick);
-            // 
-            // SaveAsButton
-            // 
-            this.SaveAsButton.Location = new System.Drawing.Point(351, 465);
-            this.SaveAsButton.Name = "SaveAsButton";
-            this.SaveAsButton.Size = new System.Drawing.Size(107, 23);
-            this.SaveAsButton.TabIndex = 7;
-            this.SaveAsButton.Text = "Save as...";
-            this.SaveAsButton.UseVisualStyleBackColor = true;
-            this.SaveAsButton.Click += new System.EventHandler(this.SaveAsButtonClick);
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(238, 494);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(107, 23);
-            this.SaveButton.TabIndex = 8;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButtonClick);
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.Location = new System.Drawing.Point(351, 494);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(107, 23);
-            this.ExitButton.TabIndex = 9;
-            this.ExitButton.Text = "Exit";
-            this.ExitButton.UseVisualStyleBackColor = true;
-            this.ExitButton.Click += new System.EventHandler(this.ExitButtonClick);
+            this.treeViewEntries.AllowDrop = true;
+            this.treeViewEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeViewEntries.HideSelection = false;
+            this.treeViewEntries.Location = new System.Drawing.Point(12, 62);
+            this.treeViewEntries.Name = "treeViewEntries";
+            this.treeViewEntries.Size = new System.Drawing.Size(516, 500);
+            this.treeViewEntries.TabIndex = 0;
+            this.treeViewEntries.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseClick);
+            this.treeViewEntries.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewEntries_NodeMouseDoubleClick);
             // 
             // OpenConfigFileDialog
             // 
@@ -149,49 +71,137 @@
             // 
             this.SaveConfigFileDialog.Filter = "Xml-Dateien|*.xml|Alle Dateien|*.*";
             // 
-            // AddHandlerButton
+            // MenuStrip
             // 
-            this.AddHandlerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddHandlerButton.Location = new System.Drawing.Point(12, 465);
-            this.AddHandlerButton.Name = "AddHandlerButton";
-            this.AddHandlerButton.Size = new System.Drawing.Size(107, 23);
-            this.AddHandlerButton.TabIndex = 10;
-            this.AddHandlerButton.Text = "Add handler";
-            this.AddHandlerButton.UseVisualStyleBackColor = true;
-            this.AddHandlerButton.Click += new System.EventHandler(this.AddHandlerButtonClick);
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(540, 24);
+            this.MenuStrip.TabIndex = 12;
+            this.MenuStrip.Text = "menuStrip1";
             // 
-            // RemoveHandlerButton
+            // fileToolStripMenuItem
             // 
-            this.RemoveHandlerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoveHandlerButton.Location = new System.Drawing.Point(125, 465);
-            this.RemoveHandlerButton.Name = "RemoveHandlerButton";
-            this.RemoveHandlerButton.Size = new System.Drawing.Size(107, 23);
-            this.RemoveHandlerButton.TabIndex = 11;
-            this.RemoveHandlerButton.Text = "Remove handler";
-            this.RemoveHandlerButton.UseVisualStyleBackColor = true;
-            this.RemoveHandlerButton.Click += new System.EventHandler(this.RemoveHandlerButtonClick);
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.LoadButtonClick);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Enabled = false;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveButtonClick);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Enabled = false;
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.saveAsToolStripMenuItem.Text = "Save as...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsButtonClick);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(190, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitButtonClick);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSearch.Location = new System.Drawing.Point(12, 27);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(407, 20);
+            this.textBoxSearch.TabIndex = 13;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
+            // buttonNewEntry
+            // 
+            this.buttonNewEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonNewEntry.Location = new System.Drawing.Point(425, 25);
+            this.buttonNewEntry.Name = "buttonNewEntry";
+            this.buttonNewEntry.Size = new System.Drawing.Size(103, 23);
+            this.buttonNewEntry.TabIndex = 14;
+            this.buttonNewEntry.Text = "New";
+            this.buttonNewEntry.UseVisualStyleBackColor = true;
+            this.buttonNewEntry.Click += new System.EventHandler(this.buttonNewEntry_Click);
+            // 
+            // treeViewNodeContextMenu
+            // 
+            this.treeViewNodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.treeViewNodeContextMenu.Name = "contextMenuStrip";
+            this.treeViewNodeContextMenu.Size = new System.Drawing.Size(118, 48);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 529);
-            this.Controls.Add(this.RemoveHandlerButton);
-            this.Controls.Add(this.AddHandlerButton);
-            this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.SaveAsButton);
-            this.Controls.Add(this.LoadButton);
-            this.Controls.Add(this.ConfigFiltersButton);
-            this.Controls.Add(this.ConfigHandlerButton);
-            this.Controls.Add(this.AvailableHandlersTreeView);
-            this.Controls.Add(this.AvailableHandlersLabel);
-            this.Controls.Add(this.ConfigurationLabel);
-            this.Controls.Add(this.ConfigurationTreeView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.ClientSize = new System.Drawing.Size(540, 574);
+            this.Controls.Add(this.buttonNewEntry);
+            this.Controls.Add(this.textBoxSearch);
+            this.Controls.Add(this.treeViewEntries);
+            this.Controls.Add(this.MenuStrip);
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "GETA";
             this.Load += new System.EventHandler(this.MainFormLoad);
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
+            this.treeViewNodeContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,21 +209,22 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView ConfigurationTreeView;
-        private System.Windows.Forms.Label ConfigurationLabel;
-        private System.Windows.Forms.Label AvailableHandlersLabel;
-        private System.Windows.Forms.TreeView AvailableHandlersTreeView;
-        private System.Windows.Forms.Button ConfigHandlerButton;
-        private System.Windows.Forms.Button ConfigFiltersButton;
-        private System.Windows.Forms.Button LoadButton;
-        private System.Windows.Forms.Button SaveAsButton;
-        private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.TreeView treeViewEntries;
         private System.Windows.Forms.OpenFileDialog OpenConfigFileDialog;
         private System.Windows.Forms.SaveFileDialog SaveConfigFileDialog;
-        private System.Windows.Forms.Button AddHandlerButton;
-        private System.Windows.Forms.Button RemoveHandlerButton;
-
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button buttonNewEntry;
+        private System.Windows.Forms.ContextMenuStrip treeViewNodeContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     }
 }
 

@@ -78,6 +78,9 @@
     <Compile Include="Impl\Agents\GenericDeliveryAgent.cs" />
     <Compile Include="Impl\Agents\GenericRoutingAgent.cs" />
     <Compile Include="Impl\Agents\GenericSmtpReceiveAgent.cs" />
+    <Compile Include="Impl\Extensions\AgentConfigExtensions.cs" />
+    <Compile Include="Impl\Extensions\OldNetExtensions.cs" />
+    <Compile Include="Impl\Extensions\TransportAgentExtensions.cs" />
     <Compile Include="Impl\Config\Agents\DeliveryAgentConfig.cs" />
     <Compile Include="Impl\Config\Agents\RoutingAgentConfig.cs" />
     <Compile Include="Impl\Config\Agents\SmtpReceiveAgentConfig.cs" />

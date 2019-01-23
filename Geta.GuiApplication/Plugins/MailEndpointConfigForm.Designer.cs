@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class MailEndpointConfigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -216,7 +216,7 @@
             this.Controls.Add(this.TextBoxEndpointAddress);
             this.Controls.Add(this.LabelEndpointAddress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
+            this.Name = "MailEndpointConfigForm";
             this.Text = "MailEndpointHandler configuration";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);

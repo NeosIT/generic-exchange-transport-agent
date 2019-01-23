@@ -8,7 +8,7 @@ using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class ExecutableHandlerHandlerTests : OptionsHandlerTestBase<ExecutableHandler>
+    public class ExecutableHandlerHandlerTests : HandlerTestBase<ExecutableHandler>
     {
         [SetUp]
         public void TestFixtureSetUp()

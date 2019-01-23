@@ -1,6 +1,6 @@
-﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.Impl.Forms
+﻿namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Plugins
 {
-    partial class ConfigForm
+    partial class TwitterNotificationConfigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -140,8 +140,8 @@
             this.Controls.Add(this.AccessTokenTextBox);
             this.Controls.Add(this.AccessTokenLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigForm";
-            this.Text = "ConfigForm";
+            this.Name = "TwitterNotificationConfigForm";
+            this.Text = "TwitterNotification";
             this.Load += new System.EventHandler(this.ConfigFormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();

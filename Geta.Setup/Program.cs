@@ -26,6 +26,11 @@ namespace Geta.Setup
         private const string BackgroundImagePath = @"Images\MSI BG.png";
         private const string BannerImagePath = null;
 
+        /// <summary>
+        /// Gets the name of the parent directory. i.e. bin/2010/App.exe => 2010
+        /// </summary>
+        public static string Configuration => new FileInfo(typeof(Program).Assembly.Location).Directory?.Name;
+
         public static void Main()
         {
             Compiler.WixLocation = Path.GetFullPath(@"..\packages\WixSharp.wix.bin.3.11.0\tools\bin");
@@ -86,7 +91,7 @@ namespace Geta.Setup
 
         private static File[] GetApplicationFiles()
         {
-            return new DirectoryInfo(@"..\Geta.GuiApplication\bin\Release").GetFiles()
+            return new DirectoryInfo($@"..\Geta.GuiApplication\bin\{Configuration}").GetFiles()
                 .Select(x =>
                 {
                     

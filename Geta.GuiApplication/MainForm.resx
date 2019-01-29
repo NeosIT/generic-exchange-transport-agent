@@ -122,7 +122,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="openToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+O</value>
+    <value>Control+O</value>
   </data>
   <data name="&gt;&gt;treeViewEntries.Parent" xml:space="preserve">
     <value>$this</value>
@@ -196,7 +196,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="saveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+S</value>
+    <value>Control+S</value>
   </data>
   <data name="saveToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -232,7 +232,7 @@
     <value>0</value>
   </data>
   <data name="saveAsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+S</value>
+    <value>Control+Shift+S</value>
   </data>
   <data name="OpenConfigFileDialog.Filter" xml:space="preserve">
     <value>Xml-Files|*.xml|All Files|*.*</value>
@@ -343,7 +343,7 @@
     <value>14</value>
   </data>
   <data name="newToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+N</value>
+    <value>Control+N</value>
   </data>
   <data name="&gt;&gt;saveToolStripMenuItem.Name" xml:space="preserve">
     <value>saveToolStripMenuItem</value>

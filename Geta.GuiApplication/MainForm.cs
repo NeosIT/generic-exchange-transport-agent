@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -9,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml;
 using JetBrains.Annotations;
-using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
@@ -117,7 +116,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveAsButtonClick(object sender, EventArgs e)
         {
-            SaveConfigFileDialog.FileName = string.IsNullOrWhiteSpace(_configFilename) ? "config.xml" : _configFilename;
+            SaveConfigFileDialog.FileName = _configFilename.IsNullOrWhiteSpace() ? "config.xml" : _configFilename;
             if (DialogResult.OK == SaveConfigFileDialog.ShowDialog())
             {
                 SaveConfig(SaveConfigFileDialog.FileName);
@@ -126,7 +125,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_configFilename))
+            if (_configFilename.IsNullOrWhiteSpace())
             {
                 SaveAsButtonClick(sender, e);
             }
@@ -409,7 +408,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private static void TryHighlightNode(TreeNode node, string text)
         {
             var color = default(Color);
-            if (string.IsNullOrWhiteSpace(text))
+            if (text.IsNullOrWhiteSpace())
             {
                 color = NotHighlightedColor;
             }

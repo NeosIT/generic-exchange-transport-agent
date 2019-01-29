@@ -17,8 +17,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Exte
                 typeof(Form).IsAssignableFrom(x) && x.GetInterfaces().Any(i =>
                     i.IsGenericType &&
                     i.GetGenericTypeDefinition() == typeof(IGenericConfigForm<>) &&
-                    i.GenericTypeArguments.Length == 1 &&
-                    i.GenericTypeArguments[0] == genericType
+                    i.GetGenericArguments().Length == 1 &&
+                    i.GetGenericArguments()[0] == genericType
                 )
             );
         }

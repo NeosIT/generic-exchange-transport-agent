@@ -9,32 +9,19 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DisclaimerHandler</RootNamespace>
     <AssemblyName>Geta.Plugins.DisclaimerHandler</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('2007|2010', '$(Configuration)'))">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

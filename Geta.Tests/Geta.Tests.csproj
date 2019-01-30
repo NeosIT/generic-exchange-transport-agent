@@ -94,7 +94,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{bbea07c8-5924-4a67-8a03-9e6459a66e68}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>
     <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\Geta.Plugins.DisclaimerHandler.csproj">
       <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>

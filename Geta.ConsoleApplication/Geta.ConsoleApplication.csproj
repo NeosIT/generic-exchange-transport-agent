@@ -28,7 +28,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('2007|2010', '$(Configuration)'))">
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '2010'))">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -46,7 +46,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Geta\Geta.csproj">
       <Project>{BBEA07C8-5924-4A67-8A03-9E6459A66E68}</Project>
-      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common</Name>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent</Name>
     </ProjectReference>
     <ProjectReference Include="..\Geta.Plugins.DisclaimerHandler\Geta.Plugins.DisclaimerHandler.csproj">
       <Project>{0b8b0a99-cd43-46cd-bf2c-a317441e1f24}</Project>

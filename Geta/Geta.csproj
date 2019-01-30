@@ -13,9 +13,17 @@
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('2007|2010', '$(Configuration)'))">
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '2010'))">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
+  <ItemGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '201(3 SP1|6)'))">
+    <Reference Include="Microsoft.Exchange.Net">
+      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Common.IL">
+      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Common.IL.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>

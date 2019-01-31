@@ -3,7 +3,7 @@ library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
 
-def	pipeline = [
+def	pipelineConfiguration = [
 	config: [
 		project: "${projectName}-build",
 		debug: true,
@@ -14,12 +14,12 @@ def	pipeline = [
 	]
 ]
 
-def workflow = workflow.createFromPipelineConfiguration(pipeline)
+def workflow = workflow.createFromPipelineConfiguration(pipelineConfiguration)
 workflow.context.config["type"] = ".NET binary build"
 def msBuildConfiguration = msBuildConfiguration.create(workflow.context)
 
 pipeline {
-	node {
+	agent {
 		label 'dotnet'
 	}
 	
@@ -44,7 +44,7 @@ pipeline {
 		stage('Compile') {
 			steps {
 				script {
-					bat "\"${msBuildConfiguration.bin}\" Geta.sln /r:True"
+					bat "powershell -File build.ps1 -BuildTarget 2013 -ExchangeLibraryPath c:\\exchange-libs\\2013"
 				}
 			}
 		}

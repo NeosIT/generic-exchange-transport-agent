@@ -5,7 +5,8 @@ param(
   [String]$Culture="en",
   [String]$BuildTarget="2016 RTM",
   [String]$SlnPath="Geta.sln",
-  [String]$LogLevel="minimal" # https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference
+  [String]$LogLevel="minimal", # https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference
+  [String]$ExchangeLibraryPath="c:\exchange-libs\2016"
 )
 
 # Constants
@@ -19,11 +20,11 @@ $cultureInfo = [System.Globalization.CultureInfo]::GetCultureInfo($Culture)
 if ($Culture -eq $null) { throw "CultureInfo " + $Culture + " not found" }
 
 # validate build target
-$exchangeVersions = Get-ChildItem -Path "libs" -Filter "Exchange*"
+$exchangeVersions = Get-ChildItem -Path $ExchangeLibraryPath -Filter "Exchange*"
 $exchangeFolders = $exchangeVersions | Where-Object {$_ -match $exchangeVersionRegex}
 $regexMatch = $exchangeFolders | Where-Object {$_ -match $BuildTarget + "$"}
 if ($regexMatch.Length -eq 0){
-  throw "You don't have the libraries for the build target: $buildTarget"
+  throw "You don't have the libraries for the build target: $(BuildTarget)"
 } elseif($regexMatch.Length -gt 1) {
   throw "There where found multiple exchange versions for target $(BuildTarget) => $regexMatch"
 }

@@ -40,6 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ColorTag.cs" />
+    <Compile Include="Controls\ITaggedChild.cs" />
+    <Compile Include="Controls\ITaggedParent.cs" />
+    <Compile Include="Controls\TaggedLeaf.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TaggedNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TaggedTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FilterForm.cs">
       <SubType>Form</SubType>
     </Compile>

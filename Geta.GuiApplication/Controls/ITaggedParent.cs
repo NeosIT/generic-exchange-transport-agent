@@ -10,9 +10,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         Control AsControl { get; }
 
         void ChildSelected(ITaggedChild child);
-        int IndexOf(Control child);
-        void InsertAt(Control insert, int index);
-        void RemoveChild(Control child);
+        int IndexOf(ITaggedChild child);
+        void InsertAt(ITaggedChild insert, int index);
+        void RemoveChild(ITaggedChild child);
         void ReplaceChildAt(int index, ITaggedChild insert);
     }
 }

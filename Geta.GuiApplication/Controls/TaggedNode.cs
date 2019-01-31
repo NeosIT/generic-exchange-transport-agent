@@ -220,25 +220,25 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             Parent.ChildSelected(child);
         }
 
-        public int IndexOf(Control child)
+        public int IndexOf(ITaggedChild child)
         {
-            return _content.Controls.IndexOf(child);
+            return _content.Controls.IndexOf(child.AsControl);
         }
 
-        public void InsertAt(Control insert, int index)
+        public void InsertAt(ITaggedChild insert, int index)
         {
             //SuspendLayout();
             var content = _content.Controls;
-            content.Add(insert);
-            content.SetChildIndex(insert, index);
+            content.Add(insert.AsControl);
+            content.SetChildIndex(insert.AsControl, index);
             //ResumeLayout(true);
         }
 
-        public void RemoveChild(Control child)
+        public void RemoveChild(ITaggedChild child)
         {
             SuspendLayout();
             var content = _content.Controls;
-            content.Remove(child);
+            content.Remove(child.AsControl);
             if (content.Count > 1)
             {
                 Highlight(true);

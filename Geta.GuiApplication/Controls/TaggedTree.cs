@@ -70,23 +70,23 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             //child.Highlight(true);
         }
 
-        public int IndexOf(Control child)
+        public int IndexOf(ITaggedChild child)
         {
-            return Controls.IndexOf(child);
+            return Controls.IndexOf(child.AsControl);
         }
 
-        public void InsertAt(Control insert, int index)
+        public void InsertAt(ITaggedChild insert, int index)
         {
             SuspendLayout();
             var content = Controls;
-            content.Add(insert);
-            content.SetChildIndex(insert, index);
+            content.Add(insert.AsControl);
+            content.SetChildIndex(insert.AsControl, index);
             ResumeLayout(true);
         }
 
-        public void RemoveChild(Control child)
+        public void RemoveChild(ITaggedChild child)
         {
-            Controls.Remove(child);
+            Controls.Remove(child.AsControl);
         }
 
         public void ReplaceChildAt(int at, ITaggedChild replacement)

@@ -3,7 +3,7 @@
 
 param(
   [String]$Culture="en",
-  [String]$BuildTarget="2016 CU1",
+  [String]$BuildTarget="2016 RTM",
   [String]$SlnPath="Geta.sln",
   [String]$LogLevel="minimal" # https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference
 )

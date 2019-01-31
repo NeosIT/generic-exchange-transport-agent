@@ -37,7 +37,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			this.labelEvent = new System.Windows.Forms.Label();
 			this.labelHandler = new System.Windows.Forms.Label();
 			this.buttonConfigure = new System.Windows.Forms.Button();
-            this.filters = new Controls.TaggedTree();
+			this.filters = new NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls.TaggedTree();
+			this.query = new System.Windows.Forms.TextBox();
+			this.buttonAnd = new System.Windows.Forms.Button();
+			this.buttonOr = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// comboBoxEvent
@@ -79,19 +82,45 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			this.buttonConfigure.Name = "buttonConfigure";
 			this.buttonConfigure.UseVisualStyleBackColor = true;
 			this.buttonConfigure.Click += new System.EventHandler(this.buttonConfigure_Click);
-            //
-            // filters
-            //
-            this.filters.Location = new System.Drawing.Point(12, 66);
-            this.filters.Size = new System.Drawing.Size(546, 122);
-            this.filters.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 			// 
-			// EntryForm
+			// filters
 			// 
-			resources.ApplyResources(this, "$this");
+			resources.ApplyResources(this.filters, "filters");
+			this.filters.BackColor = System.Drawing.Color.White;
+			this.filters.Name = "filters";
+			// 
+			// query
+			// 
+			resources.ApplyResources(this.query, "query");
+			this.query.Name = "query";
+			// 
+			// buttonAnd
+			// 
+			resources.ApplyResources(this.buttonAnd, "buttonAnd");
+			this.buttonAnd.Name = "buttonAnd";
+			this.buttonAnd.UseVisualStyleBackColor = true;
+            this.buttonAnd.BackColor = System.Drawing.Color.FromArgb(0x80, 0x40, 0xFF);
+            this.buttonAnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAnd.FlatAppearance.BorderSize = 0;
+            // 
+            // buttonOr
+            // 
+            resources.ApplyResources(this.buttonOr, "buttonOr");
+			this.buttonOr.Name = "buttonOr";
+			this.buttonOr.UseVisualStyleBackColor = true;
+            this.buttonOr.BackColor = System.Drawing.Color.FromArgb(0xFF, 0x80, 0x40);
+            this.buttonOr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOr.FlatAppearance.BorderSize = 0;
+            // 
+            // EntryForm
+            // 
+            resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.filters);
-            this.Controls.Add(this.buttonConfigure);
+			this.Controls.Add(this.filters);
+			this.Controls.Add(this.buttonAnd);
+			this.Controls.Add(this.buttonOr);
+			this.Controls.Add(this.query);
+			this.Controls.Add(this.buttonConfigure);
 			this.Controls.Add(this.labelHandler);
 			this.Controls.Add(this.labelEvent);
 			this.Controls.Add(this.buttonSave);
@@ -114,6 +143,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private System.Windows.Forms.Label labelHandler;
         private System.Windows.Forms.Button buttonConfigure;
         private Controls.TaggedTree filters;
+        private System.Windows.Forms.TextBox query;
+        private System.Windows.Forms.Button buttonAnd;
+        private System.Windows.Forms.Button buttonOr;
     }
 }
 

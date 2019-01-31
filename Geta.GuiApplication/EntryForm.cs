@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using JetBrains.Annotations;
+using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Extensions;
@@ -19,6 +20,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private Type _currentHandlerFormType;
         private IHandler _currentHandler;
 
+        private readonly ColorTag _andTag;
+        private readonly ColorTag _orTag;
+
         public EntryForm(MainForm mainForm, List<IAgentConfig> agentConfigs, Entry entry = null)
         {
             _mainForm = mainForm;
@@ -28,6 +32,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 
             _handlerTypes = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes();
             _initialEntry = entry;
+
+            _andTag = new ColorTag("AND", 0x8040FF);
+            _orTag = new ColorTag("OR", 0xFF8040);
+            buttonAnd.BackColor = _andTag.Color;
+            buttonOr.BackColor = _orTag.Color;
         }
 
         #region EventHandlers

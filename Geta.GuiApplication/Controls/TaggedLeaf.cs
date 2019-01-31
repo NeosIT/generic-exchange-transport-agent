@@ -140,8 +140,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 
         private void OnClick(object sender, EventArgs e)
         {
-            Parent.RemoveChild(this);
-            //Highlight(true);
+            //Parent.RemoveChild(this);
+            Highlight(true);
         }
 
         public override string ToString()

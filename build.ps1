@@ -24,9 +24,9 @@ $exchangeVersions = Get-ChildItem -Path $ExchangeLibraryPath -Filter "Exchange*"
 $exchangeFolders = $exchangeVersions | Where-Object {$_ -match $exchangeVersionRegex}
 $regexMatch = $exchangeFolders | Where-Object {$_ -match $BuildTarget + "$"}
 if ($regexMatch.Length -eq 0){
-  throw "You don't have the libraries for the build target: $(BuildTarget)"
+  throw "You don't have the libraries for the build target: $BuildTarget"
 } elseif($regexMatch.Length -gt 1) {
-  throw "There where found multiple exchange versions for target $(BuildTarget) => $regexMatch"
+  throw "There where found multiple exchange versions for target $BuildTarget => $regexMatch"
 }
 
 

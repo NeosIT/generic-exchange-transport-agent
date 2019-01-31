@@ -1,5 +1,16 @@
 NeosIT Generic Exchange Transport Agent
 =============================================
+
+## How to build
+
+- Create a directory c:\exchange-libs
+- For each Exchange version to compile against, create a directory *c:\exchange-libs\Exchange ${VERSION}*, e.g. *c:\exchange-libs\Exchange 2013*
+- Copy all DLLs from the *\Bin* directory of your Exchange installation to the created directory
+- Run
+
+	powershell -File build.ps1 -BuildTarget ${VERSION} -ExchangeLibraryPath c:\\exchange-libs
+
+## Features
 It is possible to extend the default behavior of Microsoft Exchange Server 2007/2010 on occuring events by writing so-called "Transport Agents", e.g. extract all attachments of an incoming E-Mail sent by a specified address (let's say "alice@example.com") or with a specified subject (just a very basic example).
 
 In order to do so, you need to write your own Transport Agent (derived from either DeliveryAgent, RoutingAgent or SmtpReceiveAgent), implement your desired logic as an event handler and write an AgentFactory (derived from either DeliveryAgentFactory<Manager>, RoutingAgentFactory or SmtpReceiveAgentFactory) returning your new Transport Agent. Finally you need to register and enable this Transport Agent (or better: its Factory) in your Exchange Server.

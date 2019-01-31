@@ -44,7 +44,7 @@ pipeline {
 		stage('Compile') {
 			steps {
 				script {
-					bat "powershell -File build.ps1 -BuildTarget 2013 -ExchangeLibraryPath c:\\exchange-libs\\2013"
+					bat "powershell -File build.ps1 -BuildTarget 2013 -ExchangeLibraryPath c:\\exchange-libs"
 				}
 			}
 		}

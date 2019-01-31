@@ -117,37 +117,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="comboBoxEvent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="comboBoxEvent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 12</value>
+  </data>
+  <data name="comboBoxEvent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>472, 21</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="comboBoxEvent.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;comboBoxEvent.Name" xml:space="preserve">
+    <value>comboBoxEvent</value>
+  </data>
+  <data name="&gt;&gt;comboBoxEvent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;comboBoxEvent.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonPlaceholderFilters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 122</value>
+  <data name="&gt;&gt;comboBoxEvent.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;buttonSave.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="comboBoxHandler.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="comboBoxHandler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 39</value>
+  </data>
+  <data name="comboBoxHandler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 21</value>
+  </data>
+  <data name="comboBoxHandler.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBoxHandler.Name" xml:space="preserve">
+    <value>comboBoxHandler</value>
   </data>
   <data name="&gt;&gt;comboBoxHandler.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="comboBoxEvent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 12</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonConfigure.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="comboBoxHandler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>472, 21</value>
-  </data>
-  <data name="&gt;&gt;buttonPlaceholderFilters.Parent" xml:space="preserve">
+  <data name="&gt;&gt;comboBoxHandler.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="buttonPlaceholderFilters.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <data name="&gt;&gt;comboBoxHandler.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="buttonSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -155,173 +174,127 @@
   <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
     <value>463, 194</value>
   </data>
-  <data name="&gt;&gt;comboBoxEvent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="buttonPlaceholderFilters.Text" xml:space="preserve">
-    <value>Placeholder Filter</value>
-  </data>
-  <data name="labelHandler.Text" xml:space="preserve">
-    <value>Handler</value>
-  </data>
-  <data name="comboBoxEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>472, 21</value>
-  </data>
-  <data name="&gt;&gt;comboBoxHandler.Name" xml:space="preserve">
-    <value>comboBoxHandler</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
   <data name="buttonSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="labelEvent.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comboBoxEvent.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;buttonConfigure.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonConfigure.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBoxHandler.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="buttonPlaceholderFilters.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;labelEvent.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;labelHandler.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonSave.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonConfigure.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="labelEvent.Text" xml:space="preserve">
-    <value>Event</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonPlaceholderFilters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="buttonConfigure.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 194</value>
-  </data>
-  <data name="&gt;&gt;buttonPlaceholderFilters.Name" xml:space="preserve">
-    <value>buttonPlaceholderFilters</value>
-  </data>
-  <data name="labelEvent.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;buttonSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelEvent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 15</value>
-  </data>
-  <data name="labelHandler.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buttonConfigure.Text" xml:space="preserve">
-    <value>Configure</value>
-  </data>
-  <data name="comboBoxEvent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelHandler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="&gt;&gt;labelEvent.Name" xml:space="preserve">
-    <value>labelEvent</value>
   </data>
   <data name="buttonSave.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="comboBoxHandler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 39</value>
-  </data>
-  <data name="&gt;&gt;buttonPlaceholderFilters.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comboBoxHandler.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="labelHandler.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>GETA - </value>
+  <data name="buttonSave.Text" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="&gt;&gt;buttonSave.Name" xml:space="preserve">
     <value>buttonSave</value>
   </data>
-  <data name="&gt;&gt;buttonConfigure.Parent" xml:space="preserve">
+  <data name="&gt;&gt;buttonSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSave.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="buttonSave.Text" xml:space="preserve">
-    <value>Save</value>
+  <data name="&gt;&gt;buttonSave.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="labelHandler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 42</value>
+  <data name="labelEvent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;comboBoxEvent.Name" xml:space="preserve">
-    <value>comboBoxEvent</value>
-  </data>
-  <data name="&gt;&gt;labelHandler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="comboBoxHandler.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelEvent.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;buttonConfigure.Name" xml:space="preserve">
-    <value>buttonConfigure</value>
-  </data>
-  <data name="buttonConfigure.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 23</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>570, 228</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>EntryForm</value>
-  </data>
-  <data name="&gt;&gt;labelHandler.Name" xml:space="preserve">
-    <value>labelHandler</value>
+  <data name="labelEvent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 15</value>
   </data>
   <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
   </data>
-  <data name="&gt;&gt;labelHandler.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="labelEvent.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;comboBoxEvent.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="labelEvent.Text" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="&gt;&gt;labelEvent.Name" xml:space="preserve">
+    <value>labelEvent</value>
   </data>
   <data name="&gt;&gt;labelEvent.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="buttonPlaceholderFilters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 66</value>
+  <data name="&gt;&gt;labelEvent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelEvent.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labelHandler.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelHandler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 42</value>
+  </data>
+  <data name="labelHandler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
+  <data name="labelHandler.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="labelHandler.Text" xml:space="preserve">
+    <value>Handler</value>
+  </data>
+  <data name="&gt;&gt;labelHandler.Name" xml:space="preserve">
+    <value>labelHandler</value>
+  </data>
+  <data name="&gt;&gt;labelHandler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelHandler.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelHandler.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonConfigure.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonConfigure.Location" type="System.Drawing.Point, System.Drawing">
+    <value>465, 38</value>
+  </data>
+  <data name="buttonConfigure.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="buttonConfigure.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 23</value>
+  </data>
+  <data name="buttonConfigure.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="buttonConfigure.Text" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="&gt;&gt;buttonConfigure.Name" xml:space="preserve">
+    <value>buttonConfigure</value>
+  </data>
+  <data name="&gt;&gt;buttonConfigure.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonConfigure.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonConfigure.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>570, 228</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>GETA - </value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>EntryForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

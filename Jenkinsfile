@@ -15,7 +15,7 @@ def	pipeline = [
 ]
 
 def workflow = workflow.createFromPipelineConfiguration(pipeline)
-workflow.context.config["type"] ".NET binary build"
+workflow.context.config["type"] = ".NET binary build"
 def msBuildConfiguration = msBuildConfiguration.create(workflow.context)
 
 pipeline {

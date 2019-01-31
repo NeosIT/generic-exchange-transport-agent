@@ -33,8 +33,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _handlerTypes = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes();
             _initialEntry = entry;
 
-            _andTag = new ColorTag("AND", 0x8040FF);
-            _orTag = new ColorTag("OR", 0xFF8040);
+            _andTag = new ColorTag("AND", 0xE56262);
+            _orTag = new ColorTag("OR", 0x6E9AC1);
+            //_xorTag = new Controls.ColorTag("XOR", 0x8EBA48);//B360C1
             buttonAnd.BackColor = _andTag.Color;
             buttonOr.BackColor = _orTag.Color;
         }
@@ -62,6 +63,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private void buttonSave_Click(object sender, EventArgs e) => SaveAndHide();
 
         private void buttonConfigure_Click(object sender, EventArgs e) => ConfigureHandler();
+
+        private void buttonAnd_Click(object sender, EventArgs e) => AddFilter(_andTag);
+
+        private void buttonOr_Click(object sender, EventArgs e) => AddFilter(_orTag);
 
         #endregion
 
@@ -236,6 +241,14 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _currentHandlerFormType = AppDomain.CurrentDomain.GetAssemblies().GetGenericForm(CurrentHandlerType);
 
             buttonConfigure.Enabled = _currentHandlerFormType != null;
+        }
+
+        private void AddFilter(ColorTag tag)
+        {
+            string text = query.Text;
+            query.Text = string.Empty;
+            filters.AddAtSelection(text, tag);
+
         }
 
         #endregion

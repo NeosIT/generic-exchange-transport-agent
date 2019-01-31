@@ -97,24 +97,26 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			// buttonAnd
 			// 
 			resources.ApplyResources(this.buttonAnd, "buttonAnd");
+			this.buttonAnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+			this.buttonAnd.FlatAppearance.BorderSize = 0;
+			this.buttonAnd.ForeColor = System.Drawing.Color.White;
 			this.buttonAnd.Name = "buttonAnd";
-			this.buttonAnd.UseVisualStyleBackColor = true;
-            this.buttonAnd.BackColor = System.Drawing.Color.FromArgb(0x80, 0x40, 0xFF);
-            this.buttonAnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAnd.FlatAppearance.BorderSize = 0;
-            // 
-            // buttonOr
-            // 
-            resources.ApplyResources(this.buttonOr, "buttonOr");
+			this.buttonAnd.UseVisualStyleBackColor = false;
+			this.buttonAnd.Click += new System.EventHandler(this.buttonAnd_Click);
+			// 
+			// buttonOr
+			// 
+			resources.ApplyResources(this.buttonOr, "buttonOr");
+			this.buttonOr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(154)))), ((int)(((byte)(193)))));
+			this.buttonOr.FlatAppearance.BorderSize = 0;
+			this.buttonOr.ForeColor = System.Drawing.Color.White;
 			this.buttonOr.Name = "buttonOr";
-			this.buttonOr.UseVisualStyleBackColor = true;
-            this.buttonOr.BackColor = System.Drawing.Color.FromArgb(0xFF, 0x80, 0x40);
-            this.buttonOr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOr.FlatAppearance.BorderSize = 0;
-            // 
-            // EntryForm
-            // 
-            resources.ApplyResources(this, "$this");
+			this.buttonOr.UseVisualStyleBackColor = false;
+			this.buttonOr.Click += new System.EventHandler(this.buttonOr_Click);
+			// 
+			// EntryForm
+			// 
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.filters);
 			this.Controls.Add(this.buttonAnd);

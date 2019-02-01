@@ -33,7 +33,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _handlerTypes = AppDomain.CurrentDomain.GetAssemblies().GetHandlerTypes();
             _initialEntry = entry;
 
-            _andTag = new ColorTag("AND", 0xE56262);
+            _andTag = new ColorTag("AND", 0x90b763/*E56262*/);
             _orTag = new ColorTag("OR", 0x6E9AC1);
             //_xorTag = new Controls.ColorTag("XOR", 0x8EBA48);//B360C1
             buttonAnd.BackColor = _andTag.Color;

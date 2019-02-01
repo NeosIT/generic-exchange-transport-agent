@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Enums;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 {
     public class FilterCondition : IPayload
     {
-        private string _text;
-
-        public string DisplayText => _text;
+        public string DisplayText => Text;
+        public string Text { get; }
+        public FilterKeyEnum FilterOn { get; }
+        public FilterOperatorEnum Operation { get; }
 
         public FilterCondition(string text)
         {
-            _text = text;
+            Text = text;
         }
     }
 }

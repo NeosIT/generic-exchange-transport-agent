@@ -41,6 +41,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			this.query = new System.Windows.Forms.TextBox();
 			this.buttonAnd = new System.Windows.Forms.Button();
 			this.buttonOr = new System.Windows.Forms.Button();
+			this.keySelector = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// comboBoxEvent
@@ -92,6 +93,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			// query
 			// 
 			resources.ApplyResources(this.query, "query");
+			this.query.BackColor = System.Drawing.Color.White;
 			this.query.Name = "query";
 			// 
 			// buttonAnd
@@ -114,10 +116,20 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			this.buttonOr.UseVisualStyleBackColor = false;
 			this.buttonOr.Click += new System.EventHandler(this.buttonOr_Click);
 			// 
+			// keySelector
+			// 
+			resources.ApplyResources(this.keySelector, "keySelector");
+			this.keySelector.BackColor = System.Drawing.SystemColors.Window;
+			this.keySelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.keySelector.FormattingEnabled = true;
+			this.keySelector.Name = "keySelector";
+			// 
 			// EntryForm
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.keySelector);
+			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.filters);
 			this.Controls.Add(this.buttonAnd);
 			this.Controls.Add(this.buttonOr);
@@ -125,7 +137,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
 			this.Controls.Add(this.buttonConfigure);
 			this.Controls.Add(this.labelHandler);
 			this.Controls.Add(this.labelEvent);
-			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.comboBoxHandler);
 			this.Controls.Add(this.comboBoxEvent);
 			this.Icon = global::NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Properties.Resources.Icon;
@@ -148,6 +159,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private System.Windows.Forms.TextBox query;
         private System.Windows.Forms.Button buttonAnd;
         private System.Windows.Forms.Button buttonOr;
+        private System.Windows.Forms.ComboBox keySelector;
     }
 }
 

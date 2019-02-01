@@ -123,10 +123,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="comboBoxEvent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 12</value>
+    <value>69, 12</value>
   </data>
   <data name="comboBoxEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 21</value>
+    <value>253, 21</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="comboBoxEvent.TabIndex" type="System.Int32, mscorlib">
@@ -142,16 +142,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBoxEvent.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="comboBoxHandler.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="comboBoxHandler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 39</value>
+    <value>69, 39</value>
   </data>
   <data name="comboBoxHandler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 21</value>
+    <value>174, 21</value>
   </data>
   <data name="comboBoxHandler.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -166,13 +166,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBoxHandler.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="buttonSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 428</value>
+    <value>248, 423</value>
   </data>
   <data name="buttonSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -193,7 +193,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSave.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>1</value>
   </data>
   <data name="labelEvent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelEvent.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="labelHandler.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -247,19 +247,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelHandler.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="buttonConfigure.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="buttonConfigure.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 38</value>
+    <value>248, 38</value>
   </data>
   <data name="buttonConfigure.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="buttonConfigure.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 23</value>
+    <value>75, 23</value>
   </data>
   <data name="buttonConfigure.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonConfigure.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="filters.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -298,7 +298,7 @@
     <value>0, 0, 2, 0</value>
   </data>
   <data name="filters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 355</value>
+    <value>310, 325</value>
   </data>
   <data name="filters.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -316,16 +316,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;filters.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="query.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
   <data name="query.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 430</value>
+    <value>71, 396</value>
+  </data>
+  <data name="query.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 3, 2, 3</value>
   </data>
   <data name="query.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 20</value>
+    <value>154, 20</value>
   </data>
   <data name="query.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -340,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;query.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="buttonAnd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -352,10 +355,13 @@
     <value>Arial, 11.25pt, style=Bold</value>
   </data>
   <data name="buttonAnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 428</value>
+    <value>227, 394</value>
+  </data>
+  <data name="buttonAnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 3, 0, 3</value>
   </data>
   <data name="buttonAnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
+    <value>47, 23</value>
   </data>
   <data name="buttonAnd.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -373,7 +379,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonAnd.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="buttonOr.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -385,10 +391,13 @@
     <value>Arial, 11.25pt, style=Bold</value>
   </data>
   <data name="buttonOr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 428</value>
+    <value>274, 394</value>
+  </data>
+  <data name="buttonOr.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 3, 3, 3</value>
   </data>
   <data name="buttonOr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
+    <value>48, 23</value>
   </data>
   <data name="buttonOr.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -406,7 +415,37 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonOr.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
+  </data>
+  <data name="keySelector.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="keySelector.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="keySelector.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 396</value>
+  </data>
+  <data name="keySelector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 0, 3</value>
+  </data>
+  <data name="keySelector.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 21</value>
+  </data>
+  <data name="keySelector.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;keySelector.Name" xml:space="preserve">
+    <value>keySelector</value>
+  </data>
+  <data name="&gt;&gt;keySelector.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;keySelector.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;keySelector.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -415,7 +454,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>384, 461</value>
+    <value>334, 448</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>GETA - </value>

@@ -47,7 +47,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         }
 
 
-        public void AddAtSelection(string entry, ColorTag tag)
+        public void AddAtSelection(IPayload entry, ColorTag tag)
         {
             SuspendLayout();
             var leaf = new TaggedLeaf(this, entry);

@@ -247,8 +247,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         {
             string text = query.Text;
             query.Text = string.Empty;
-            filters.AddAtSelection(text, tag);
-
+            filters.AddAtSelection(new FilterCondition(text), tag);
         }
 
         #endregion

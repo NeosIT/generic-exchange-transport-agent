@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ColorTag.cs" />
+    <Compile Include="Controls\IPayload.cs" />
     <Compile Include="Controls\ITaggedChild.cs" />
     <Compile Include="Controls\ITaggedParent.cs" />
     <Compile Include="Controls\TaggedLeaf.cs">
@@ -52,6 +53,7 @@
     <Compile Include="Controls\TaggedTree.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FilterCondition.cs" />
     <Compile Include="FilterForm.cs">
       <SubType>Form</SubType>
     </Compile>

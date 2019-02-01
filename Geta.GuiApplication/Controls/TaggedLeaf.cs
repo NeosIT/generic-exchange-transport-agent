@@ -6,7 +6,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 {
     public class TaggedLeaf : Panel, ITaggedChild
     {
-        private static readonly Color HighlightColor = Color.FromArgb(unchecked((int)0xffbababa));
+        private static readonly Color HighlightColor = Color.FromArgb(unchecked((int)0xffdadada));
         private static int count = 0;
         private int _count;
 
@@ -14,6 +14,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         private Label _text;
         private Button _deleteButton;
 
+        public IPayload Payload { get; }
         public Control AsControl => this;
         public bool ScrollOnFocus => true;
         public ITaggedParent Parent
@@ -26,9 +27,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             }
         }
 
-        public TaggedLeaf(ITaggedParent parent, string text)
+        public TaggedLeaf(ITaggedParent parent, IPayload payload)
         {
             _count = count++;
+            Payload = payload ?? throw new ArgumentNullException(nameof(payload));
 
             SuspendLayout();
             AutoScroll = false;
@@ -46,7 +48,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             _deleteButton.SuspendLayout();
 
             _text.Name = "Condition";
-            _text.Text = text ?? throw new ArgumentNullException(nameof(text));
+            _text.Text = payload.DisplayText;
             _text.TextAlign = ContentAlignment.MiddleLeft;
             _text.AutoEllipsis = true;
             _text.BorderStyle = BorderStyle.None;

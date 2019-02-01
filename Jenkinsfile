@@ -61,6 +61,22 @@ pipeline {
 				}
 			}
 		}
+		
+		stage('Deliver artifacts to shop') {
+			steps {
+				script {
+					workflow.deliveryStage.run()
+				}
+			}
+		}
+
+		stage('Collect delivered artifacts (local archiving, Spinnaker properties)') {
+			steps {
+				script {
+					workflow.archiveStage.run()
+				}
+			}
+		}
 	}
 	
 	post {

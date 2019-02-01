@@ -15,7 +15,10 @@ def	pipelineConfiguration = [
 		delivery: [
 			files: [
 				"**/*.msi": [
-					archive: true,
+					archive: [
+						enabled: true,
+						mustExist: true
+					],
 					spinnaker: [
 						type: "windows/msi",
 						name: "${projectName}",

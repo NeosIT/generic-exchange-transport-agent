@@ -6,12 +6,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 {
     public class TaggedLeaf : Panel, ITaggedChild
     {
+        private static readonly Color HighlightColor = Color.FromArgb(unchecked((int)0xffbababa));
         private static int count = 0;
         private int _count;
 
         private ITaggedParent _parent;
         private Label _text;
-        private Panel _overlay;
+        private Button _deleteButton;
 
         public Control AsControl => this;
         public ITaggedParent Parent
@@ -39,8 +40,8 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 
             _text = new Label();
             _text.SuspendLayout();
-            _overlay = new Panel();
-            _overlay.SuspendLayout();
+            _deleteButton = new Button();
+            _deleteButton.SuspendLayout();
 
             _text.Name = "Condition";
             _text.Text = text ?? throw new ArgumentNullException(nameof(text));
@@ -54,27 +55,39 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             _text.Margin = new Padding(0);
             _text.Padding = new Padding(0);
             _text.Size = new Size(92, 21);
-            _text.MinimumSize = new Size(25, 21);
+            _text.MinimumSize = new Size(50, 21);
             _text.MaximumSize = new Size(0, 0);
             _text.BackColor = Color.White;
             _text.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             //SharedToolTip.SetToolTip(_text, tag.Label);
             _text.Click += OnClick;
 
-            _overlay.Name = "Overlay";
-            _overlay.TabIndex = 1;
-            _overlay.Dock = DockStyle.Fill;
-            _overlay.Margin = new Padding(0);
-            _overlay.Padding = new Padding(0);
-            _overlay.Size = new Size(92, 21);
-            _overlay.MinimumSize = new Size(0, 21);
-            _overlay.MaximumSize = new Size(0, 25);
+            _deleteButton.Name = "Delete";
+            _deleteButton.Text = "❌";
+            _deleteButton.TextAlign = ContentAlignment.TopCenter;
+            _deleteButton.Font = new Font("Arial", 7.2f, FontStyle.Bold);
+            _deleteButton.TabIndex = 1;
+            _deleteButton.Anchor = AnchorStyles.Right;
+            _deleteButton.Location = new Point(70 ,1);
+            _deleteButton.Margin = new Padding(0);
+            _deleteButton.Padding = new Padding(1, 0, 0, 0);
+            _deleteButton.MinimumSize = new Size(21, 21);
+            _deleteButton.MaximumSize = new Size(21, 21);
+            _deleteButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+            _deleteButton.FlatStyle = FlatStyle.Flat;
+            _deleteButton.FlatAppearance.BorderColor = Color.Black;
+            _deleteButton.FlatAppearance.BorderSize = 0;
+            _deleteButton.ForeColor = Color.Red;
+            _deleteButton.UseVisualStyleBackColor = false;
+            _deleteButton.Click += OnDelete;
+            _deleteButton.MouseEnter += HoverButton;
+            _deleteButton.MouseLeave += UnhoverButton;
 
+            _text.Controls.Add(_deleteButton);
             Controls.Add(_text);
-            //Controls.Add(_overlay);
 
+            _deleteButton.ResumeLayout(true);
             _text.ResumeLayout(true);
-            //_overlay.ResumeLayout(true);
             Parent = parent ?? throw new ArgumentNullException(nameof(parent));
             ResumeLayout(true);
         }
@@ -85,7 +98,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             if (selected)
             {
                 Parent.ChildSelected(this);
-                _text.BackColor = Color.FromArgb(unchecked((int)0xffbababa));
+                _text.BackColor = HighlightColor;
                 //_text.ForeColor = Color.FromKnownColor(KnownColor.HighlightText);
             }
             else
@@ -142,6 +155,29 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         {
             //Parent.RemoveChild(this);
             Highlight(true);
+        }
+
+        private void OnDelete(object sender, EventArgs e)
+        {
+            Parent.RemoveChild(this);
+        }
+
+        private void HoverButton(object sender, EventArgs e)
+        {
+            _deleteButton.BackColor = _text.BackColor;
+            var location = _deleteButton.Location;
+            location.Y = 1;
+            _deleteButton.Location = location;
+            _deleteButton.FlatAppearance.BorderSize = 1;
+        }
+
+        private void UnhoverButton(object sender, EventArgs e)
+        {
+            _deleteButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+            var location = _deleteButton.Location;
+            location.Y = 2;
+            _deleteButton.Location = location;
+            _deleteButton.FlatAppearance.BorderSize = 0;
         }
 
         public override string ToString()

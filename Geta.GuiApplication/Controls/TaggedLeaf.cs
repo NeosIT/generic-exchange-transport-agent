@@ -15,6 +15,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         private Button _deleteButton;
 
         public Control AsControl => this;
+        public bool ScrollOnFocus => true;
         public ITaggedParent Parent
         {
             get => _parent;
@@ -31,6 +32,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 
             SuspendLayout();
             AutoScroll = false;
+            AutoScrollOffset = new Point(0, -25);
             Anchor = AnchorStyles.Left | AnchorStyles.Right;
             Margin = new Padding(0);
             Padding = new Padding(2, 1, 2, 1);
@@ -46,6 +48,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             _text.Name = "Condition";
             _text.Text = text ?? throw new ArgumentNullException(nameof(text));
             _text.TextAlign = ContentAlignment.MiddleLeft;
+            _text.AutoEllipsis = true;
             _text.BorderStyle = BorderStyle.None;
             _text.Cursor = Cursors.Default;
             _text.AutoSize = false;
@@ -117,8 +120,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
                 neighbour.Parent = Parent;
                 int index = Parent.IndexOf(this);
                 Parent.InsertAt(neighbour, index + 1);
-                //Highlight(false);
-                neighbour.Highlight(true);
             }
             else
             {
@@ -126,12 +127,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
                 //node.SuspendLayout();
                 int index = Parent.IndexOf(this);
                 Parent.ReplaceChildAt(index, node);
-                //Highlight(false);
                 Parent = node;
                 node.AddNeighbour(this, tag);
                 neighbour.Parent = node;
                 node.AddNeighbour(neighbour, tag);
-                node.Highlight(true);
                 //node.ResumeLayout(true);
             }
         }
@@ -159,7 +158,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
 
         private void OnDelete(object sender, EventArgs e)
         {
+            Parent.Freeze();
             Parent.RemoveChild(this);
+            Parent.Unfreeze();
         }
 
         private void HoverButton(object sender, EventArgs e)

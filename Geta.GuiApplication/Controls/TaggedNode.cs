@@ -18,6 +18,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         public ColorTag TagInfo { get; }
         public int AvailableSpace => _content.ClientSize.Width - _content.Padding.Horizontal;
         public Control AsControl => this;
+        public bool ScrollOnFocus => false;
         public ITaggedParent Parent
         {
             get => _parent;
@@ -218,6 +219,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         public void ChildSelected(ITaggedChild child)
         {
             Parent.ChildSelected(child);
+        }
+
+        public void Freeze()
+        {
+            Parent.Freeze();
+        }
+
+        public void Unfreeze()
+        {
+            Parent.Unfreeze();
         }
 
         public int IndexOf(ITaggedChild child)

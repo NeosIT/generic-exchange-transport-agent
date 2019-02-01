@@ -5,6 +5,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
     public interface ITaggedChild
     {
         Control AsControl { get; }
+        bool ScrollOnFocus { get; }
         ITaggedParent Parent { get; set; }
 
         void Highlight(bool selected);

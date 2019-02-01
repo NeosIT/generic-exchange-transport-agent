@@ -10,6 +10,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         private int _count;
         private ITaggedChild _selected;
         private int _oldWidth;
+        private int _scoll;
 
         public ToolTip SharedToolTip { get; }
         public ColorTag TagInfo => null;
@@ -35,6 +36,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             HorizontalScroll.Visible = false;
             HorizontalScroll.Enabled = false;
             VerticalScroll.Visible = false;
+            HScroll = false;
             AutoScroll = true;
 
             SharedToolTip = new ToolTip
@@ -48,18 +50,17 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         public void AddAtSelection(string entry, ColorTag tag)
         {
             SuspendLayout();
+            var leaf = new TaggedLeaf(this, entry);
             if (_selected == null || Controls.Count == 0)
             {
-                var leaf = new TaggedLeaf(this, entry);
                 Controls.Add(leaf);
-                leaf.Highlight(true);
             }
             else
             {
-                var leaf = new TaggedLeaf(this, entry);
                 _selected.AddNeighbour(leaf, tag);
             }
             ResumeLayout();
+            leaf.Highlight(true);
         }
 
         public void ChildSelected(ITaggedChild child)
@@ -67,7 +68,24 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
             if (child == null || child == _selected) return;
             _selected?.Highlight(false);
             _selected = child;
+            if (child.ScrollOnFocus)
+                ScrollControlIntoView(child.AsControl);
             //child.Highlight(true);
+        }
+
+        public void Freeze()
+        {
+            _scoll = VerticalScroll.Value;
+            SuspendLayout();
+        }
+
+        public void Unfreeze()
+        {
+            if (VerticalScroll.Maximum < _scoll)
+                VerticalScroll.Value = VerticalScroll.Maximum;
+            else
+                VerticalScroll.Value = _scoll;
+            ResumeLayout(true);
         }
 
         public int IndexOf(ITaggedChild child)
@@ -92,10 +110,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Controls
         public void ReplaceChildAt(int at, ITaggedChild replacement)
         {
             //SuspendLayout();
+            var scroll = VerticalScroll.Value;
             var content = Controls;
             content.RemoveAt(at);
             replacement.AppendTo(this, at);
             replacement.Highlight(true);
+            VerticalScroll.Value = scroll;
             //ResumeLayout(true);
         }
 

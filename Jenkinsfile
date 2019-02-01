@@ -2,6 +2,7 @@
 library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
+def version = "${ENV.BUILD_ID}"
 
 def	pipelineConfiguration = [
 	config: [
@@ -19,7 +20,7 @@ def	pipelineConfiguration = [
 						type: "windows/msi",
 						name: "${projectName}",
 						reference: "${projectName}.msi",
-						version: "1.0.0"
+						version: "${version}"
 					]
 				],
 			]
@@ -62,7 +63,7 @@ pipeline {
 			}
 		}
 		
-		stage('Deliver artifacts to shop') {
+		stage('Deliver artifacts to WooCommerce shop') {
 			steps {
 				script {
 					workflow.deliveryStage.run()
@@ -76,7 +77,7 @@ pipeline {
 					workflow.archiveStage.run()
 				}
 			}
-		}
+		}		
 	}
 	
 	post {

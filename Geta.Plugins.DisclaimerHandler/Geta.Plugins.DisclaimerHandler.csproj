@@ -22,7 +22,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

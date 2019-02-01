@@ -6,11 +6,11 @@ param(
   [String]$BuildTarget="2016 RTM",
   [String]$SlnPath="Geta.sln",
   [String]$LogLevel="minimal", # https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference
-  [String]$ExchangeLibraryPath="c:\exchange-libs\2016"
+  [String]$ExchangeLibrariesPath="c:\exchange-libs"
 )
 
 # Constants
-$exchangeVersionRegex = "Exchange (([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
+$exchangeVersionRegex = "(([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
 $vswhereDirProp = "productPath: "
 $vswhere = "$env:ProgramFiles (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
 
@@ -20,19 +20,20 @@ $cultureInfo = [System.Globalization.CultureInfo]::GetCultureInfo($Culture)
 if ($Culture -eq $null) { throw "CultureInfo " + $Culture + " not found" }
 
 # validate build target
-$exchangeVersions = Get-ChildItem -Path $ExchangeLibraryPath -Filter "Exchange*"
+$exchangeVersions = Get-ChildItem -Path $ExchangeLibrariesPath
 $exchangeFolders = $exchangeVersions | Where-Object {$_ -match $exchangeVersionRegex}
 $regexMatch = $exchangeFolders | Where-Object {$_ -match $BuildTarget + "$"}
+
+$useLibraryPath = "$ExchangeLibrariesPath\$BuildTarget"
+
 if ($regexMatch.Length -eq 0){
-  throw "You don't have the libraries for the build target: $BuildTarget"
+  throw "You don't have the libraries for the build target: $BuildTarget. Please make sure that the directory $useLibraryPath does exist."
 } elseif($regexMatch.Length -gt 1) {
   throw "There where found multiple exchange versions for target $BuildTarget => $regexMatch"
 }
 
-
 $vsDir = Split-Path -Parent (& $vswhere | Select-String -Pattern $vswhereDirProp).Line.TrimStart($vswhereDirProp)
 $msbuildExe = (Resolve-Path -Path ([io.path]::combine($vsDir, '..', '..', 'MSBuild', '15.0', 'Bin', 'MSBuild.exe').ToString())).Path
-
 
 $currentThread = [System.Threading.Thread]::CurrentThread
 $currentThread.CurrentCulture = $cultureInfo
@@ -46,7 +47,7 @@ if(-Not (Test-Path nuget.exe)){
 .\nuget.exe restore
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""")
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 & $msbuildExe $msbuildArgs "/t:build" $SlnPath

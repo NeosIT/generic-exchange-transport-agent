@@ -19,15 +19,15 @@
   </PropertyGroup>
   <ItemGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '201(3 SP1|6)'))">
     <Reference Include="Microsoft.Exchange.Net">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Net.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Common.IL">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Common.IL.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Common.IL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>

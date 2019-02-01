@@ -3,12 +3,13 @@ NeosIT Generic Exchange Transport Agent
 
 ## How to build
 
+- .NET SDK >= 4.7.2 must be installed on build system, e.g. from https://dotnet.microsoft.com/download/thank-you/net472-developer-pack
 - Create a directory c:\exchange-libs
-- For each Exchange version to compile against, create a directory *c:\exchange-libs\Exchange ${VERSION}*, e.g. *c:\exchange-libs\Exchange 2013*
+- For each Exchange version to compile against, create a directory *c:\exchange-libs\${EXCHANGE_VERSION}*, e.g. *c:\exchange-libs\2013*
 - Copy all DLLs from the *\Bin* directory of your Exchange installation to the created directory
 - Run
 
-	powershell -File build.ps1 -BuildTarget ${VERSION} -ExchangeLibraryPath c:\\exchange-libs
+	powershell -File build.ps1 -BuildTarget ${EXCHANGE_VERSION} -ExchangeLibrariesPath c:\exchange-libs
 
 ## Features
 It is possible to extend the default behavior of Microsoft Exchange Server 2007/2010 on occuring events by writing so-called "Transport Agents", e.g. extract all attachments of an incoming E-Mail sent by a specified address (let's say "alice@example.com") or with a specified subject (just a very basic example).

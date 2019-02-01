@@ -5,6 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -20,10 +21,10 @@
       <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

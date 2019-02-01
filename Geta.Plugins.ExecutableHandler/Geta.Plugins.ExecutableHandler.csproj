@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{3395CD93-59E3-453A-8806-49F4DEF9E3B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>

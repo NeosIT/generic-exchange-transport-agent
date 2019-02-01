@@ -6,7 +6,7 @@ param(
   [String]$BuildTarget="2016 RTM",
   [String]$SlnPath="Geta.sln",
   [String]$LogLevel="minimal", # https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference
-  [String]$ExchangeLibrariesPath="c:\exchange-libs"
+  [String]$ExchangeLibrariesPath="c:\exchange-libs",
 )
 
 # Constants

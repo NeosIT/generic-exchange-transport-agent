@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{0B8B0A99-CD43-46CD-BF2C-A317441E1F24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -21,7 +22,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

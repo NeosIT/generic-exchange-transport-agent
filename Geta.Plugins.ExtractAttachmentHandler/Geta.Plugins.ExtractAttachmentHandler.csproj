@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{085E66F6-6806-456E-A33C-5ED32D636EE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,15 +19,15 @@
   </PropertyGroup>
   <ItemGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '201(3 SP1|6)'))">
     <Reference Include="Microsoft.Exchange.Net">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Net.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Common.IL">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Common.IL.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Common.IL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>

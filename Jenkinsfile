@@ -3,7 +3,7 @@ library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
 def version = dateUtil.timestamp()
-
+	
 def	pipelineConfiguration = [
 	config: [
 		project: "${projectName}-build",
@@ -14,7 +14,7 @@ def	pipelineConfiguration = [
 		],
 		delivery: [
 			files: [
-				"*.msi": [
+				"**/*.msi": [
 					archive: true,
 					spinnaker: [
 						type: "windows/msi",

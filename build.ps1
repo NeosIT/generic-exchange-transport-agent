@@ -26,10 +26,16 @@ $regexMatch = $exchangeFolders | Where-Object {$_ -match $BuildTarget + "$"}
 
 $useLibraryPath = "$ExchangeLibrariesPath\$BuildTarget"
 
-if ($regexMatch.Length -eq 0){
-  throw "You don't have the libraries for the build target: $BuildTarget. Please make sure that the directory $useLibraryPath does exist."
-} elseif($regexMatch.Length -gt 1) {
-  throw "There where found multiple exchange versions for target $BuildTarget => $regexMatch"
+try {
+	if ($regexMatch.Length -eq 0){
+	  throw "You don't have the libraries for the build target: $BuildTarget. Please make sure that the directory $useLibraryPath does exist."
+	} elseif($regexMatch.Length -gt 1) {
+	  throw "There where found multiple exchange versions for target $BuildTarget => $regexMatch"
+	}
+} 
+catch {
+	Write-Error $_.Exception.Message
+	exit 1
 }
 
 $vsDir = Split-Path -Parent (& $vswhere | Select-String -Pattern $vswhereDirProp).Line.TrimStart($vswhereDirProp)
@@ -46,8 +52,25 @@ if(-Not (Test-Path nuget.exe)){
 # restore
 .\nuget.exe restore
 
+$useExitCode = 0
+
+if ($LastExitCode > 0) {
+	exit $LastExitCode
+}
+
 # clean and build with msbuild
 $msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
+
+if ($LastExitCode > 0) {
+	exit $LastExitCode
+}
+
 & $msbuildExe $msbuildArgs "/t:build" $SlnPath
+
+if ($LastExitCode > 0 ) {
+	exit $LastExitCode
+}
+
+exit 0

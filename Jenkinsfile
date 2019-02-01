@@ -2,7 +2,7 @@
 library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
-def version = "${ENV.BUILD_ID}"
+def version = dateUtil.timestamp()
 
 def	pipelineConfiguration = [
 	config: [

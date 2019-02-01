@@ -11,6 +11,19 @@ def	pipelineConfiguration = [
 		rocketChat: [
 			channel: "kubedemo"
 		],
+		delivery: [
+			files: [
+				"*.msi": [
+					archive: true,
+					spinnaker: [
+						type: "windows/msi",
+						name: "${projectName}",
+						reference: "${projectName}.msi",
+						version: "1.0.0"
+					]
+				],
+			]
+		]
 	]
 ]
 
@@ -69,10 +82,12 @@ pipeline {
 			}
 		}
 
+		/*
 		cleanup {
 			script {
 				cleanWs()
 			}
 		}
+		*/
 	}
 }

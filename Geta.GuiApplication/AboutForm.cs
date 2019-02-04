@@ -28,9 +28,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             _pluginHost = pluginHost;
 
             var assembly = typeof(IAgentConfig).Assembly;
-            _version = assembly.GetName().Version;
-            _build = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
-            _revision = FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
+            _version = assembly.GetName().Version; // AssemblyVersion
+            _build = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version; // AssemblyFileVersion
+            _revision = FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion; // AssemblyFileInformationVersion
         }
 
         private void AboutForm_Deactivate(object sender, EventArgs e)
@@ -52,7 +52,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 .Distinct()
                 .Select(x => $"{x.GetName().Name} @ {x.GetName().Version}")
                 .ToList();
-//            var pluginNames = new[] { ""};
 
             var txt = $@"Generic Exchange Transport Agent @ {_version}
 Build: {_build}

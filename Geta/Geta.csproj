@@ -5,6 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeVersion Condition="'$(ExchangeVersion)' == '' ">2016 RTM</ExchangeVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <ProjectGuid>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -12,7 +13,7 @@
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent</RootNamespace>
     <AssemblyName>Geta</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <OutputPath>bin\$(ExchangeVersion)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '2010'))">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -56,10 +57,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>

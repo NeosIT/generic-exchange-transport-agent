@@ -5,6 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeVersion Condition="'$(ExchangeVersion)' == '' ">2016 RTM</ExchangeVersion>
     <ProjectGuid>{3EFCF61F-A6BB-4EB3-B73B-A72B0CF044F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -19,10 +20,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.2-unstable-9037\lib\net35\Ninject.dll</HintPath>

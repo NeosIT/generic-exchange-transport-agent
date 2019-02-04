@@ -9,7 +9,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl
 {
     public class PluginHost : IPluginHost
     {
-        private CompositionContainer _container;
+        public CompositionContainer Container { get; private set; }
 
         [ImportMany(typeof(IHandler), AllowRecomposition = true)]
         public IEnumerable<IHandler> Handlers { get; set; }
@@ -63,13 +63,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Impl
             var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(path, "*.dll"));
 
-            _container = new CompositionContainer(catalog);
-            _container.ComposeParts(this);
+            Container = new CompositionContainer(catalog);
+            Container.ComposeParts(this);
         }
 
         public void Dispose()
         {
-            _container?.Dispose();
+            Container?.Dispose();
         }
     }
 }

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition.ReflectionModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
+using System.ComponentModel.Composition.ReflectionModel;
+using System.Diagnostics;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
@@ -51,7 +46,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
                 .Select(x => ReflectionModelServices.GetPartType(x).Value.Assembly)
                 .Distinct()
                 .Select(x => $"{x.GetName().Name} @ {x.GetName().Version}")
-                .ToList();
+                .ToArray();
 
             var txt = $@"Generic Exchange Transport Agent @ {_version}
 Build: {_build}

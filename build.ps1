@@ -45,7 +45,7 @@ if(-Not (Test-Path nuget.exe)){
 .\nuget.exe restore
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""")
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:ExchangeVersion=""$BuildTarget""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 & $msbuildExe $msbuildArgs "/t:build" $SlnPath

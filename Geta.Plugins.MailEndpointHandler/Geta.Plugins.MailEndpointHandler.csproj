@@ -2,30 +2,48 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
-    <ExchangeVersion Condition="'$(ExchangeVersion)' == '' ">2016 RTM</ExchangeVersion>
     <ProjectGuid>{3985924B-6C1D-4C9E-99FE-3835F53CA6E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler</RootNamespace>
     <AssemblyName>Geta.Plugins.MailEndpointHandler</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>
-    <OutputPath>bin\$(ExchangeVersion)\</OutputPath>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(ExchangeVersion)', '2010'))">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010|AnyCPU'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputPath>bin\2010\</OutputPath>
+    <DefineConstants>EXCHANGE_2010;NET35</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
+    <OutputPath>bin\2016 RTM\</OutputPath>
+    <DefineConstants>EXCHANGE_2016_RTM</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="$(Configuration) == '2010'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange $(ExchangeVersion)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="$(Configuration) == '2016 RTM'">
+    <Reference Include="Microsoft.Exchange.Data.Common">
+      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport">
+      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.2-unstable-9\lib\net35\Ninject.dll</HintPath>
     </Reference>
@@ -33,7 +51,6 @@
       <HintPath>..\packages\Ninject.Extensions.Logging.3.0.1.0\lib\net35\Ninject.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />

@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml;
 using JetBrains.Annotations;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;

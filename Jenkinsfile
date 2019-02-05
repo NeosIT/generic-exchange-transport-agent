@@ -41,7 +41,7 @@ pipeline {
 	}
 	
 	parameters {
-		choice(name: 'BUILD_TARGET', choices('2010', '2016 RTM'), defaultValue: '2010', description: "Which Exchange version to use as build target, defaults to 2010")
+		choice(name: 'BUILD_TARGET', choices: ['2010', '2016 RTM'], defaultValue: '2010', description: "Which Exchange version to use as build target, defaults to 2010")
 	}
 	
 	stages {

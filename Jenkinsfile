@@ -93,7 +93,11 @@ pipeline {
 					
 					for (buildTarget in buildTargets) {
 						builds["${buildTarget}"] = {
-							node {
+							agent {
+								label 'dotnet'
+							}
+							
+							stages {
 								stage("Build target ${buildTarget}") {
 									bat "powershell -File build.ps1 -BuildTarget ${params.BUILD_TARGET} -ExchangeLibrariesPath c:\\exchange-libs"
 								}

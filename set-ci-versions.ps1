@@ -5,8 +5,8 @@ param(
 
 $assemblyInfos = Get-ChildItem -Filter "AssemblyInfo.cs" -Recurse | ForEach-Object {$_.FullName}
 
-$fileVersionRegex = [System.Text.RegularExpressions.Regex]::new('^\[assembly: AssemblyFileVersion\("(\d+)"\)\]$')
-$informationalVersionRegex = [System.Text.RegularExpressions.Regex]::new('^\[assembly: AssemblyInformationalVersion\("(\d\w+)"\)\]$')
+$fileVersionRegex = New-Object -TypeName System.Text.RegularExpressions.Regex -ArgumentList '^\[assembly: AssemblyFileVersion\("(\d+)"\)\]$'
+$informationalVersionRegex = New-Object -TypeName System.Text.RegularExpressions.Regex -ArgumentList '^\[assembly: AssemblyInformationalVersion\("([\d\w]+)"\)\]$'
 
 foreach ($file in $assemblyInfos) {
   $lines = Get-Content -Encoding UTF8 $file
@@ -28,5 +28,5 @@ foreach ($file in $assemblyInfos) {
     }
   }
   $txt = $outLines | Out-String
-  Set-Content -Encoding UTF8 -Path $file -Value $txt
+  Set-Content -Encoding UTF8 -Path $file -Value $txt -NoNewline
 }

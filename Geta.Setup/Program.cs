@@ -89,7 +89,7 @@ namespace Geta.Setup
 
             project.Load += ProjectOnBeforeInstall;
 
-            Compiler.BuildMsi(project, $"{AppName}.msi");
+            Compiler.BuildMsi(project, Path.Combine("bin", Configuration, $"{AppName}.msi"));
         }
 
         private static File[] GetApplicationFiles()

@@ -104,9 +104,9 @@ pipeline {
 							}
 							
 							stage("Build target ${buildTarget}") {
-								bat "powershell -File build.ps1 -BuildTarget \"${params.BUILD_TARGET}\" -ExchangeLibrariesPath c:\\exchange-libs"
+								bat "powershell -File build.ps1 -BuildTarget \"${buildTarget}\" -ExchangeLibrariesPath c:\\exchange-libs"
 							}
-						}
+						 }
 					}
 					
 					// execute each build target in parallel

@@ -93,7 +93,7 @@ pipeline {
 					
 					for (buildTarget in buildTargets) {
 						builds["${buildTarget}"] = {
-							agent {
+							node {
 								label 'dotnet'
 							}
 							

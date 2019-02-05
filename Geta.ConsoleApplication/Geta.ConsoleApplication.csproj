@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{06EA279A-FF8F-47DE-A57D-CF49B1B14261}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>

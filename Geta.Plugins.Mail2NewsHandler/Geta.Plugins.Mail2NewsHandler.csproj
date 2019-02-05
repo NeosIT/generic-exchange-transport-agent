@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{3EC2FC1A-D509-41D8-9949-B7F511C4E46C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -25,10 +25,10 @@
   </PropertyGroup>
   <ItemGroup Condition="$(Configuration) == '2010'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
@@ -36,10 +36,10 @@
   </ItemGroup>
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>

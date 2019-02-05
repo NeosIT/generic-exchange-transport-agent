@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition="$(Configuration) == ''">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ProjectGuid>{085E66F6-6806-456E-A33C-5ED32D636EE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -23,10 +23,10 @@
   </PropertyGroup>
   <ItemGroup Condition="$(Configuration) == '2010'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
@@ -34,13 +34,13 @@
   </ItemGroup>
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Net">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Net.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Common.IL">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Common.IL.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Common.IL.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>

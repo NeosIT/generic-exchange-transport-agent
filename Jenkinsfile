@@ -98,13 +98,16 @@ pipeline {
 					
 					// for each build target we create a new stage with the required build step
 					for (buildTarget in useTargets) {
-						builds["${buildTarget}"] = {
+						def target = buildTarget
+						
+						builds["${target}"] = {
+							
 							node {
 								label 'dotnet'
 							}
 							
-							stage("Build target ${buildTarget}") {
-								bat "powershell -File build.ps1 -BuildTarget \"${buildTarget}\" -ExchangeLibrariesPath c:\\exchange-libs"
+							stage("Build target ${target}") {
+								bat "powershell -File build.ps1 -BuildTarget \"${target}\" -ExchangeLibrariesPath c:\\exchange-libs"
 							}
 						 }
 					}

@@ -28,5 +28,5 @@ foreach ($file in $assemblyInfos) {
     }
   }
   $txt = $outLines | Out-String
-  Set-Content -Encoding UTF8 -Path $file -Value $txt -NoNewline
+  Set-Content -Encoding UTF8 -Path $file -Value $txt
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibrariesPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
     <ExchangeVersion Condition="'$(ExchangeVersion)' == '' ">2016 RTM</ExchangeVersion>
     <ProjectGuid>{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -23,18 +23,18 @@
   </PropertyGroup>
   <ItemGroup Condition="$(Configuration) == '2010'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibrariesPath)\Exchange 2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

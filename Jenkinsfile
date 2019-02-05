@@ -78,25 +78,31 @@ pipeline {
 			}
 		}
 		
-		stage('Compile') {
+		stage('Build') {
 			steps {
 				script {
+					/**
+					 * This steps creates dynamically build stages based upon the given parameters
+					 * @see https://devops.stackexchange.com/a/3090
+					 */
 					def useTargets = []
 					def builds = [:]
 					
 					if (params.ALL_BUILDS) {
+						// in case of ALL_BUILDS is checked, we use all available build targets
 						useTargets = buildTargets
 					}
 					else {
+						// use only the selected build target
 						useTargets += params.BUILD_TARGET
 					}
 					
-					for (buildTarget in buildTargets) {
+					// for each build target we create a new stage with the required build step
+					for (buildTarget in useTargets) {
 						builds["${buildTarget}"] = {
 							node {
 								label 'dotnet'
 							}
-							
 							
 							stage("Build target ${buildTarget}") {
 								bat "powershell -File build.ps1 -BuildTarget \"${params.BUILD_TARGET}\" -ExchangeLibrariesPath c:\\exchange-libs"
@@ -104,6 +110,7 @@ pipeline {
 						}
 					}
 					
+					// execute each build target in parallel
 					parallel builds
 				}
 			}

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">..\libs</ExchangeLibraryPath>
+    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">..\libs\$(Configuration)</ExchangeLibraryPath>
     <ProjectGuid>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -23,10 +23,10 @@
   </PropertyGroup>
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibraryPath)\2016 RTM\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup Condition="$(Configuration) == '2010'">
     <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Common.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibraryPath)\2010\Microsoft.Exchange.Data.Transport.dll</HintPath>
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>

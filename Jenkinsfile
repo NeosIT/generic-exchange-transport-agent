@@ -2,8 +2,9 @@
 library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
-def version = dateUtil.timestamp()
-	
+def useVersion = version.uniqueBuildVersion()
+def useCommitHash = version.shortGitCommitHash()
+
 def	pipelineConfiguration = [
 	config: [
 		project: "${projectName}-build",
@@ -23,7 +24,7 @@ def	pipelineConfiguration = [
 						type: "windows/msi",
 						name: "${projectName}",
 						reference: "${projectName}.msi",
-						version: "${version}"
+						version: "${useVersion}"
 					]
 				],
 			]
@@ -61,6 +62,7 @@ pipeline {
 		stage('Compile') {
 			steps {
 				script {
+					bat "powershell -File set-ci-versions.ps1 -BuildNumber ${useVersion} -Revision ${useCommitHash}"
 					bat "powershell -File build.ps1 -BuildTarget 2013 -ExchangeLibrariesPath c:\\exchange-libs"
 				}
 			}

@@ -10,7 +10,7 @@ param(
 )
 
 # Constants
-$exchangeVersionRegex = "Exchange (([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
+$exchangeVersionRegex = "(([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
 $vswhereDirProp = "productPath: "
 $vswhere = "$env:ProgramFiles (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
 

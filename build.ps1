@@ -10,7 +10,7 @@ param(
 )
 
 # Constants
-$exchangeVersionRegex = "(([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
+$exchangeVersionRegex = "Exchange (([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
 $vswhereDirProp = "productPath: "
 $vswhere = "$env:ProgramFiles (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
 
@@ -27,19 +27,20 @@ $regexMatch = $exchangeFolders | Where-Object {$_ -match $BuildTarget + "$"}
 $useLibraryPath = "$ExchangeLibrariesPath\$BuildTarget"
 
 try {
-	if ($regexMatch.Length -eq 0){
-	  throw "You don't have the libraries for the build target: $BuildTarget. Please make sure that the directory $useLibraryPath does exist."
-	} elseif($regexMatch.Length -gt 1) {
-	  throw "There where found multiple exchange versions for target $BuildTarget => $regexMatch"
-	}
+  if ($regexMatch.Length -eq 0){
+    throw "You don't have the libraries for the build target: $BuildTarget. Please make sure that the directory $useLibraryPath does exist."
+  } elseif($regexMatch.Length -gt 1) {
+    throw "There where found multiple exchange versions for target $(BuildTarget) => $regexMatch"
+  }
 } 
 catch {
-	Write-Error $_.Exception.Message
-	exit 1
+  Write-Error $_.Exception.Message
+  exit 1
 }
 
 $vsDir = Split-Path -Parent (& $vswhere | Select-String -Pattern $vswhereDirProp).Line.TrimStart($vswhereDirProp)
 $msbuildExe = (Resolve-Path -Path ([io.path]::combine($vsDir, '..', '..', 'MSBuild', '15.0', 'Bin', 'MSBuild.exe').ToString())).Path
+
 
 $currentThread = [System.Threading.Thread]::CurrentThread
 $currentThread.CurrentCulture = $cultureInfo
@@ -52,24 +53,25 @@ if(-Not (Test-Path nuget.exe)){
 # restore
 .\nuget.exe restore
 
-$useExitCode = 0
-
 if ($LastExitCode > 0) {
+	# populate error code
 	exit $LastExitCode
 }
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:ExchangeVersion=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath"""))
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 
 if ($LastExitCode > 0) {
+	# populate error code
 	exit $LastExitCode
 }
 
 & $msbuildExe $msbuildArgs "/t:build" $SlnPath
 
 if ($LastExitCode > 0 ) {
+	# populate error code
 	exit $LastExitCode
 }
 

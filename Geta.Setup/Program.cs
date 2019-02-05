@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Deployment.WindowsInstaller;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication;
 using WixSharp;
 using File = WixSharp.File;
@@ -43,7 +44,7 @@ namespace Geta.Setup
                 InstallScope = InstallScope,
                 Platform = Platform.x64,
                 Version = typeof(MainForm).Assembly.GetName().Version,
-                
+
                 ControlPanelInfo = new ProductInfo
                 {
                     ProductIcon = IconPath,
@@ -66,14 +67,16 @@ namespace Geta.Setup
                         IsInstallDir = true,
                         Files = GetApplicationFiles()
                     },
-                    new Dir(StartMenuPath){
-                        Shortcuts = new []
+                    new Dir(StartMenuPath)
+                    {
+                        Shortcuts = new[]
                         {
                             new ExeFileShortcut(AppName, $@"[INSTALL_DIR]\{AppFileName}", "")
                             {
                                 IconFile = IconPath
                             },
-                            new ExeFileShortcut($"Uninstall {AppName}", "[System64Folder]msiexec.exe", "/x [ProductCode]")
+                            new ExeFileShortcut($"Uninstall {AppName}", "[System64Folder]msiexec.exe",
+                                "/x [ProductCode]")
                         }
                     }
                 },
@@ -94,7 +97,6 @@ namespace Geta.Setup
             return new DirectoryInfo($@"..\Geta.GuiApplication\bin\{Configuration}").GetFiles()
                 .Select(x =>
                 {
-                    
                     var file = new File(x.FullName);
                     if (x.Name == AppFileName)
                     {
@@ -114,10 +116,16 @@ namespace Geta.Setup
 
         private static void ProjectOnBeforeInstall(SetupEventArgs e)
         {
-            var exchangeDir = Environment.GetEnvironmentVariable("ExchangeInstallPath", EnvironmentVariableTarget.Machine);
-            if (!string.IsNullOrWhiteSpace(exchangeDir))
+            var exchangeDir =
+                Environment.GetEnvironmentVariable("ExchangeInstallPath", EnvironmentVariableTarget.Machine);
+            if (!exchangeDir.IsNullOrWhiteSpace())
             {
+#if NET35
+                e.Session["INSTALL_DIR"] =
+ string.Join(Path.PathSeparator.ToString(), new []{exchangeDir, "TransportRoles", "agents", AppName});
+#else
                 e.Session["INSTALL_DIR"] = Path.Combine(exchangeDir, "TransportRoles", "agents", AppName);
+#endif
             }
             else
             {

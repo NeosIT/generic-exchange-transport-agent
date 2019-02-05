@@ -97,10 +97,9 @@ pipeline {
 								label 'dotnet'
 							}
 							
-							stages {
-								stage("Build target ${buildTarget}") {
-									bat "powershell -File build.ps1 -BuildTarget ${params.BUILD_TARGET} -ExchangeLibrariesPath c:\\exchange-libs"
-								}
+							
+							stage("Build target ${buildTarget}") {
+								bat "powershell -File build.ps1 -BuildTarget ${params.BUILD_TARGET} -ExchangeLibrariesPath c:\\exchange-libs"
 							}
 						}
 					}

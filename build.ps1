@@ -59,7 +59,7 @@ if ($LastExitCode -gt 0) {
 }
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "/p:Configuration=""$BuildTarget""", "/p:ExchangeLibraryPath=""$useLibraryPath""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 

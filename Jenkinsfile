@@ -40,6 +40,10 @@ pipeline {
 		label 'dotnet'
 	}
 	
+	parameters {
+		choice(name: 'BUILD_TARGET', choices('2010', '2016 RTM'), defaultValue: '2010', description: "Which Exchange version to use as build target, defaults to 2010")
+	}
+	
 	stages {
 		stage('Configure') {
 			steps {
@@ -64,7 +68,7 @@ pipeline {
 					def useCommitHash = version.shortGitCommitHash()
 					
 					bat "powershell -File set-ci-versions.ps1 -BuildNumber ${useVersion} -Revision ${useCommitHash}"
-					bat "powershell -File build.ps1 -BuildTarget 2013 -ExchangeLibrariesPath c:\\exchange-libs"
+					bat "powershell -File build.ps1 -BuildTarget ${params.BUILD_TARGET} -ExchangeLibrariesPath c:\\exchange-libs"
 				}
 			}
 		}

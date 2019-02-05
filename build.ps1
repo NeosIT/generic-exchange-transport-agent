@@ -10,7 +10,7 @@ param(
 )
 
 # Constants
-$exchangeVersionRegex = "Exchange (([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
+$exchangeVersionRegex = "(([\d]{4})( SP[\d])?( CU[\d]+)?( Preview)?)"
 $vswhereDirProp = "productPath: "
 $vswhere = "$env:ProgramFiles (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
 
@@ -59,7 +59,7 @@ if ($LastExitCode > 0) {
 }
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:ExchangeVersion=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath"""))
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:ExchangeVersion=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 

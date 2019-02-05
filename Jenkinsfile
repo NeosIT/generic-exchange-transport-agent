@@ -3,6 +3,7 @@ library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
 def useVersion = version.uniqueBuildVersion()
+def buildTargets = ['2010', '2016 RTM']
 
 def	pipelineConfiguration = [
 	config: [
@@ -34,7 +35,6 @@ def	pipelineConfiguration = [
 def workflow = workflow.createFromPipelineConfiguration(pipelineConfiguration)
 workflow.context.config["type"] = ".NET binary build"
 def msBuildConfiguration = msBuildConfiguration.create(workflow.context)
-def buildTargets = ['2010', '2016 RTM']
 
 pipeline {
 	agent {
@@ -58,7 +58,6 @@ pipeline {
 				}
 			}
 		}
-
 
 		stage('Checkout and import') {
 			steps {

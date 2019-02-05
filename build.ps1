@@ -53,7 +53,7 @@ if(-Not (Test-Path nuget.exe)){
 # restore
 .\nuget.exe restore
 
-if ($LastExitCode > 0) {
+if ($LastExitCode -gt 0) {
 	# populate error code
 	exit $LastExitCode
 }
@@ -63,14 +63,14 @@ $msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:E
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 
-if ($LastExitCode > 0) {
+if ($LastExitCode -gt 0) {
 	# populate error code
 	exit $LastExitCode
 }
 
 & $msbuildExe $msbuildArgs "/t:build" $SlnPath
 
-if ($LastExitCode > 0 ) {
+if ($LastExitCode -gt 0 ) {
 	# populate error code
 	exit $LastExitCode
 }

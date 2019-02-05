@@ -32,7 +32,7 @@ try {
   } elseif($regexMatch.Length -gt 1) {
     throw "There where found multiple exchange versions for target $(BuildTarget) => $regexMatch"
   }
-} 
+}
 catch {
   Write-Error $_.Exception.Message
   exit 1
@@ -59,7 +59,7 @@ if ($LastExitCode -gt 0) {
 }
 
 # clean and build with msbuild
-$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:ExchangeVersion=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
+$msbuildArgs = @("-nologo", "-maxcpucount", "-verbosity:$logLevel", "-property:Configuration=""$BuildTarget""", "-property:ExchangeLibraryPath=""$useLibraryPath""")
 Write-Host "Running msbuild with arguments: $msbuildArgs"
 & $msbuildExe $msbuildArgs "/t:clean" $SlnPath
 

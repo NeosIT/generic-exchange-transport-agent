@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs/$(Configuration)</ExchangeLibraryPath>
     <ProjectGuid>{06EA279A-FF8F-47DE-A57D-CF49B1B14261}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -11,12 +11,15 @@
     <AssemblyName>Geta.ConsoleApplication</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010|x64' ">
-    <OutputPath>bin\2010\</OutputPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|x64' ">
-    <OutputPath>bin\2016\</OutputPath>
+    <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

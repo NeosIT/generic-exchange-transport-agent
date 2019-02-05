@@ -12,6 +12,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010|AnyCPU' ">
+    <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU' ">
+    <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BootstrapperCore, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad">
       <HintPath>..\packages\WixSharp.bin.1.9.3\lib\BootstrapperCore.dll</HintPath>

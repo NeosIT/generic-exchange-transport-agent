@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExchangeLibrariesPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs</ExchangeLibrariesPath>
+    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs/$(Configuration)</ExchangeLibraryPath>
     <ProjectGuid>{96949535-995A-4536-ADBA-F2D60D54B8D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -11,37 +11,31 @@
     <AssemblyName>Geta.Plugins.NoopHandler</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010|AnyCPU'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <OutputPath>bin\2010\</OutputPath>
-    <DefineConstants>EXCHANGE_2010;NET35</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
-    <OutputPath>bin\2016 RTM\</OutputPath>
-    <DefineConstants>EXCHANGE_2016_RTM</DefineConstants>
+    <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
   </PropertyGroup>
   <ItemGroup Condition="$(Configuration) == '2010'">
-    <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.Exchange.Data.Common">
       <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Exchange.Data.Transport">
       <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
     </Reference>

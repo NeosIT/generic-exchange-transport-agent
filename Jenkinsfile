@@ -40,7 +40,7 @@ pipeline {
 	agent {
 		label 'dotnet'
 	}
-	
+
 	parameters {
 		/**
 		 * When a webhook triggers, we can not specifiy which of the build targets have to run.
@@ -49,7 +49,7 @@ pipeline {
 		booleanParam(name: 'ALL_BUILDS', defaultValue: true, description: "Build for all targets")
 		choice(name: 'BUILD_TARGET', choices: buildTargets, description: "Which Exchange version to use as build target, defaults to 2010")
 	}
-	
+
 	stages {
 		stage('Configure') {
 			steps {
@@ -71,12 +71,12 @@ pipeline {
 			steps {
 				script {
 					def useCommitHash = version.shortGitCommitHash()
-					
-					bat "powershell -File set-ci-versions.ps1 -BuildNumber ${useVersion} -Revision ${useCommitHash}"
+
+					bat "powershell -File scripts/set-ci-versions.ps1 -BuildNumber ${useVersion} -Revision ${useCommitHash}"
 				}
 			}
 		}
-		
+
 		stage('Build') {
 			steps {
 				script {
@@ -86,7 +86,7 @@ pipeline {
 					 */
 					def useTargets = []
 					def builds = [:]
-					
+
 					if (params.ALL_BUILDS) {
 						// in case of ALL_BUILDS is checked, we use all available build targets
 						useTargets = buildTargets
@@ -95,29 +95,29 @@ pipeline {
 						// use only the selected build target
 						useTargets += params.BUILD_TARGET
 					}
-					
+
 					// for each build target we create a new stage with the required build step
 					for (buildTarget in useTargets) {
 						def target = buildTarget
-						
+
 						builds["${target}"] = {
-							
+
 							node {
 								label 'dotnet'
 							}
-							
+
 							stage("Build target ${target}") {
-								bat "powershell -File build.ps1 -BuildTarget \"${target}\" -ExchangeLibrariesPath c:\\exchange-libs"
+								bat "powershell -File scripts/build.ps1 -BuildTarget \"${target}\" -ExchangeLibrariesPath c:\\exchange-libs"
 							}
 						 }
 					}
-					
+
 					// execute each build target in parallel
 					parallel builds
 				}
 			}
 		}
-		
+
 		stage('Deliver artifacts to WooCommerce shop') {
 			steps {
 				script {
@@ -132,9 +132,9 @@ pipeline {
 					workflow.archiveStage.run()
 				}
 			}
-		}		
+		}
 	}
-	
+
 	post {
 		unstable {
 			script {
@@ -147,7 +147,7 @@ pipeline {
 				workflow.context.notifier.fail([title: 'Build Status', text: 'Build failed :-/'])
 			}
 		}
-			
+
 		success {
 			script {
 				workflow.context.notifier.ok([title: 'Build Status', text: 'Build succeeded :-)'])

@@ -3,7 +3,7 @@ library 'jenkins-pipeline-library'
 
 def projectName = "generic-exchange-transport-agent"
 def useVersion = version.uniqueBuildVersion()
-def buildTargets = ['2010', '2016 RTM']
+def buildTargets = ['2010 SP3', '2016 RTM']
 
 def	pipelineConfiguration = [
 	config: [
@@ -47,7 +47,7 @@ pipeline {
 		 * Instead, we are compiling against all different versions and pushing them to the WooCommerce shop
 		 */
 		booleanParam(name: 'ALL_BUILDS', defaultValue: true, description: "Build for all targets")
-		choice(name: 'BUILD_TARGET', choices: buildTargets, description: "Which Exchange version to use as build target, defaults to 2010")
+		choice(name: 'BUILD_TARGET', choices: buildTargets, description: "Which Exchange version to use as build target, defaults to 2010 SP3")
 	}
 
 	stages {

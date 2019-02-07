@@ -1,20 +1,31 @@
 # NeosIT Generic Exchange Transport Agent
 
+Also called GETA.
+
 ## How to build
 
-- [.NET SDK >= 4.7.2](https://dotnet.microsoft.com/download/thank-you/net472-developer-pack) must be installed on build system
-- Create a directory c:\exchange-libs
-- For each Exchange version to compile against, create a directory `c:\exchange-libs\${EXCHANGE_VERSION}`, e.g. `c:\exchange-libs\2013`
+### Requirements
+
+- Powershell 5+ (included in Win10)
+- Depending on what Exchange you want to target you have to install certain [.NET SDKs](https://dotnet.microsoft.com/download/archives). To know what version you have to download please review the `scripts/add-version/version-matrix.csv` file.
+- [.NET SDK 4.5.2](https://dotnet.microsoft.com/download/thank-you/net452-developer-pack)
+- .NET SDK 3.5 (only available via VS)
+
+### Building
+
+- For each Exchange version to compile against, create a directory `libs\${EXCHANGE_VERSION}`, e.g. `libs\2013`
 - Copy all DLLs from the `\Bin` directory of your Exchange installation to the created directory
 - Run (in powershell)
 
-```ps1
-.\build.ps1 -BuildTarget ${EXCHANGE_VERSION} -ExchangeLibrariesPath c:\exchange-libs
-```
+    ```powershell
+    .\build.ps1 -BuildTarget ${EXCHANGE_VERSION}
+    ```
+
+    Note: _the build script has even more parameter you can use_
 
 ### Notes for 2013 SP1 CU4, 2016 or newer
 
-### The Problem
+#### The Problem
 Certain Exchange versions introduced new dependencies. As they bring even more sub-dependencies the development can get very annoying fighting with the [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
 
 As an example, **Exchange 2016 RTM**s `Microsoft.Exchange.Data.Transport.dll, Version 15.1.220` introduces a new dependency to `Microsoft.Exchange.Net.dll, Version 15.0.0` which introduces a dependency to `Microsoft.Data.Services.Client.dll, Version 5.6.0` and that requires a version of `Microsoft.WindowsAzure.Storage.dll, Version 4.3.0` but this package requires `Microsoft.Data.Services.Client.dll, Version 5.6.2`. As you may noticed now we require `Microsoft.Data.Services.Client.dll` at `5.6.0` and `5.6.2`. If you didn't yet notice here is a simple illustration of the dependency graph:
@@ -31,7 +42,7 @@ Normally this is not a possible scenario. When you develop a simple .NET applica
 
 .NET comes with a **G**lobal**A**ssembly**C**ache. This is a systemwide available cache for all .NET applications to use common libraries. GAC can be used to work around the limitation of only referencing one version. There are [other ways](https://michaelscodingspot.com/2018/04/24/how-to-resolve-net-reference-and-nuget-package-version-conflicts/) but the GAC way worked the best for this project.
 
-### The Solution
+#### The Solution
 
 In order to use the GAC you have to copy all Exchange relevant dll files to it. You can use the `add-to-gac.ps1` script to add a complete folder to the GAC. For Exchange 2016 RTM you'll have to add the following .dll files from exchange to your GAC.
 
@@ -50,6 +61,12 @@ Microsoft.Exchange.Net.dll
 Microsoft.Exchange.PswsClient.dll
 Microsoft.RightsManagementServices.Core.dll
 Microsoft.WindowsAzure.Storage.dll
+```
+
+Just copy those files to a folder and run the script.
+
+```powershell
+.\add-to-gac.ps1 -Path "C:\MyFolder"
 ```
 
 Additionally they must be referenced in the execution project: `Geta.GuiApplication` (and `Geta.Tests`). In the given `.csproj` file (`Geta.GuiApplication.csproj`) there is a section called that looks like this:
@@ -90,7 +107,63 @@ As you can see here all referenced files are actually NuGet packages. This makes
 
 That should be it. At this point you should be ready to start the GUI (or the tests).
 
-#### Notes
+##### Notes
 
 - You don't have to do this on your Exchange machine. Only on your dev machine.
 - There might be Exchange versions that don't require these steps.
+
+### Building for a certain Exchange version
+
+The offical support from GETA is limited to certain Exchange versions. At this point only `2016 RTM` is build against a live system and fully supported by us.
+
+Versions prior to 2013 SP1 CU4 should work just fine. 2013 SP1 CU4, 2016 can be harder to setup for development (this does not affect the runtime).
+
+#### Simple Example
+
+Let's use `2013` as a simple example. In order to compile against Exchange 2013 you have to do some steps first:
+
+1. Get `Microsoft.Exchange.Data.Transport.dll` and `Microsoft.Exchange.Data.Common.dll` from you Exchange 2013 Server. Put the in the in a subfolder of `libs` of your GETA version like:
+
+    ```path
+    libs/2013/Microsoft.Exchange.Data.Transport.dll
+    libs/2013/Microsoft.Exchange.Data.Common.dll
+    ```
+
+2. Update your `Geta.sln` solution file. You have the following options:
+
+    - run `scripts/add-version.ps1` (recommenden)
+    - Add a configuration via [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-create-and-edit-configurations?view=vs-2017) (or any other IDE). The configuration must exactly match the version of your target Exchange server (i.e. `2016 RTM`) (not recommended as VS does some more unecessary magic)
+    - Modify the solution file by hand (not recommended - only if you know what you're doing)
+
+3. Update **every** csproj file in the solution.
+
+    1. Duplicate any `PropertyGroup` element with a configuration condition like this one:
+
+        ```xml
+        <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
+          ...
+        </PropertyGroup>
+        ```
+    2. Fill the duplicated propertygroup with necessary properties for your exchange version.
+        - Set the `TargetFrameworkVersion` to your Exchange's .NET version. If you're not sure what version you can use please review the `scripts/add-version/version-matrix.csv` file.
+    3. Duplicate any `ItemGroup` element with a configuration condition like
+
+        ```xml
+        <ItemGroup Condition="$(Configuration) == '2010 SP3'">
+          <Reference Include="System.ComponentModel.Composition">
+            <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
+          </Reference>
+        </ItemGroup>
+        ```
+    4. Update references
+        - Add every reference that comes additionally to the default dependencies (`Microsoft.Exchange.Data.Transport.dll` and `Microsoft.Exchange.Data.Common.dll`)
+        - Depending on which .NET version you can use, use the local `System.ComponentModel.Composition.dll` (in `libs`) or use the systems version (.NET 4+)
+            ```xml
+            <Reference Include="System.ComponentModel.Composition" />
+            ```
+
+now compile using the build script.
+
+```powershell
+.\build.ps1 -BuildTarget 2013
+```

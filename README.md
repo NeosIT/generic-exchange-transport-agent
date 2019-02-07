@@ -146,6 +146,11 @@ Let's use `2013` as a simple example. In order to compile against Exchange 2013 
         ```
     2. Fill the duplicated propertygroup with necessary properties for your exchange version.
         - Set the `TargetFrameworkVersion` to your Exchange's .NET version. If you're not sure what version you can use please review the `scripts/add-version/version-matrix.csv` file.
+        - Set/Add `DefineConstraints` to
+            ```xml
+            <DefineConstants>$(DefineConstants);NET452</DefineConstants>
+            ```
+            where `NET452` matches your .NET version from `TargetFrameworkVersion` without `v` and `.`
     3. Duplicate any `ItemGroup` element with a configuration condition like
 
         ```xml

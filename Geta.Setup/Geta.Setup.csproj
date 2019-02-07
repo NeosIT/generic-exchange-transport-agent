@@ -12,7 +12,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU' ">
     <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU' ">

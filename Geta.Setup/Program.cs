@@ -28,7 +28,7 @@ namespace Geta.Setup
         private const string BannerImagePath = null;
 
         /// <summary>
-        /// Gets the name of the parent directory. i.e. bin/2010/App.exe => 2010
+        /// Gets the name of the parent directory. i.e. bin/2010 SP3/App.exe => 2010 SP3
         /// </summary>
         public static string Configuration => new FileInfo(typeof(Program).Assembly.Location).Directory?.Name;
 

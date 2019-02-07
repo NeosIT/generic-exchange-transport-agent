@@ -15,14 +15,14 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
     <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->
   </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)' == '2010|AnyCPU'">
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU'">
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
       <HintPath>..\packages\NUnit.3.11.0\lib\net35\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -117,6 +117,7 @@
     <Compile Include="Helpers\EmailMessageHelper.cs" />
     <Compile Include="Plugins\Common\PluginHostTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexTest.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>

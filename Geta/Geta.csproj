@@ -14,7 +14,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU'">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   <ItemGroup Condition="$(Configuration) == '2016 RTM'">
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
-  <ItemGroup Condition="$(Configuration) == '2010'">
+  <ItemGroup Condition="$(Configuration) == '2010 SP3'">
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
     </Reference>

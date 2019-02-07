@@ -9,14 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication</RootNamespace>
     <AssemblyName>Geta.ConsoleApplication</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
+    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"));$(TargetFrameworkVersion.TrimStart('v').Replace(".", ""))</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010 SP3|x64' ">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|x64' ">
     <!-- Template for new configurations. Required so that IDEs can detect this as a valid project configuration -->

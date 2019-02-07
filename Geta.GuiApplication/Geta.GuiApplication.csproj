@@ -1,25 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs/$(Configuration)</ExchangeLibraryPath>
     <ProjectGuid>{5A17E259-3DB1-4176-B15F-69E4B77E90D7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication</RootNamespace>
     <AssemblyName>Geta.GuiApplication</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(Configuration)', '2010'))">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010 SP3|x64' ">
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|x64' ">
+  </PropertyGroup>
+  <ItemGroup Condition="$(Configuration) == '2010 SP3'">
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\libs\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="$(Configuration) == '2016 RTM'">
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Exchange.Data.Common">
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport">
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
@@ -28,8 +64,11 @@
     <Reference Include="MSDN.HtmlEditorControl, Version=2.0.4647.18914, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\MSDN.HtmlEditorControl.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,19 +79,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ColorTag.cs" />
     <Compile Include="Controls\IPayload.cs" />
     <Compile Include="Controls\ITaggedChild.cs" />
     <Compile Include="Controls\ITaggedParent.cs" />
-    <Compile Include="Controls\TaggedLeaf.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TaggedNode.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TaggedTree.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\TaggedLeaf.cs" />
+    <Compile Include="Controls\TaggedNode.cs" />
+    <Compile Include="Controls\TaggedTree.cs" />
     <Compile Include="FilterCondition.cs" />
     <Compile Include="FilterForm.cs">
       <SubType>Form</SubType>
@@ -62,7 +101,6 @@
     </Compile>
     <Compile Include="GenericConfigForm.cs" />
     <Compile Include="Impl\Extensions\GenericFormExtensions.cs" />
-    <Compile Include="Impl\Extensions\Net35Extensions.cs" />
     <Compile Include="Impl\Models\Entry.cs" />
     <Compile Include="Impl\TreeNodeMapper.cs" />
     <Compile Include="EntryForm.cs">
@@ -115,6 +153,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntryForm.de.resx">
       <DependentUpon>EntryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +166,9 @@
       <DependentUpon>EntryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.de.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.en.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -238,12 +282,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Icon.ico" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

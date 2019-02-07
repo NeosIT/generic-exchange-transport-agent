@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Platform>x64</Platform>
     <ProjectGuid>{8B4ACE24-D2F2-4DF8-BE01-28AF9A714910}</ProjectGuid>
@@ -8,15 +7,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Geta.Setup</RootNamespace>
     <AssemblyName>Geta.Setup</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BootstrapperCore, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad">
@@ -63,6 +61,10 @@
       <Project>{5a17e259-3db1-4176-b15f-69e4b77e90d7}</Project>
       <Name>Geta.GuiApplication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Geta\Geta.csproj">
+      <Project>{0b1622b1-0301-45bb-a2f4-21359de6b66a}</Project>
+      <Name>Geta</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\MSI BG.png" />
@@ -87,11 +89,4 @@
     <Error Condition="!Exists('..\packages\WixSharp.1.9.3\build\WixSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WixSharp.1.9.3\build\WixSharp.targets'))" />
   </Target>
   <Import Project="..\packages\WixSharp.1.9.3\build\WixSharp.targets" Condition="Exists('..\packages\WixSharp.1.9.3\build\WixSharp.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
 </Project>

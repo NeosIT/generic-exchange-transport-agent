@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Deployment.WindowsInstaller;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication;
 using WixSharp;
 using File = WixSharp.File;
@@ -27,7 +28,7 @@ namespace Geta.Setup
         private const string BannerImagePath = null;
 
         /// <summary>
-        /// Gets the name of the parent directory. i.e. bin/2010/App.exe => 2010
+        /// Gets the name of the parent directory. i.e. bin/2010 SP3/App.exe => 2010 SP3
         /// </summary>
         public static string Configuration => new FileInfo(typeof(Program).Assembly.Location).Directory?.Name;
 
@@ -43,7 +44,7 @@ namespace Geta.Setup
                 InstallScope = InstallScope,
                 Platform = Platform.x64,
                 Version = typeof(MainForm).Assembly.GetName().Version,
-                
+
                 ControlPanelInfo = new ProductInfo
                 {
                     ProductIcon = IconPath,
@@ -66,14 +67,16 @@ namespace Geta.Setup
                         IsInstallDir = true,
                         Files = GetApplicationFiles()
                     },
-                    new Dir(StartMenuPath){
-                        Shortcuts = new []
+                    new Dir(StartMenuPath)
+                    {
+                        Shortcuts = new[]
                         {
                             new ExeFileShortcut(AppName, $@"[INSTALL_DIR]\{AppFileName}", "")
                             {
                                 IconFile = IconPath
                             },
-                            new ExeFileShortcut($"Uninstall {AppName}", "[System64Folder]msiexec.exe", "/x [ProductCode]")
+                            new ExeFileShortcut($"Uninstall {AppName}", "[System64Folder]msiexec.exe",
+                                "/x [ProductCode]")
                         }
                     }
                 },
@@ -85,8 +88,9 @@ namespace Geta.Setup
             };
 
             project.Load += ProjectOnBeforeInstall;
-
-            Compiler.BuildMsi(project, $"{AppName}.msi");
+            project.OutDir = Path.Combine("bin", Configuration);
+            
+            Compiler.BuildMsi(project, Path.Combine(project.OutDir, $"{AppName}.msi"));
         }
 
         private static File[] GetApplicationFiles()
@@ -94,7 +98,6 @@ namespace Geta.Setup
             return new DirectoryInfo($@"..\Geta.GuiApplication\bin\{Configuration}").GetFiles()
                 .Select(x =>
                 {
-                    
                     var file = new File(x.FullName);
                     if (x.Name == AppFileName)
                     {
@@ -114,10 +117,16 @@ namespace Geta.Setup
 
         private static void ProjectOnBeforeInstall(SetupEventArgs e)
         {
-            var exchangeDir = Environment.GetEnvironmentVariable("ExchangeInstallPath", EnvironmentVariableTarget.Machine);
-            if (!string.IsNullOrWhiteSpace(exchangeDir))
+            var exchangeDir =
+                Environment.GetEnvironmentVariable("ExchangeInstallPath", EnvironmentVariableTarget.Machine);
+            if (!exchangeDir.IsNullOrWhiteSpace())
             {
+#if NET35
+                e.Session["INSTALL_DIR"] =
+ string.Join(Path.PathSeparator.ToString(), new []{exchangeDir, "TransportRoles", "agents", AppName});
+#else
                 e.Session["INSTALL_DIR"] = Path.Combine(exchangeDir, "TransportRoles", "agents", AppName);
+#endif
             }
             else
             {

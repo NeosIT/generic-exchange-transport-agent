@@ -1,6 +1,6 @@
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Config;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.MailEndpointHandler.Impl;
 using NUnit.Framework;
@@ -23,16 +23,16 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
         }
 
         [TearDown]
-        public async Task Teardown()
+        public void Teardown()
         {
             Configuration.HotReloadEnabled = true;
             // relies on the file watcher to reload / reset the config. 
             File.WriteAllText(Configuration.FullPath, _configFileContents);
-            await Task.Delay(1000);
+            Thread.Sleep(1000);
         }
 
         [Test]
-        public async Task TestHotReload()
+        public void TestHotReload()
         {
             var config = Configuration.Config;
 
@@ -48,7 +48,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
   </RoutingAgent>
 </GenericTransportAgent>");
 
-            await Task.Delay(1000); // wait for filesystem watcher to catch up
+            Thread.Sleep(1000); // wait for filesystem watcher to catch up
 
             var config2 = Configuration.Config;
 
@@ -59,7 +59,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
         }
 
         [Test]
-        public async Task TestHotReloadSwitch()
+        public void TestHotReloadSwitch()
         {
             Configuration.HotReloadEnabled = false;
 
@@ -69,13 +69,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
 
             File.WriteAllText(Configuration.FullPath, "");
 
-            await Task.Delay(1000); // be sure to wait. When the watcher is still enabled it may not be fast enough.
+            Thread.Sleep(1000); // be sure to wait. When the watcher is still enabled it may not be fast enough.
 
             Assert.IsEmpty(config.RoutingAgentConfig.OnRoutedMessage);
         }
 
         [Test]
-        public async Task TestHotReloadIsFailSafe()
+        public void TestHotReloadIsFailSafe()
         {
             var config = Configuration.Config;
 
@@ -89,13 +89,13 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests
   </RoutingAgent>
 </GenericTransportAgent>");
 
-            await Task.Delay(1000); // wait for filesystem watcher to catch up
+            Thread.Sleep(1000); // wait for filesystem watcher to catch up
 
             Assert.IsNotEmpty(config.RoutingAgentConfig.OnRoutedMessage);
 
             File.WriteAllText(Configuration.FullPath, @"");
 
-            await Task.Delay(1000); // wait for filesystem watcher to catch up
+            Thread.Sleep(1000); // wait for filesystem watcher to catch up
 
             Assert.IsNotEmpty(config.RoutingAgentConfig.OnRoutedMessage);
         }

@@ -1,29 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">2016 RTM</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ExchangeLibraryPath Condition="'$(ExchangeLibraryPath)' == '' ">../libs/$(Configuration)</ExchangeLibraryPath>
+    <ExchangeVersion Condition="'$(ExchangeVersion)' == '' ">2016 RTM</ExchangeVersion>
     <ProjectGuid>{F1AE7C7A-3DC7-4DFE-8E92-57D30C001098}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NeosIT.Exchange.GenericExchangeTransportAgent.Tests</RootNamespace>
     <AssemblyName>Geta.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>EXCHANGE_$(Configuration.Replace(" ", "_"))</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
+    <DefineConstants>$(DefineConstants);NET452</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == '2010 SP3|AnyCPU'">
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net35\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == '2016 RTM|AnyCPU'">
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Exchange.Data.Common">
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.Data.Transport">
+      <HintPath>$(ExchangeLibraryPath)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Exchange.Data.Common">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Exchange.Data.Transport">
-      <HintPath>..\libs\Exchange $(Configuration)\Microsoft.Exchange.Data.Transport.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -36,10 +80,6 @@
     <Reference Include="Ninject.Extensions.Logging.Log4Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.Extensions.Logging.Log4net.3.0.1.0\lib\net35\Ninject.Extensions.Logging.Log4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -141,12 +181,9 @@
   <ItemGroup>
     <TestData Include="Fixtures\**\*" />
   </ItemGroup>
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  -->
   <Target Name="AfterBuild">
     <RemoveDir Directories="$(OutDir)\Fixtures" />
     <Copy SourceFiles="@(TestData)" DestinationFolder="$(OutDir)\Fixtures\%(RecursiveDir)" />

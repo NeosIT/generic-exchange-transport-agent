@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml;
 using JetBrains.Annotations;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication.Impl.Models;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl;
@@ -26,14 +27,15 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
         private string _configFilename;
         private TransportAgentConfig _config;
         private List<IAgentConfig> _agentConfigs;
+        private readonly PluginHost _pluginHost;
 
         public MainForm()
         {
             _agentConfigs = new List<IAgentConfig>();
             _config = new TransportAgentConfig();
 
-            var pluginHost = new PluginHost();
-            _knownTypes = pluginHost.KnownTypes;
+            _pluginHost = new PluginHost();
+            _knownTypes = _pluginHost.KnownTypes;
 
             InitializeComponent();
         }
@@ -429,6 +431,12 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.GuiApplication
             {
                 TryHighlightNode(child, text);
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new AboutForm(_pluginHost);
+            form.Show();
         }
     }
 }

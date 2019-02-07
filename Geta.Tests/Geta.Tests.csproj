@@ -117,7 +117,6 @@
     <Compile Include="Helpers\EmailMessageHelper.cs" />
     <Compile Include="Plugins\Common\PluginHostTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegexTest.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
